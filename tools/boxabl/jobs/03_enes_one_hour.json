@@ -1,0 +1,23 @@
+{
+ "name": "03_enes_one_hour",
+ "title": "A Home Built in Under an Hour",
+ "version": 1,
+ "status": "delivered",
+ "sources": {"enes": "/1. Most Viewed YouTube/Inside Elon Musk's Famous $50,000 Tiny Home.mp4"},
+ "segments": [
+  {"v": "enes", "vs": 1.7, "ve": 5.7, "home": true},
+  {"v": "enes", "vs": 22.9, "ve": 24.5},
+  {"v": "enes", "vs": 31.1, "ve": 42.2},
+  {"v": "enes", "vs": 733.9, "ve": 742.0},
+  {"v": "enes", "vs": 754.8, "ve": 763.8},
+  {"v": "enes", "vs": 816.8, "ve": 819.1},
+  {"v": "enes", "vs": 821.9, "ve": 827.1}
+ ],
+ "overlays": [
+  {"s": 0, "e": 4.0, "text": "THIS HOME TAKES\n*UNDER 1 HOUR* TO BUILD"},
+  {"s": 4.0, "e": 16.7, "text": "HOW *BOXABL*\nBUILDS HOUSES"},
+  {"s": 16.7, "e": 33.8, "text": "INSIDE THE\n*BOXABL CASITA*"},
+  {"s": 33.8, "e": 41.2, "text": "EVERYTHING IS\n*FULL SIZE*"}
+ ],
+ "post": {"short": "A home that takes under an hour to set up 🏠 Inside the BOXABL Casita. @boxabl #boxabl #casita #hometour #tinyhome", "x": "A home that takes under an hour to set up 🏠 Inside the BOXABL Casita. [TRACKING URL]"}
+}

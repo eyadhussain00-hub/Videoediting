@@ -1,0 +1,4 @@
+node_modules/
+# Raw footage and renders are regenerated from config; they are large and change every take.
+public/recordings/
+out/

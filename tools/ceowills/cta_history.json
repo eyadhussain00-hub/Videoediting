@@ -1,0 +1,14 @@
+{
+ "_comment": "iMessage CTA cards used per video, oldest first (render.py writes this on every final render; plan_ctas penalises cards used in the last few videos).",
+ "videos": {
+  "Culture leaving daughters out": [],
+  "HMRC can take up to 40%": [],
+  "Business leader feeding your family": [],
+  "CEOwills bridges your company and your will": [],
+  "Business owners: deep, dark IHT conversation": [],
+  "Business partners: agree your succession": [],
+  "Plan like Rafa Nadal": [],
+  "Families should find it in the drawer": [],
+  "Business owner juggling": []
+ }
+}

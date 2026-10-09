@@ -1,0 +1,559 @@
+{
+ "_comment": "TJR – Video 3 (reference job). Paths are relative to this file's folder (the workspace).",
+ "subject": "TJR",
+ "video": 3,
+ "drive": {
+  "sources_folder": "SK/Tjr/Video 3 (copies) — webcam for the Loom was in SK/Tjr/Video 2",
+  "export": "SK/Tjr/Video 3/Export/TJR - Video 3.mp4"
+ },
+ "sources": {
+  "loom": {
+   "screen": "src/loom_twitter_leads.mp4",
+   "face": "extra/cam_2026-09-10_20-25-02.mov",
+   "face_offset": -5.7046,
+   "audio": "src/loom_twitter_leads.mp4",
+   "words": "words/loom_best.json",
+   "facetrack": "ft_cam2502.json"
+  },
+  "cam1818": {
+   "screen": null,
+   "face": "src/cam_2026-09-10_20-18-23.mov",
+   "face_offset": 0.0,
+   "words": "wx/cam1818.json",
+   "facetrack": "ft_cam1818.json"
+  }
+ },
+ "screen_region": [
+  522,
+  550,
+  50,
+  130
+ ],
+ "headline": [
+  "HOW TJR'S ISLAND",
+  "PRINTS ATTENTION"
+ ],
+ "sections": {
+  "hook": [
+   "",
+   ""
+  ],
+  "01": [
+   "01",
+   "X / Twitter"
+  ],
+  "02": [
+   "02",
+   "TJR Island"
+  ],
+  "03": [
+   "03",
+   "Why Kick"
+  ],
+  "04": [
+   "04",
+   "Instant Expert"
+  ],
+  "05": [
+   "05",
+   "Fly-Trap Model"
+  ],
+  "take": [
+   "06",
+   "My Take"
+  ],
+  "cta": [
+   "07",
+   "Follow For More"
+  ]
+ },
+ "caption_fix": {
+  "tgr": "TJR",
+  "band": "brand",
+  "mind": "brand",
+  "kik": "Kick",
+  "icp": "ICP"
+ },
+ "caption_pairs": [
+  [
+   "high",
+   "-tech",
+   "high-ticket"
+  ],
+  [
+   "high",
+   "ticket",
+   "high-ticket"
+  ],
+  [
+   "25",
+   ",000",
+   "25,000"
+  ],
+  [
+   "fly",
+   "trap",
+   "flytrap"
+  ]
+ ],
+ "cuts": [
+  {
+   "section": "hook",
+   "src": "loom",
+   "out": 67.63000000000001,
+   "in_t": 63.64
+  },
+  {
+   "section": "hook",
+   "src": "loom",
+   "in": 69.7,
+   "out": 71.31
+  },
+  {
+   "section": "01",
+   "src": "loom",
+   "out": 16.09,
+   "in_t": 14.3
+  },
+  {
+   "section": "01",
+   "src": "loom",
+   "in": 22.86,
+   "out": 25.53
+  },
+  {
+   "section": "01",
+   "src": "loom",
+   "in": 26.2,
+   "out": 31.990000000000002
+  },
+  {
+   "section": "01",
+   "src": "loom",
+   "in": 34.06,
+   "out": 36.01
+  },
+  {
+   "section": "01",
+   "src": "loom",
+   "in": 42.6,
+   "out": 45.089999999999996
+  },
+  {
+   "section": "01",
+   "src": "loom",
+   "in": 46.3,
+   "out": 48.51
+  },
+  {
+   "section": "02",
+   "src": "loom",
+   "in": 58.1,
+   "out": 61.15
+  },
+  {
+   "section": "02",
+   "src": "loom",
+   "in": 78.0,
+   "out": 83.59
+  },
+  {
+   "section": "02",
+   "src": "loom",
+   "in": 84.46,
+   "out": 85.11
+  },
+  {
+   "section": "02",
+   "src": "loom",
+   "in": 85.8,
+   "out": 90.35000000000001
+  },
+  {
+   "section": "03",
+   "src": "loom",
+   "in": 97.25,
+   "out": 97.89
+  },
+  {
+   "section": "03",
+   "src": "loom",
+   "in": 121.3,
+   "out": 122.11
+  },
+  {
+   "section": "03",
+   "src": "loom",
+   "in": 100.95,
+   "out": 107.49000000000001
+  },
+  {
+   "section": "03",
+   "src": "loom",
+   "in": 108.4,
+   "out": 109.43
+  },
+  {
+   "section": "04",
+   "src": "loom",
+   "in": 126.3,
+   "out_t": 128.62
+  },
+  {
+   "section": "04",
+   "src": "loom",
+   "in_t": 129.12,
+   "out": 133.03
+  },
+  {
+   "section": "04",
+   "src": "loom",
+   "in": 133.85,
+   "out": 135.13
+  },
+  {
+   "section": "04",
+   "src": "loom",
+   "in": 148.7,
+   "out": 155.95
+  },
+  {
+   "section": "04",
+   "src": "loom",
+   "in": 156.7,
+   "out": 158.91
+  },
+  {
+   "section": "05",
+   "src": "loom",
+   "in": 178.3,
+   "out": 179.91
+  },
+  {
+   "section": "05",
+   "src": "loom",
+   "in": 180.75,
+   "out": 184.69
+  },
+  {
+   "section": "05",
+   "src": "loom",
+   "in": 185.95,
+   "out": 189.63
+  },
+  {
+   "section": "05",
+   "src": "loom",
+   "in": 191.5,
+   "out": 194.60999999999999
+  },
+  {
+   "section": "05",
+   "src": "loom",
+   "in": 194.82,
+   "out": 196.07
+  },
+  {
+   "section": "take",
+   "src": "loom",
+   "in": 114.3,
+   "out": 121.0
+  },
+  {
+   "section": "cta",
+   "src": "cam1818",
+   "in": 270.1,
+   "out": 271.17
+  },
+  {
+   "section": "cta",
+   "src": "cam1818",
+   "in": 276.3,
+   "out": 281.13
+  }
+ ],
+ "beats": [
+  {
+   "type": "pill",
+   "at": "reality@63.46",
+   "text": "A reality TV show"
+  },
+  {
+   "type": "badge",
+   "at": "10@66.26",
+   "until": "island@67.62",
+   "big": "10",
+   "sub": "day traders on an island"
+  },
+  {
+   "type": "badge",
+   "at": "wins@70.32",
+   "until": "pounds@71.3",
+   "big": "£25,000",
+   "sub": "for the best performer",
+   "count": 25000,
+   "prefix": "£",
+   "count_word": "25,000@70.62"
+  },
+  {
+   "type": "pill",
+   "at": "Twitter@15.7",
+   "until": "profile@16.08",
+   "text": "His X profile"
+  },
+  {
+   "type": "pill",
+   "at": "lingo@23.64",
+   "until": "ICP@24.08",
+   "text": "Speaks his ICP's lingo"
+  },
+  {
+   "type": "quote",
+   "at": "trenches@25.52",
+   "until": "out@27.58",
+   "l1": "“Out of the",
+   "l2": "trenches”"
+  },
+  {
+   "type": "pill",
+   "at": "struggling@30.02",
+   "until": "university@31.98",
+   "text": "Struggling in school"
+  },
+  {
+   "type": "quote",
+   "at": "yeah@35.22",
+   "until": "out@36.0",
+   "l1": "“Yeah, I've",
+   "l2": "made it out”"
+  },
+  {
+   "type": "pill",
+   "at": "controversial@43.28",
+   "until": "attention@45.08",
+   "text": "Controversial content"
+  },
+  {
+   "type": "quote",
+   "at": "garners@47.12",
+   "until": "attention@48.5",
+   "l1": "Any attention",
+   "l2": "is good attention"
+  },
+  {
+   "type": "badge",
+   "at": "YouTube@59.96",
+   "until": "Island@61.14",
+   "big": "TJR ISLAND",
+   "sub": "dropped on YouTube"
+  },
+  {
+   "type": "pill",
+   "at": "extreme@80.38",
+   "until": "challenges@80.66",
+   "text": "Built around extreme challenges"
+  },
+  {
+   "type": "pill",
+   "at": "live@81.62",
+   "until": "programs@83.58",
+   "text": "Live on Kick · pushes his affiliates"
+  },
+  {
+   "type": "pill",
+   "at": "clippers@85.1",
+   "until": "him@86.78",
+   "text": "Clippers make the content"
+  },
+  {
+   "type": "quote",
+   "at": "billion@88.5",
+   "until": "autopilot@90.34",
+   "l1": "Billions of views",
+   "l2": "on autopilot"
+  },
+  {
+   "type": "quote",
+   "at": "young@122.1",
+   "l1": "His audience",
+   "l2": "is young"
+  },
+  {
+   "type": "flow",
+   "at": "going@101.7",
+   "until": "mentorship@107.48",
+   "items": [
+    "Going out anyway",
+    "Kick stream",
+    "High-ticket mentorship"
+   ],
+   "item_words": [
+    "going@101.7",
+    "Kick@104.2",
+    "high-ticket@107.1"
+   ]
+  },
+  {
+   "type": "quote",
+   "at": "live@130.32",
+   "until": "expert@133.02",
+   "l1": "Live =",
+   "l2": "the absolute expert"
+  },
+  {
+   "type": "pill",
+   "at": "makes@134.14",
+   "until": "more@135.12",
+   "text": "More trust"
+  },
+  {
+   "type": "quote",
+   "at": "best@152.08",
+   "until": "all@155.94",
+   "l1": "His best student",
+   "l2": "vs. no clue"
+  },
+  {
+   "type": "pill",
+   "at": "tactic@158.1",
+   "until": "uses@158.9",
+   "text": "A tactic"
+  },
+  {
+   "type": "pill",
+   "at": "flytrap@179.6",
+   "until": "model@179.9",
+   "text": "The fly-trap model"
+  },
+  {
+   "type": "quote",
+   "at": "trap@181.9",
+   "until": "means@184.68",
+   "l1": "Trap audiences",
+   "l2": "from all angles"
+  },
+  {
+   "type": "chips",
+   "at": "YouTube@186.82",
+   "until": "Threads@194.06",
+   "items": [
+    "YouTube",
+    "TikTok",
+    "Instagram",
+    "X",
+    "Kick",
+    "Inner circles",
+    "Threads"
+   ],
+   "item_words": [
+    "YouTube@186.82",
+    "TikTok@187.54",
+    "Instagram@187.9",
+    "Twitter@188.88",
+    "Kick@189.62",
+    "inner@192.04",
+    "Threads@194.06"
+   ]
+  },
+  {
+   "type": "quote",
+   "at": "absolutely@195.54",
+   "until": "everywhere@196.06",
+   "l1": "Absolutely",
+   "l2": "everywhere"
+  },
+  {
+   "type": "quote",
+   "at": "personal@115.82",
+   "until": "product@117.16",
+   "l1": "Personal brand +",
+   "l2": "digital product?"
+  },
+  {
+   "type": "quote",
+   "at": "depends@119.64",
+   "until": "is@120.72",
+   "l1": "It depends on",
+   "l2": "your audience"
+  },
+  {
+   "type": "quote",
+   "at": "tips@cam1818:270.78",
+   "until": "then@cam1818:276.44",
+   "l1": "More tips",
+   "l2": "like this?"
+  }
+ ],
+ "cta": {
+  "keyword": "TJR",
+  "follow": "follow@cam1818:277.02",
+  "comment": "TJR@cam1818:279.06",
+  "full": "full@cam1818:280.54",
+  "backdrop": {
+   "src": "loom",
+   "t": 196
+  }
+ },
+ "word_patch": [
+  {
+   "src": "loom",
+   "from": 63.4,
+   "to": 63.5,
+   "words": [
+    [
+     "reality",
+     63.7,
+     64.04
+    ]
+   ],
+   "_why": "stutter 're- reality' — drop the 're-' (63.46-63.60)"
+  },
+  {
+   "src": "loom",
+   "from": 13.3,
+   "to": 13.4,
+   "words": [
+    [
+     "so",
+     14.32,
+     14.4
+    ],
+    [
+     "how",
+     14.4,
+     14.52
+    ],
+    [
+     "does",
+     14.52,
+     14.64
+    ],
+    [
+     "TGR",
+     14.66,
+     15.0
+    ],
+    [
+     "optimize",
+     15.06,
+     15.34
+    ]
+   ],
+   "_why": "restart 'so how does TJR— okay, so how does TJR optimise': the 'okay' is 14.04-14.28, clean take starts 14.30"
+  },
+  {
+   "src": "loom",
+   "from": 128.45,
+   "to": 128.55,
+   "words": [
+    [
+     "is",
+     129.15,
+     129.29
+    ]
+   ],
+   "_why": "filler 'um' 128.62-129.10 sat inside the ASR span of 'is' (129.15-129.29)"
+  }
+ ],
+ "_anchors": "beat/cta words are 'word@<source seconds>' (time in the recording, not the edit) so re-cuts never break them"
+}

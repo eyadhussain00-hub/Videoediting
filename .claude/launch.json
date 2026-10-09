@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "rsv-demo-video-studio",
+      "runtimeExecutable": "npm.cmd",
+      "runtimeArgs": ["--prefix", "projects/rsv-demo-video", "run", "studio"],
+      "port": 3000
+    }
+  ]
+}

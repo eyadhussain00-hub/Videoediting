@@ -1,0 +1,24 @@
+{
+ "name": "10_doesnt_feel_tiny",
+ "title": "It Doesn't Feel Tiny",
+ "version": 1,
+ "angle": "first impressions / size",
+ "sources": {"vegas": "/2. 3rd Party Videos/Touring the Famous $50,000 Boxabl Casita in Las Vegas.mp4"},
+ "_why": "Kerry's in-person verdict. Left out: 1:00-2:45 the government/military order + the 'invest at $0.80/share' screenshot, the waitlist maths, the 'turkey dinner' downsides (not positive). Hook frame = the clean exterior at 4:03 under Kerry's intro (his face at 0:00 was a weak first frame).",
+ "segments": [
+  {"v": "vegas", "vs": 243.0, "ve": 249.9, "a": "vegas", "as": 0.0, "ae": 6.1, "home": true},
+  {"v": "vegas", "vs": 326.6, "ve": 333.5},
+  {"v": "vegas", "vs": 338.45, "ve": 341.0},
+  {"v": "vegas", "vs": 347.6, "ve": 356.7},
+  {"v": "vegas", "vs": 402.15, "ve": 409.25},
+  {"v": "vegas", "vs": 466.0, "ve": 472.0, "a": "vegas", "as": 517.65, "ae": 520.2, "home": true}
+ ],
+ "overlays": [
+  {"s": 0, "e": 6.1, "text": "THE WORLD-FAMOUS\n*BOXABL CASITA*"},
+  {"s": 6.1, "e": 15.5, "text": "375 SQ FT, BUT…"},
+  {"s": 15.5, "e": 24.6, "text": "*DOESN'T FEEL*\nTINY AT ALL"},
+  {"s": 24.6, "e": 31.65, "text": "THE TV *SWIVELS*"},
+  {"s": 31.65, "e": 34.2, "text": "THE *BOXABL CASITA*"}
+ ],
+ "post": {"short": "375 sq ft that doesn't feel tiny at all 🏠 First impressions inside the BOXABL Casita. @boxabl #boxabl #casita #tinyhome #hometour", "x": "375 sq ft that doesn't feel tiny at all 🏠 Inside the BOXABL Casita. [TRACKING URL]"}
+}

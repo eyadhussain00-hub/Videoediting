@@ -12,6 +12,9 @@ Plan, animate, edit, voice and sound-design complete videos with Claude Code, Co
 
 </div>
 
+> **This fork** is where all of our video work lives. Client pipelines are in `tools/`, one-off projects in `projects/`, RSV Studio's brand files
+> are in `brand/rsv/`, and `CLAUDE.md` says how a session should work here.
+
 ## Overview
 
 Motion Video Director turns a coding agent into a video production team. It handles the work a motion designer, editor and sound designer would normally do:

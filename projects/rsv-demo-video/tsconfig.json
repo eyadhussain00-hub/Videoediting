@@ -1,0 +1,33 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "lib": [
+      "ES2022",
+      "DOM"
+    ],
+    "strict": true,
+    "noEmit": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "jsx": "react-jsx",
+    "baseUrl": ".",
+    "paths": {
+      "server-only": [
+        "./shims/server-only.ts"
+      ],
+      "@/*": [
+        "../../../rsv-studio/src/*"
+      ]
+    }
+  },
+  "include": [
+    "config",
+    "recorder",
+    "shims",
+    "src",
+    "remotion.config.ts"
+  ]
+}

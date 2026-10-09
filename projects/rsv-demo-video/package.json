@@ -1,0 +1,32 @@
+{
+  "name": "rsv-demo-video",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "record": "tsx recorder/record.ts",
+    "serve": "tsx recorder/serve.ts",
+    "sheet": "tsx recorder/sheet.ts",
+    "typecheck": "tsc --noEmit -p tsconfig.render.json",
+    "typecheck:recorder": "tsc --noEmit",
+    "studio": "remotion studio",
+    "render:ar": "remotion render DemoAd out/clinic-ar.mp4 --props=props/clinic-ar.json",
+    "render:en": "remotion render DemoAd out/clinic-en.mp4 --props=props/clinic-en.json",
+    "render:command": "remotion render src/command/index.tsx CommandShowcase out/command-centre.mp4 --gl=swangle",
+    "still:command": "remotion still src/command/index.tsx CommandShowcase --gl=swangle"
+  },
+  "devDependencies": {
+    "@remotion/cli": "^4.0.526",
+    "@remotion/google-fonts": "^4.0.526",
+    "@types/node": "^20",
+    "@types/pg": "^8.23.1",
+    "@types/react": "^19.3.0",
+    "dotenv": "^17.4.2",
+    "pg": "^8.23.0",
+    "playwright": "1.58.0",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
+    "remotion": "^4.0.526",
+    "tsx": "^4.23.13",
+    "typescript": "^5"
+  }
+}

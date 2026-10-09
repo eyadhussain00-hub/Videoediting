@@ -1,0 +1,20 @@
+{
+  "_comment": "wrong (lowercase, as Whisper writes it; 1–3 words) -> right. Applied to captions by render.py; qa.py fails if a wrong form survives. Arabic words Whisper can't spell (musiba, fitnas…) are best checked by re-transcribing the spot with an initial_prompt that lists them.",
+  "clwills": "CEOwills",
+  "cl wills": "CEOwills",
+  "ceo wills": "CEOwills",
+  "c.e.o. wills": "CEOwills",
+  "see our wills": "CEOwills",
+  "sea of wills": "CEOwills",
+  "seo wills": "CEOwills",
+  "co wills": "CEOwills",
+  "haf": "haqq",
+  "hak": "haqq",
+  "musli": "mushkil",
+  "fitness": "fitnas",
+  "quams": "qualms",
+  "allah swt": "Allah SWT",
+  "hmrc": "HMRC",
+  "iht": "IHT",
+  "shariai": "Sharia"
+}

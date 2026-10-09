@@ -1,0 +1,421 @@
+{
+ "_source": "Raw 'culture leaving daughters out.MP4' (client Drive id 1J2x_GyyWkQzhRuuHwwT1Xq1XVXQiDTb6); mic = 'beginning uncles brothers sisters and PENSIONS.wav' (Mic 1) @ 100.3331 s. Structure follows Sofian's edit of the same raw: first pitch ('Here's how we solve it… in the Quran') and 'You see' dropped, repeated 'distributing it' cut, pauses cut in silence only (sk-media pauses.py v2, edge word-guard). Corrected transcript: jobs/culture-leaving-daughters-out.words.json → copy to $W/words/culture.fixed.json. Nasheed hona-marro from SoundCloud (nasheeds.json). v1 = 99.12 s, QA ALL PASS. v3 (29 Sep): current house style (sans title, no script, gradient ×2, centred logo, iPhone chime, 600 px cards), nasheed the-sins, cards by topic: islamic-uk-law (Allah/Quran), see-for-your-family (daughters), clarity at 85 s (check.py: no inheritance talk around 85 s). 4 Oct (Eyad): no background sound — voice only, no nasheed. 5 Oct (Eyad): no iMessage cards (\"without the ctas\") — ctas: [], so no card ping either. 7 Oct (Adnan via SK Media; Eyad: finalise): nasheed back on — the-sins in his 3-per-nasheed rotation (tracker.json nasheed_rule); his 'Great Wealth Transfer' follow card added at the end (layout endcard); still no iMessage cards (Eyad, 7 Oct: the CTA to remove is the cards — the spoken 'comment … below' stays).",
+ "name": "Culture leaving daughters out",
+ "video": "src/culture leaving daughters out.MP4",
+ "rotate": "ccw",
+ "audio": "mic/culture leaving daughters out.mic.wav",
+ "words": "words/culture.fixed.json",
+ "cuts": [
+  {
+   "in": 3.16,
+   "out": 7.68
+  },
+  {
+   "in": 8.2,
+   "out": 9.84,
+   "punch": true
+  },
+  {
+   "in": 9.96,
+   "out": 10.72
+  },
+  {
+   "in": 10.88,
+   "out": 12.28,
+   "punch": true
+  },
+  {
+   "in": 12.8,
+   "out": 15.44
+  },
+  {
+   "in": 15.64,
+   "out": 18.2,
+   "punch": true
+  },
+  {
+   "in": 18.48,
+   "out": 22.36
+  },
+  {
+   "in": 22.56,
+   "out": 24.68,
+   "punch": true
+  },
+  {
+   "in": 25.12,
+   "out": 26.96
+  },
+  {
+   "in": 27.32,
+   "out": 28.56,
+   "punch": true
+  },
+  {
+   "in": 28.72,
+   "out": 29.12
+  },
+  {
+   "in": 29.32,
+   "out": 31.68,
+   "punch": true
+  },
+  {
+   "in": 32.2,
+   "out": 33.04
+  },
+  {
+   "in": 50.6,
+   "out": 52.08,
+   "punch": true
+  },
+  {
+   "in": 52.2,
+   "out": 53.32
+  },
+  {
+   "in": 53.6,
+   "out": 58.68,
+   "punch": true
+  },
+  {
+   "in": 58.76,
+   "out": 60.84
+  },
+  {
+   "in": 61.0,
+   "out": 63.56,
+   "punch": true
+  },
+  {
+   "in": 63.88,
+   "out": 69.2
+  },
+  {
+   "in": 69.52,
+   "out": 73.0,
+   "punch": true
+  },
+  {
+   "in": 73.2,
+   "out": 75.0
+  },
+  {
+   "in": 76.2,
+   "out": 79.64,
+   "punch": true
+  },
+  {
+   "in": 80.4,
+   "out": 81.72
+  },
+  {
+   "in": 81.8,
+   "out": 82.96,
+   "punch": true
+  },
+  {
+   "in": 83.16,
+   "out": 85.72
+  },
+  {
+   "in": 86.24,
+   "out": 87.72,
+   "punch": true
+  },
+  {
+   "in": 87.88,
+   "out": 90.4
+  },
+  {
+   "in": 90.48,
+   "out": 92.36,
+   "punch": true
+  },
+  {
+   "in": 92.8,
+   "out": 95.56
+  },
+  {
+   "in": 95.72,
+   "out": 97.12,
+   "punch": true
+  },
+  {
+   "in": 97.48,
+   "out": 99.76
+  },
+  {
+   "in": 100.0,
+   "out": 100.56,
+   "punch": true
+  },
+  {
+   "in": 101.08,
+   "out": 103.2
+  },
+  {
+   "in": 103.32,
+   "out": 104.36,
+   "punch": true
+  },
+  {
+   "in": 104.52,
+   "out": 107.72
+  },
+  {
+   "in": 108.24,
+   "out": 108.88,
+   "punch": true
+  },
+  {
+   "in": 109.0,
+   "out": 109.52
+  },
+  {
+   "in": 109.88,
+   "out": 110.64,
+   "punch": true
+  },
+  {
+   "in": 111.16,
+   "out": 112.48
+  },
+  {
+   "in": 113.12,
+   "out": 114.72,
+   "punch": true
+  },
+  {
+   "in": 115.2,
+   "out": 116.2
+  },
+  {
+   "in": 116.32,
+   "out": 117.84,
+   "punch": true
+  },
+  {
+   "in": 126.56,
+   "out": 128.6
+  },
+  {
+   "in": 128.76,
+   "out": 131.56,
+   "punch": true
+  },
+  {
+   "in": 131.68,
+   "out": 133.76
+  },
+  {
+   "in": 134.28,
+   "out": 135.76,
+   "punch": true
+  },
+  {
+   "in": 136.0,
+   "out": 138.4
+  }
+ ],
+ "punch_at": [
+  136.1
+ ],
+ "hook": [
+  "Muslim parents?",
+  "*Don't leave out*",
+  "your _DAUGHTERS_"
+ ],
+ "hook_until": 11.6,
+ "keywords": [
+  "fitnas",
+  "practice",
+  "parents",
+  "daughters",
+  "wills",
+  "musiba",
+  "tragedy",
+  "allah",
+  "quran",
+  "wealth",
+  "family",
+  "cry",
+  "death",
+  "behind",
+  "issue",
+  "wisdom",
+  "blueprint",
+  "assists",
+  "prevented",
+  "circumvented",
+  "avoided",
+  "regard",
+  "squandering",
+  "sons",
+  "sharing",
+  "distributing",
+  "pleases",
+  "help",
+  "guidance",
+  "framework",
+  "qualms",
+  "litigation",
+  "fights",
+  "importantly",
+  "answer",
+  "stand",
+  "daughter",
+  "crying",
+  "haqq",
+  "uncles",
+  "brothers",
+  "fathers",
+  "mistake",
+  "sorted",
+  "know",
+  "preserved",
+  "given"
+ ],
+ "cta": {
+  "at": 136.18,
+  "keyword": "DAUGHTERS",
+  "script": [
+   "below"
+  ],
+  "underline": [
+   "DAUGHTERS"
+  ]
+ },
+ "nasheed": {
+  "file": "nasheed/the-sins.mp3",
+  "start": 0
+ },
+ "chunks": [
+  "My brothers,",
+  "one of the",
+  "biggest fitnas",
+  "that I see",
+  "in my practice",
+  "is when parents",
+  "leave out",
+  "their daughters",
+  "within their wills.",
+  "Why is that",
+  "a big musiba?",
+  "Why is that",
+  "a big tragedy?",
+  "It's because",
+  "Allah actually",
+  "instructed us",
+  "in the Quran",
+  "to leave wealth",
+  "to our nuclear",
+  "family.",
+  "That includes",
+  "your daughters.",
+  "How often",
+  "have I seen",
+  "daughters cry",
+  "over the death",
+  "of their parents",
+  "but even",
+  "more so",
+  "when they know",
+  "they've not been",
+  "left anything",
+  "behind?",
+  "Big issue.",
+  "Allah subhanahu wa ta'ala",
+  "in his infinite",
+  "wisdom",
+  "has already",
+  "given us",
+  "a blueprint",
+  "as to how",
+  "and why",
+  "we should leave",
+  "wealth behind,",
+  "who it",
+  "actually assists,",
+  "what societal",
+  "ills will be",
+  "prevented,",
+  "circumvented,",
+  "avoided entirely",
+  "if you have",
+  "regard",
+  "for all",
+  "family members.",
+  "That means",
+  "you're not",
+  "squandering",
+  "your wealth",
+  "on just",
+  "the sons,",
+  "you're sharing it",
+  "and distributing it,",
+  "in such a way",
+  "that it pleases",
+  "not only Allah",
+  "but also",
+  "all of your",
+  "family.",
+  "Here at",
+  "CEOwills",
+  "we can help",
+  "you with that,",
+  "we'll make sure",
+  "that you have",
+  "the correct",
+  "guidance,",
+  "the right",
+  "framework,",
+  "and the entire",
+  "family",
+  "is included",
+  "to make sure",
+  "that there are",
+  "no qualms,",
+  "no litigation,",
+  "no fights",
+  "after you",
+  "passed on.",
+  "More importantly,",
+  "how will you",
+  "answer",
+  "to Allah",
+  "subhanahu wa ta'ala",
+  "when it is",
+  "time to stand",
+  "in front of him",
+  "but your",
+  "daughter,",
+  "your women folk",
+  "are crying out",
+  "they did not",
+  "get their",
+  "haqq?",
+  "Uncles,",
+  "brothers,",
+  "fathers,",
+  "I'm talking",
+  "to all of you,",
+  "we can't make",
+  "that mistake,",
+  "at CEOwills",
+  "we'll help you",
+  "get that sorted.",
+  "If you are",
+  "someone's daughter",
+  "and you would",
+  "like to know",
+  "what haqq",
+  "and what",
+  "you are preserved",
+  "and what",
+  "you are given",
+  "by Allah",
+  "subhanahu wa ta'ala,"
+ ],
+ "ctas": []
+}

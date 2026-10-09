@@ -1,0 +1,234 @@
+{
+ "_source": "Raw 'bestfriend close partnership.MP4' (client Drive id 1cEBAF75TqRD4Vu11-vdaj0_qFa3U9eQ6); mic = 'standing under vines deep dark conversation.wav' (Mic 3) @ 1065.4986 s. One take 6.6–80.2. Stutter cut (verbatim pass): 'What are the criteria that you need to make sure to, what are the criteria that your success-,' (29.1–36.6) → keeps the third, complete 'What are the criteria that your beneficiaries…'; those words are deleted from words/bff.fixed.json. 'we sit down with you and your partners, we sit down and we discuss' left as spoken (no clean gap). CTA 'comment PARTNERSHIP now'. Last cut held to 81.3 (silent). Nasheed the-sins. iMessage cards picked by topic (Eyad 29 Sep: switch them up, match what he's saying): clarity, legacy-decades. 30 Sep: cut in at 7.38 (was 6.6 — the director's 'three, two, one, go' at 6.6–7.3 was audible, Sofian); 'If' retimed to its real onset 7.46. 4 Oct (Eyad): no background sound — voice only, no nasheed. 5 Oct (Eyad): no iMessage cards (\"without the ctas\") — ctas: [], so no card ping either. 7 Oct (Adnan via SK Media; Eyad: finalise): nasheed back on — bika-moulhimi in his 3-per-nasheed rotation (tracker.json nasheed_rule); his 'Great Wealth Transfer' follow card added at the end (layout endcard); still no iMessage cards (Eyad, 7 Oct: the CTA to remove is the cards — the spoken 'comment … below' stays).",
+ "name": "Business partners: agree your succession",
+ "video": "src/bff.MP4",
+ "rotate": "ccw",
+ "audio": "mic/bff.mic.wav",
+ "words": "words/bff.fixed.json",
+ "cuts": [
+  {
+   "in": 7.4,
+   "out": 8.6
+  },
+  {
+   "in": 8.76,
+   "out": 9.88,
+   "punch": true
+  },
+  {
+   "in": 10.04,
+   "out": 13.04
+  },
+  {
+   "in": 13.16,
+   "out": 17.68,
+   "punch": true
+  },
+  {
+   "in": 17.84,
+   "out": 19.32
+  },
+  {
+   "in": 20.48,
+   "out": 21.12,
+   "punch": true
+  },
+  {
+   "in": 21.48,
+   "out": 22.72
+  },
+  {
+   "in": 23.0,
+   "out": 26.04,
+   "punch": true
+  },
+  {
+   "in": 26.2,
+   "out": 27.32
+  },
+  {
+   "in": 27.6,
+   "out": 29.08,
+   "punch": true
+  },
+  {
+   "in": 36.68,
+   "out": 37.92
+  },
+  {
+   "in": 38.16,
+   "out": 40.28,
+   "punch": true
+  },
+  {
+   "in": 40.44,
+   "out": 41.16
+  },
+  {
+   "in": 41.32,
+   "out": 43.32,
+   "punch": true
+  },
+  {
+   "in": 43.44,
+   "out": 51.48
+  },
+  {
+   "in": 51.68,
+   "out": 53.48,
+   "punch": true
+  },
+  {
+   "in": 53.72,
+   "out": 56.08
+  },
+  {
+   "in": 56.28,
+   "out": 57.16,
+   "punch": true
+  },
+  {
+   "in": 57.32,
+   "out": 58.24
+  },
+  {
+   "in": 58.32,
+   "out": 59.64,
+   "punch": true
+  },
+  {
+   "in": 59.8,
+   "out": 64.84
+  },
+  {
+   "in": 64.96,
+   "out": 66.2,
+   "punch": true
+  },
+  {
+   "in": 66.44,
+   "out": 72.68
+  },
+  {
+   "in": 72.8,
+   "out": 73.64,
+   "punch": true
+  },
+  {
+   "in": 73.76,
+   "out": 76.84
+  },
+  {
+   "in": 77.04,
+   "out": 78.2,
+   "punch": true
+  },
+  {
+   "in": 78.4,
+   "out": 79.24
+  },
+  {
+   "in": 79.32,
+   "out": 81.18,
+   "punch": true
+  }
+ ],
+ "punch_at": [],
+ "hook": [
+  "Business partners?",
+  "Have _THIS_ conversation",
+  "before it's *too late*"
+ ],
+ "hook_until": 19.32,
+ "keywords": [],
+ "cta": {
+  "at": 78.9,
+  "keyword": "PARTNERSHIP",
+  "script": [],
+  "underline": [
+   "PARTNERSHIP"
+  ]
+ },
+ "nasheed": {
+  "file": "nasheed/bika-moulhimi.mp3",
+  "start": 0
+ },
+ "chunks": [
+  "If you're a",
+  "business owner,",
+  "you've got",
+  "a partnership.",
+  "You've run",
+  "your business",
+  "together with",
+  "your partner",
+  "for a number of years,",
+  "but you haven't",
+  "sorted out your will",
+  "or your corporate",
+  "succession planning.",
+  "You need to",
+  "make sure",
+  "you do the next.",
+  "First,",
+  "sit down with",
+  "your partner.",
+  "Agree what",
+  "percentages",
+  "are going to be",
+  "passed on",
+  "from your business",
+  "and how quickly",
+  "that will happen.",
+  "What are the criteria",
+  "that your",
+  "beneficiaries",
+  "will have to",
+  "fulfill in order",
+  "to grab those",
+  "shares in the company?",
+  "Are you going",
+  "to keep the",
+  "company running?",
+  "Lots of my clients",
+  "have issues",
+  "around the partnership",
+  "because they don't",
+  "actually know",
+  "how to have",
+  "these conversations.",
+  "When you book in",
+  "with me,",
+  "we sit down with you",
+  "and your partners,",
+  "we sit down",
+  "and we discuss",
+  "exactly how",
+  "your partnership",
+  "will move on,",
+  "continue to flourish",
+  "way after",
+  "you passed on.",
+  "Now I know",
+  "talking about",
+  "death and taxes",
+  "isn't really",
+  "that saucy",
+  "but you need",
+  "to have that",
+  "conversation.",
+  "Spend three hours",
+  "with your partners",
+  "making sure",
+  "that you aren't",
+  "failing them",
+  "and failing whoever",
+  "your beneficiaries are.",
+  "So if you've got",
+  "a share in a company,",
+  "if you've got",
+  "a partnership,",
+  "you need to"
+ ],
+ "ctas": []
+}

@@ -1,0 +1,20 @@
+{
+  "_doc": "fixes: regex -> replacement, applied to every caption word (case-insensitive). wrong_forms: QA fails if any appear in captions.txt or overlays. banned: the brief's hard no's — check.py and qa.py fail on any of them in captions, overlays or the posting text.",
+  "fixes": [
+    ["\\bbox\\s?able'?s?\\b", "BOXABL"],
+    ["\\bbox\\s?bull\\b", "BOXABL"],
+    ["\\bbox\\s?book\\b", "BOXABL"],
+    ["\\beliano\\b", "Galiano"],
+    ["\\bboxables\\b", "BOXABLs"],
+    ["\\bboxabl\\b", "BOXABL"],
+    ["\\bbox\\s?a\\s?bull\\b", "BOXABL"],
+    ["\\bkasita\\b", "Casita"],
+    ["\\bcasino\\b", "Casita"],
+    ["\\bcasita\\b", "Casita"],
+    ["\\bgalliano\\b", "Galiano"],
+    ["\\bpaulo\\b", "Paolo"],
+    ["\\bbaby\\s?box\\b", "Baby Box"]
+  ],
+  "wrong_forms": ["boxable", "box able", "boxables", "kasita", "casino", "galliano", "boxbull", "box book", "eliano"],
+  "banned": ["kanye", "ye west", "yeezy", "bxbl", "fgmc", "ticker", "stock", "stocks", "shares", "shareholder", "invest", "investor", "investors", "investment", "ipo", "spac", "nasdaq", "nyse", "crowdfunding", "reg a", "trump", "biden", "democrat", "republican", "election"]
+}

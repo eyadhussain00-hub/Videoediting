@@ -1,0 +1,411 @@
+{
+  "_comment": "Single source of truth for CEOwills reels. If PRESET.md and this file disagree, this file wins.",
+  "canvas": {
+    "w": 1080,
+    "h": 1920,
+    "fps": "source",
+    "draft_scale": 0.5
+  },
+  "safe": {
+    "x0": 60,
+    "x1": 960,
+    "y0": 210,
+    "y1": 1540
+  },
+  "center_x": 540,
+  "grade": "eq=contrast=1.10:saturation=1.08:brightness=0.012,curves=all='0/0 0.10/0.065 0.45/0.47 0.80/0.87 1/0.965',vignette=angle=PI/4:mode=forward",
+  "brand": {
+    "name": "CEOwills",
+    "red": "#E5322D"
+  },
+  "motion": {
+    "drift": 0.03,
+    "punch": 1.08,
+    "zoom_center": [
+      0.5,
+      0.4
+    ]
+  },
+  "audio": {
+    "lufs": -15,
+    "true_peak": -1.5,
+    "lra": 11,
+    "edge_fade_ms": 12,
+    "nasheed_db_under_voice": 7,
+    "nasheed_fade_in_s": 0.4,
+    "nasheed_fade_out_s": 0.8,
+    "nasheed_duck_ratio": 1.5,
+    "_nasheed_note": "loudnorm target is before ducking; measured result ≈ 11 dB under the voice (v5, Adnan: \"make the background hearable\")",
+    "rnnoise_model": "models/sh.rnnn",
+    "_level_note": "27 Sep (Sofian on #6 v1): 'make the mic volume just a little bit quieter' → master -15 LUFS (was -14) and the bed 1 dB closer to the voice, so only the voice drops 1 dB and the nasheed stays where it was."
+  },
+  "cuts": {
+    "pad_before_s": 0.06,
+    "pad_after_s": 0.1,
+    "max_kept_pause_s": 0.25,
+    "min_clip_s": 0.4,
+    "_pauses": "values for pauses.py (tested on 'culture leaving daughters out'): cut silences ≥ min_pause_s down to keep_pause_s; ASR words longer than guard_long_s swallowed a pause, so only guard_edge_s at each end is protected",
+    "min_pause_s": 0.16,
+    "keep_pause_s": 0.08,
+    "quiet_db": 10,
+    "hf_band_hz": [
+      3500,
+      11000
+    ],
+    "guard_long_s": 0.35,
+    "guard_edge_s": 0.12,
+    "tail_hold_s": 0.8,
+    "_fast_note": "30 Sep (Sofian, SK Media chat 15:32–15:36): 'the trimming isn't fast like ExamQA videos' and 'you can hear me say go at the start' → every pause ≥ 0.16 s cut to 0.08 s (were ≥ 0.3 → 0.2), 0.06 s of air before the first sound, the end held ≤ 0.8 s after his last word. tighten.py re-cuts an existing job this way. Whisper stretches words over the pause after them, so only words ≤ 0.35 s are fully protected (0.12 s at each end of longer ones); a cut still only lands where both bands are quiet."
+  },
+  "length": {
+    "target_s": [
+      15,
+      120
+    ],
+    "_note": "Adnan's takes run 20 s–2.5 min; keep the whole message, cut repeats/false starts and pauses (Sofian's cuts: 69–82 s). Was 15–45 before 'culture leaving daughters out' (99 s)."
+  },
+  "qa": {
+    "empty_std": 2.0,
+    "hair_above_face": 0.12,
+    "head_tol_px": 12,
+    "_head_note": "qa.py head clearance: top of his hair ≈ face box top − hair_above_face × face height (OpenCV Haar 4.10); an overlay may end at most head_tol_px below that. Calibrated 29 Sep on #6 (hmrc) frames: the Haar box starts at his hairline to ~0.2 face-heights under the top of his hair; 0.12 + 12 px passes what Eyad approved (card end 311 vs hair ≈330, title end 356 vs hair ≈375) and flags anything lower",
+    "chin_below_face": 0.15,
+    "_chin_note": "qa.py chin check: his beard ends ≈ face box bottom + chin_below_face × face height (OpenCV Haar 4.10; calibrated 4 Oct on #14 frames: the box ends just under his mouth, the beard 0.05–0.1 face-heights lower → 0.15); the caption's top must be below it"
+  },
+  "fonts": {
+    "sans": {
+      "file": "fonts/InterTight.ttf",
+      "url": "https://raw.githubusercontent.com/google/fonts/main/ofl/intertight/InterTight%5Bwght%5D.ttf",
+      "weight": 700
+    },
+    "script": {
+      "file": "fonts/PinyonScript-Regular.ttf",
+      "url": "https://raw.githubusercontent.com/google/fonts/main/ofl/pinyonscript/PinyonScript-Regular.ttf"
+    },
+    "serif": {
+      "file": "fonts/PlayfairDisplay.ttf",
+      "url": "https://raw.githubusercontent.com/google/fonts/main/ofl/playfairdisplay/PlayfairDisplay%5Bwght%5D.ttf",
+      "weight": 800
+    },
+    "logo": {
+      "file": "fonts/Arimo.ttf",
+      "url": "https://raw.githubusercontent.com/google/fonts/main/ofl/arimo/Arimo%5Bwght%5D.ttf",
+      "weight": 700
+    },
+    "ui": {
+      "file": "fonts/Inter.ttf",
+      "url": "https://raw.githubusercontent.com/google/fonts/main/ofl/inter/Inter%5Bopsz%2Cwght%5D.ttf"
+    }
+  },
+  "caption": {
+    "baseline_y": 1430,
+    "px": {
+      "sans": 72,
+      "script": 150,
+      "serif": 118
+    },
+    "word_gap": 20,
+    "max_w": 940,
+    "line_h": 104,
+    "band_up": 260,
+    "band_h": 470,
+    "enter_ms": 160,
+    "rise_px": 14,
+    "script_scale_from": 1.06,
+    "underline_ms": 320,
+    "max_words": 3,
+    "max_chars": 18,
+    "min_ms": 350,
+    "tail_ms": 250,
+    "script_gap_extra": 16,
+    "serif_underline": true,
+    "plain_caps": [
+      "SWT",
+      "SAW",
+      "PBUH"
+    ],
+    "no_script": true,
+    "shadow": [
+      [
+        3,
+        235,
+        4
+      ],
+      [
+        9,
+        210,
+        6
+      ],
+      [
+        20,
+        150,
+        8
+      ]
+    ],
+    "_no_script_note": "27 Sep (Eyad, later): all fonts are fine except the overly styled script (Pinyon) → sans for words + white serif with red underline for ALL-CAPS/numbers; never script. Before that: 27 Sep, Sofian on #6: 'can we just stick to this font [the bold sans], add stronger drop shadow — easier for you and looks clearer' → every caption word in Inter Tight 700 (sans px 72, was 62), heavier drop shadow (blur/alpha/dy passes). The CTA keyword still gets its red underline. Remove single_style to bring back the script/serif mix.",
+    "_chin_note": "30 Sep (Sofian, SK Media chat 15:32–15:36): 'for all videos make sure captions are never on his chin, they have to be below' → baseline 1430 (was 1235, on his beard since the 1.08 zoom + 190 px move-down). qa.py checks the caption top against his chin on real frames."
+  },
+  "hook": {
+    "_note": "Eyad (26 Sep): title and CTA up so they don't cover his face, space above not too large, not too close to the edge. Eyebrow cap top 120 px from the top (baseline 143), block ends ≈365 — above his hairline (≈410–490 depending on how far he leans). edge_margin = the closest any top overlay may get to the frame edge (checked by qa.py). History: top 300 → 250 → 143.",
+    "top": 143,
+    "edge_margin": 100,
+    "scrim_h": 460,
+    "scrim_alpha": 150,
+    "eyebrow_px": 32,
+    "eyebrow_tracking": 6,
+    "eyebrow_gap": 96,
+    "px": {
+      "sans": 56,
+      "script": 106,
+      "serif": 88
+    },
+    "gap": 30,
+    "line_gap": 98,
+    "serif_as": {
+      "style": "sans",
+      "px": 72,
+      "_note": "27 Sep, Eyad: no serif in the title, it reads clearer in sans"
+    },
+    "script_as": {
+      "style": "sans",
+      "px": 72,
+      "_note": "27 Sep, Eyad: no script font — *marked* title words are set in a bigger sans instead"
+    },
+    "style": "type",
+    "bar": {
+      "_note": "27 Sep, Sofian/Adnan on #6 v1: 'make the top text clearer so it's easy to read, maybe white text on a red background' (like the ExamQA title bars). One solid CEOwills-red bar per line, white bold caps, no scrim; top = top edge of the first bar (qa checks it against edge_margin). style \"type\" = the old scrim + script/serif title.",
+      "top": 110,
+      "color": "#EB1519",
+      "px": 66,
+      "eyebrow_px": 38,
+      "pad_x": 30,
+      "pad_y": 20,
+      "gap": 12,
+      "max_w": 960,
+      "tracking": 1,
+      "shadow": [
+        8,
+        110
+      ]
+    },
+    "uniform": {
+      "px": 64,
+      "line_gap": 82,
+      "_note": "30 Sep (Sofian, SK Media chat 15:32–15:36): 'the question mark and text are different size' → every title line (the question included) in one sans size; _MARKED_ words keep the red underline, *marked* words are no longer bigger."
+    }
+  },
+  "logo": {
+    "text": "CEOwills",
+    "color": "#EB1519",
+    "px": 97,
+    "width": 392,
+    "center_x": 540,
+    "baseline_y": 1600,
+    "_ref": "measured from the other editor's edit: x 306–700, cap top 1528, baseline 1600 on 1080x1920 (they sit 37 px left of centre; we centre it)",
+    "gradient": {
+      "_note": "27 Sep, Sofian: 'add a black gradient like we used to do for ExamQA' — black fade across the bottom, behind the logo and the platform UI (transparent at top, alpha at the frame bottom).",
+      "top": 1300,
+      "alpha": 255,
+      "power": 0.8,
+      "passes": 1,
+      "_30sep": "30 Sep (Sofian, SK Media chat 15:32–15:36): 'the gradient is so high and different to ExamQA' → starts at y 1300 (was 1000, doubled — it blacked out his whole chest). Now only behind the captions, logo and platform UI."
+    }
+  },
+  "cta": {
+    "scale": 1.12
+  },
+  "endcard": {
+    "_note": "7 Oct (Adnan via SK Media: 'add it at the end of every video please'): his 'Welcome to the Great Wealth Transfer / follow me on social media' card after the last word, full frame, no logo or captions over it. Cross-fades in from the last frame, slow zoom so it isn't a frozen still; the nasheed carries on under it and fades out at the very end. A job opts out with \"endcard\": null.",
+    "file": "endcard/great-wealth-transfer.jpg",
+    "hold_s": 3.0,
+    "fade_s": 0.3,
+    "zoom": 1.03
+  },
+  "frame": {
+    "_note": "30 Sep, Sofian: 'zoom into Adnan's face a little bit and then move the canvas down, so now he has much more space above his head and you can add the same call to action at the same size'. The shot is zoomed by `zoom`, moved down `shift_y` px, and the space above it is the same frame zoomed + blurred, faded in over `feather` px.",
+    "on": true,
+    "zoom": 1.08,
+    "shift_y": 190,
+    "feather": 70,
+    "bg_zoom": 1.35,
+    "bg_blur": 38,
+    "bg_brightness": -0.05,
+    "_seam_note": "30 Sep (Sofian, SK Media chat 15:32–15:36) (red circle round his head on #14): the blurred fill faded in over 190–360 px, right where his hair is when he stands tall or on a punch-in → the fade is now 190–260 and qa.py checks his hair stays below it."
+  },
+  "notify": {
+    "_30sep_note": "Sofian/Eyad (30 Sep): the card was too small to look real → style 'ios': a real-size iOS banner drawn from the card's text (1000 px wide ≈ an iPhone banner on a 1080 frame): Adnan's contact photo with the Messages badge, 'Adnan · now', frosted glass over the video, ceowills.com in CEOwills red. Room above his head comes from frame.shift_y. Card text: written per moment in the edit ({\"text\": …, \"at_out\": …}), different in every video. style 'png' = Adnan's original PNG cards.",
+    "style": "ios",
+    "sender": "Adnan",
+    "glass_alpha": 0.72,
+    "glass_blur": 28,
+    "shadow_alpha": 0.28,
+    "_comment": "Adnan's iMessage CTAs: one every every_s, on screen hold_s, never in reels shorter than min_video_s. y/width (26 Sep, Eyad: off his face, small gap above): card top 110, native PNG width 807 (crisp, 316 px tall) → ends ≈425, at his hairline even when he leans in (was y 200 / width 930 → ended at 557, across his eyes). 27 Sep (Sofian on #6 v1): first card at 25 s (was 20), each held 6 s (was 5).",
+    "y": 100,
+    "width": 1000,
+    "_27sep_note": "Eyad on #6 v5: 'the cta covers his head' — his hair top sits at y ≈ 335–350 in that take → card 600 px wide (235 tall) at y 100 ends ≈ 335. Was 807 at y 110.",
+    "in_ms": 480,
+    "out_ms": 320,
+    "hold_s": 6.0,
+    "every_s": 30,
+    "first_s": 25,
+    "min_video_s": 30,
+    "sfx_db": -9,
+    "recent_videos": 4,
+    "repeat_penalty": 3,
+    "sfx_file": "sfx/notify-iphone-real.wav",
+    "_sfx_30sep": "Eyad sent the real iPhone notification sound (Drive 1npRGhDBtXxlnJIHo8jkmCT0UbFMtfyXR, IPHONE NOTIFICATION SOUND EFFECT (PING-DING).mp3) → trimmed to the sound (1.05–3.30 s), mono 48k, peak -1 dB.",
+    "_sfx_note": "27 Sep, Eyad: 'use the iPhone message notification sound instead of that ding' → a synthesized tri-tone-style chime (3 quick bell notes, not Apple's file); the old one-tone ping is sfx/notify.wav"
+  },
+  "lumetri": {
+    "_source": "Sofian's Premiere Lumetri on 'business owner juggling' (v6): Basic Correction + Vignette",
+    "exposure": 0.3,
+    "contrast": 24.7,
+    "highlights": 20.0,
+    "shadows": -12.9,
+    "whites": 29.4,
+    "blacks": -10.6,
+    "saturation": 100,
+    "temperature": 0,
+    "tint": 0,
+    "vignette": -0.5
+  },
+  "grade_fit": {
+    "_source": "fitted to Sofian's exported Premiere frame (raw frame 62 of 'business owner juggling'): 33³ 3D LUT (captures his vibrance — strong colours boosted, skin protected) + measured radial vignette. Held-out colour error 4.6/255 incl. WhatsApp JPEG. 'curves'/'saturation' are the fallback if the LUT file is missing.",
+    "curves": {
+      "r": [
+        0,
+        0.0059,
+        0.0059,
+        0.0647,
+        0.1118,
+        0.1628,
+        0.1941,
+        0.2294,
+        0.2843,
+        0.3118,
+        0.3588,
+        0.4059,
+        0.4726,
+        0.5157,
+        0.5588,
+        0.6059,
+        0.649,
+        0.6843,
+        0.7118,
+        0.7471,
+        0.7941,
+        0.8177,
+        0.853,
+        0.8765,
+        0.8961,
+        0.9196,
+        0.9549,
+        0.9784,
+        0.9824,
+        0.9941,
+        1,
+        1,
+        1
+      ],
+      "g": [
+        0,
+        0,
+        0,
+        0.0502,
+        0.0933,
+        0.1482,
+        0.1914,
+        0.2267,
+        0.2698,
+        0.3051,
+        0.3443,
+        0.3875,
+        0.4306,
+        0.4737,
+        0.5286,
+        0.5639,
+        0.6071,
+        0.658,
+        0.6973,
+        0.7208,
+        0.7757,
+        0.811,
+        0.8424,
+        0.8737,
+        0.9012,
+        0.9208,
+        0.9443,
+        0.9639,
+        0.9796,
+        0.9875,
+        0.9914,
+        0.9914,
+        1
+      ],
+      "b": [
+        0,
+        0.0065,
+        0.0104,
+        0.0575,
+        0.0889,
+        0.1163,
+        0.1555,
+        0.2026,
+        0.2653,
+        0.3124,
+        0.3555,
+        0.3987,
+        0.4418,
+        0.481,
+        0.5281,
+        0.5712,
+        0.6261,
+        0.6653,
+        0.7045,
+        0.7359,
+        0.7751,
+        0.8104,
+        0.8418,
+        0.8732,
+        0.9006,
+        0.9241,
+        0.9477,
+        0.9712,
+        0.9869,
+        0.9908,
+        0.9987,
+        1,
+        1
+      ]
+    },
+    "saturation": 1.0416,
+    "vignette": {
+      "r_bins": 20,
+      "start_r": 0.55,
+      "gain": [
+        0.9411,
+        1.0068,
+        0.9822,
+        1.0148,
+        1.0049,
+        1.0342,
+        1.0068,
+        1.0159,
+        1.0009,
+        0.9861,
+        0.9761,
+        0.9747,
+        0.9609,
+        0.9155,
+        0.8867,
+        0.8582,
+        0.8443,
+        0.8207,
+        0.8009,
+        0.7849
+      ]
+    },
+    "lut": "luts/sofian-juggling-safe.cube",
+    "_lut_30sep": "The fitted LUT (sofian-juggling.cube) had garbage in bright skin tones (only one reference frame): blotchy grey/red patches on his face in #14 and a red cheek in #2. The safe LUT = the curves+saturation fallback + the LUT's difference smoothed (σ 1.2 cells) and capped at ±0.045 — same look, no patches."
+  }
+}

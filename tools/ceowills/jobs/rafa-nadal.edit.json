@@ -1,0 +1,127 @@
+{
+ "_source": "Raw 'rafael nadal blooper.MP4' (client Drive id 15b-t5GzmStWLBP4EQC8t76rIpPUgHsow); mic = 'wills work 60 seconds, verbal agreement sofa.wav' (Mic 4) @ 549.4178 s. One clean take 5.0–36.2 (verbatim pass: no stutters). 'you won/wouldn't Wimbledon' confirmed as 'you'll win Wimbledon' by a prompted re-transcription (words/nadal.fixed.json). No spoken CTA and 30.8 s long → no end CTA, no iMessage card (a 25 s card + 6 s hold doesn't fit). Last cut held to 37.6 (silent). Nasheed the-sins. 30 Sep (Sofian): 'start the nasheed after he says pause so everything before that is quiet' → nasheed.from 18.64 (the cut right after 'each pause'). 4 Oct (Eyad): no background sound — voice only, no nasheed. Frame not moved down (no cards in this 29 s reel): in the first 12 s he leans into the lens and his head reached into the blurred fill (Sofian's red circle); zoom 1.08 kept. 7 Oct (Adnan via SK Media; Eyad: finalise): nasheed back on — hona-marro in his 3-per-nasheed rotation (tracker.json nasheed_rule) from 18.64 as Sofian asked; his 'Great Wealth Transfer' follow card added at the end (layout endcard); still no iMessage cards (Eyad, 7 Oct: the CTA to remove is the cards — the spoken 'comment … below' stays).",
+ "name": "Plan like Rafa Nadal",
+ "video": "src/nadal.MP4",
+ "rotate": "ccw",
+ "audio": "mic/nadal.mic.wav",
+ "words": "words/nadal.fixed.json",
+ "cuts": [
+  {
+   "in": 4.96,
+   "out": 5.36
+  },
+  {
+   "in": 5.56,
+   "out": 9.04,
+   "punch": true
+  },
+  {
+   "in": 9.16,
+   "out": 10.0
+  },
+  {
+   "in": 10.12,
+   "out": 11.8,
+   "punch": true
+  },
+  {
+   "in": 12.12,
+   "out": 14.0
+  },
+  {
+   "in": 14.08,
+   "out": 16.48,
+   "punch": true
+  },
+  {
+   "in": 16.8,
+   "out": 17.88
+  },
+  {
+   "in": 18.64,
+   "out": 19.2,
+   "punch": true
+  },
+  {
+   "in": 19.48,
+   "out": 23.96
+  },
+  {
+   "in": 24.12,
+   "out": 24.72,
+   "punch": true
+  },
+  {
+   "in": 24.8,
+   "out": 29.88
+  },
+  {
+   "in": 30.36,
+   "out": 31.8,
+   "punch": true
+  },
+  {
+   "in": 31.96,
+   "out": 33.32
+  },
+  {
+   "in": 33.4,
+   "out": 34.36,
+   "punch": true
+  },
+  {
+   "in": 34.6,
+   "out": 37.14
+  }
+ ],
+ "punch_at": [],
+ "hook": [
+  "Why the fake plant?",
+  "Plan with *Nadal-level*",
+  "*precision*"
+ ],
+ "hook_until": 10.3,
+ "keywords": [],
+ "cta": null,
+ "nasheed": {
+  "file": "nasheed/hona-marro.mp3",
+  "start": 0,
+  "from": 18.64
+ },
+ "chunks": [
+  "So you're probably",
+  "wondering why",
+  "is Adnan holding",
+  "this plant,",
+  "this very",
+  "fake plant?",
+  "Well, just like",
+  "Rafa Nadal",
+  "perfectly puts",
+  "his bottle",
+  "in place",
+  "after each pause,",
+  "I want you",
+  "as a business owner",
+  "to take the",
+  "exact precision",
+  "and care",
+  "with your",
+  "succession planning,",
+  "making sure",
+  "that you don't",
+  "pass more on",
+  "to the tax man",
+  "than you have to",
+  "and with this kind",
+  "of precision",
+  "just like",
+  "Rafael Nadal",
+  "I'm sure",
+  "you'll win Wimbledon",
+  "just like he did"
+ ],
+ "frame": {
+  "shift_y": 0
+ }
+}

@@ -1,0 +1,189 @@
+{
+ "_source": "Raw 'businessowners comment calculator and more.MP4' (client Drive id 1iiz9rd8HYKbin8s9jsjEhxS4NqhXfHkr); mic = 'standing under vines deep dark conversation.wav' (Mic 3) @ 787.4582 s. One take 3.7–41.0; the false start 'Comment more if you want a…' (41.6–43.4) cut, the full two-keyword CTA re-said at 47.9–57.3 kept ('Comment MORE if you would like a free blueprint… comment calculator below' — the director kept both keywords). 'more' in the CTA set in caps so it gets the serif + underline; end CTA = 'comment CALCULATOR below'. Verbatim stutter pass: none. Last cut held to 58.5 (silent). Nasheed the-sins. iMessage cards picked by topic (Eyad 29 Sep: switch them up, match what he's saying): assume-family-inherit. 4 Oct (Eyad): no background sound — voice only, no nasheed. 5 Oct (Eyad): no iMessage cards (\"without the ctas\") — ctas: [], so no card ping either. 7 Oct (Adnan via SK Media; Eyad: finalise): nasheed back on — bika-moulhimi in his 3-per-nasheed rotation (tracker.json nasheed_rule); his 'Great Wealth Transfer' follow card added at the end (layout endcard); still no iMessage cards (Eyad, 7 Oct: the CTA to remove is the cards — the spoken 'comment … below' stays).",
+ "name": "Business owners: deep, dark IHT conversation",
+ "video": "src/biz.MP4",
+ "rotate": "ccw",
+ "audio": "mic/biz.mic.wav",
+ "words": "words/biz.fixed.json",
+ "cuts": [
+  {
+   "in": 3.72,
+   "out": 5.12
+  },
+  {
+   "in": 5.24,
+   "out": 7.16,
+   "punch": true
+  },
+  {
+   "in": 7.4,
+   "out": 10.4
+  },
+  {
+   "in": 10.64,
+   "out": 12.04,
+   "punch": true
+  },
+  {
+   "in": 12.24,
+   "out": 14.8
+  },
+  {
+   "in": 15.16,
+   "out": 18.92,
+   "punch": true
+  },
+  {
+   "in": 19.04,
+   "out": 20.08
+  },
+  {
+   "in": 20.28,
+   "out": 21.56,
+   "punch": true
+  },
+  {
+   "in": 21.76,
+   "out": 23.64
+  },
+  {
+   "in": 23.84,
+   "out": 24.56,
+   "punch": true
+  },
+  {
+   "in": 24.76,
+   "out": 27.76
+  },
+  {
+   "in": 28.12,
+   "out": 28.8,
+   "punch": true
+  },
+  {
+   "in": 29.0,
+   "out": 31.32
+  },
+  {
+   "in": 31.4,
+   "out": 33.64,
+   "punch": true
+  },
+  {
+   "in": 33.8,
+   "out": 34.72
+  },
+  {
+   "in": 34.84,
+   "out": 35.44,
+   "punch": true
+  },
+  {
+   "in": 35.68,
+   "out": 36.84
+  },
+  {
+   "in": 37.0,
+   "out": 37.92,
+   "punch": true
+  },
+  {
+   "in": 38.04,
+   "out": 38.92
+  },
+  {
+   "in": 39.32,
+   "out": 39.88,
+   "punch": true
+  },
+  {
+   "in": 40.28,
+   "out": 40.92
+  },
+  {
+   "in": 47.88,
+   "out": 52.92,
+   "punch": true
+  },
+  {
+   "in": 53.04,
+   "out": 54.08
+  },
+  {
+   "in": 54.2,
+   "out": 55.8,
+   "punch": true
+  },
+  {
+   "in": 56.12,
+   "out": 58.3
+  }
+ ],
+ "punch_at": [],
+ "hook": [
+  "Earning £1M+ a year?",
+  "Have a *deep, dark*",
+  "_IHT_ conversation"
+ ],
+ "hook_until": 14.06,
+ "keywords": [],
+ "cta": {
+  "at": 55.66,
+  "keyword": "CALCULATOR",
+  "script": [],
+  "underline": [
+   "CALCULATOR"
+  ]
+ },
+ "nasheed": {
+  "file": "nasheed/bika-moulhimi.mp3",
+  "start": 0
+ },
+ "chunks": [
+  "Wealthy CEOs,",
+  "business owners,",
+  "business leaders.",
+  "If you're earning",
+  "more than",
+  "a million pounds",
+  "in revenue a year,",
+  "I'm sure you have",
+  "deep, dark",
+  "conversations",
+  "with your accountant.",
+  "I want you",
+  "to have a deep,",
+  "dark conversation",
+  "with me",
+  "about IHT,",
+  "inheritance tax.",
+  "Because what you do,",
+  "every business",
+  "decision you make",
+  "has a implication",
+  "on how",
+  "your IHT works.",
+  "So, CEOwills",
+  "helps you",
+  "make sure that",
+  "you aren't paying",
+  "more than what",
+  "you need to,",
+  "because who,",
+  "tell me,",
+  "likes to give",
+  "more to HMRC",
+  "than they already do?",
+  "Not me,",
+  "not you.",
+  "Comment MORE",
+  "if you would like",
+  "a free blueprint",
+  "as to how",
+  "you can save,",
+  "and if you want",
+  "our IHT",
+  "calculator,"
+ ],
+ "ctas": []
+}

@@ -1,0 +1,25 @@
+{
+ "name": "12_a_home_in_your_backyard",
+ "title": "A Home in Your Backyard",
+ "version": 1,
+ "angle": "backyard ADU / use case",
+ "sources": {"backyard": "/2. 3rd Party Videos/The Boxabl “Casita” Your Primary Home, or Backyard Rental.mp4",
+             "unfold1h": "/2. 3rd Party Videos/Full home unfolds in 1-hour, kitchen & bathroom included.mp4"},
+ "_why": "Galiano's voice from the Real Wealth Show (a Zoom call — no house on screen) over b-roll of Casitas unfolding, in the factory and craned onto a lot. Left out: zoning law / state vs local government talk (political), 'investors' at the end. unfold1h b-roll avoids 10:50-11:50 (Ben Carson visit) and 1:45 (Tesla).",
+ "segments": [
+  {"v": "unfold1h", "vs": 30.0, "ve": 39.0, "a": "backyard", "as": 322.4, "ae": 327.05, "home": true},
+  {"v": "unfold1h", "vs": 44.0, "ve": 52.0, "a": "backyard", "as": 327.3, "ae": 331.8, "home": true},
+  {"v": "unfold1h", "vs": 58.0, "ve": 66.5, "a": "backyard", "as": 308.15, "ae": 316.8, "home": true},
+  {"v": "unfold1h", "vs": 180.0, "ve": 198.0, "a": "backyard", "as": 237.35, "ae": 246.6},
+  {"v": "unfold1h", "vs": 722.0, "ve": 736.0, "a": "backyard", "as": 246.6, "ae": 253.45, "home": true}
+ ],
+ "overlays": [
+  {"s": 0, "e": 4.65, "text": "A HOME IN YOUR\n*BACKYARD*"},
+  {"s": 4.65, "e": 9.15, "text": "RENT IT OR\nHOUSE *FAMILY*"},
+  {"s": 9.15, "e": 17.8, "text": "THE *BOXABL CASITA*\nAS A GRANNY FLAT"},
+  {"s": 17.8, "e": 27.05, "text": "FINISHED IN\nTHE *FACTORY*"},
+  {"s": 27.05, "e": 33.9, "text": "SET UP IN\n*ABOUT AN HOUR*"}
+ ],
+ "post": {"short": "Drop a whole house in your backyard 🏡 The BOXABL Casita as a granny flat, rental or guest house, set up in about an hour. @boxabl #boxabl #casita #adu #backyard",
+          "x": "Drop a whole house in your backyard 🏡 The BOXABL Casita, set up in about an hour. [TRACKING URL]"}
+}

@@ -1,0 +1,130 @@
+{
+ "_source": "Raw 'ceowills bridges companies and wills between each other.MP4' (client Drive id 1tXLSZLLaZ9W6exLc5uleaNPqUZjEVnSZ); mic = 'standing under vines deep dark conversation.wav' (Mic 3) @ 714.1779 s. One complete take 1.9–42.8 ('…don't waste any more money'); the clip ends on 'I'm going to try that again' (cut) — the next thing filmed is a different script (#10), so there is no retake. He says no comment CTA in this take → no end CTA (captions verbatim); the one iMessage card at 25 s carries the ask. 'CEO'+'Wills' merged (jobs/ceowills-bridge.words.json → words/bridge.fixed.json; src/bridge.MP4, mic/bridge.mic.wav = symlinks). Nasheed the-sins (muffled). v2 (Eyad): the 'One of the, one of the' stutter cut (starts on the second), and 'one-plus, one-million' re-ordered by cuts into '1 million plus' (render.py sorts kept words by output time). iMessage cards picked by topic (Eyad 29 Sep: switch them up, match what he's saying): business-properties-wealth. 4 Oct (Eyad): no background sound — voice only, no nasheed. 5 Oct (Eyad): no iMessage cards (\"without the ctas\") — ctas: [], so no card ping either. 7 Oct (Adnan via SK Media; Eyad: finalise): nasheed back on — bika-moulhimi in his 3-per-nasheed rotation (tracker.json nasheed_rule); his 'Great Wealth Transfer' follow card added at the end (layout endcard); still no iMessage cards (Eyad, 7 Oct: the CTA to remove is the cards — the spoken 'comment … below' stays).",
+ "name": "CEOwills bridges your company and your will",
+ "video": "src/bridge.MP4",
+ "rotate": "ccw",
+ "audio": "mic/bridge.mic.wav",
+ "words": "words/bridge.fixed.json",
+ "cuts": [
+  {
+   "in": 5.48,
+   "out": 8.28
+  },
+  {
+   "in": 8.48,
+   "out": 13.92,
+   "punch": true
+  },
+  {
+   "in": 14.12,
+   "out": 17.52
+  },
+  {
+   "in": 18.44,
+   "out": 19.58,
+   "punch": true
+  },
+  {
+   "in": 20.44,
+   "out": 21.24
+  },
+  {
+   "in": 19.95,
+   "out": 20.32,
+   "punch": true
+  },
+  {
+   "in": 22.04,
+   "out": 24.28
+  },
+  {
+   "in": 24.4,
+   "out": 25.36,
+   "punch": true
+  },
+  {
+   "in": 25.6,
+   "out": 27.08
+  },
+  {
+   "in": 27.68,
+   "out": 32.24,
+   "punch": true
+  },
+  {
+   "in": 32.36,
+   "out": 34.8
+  },
+  {
+   "in": 34.88,
+   "out": 37.72,
+   "punch": true
+  },
+  {
+   "in": 38.0,
+   "out": 39.04
+  },
+  {
+   "in": 39.16,
+   "out": 40.6,
+   "punch": true
+  },
+  {
+   "in": 41.48,
+   "out": 43.6
+  }
+ ],
+ "punch_at": [],
+ "hook": [
+  "£1M+ business owners?",
+  "Bridge your _COMPANY_ & *will*"
+ ],
+ "hook_until": 12.8,
+ "keywords": [],
+ "cta": null,
+ "nasheed": {
+  "file": "nasheed/bika-moulhimi.mp3",
+  "start": 0
+ },
+ "chunks": [
+  "One of the",
+  "reasons why",
+  "CEOwills is here",
+  "is to bridge",
+  "the gap between",
+  "your work",
+  "as the CEO",
+  "of your company",
+  "and the wills.",
+  "It literally does",
+  "what it says",
+  "on the tin.",
+  "If you are a successful",
+  "1 million plus",
+  "owner",
+  "in terms of",
+  "real estate assets",
+  "a portfolio",
+  "you definitely",
+  "need a will.",
+  "Not because",
+  "the tax man",
+  "is running after you",
+  "but because",
+  "you need to sit down",
+  "and figure out",
+  "what you can",
+  "restructure",
+  "so that the family",
+  "that you leave",
+  "all your wealth to,",
+  "all of your",
+  "success to,",
+  "have a blueprint",
+  "to follow",
+  "to make sure",
+  "they don't waste",
+  "any more money."
+ ],
+ "ctas": []
+}

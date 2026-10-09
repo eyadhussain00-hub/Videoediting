@@ -1,0 +1,24 @@
+{
+ "name": "04_fazerug_elons_casita",
+ "title": "Elon's $50K Casita (FaZe Rug)",
+ "version": 1,
+ "status": "delivered",
+ "sources": {"casita": "/1. Most Viewed YouTube/2024-05-14 - BOXABL Casita Tour.mp4", "fazerug": "/1. Most Viewed YouTube/Visiting Elon Musk’s $50,000 Tiny Home! SHOCKING.mp4"},
+ "segments": [
+  {"v": "fazerug", "vs": 8.4, "ve": 11.5, "hf": 0.74},
+  {"v": "fazerug", "vs": 13.5, "ve": 18.95, "hf": 0.74},
+  {"v": "fazerug", "vs": 317.6, "ve": 324.05, "hf": 0.74},
+  {"v": "fazerug", "vs": 347.7, "ve": 356.4, "hf": 0.74},
+  {"v": "fazerug", "vs": 357.9, "ve": 361.7, "hf": 0.74},
+  {"v": "fazerug", "vs": 374.8, "ve": 380.5, "hf": 0.74},
+  {"v": "casita", "vs": 12.3, "ve": 18.0, "a": "fazerug", "as": 430.3, "ae": 434.4, "home": true}
+ ],
+ "overlays": [
+  {"s": 0, "e": 3.1, "text": "TOURING A\n*$50,000 HOME*"},
+  {"s": 3.1, "e": 8.55, "text": "ELON MUSK HAS ONE\nOF THESE *BOXABLS*"},
+  {"s": 8.55, "e": 23.7, "text": "*BOXABL* FOUNDER\nCONFIRMS IT"},
+  {"s": 23.7, "e": 33.2, "text": "INSIDE THE\n*BOXABL CASITA*"},
+  {"s": 33.2, "e": 37.3, "text": "THE *BOXABL CASITA*"}
+ ],
+ "post": {"short": "FaZe Rug tours the $50K BOXABL Casita, the same foldable home Elon Musk has 🏠 @boxabl #boxabl #casita #fazerug #elonmusk", "x": "FaZe Rug tours the BOXABL Casita, the same foldable home Elon Musk has 🏠 [TRACKING URL]"}
+}

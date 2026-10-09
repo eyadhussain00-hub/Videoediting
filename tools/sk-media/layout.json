@@ -1,0 +1,163 @@
+{
+  "canvas": {
+    "w": 1080,
+    "h": 1920,
+    "fps": 30,
+    "bg": "#0d0d10",
+    "draft_scale": 0.5
+  },
+  "safe": {
+    "x0": 110,
+    "x1": 970,
+    "y0": 240,
+    "y1": 1550
+  },
+  "center_x": 540,
+  "opening_duration_s": 2.0,
+  "layouts": {
+    "opening": {
+      "headline": {
+        "x": 120,
+        "y": 248,
+        "w": 840,
+        "h": 156
+      },
+      "face": {
+        "x": 120,
+        "y": 416,
+        "w": 840,
+        "h": 440
+      },
+      "caption": {
+        "x": 120,
+        "y": 872,
+        "w": 840,
+        "h": 92
+      },
+      "screen": {
+        "x": 120,
+        "y": 980,
+        "w": 840,
+        "h": 500
+      }
+    },
+    "standard": {
+      "header": {
+        "x": 120,
+        "y": 244,
+        "w": 840,
+        "h": 70
+      },
+      "progress": {
+        "x": 120,
+        "y": 318,
+        "w": 840,
+        "h": 4
+      },
+      "screen": {
+        "x": 120,
+        "y": 330,
+        "w": 840,
+        "h": 690
+      },
+      "caption": {
+        "x": 120,
+        "y": 1036,
+        "w": 840,
+        "h": 92
+      },
+      "face": {
+        "x": 120,
+        "y": 1144,
+        "w": 840,
+        "h": 400
+      }
+    }
+  },
+  "style": {
+    "font": "Inter Tight",
+    "card_bg": "#17171c",
+    "card_radius": 28,
+    "card_border": "rgba(255,255,255,0.08)",
+    "text": "#FFFFFF",
+    "accent": "#FFD60A",
+    "caption": {
+      "size_px": 58,
+      "weight": 800,
+      "max_words": 4,
+      "max_lines": 2,
+      "active_scale": 1.06,
+      "pop_ms": 90
+    },
+    "numerals": "tabular-nums"
+  },
+  "motion": {
+    "enter": {
+      "ms": 280,
+      "ease": "cubic-bezier(0.22,1,0.36,1)",
+      "from": {
+        "y": 24,
+        "scale": 0.96,
+        "opacity": 0
+      }
+    },
+    "exit": {
+      "ms": 160,
+      "ease": "cubic-bezier(0.55,0,1,0.45)",
+      "to": {
+        "y": -12,
+        "opacity": 0
+      }
+    },
+    "stagger_ms": 40,
+    "section_change": {
+      "ms": 200,
+      "type": "slide-up",
+      "blur_px": 8
+    },
+    "countup": {
+      "ease": "easeOutExpo",
+      "finish_after_spoken_ms": 400
+    },
+    "focus_zoom": {
+      "scale": 1.3,
+      "ms": 350,
+      "ease": "cubic-bezier(0.65,0,0.35,1)"
+    },
+    "face_drift": {
+      "from": 1.0,
+      "to": 1.03
+    },
+    "punch_in": 1.1,
+    "reading": {
+      "base_ms": 300,
+      "per_word_ms": 250,
+      "min_ms": 1000
+    }
+  },
+  "audio": {
+    "lufs": -14,
+    "true_peak": -2,
+    "lra": 11,
+    "sfx_under_voice_db": 18,
+    "sfx_min_gap_s": 1.5
+  },
+  "cuts": {
+    "min_pause_s": 0.18,
+    "keep_pause_s": 0.1,
+    "quiet_db": 12,
+    "hf_band_hz": [
+      3500,
+      11000
+    ],
+    "min_clip_s": 0.15,
+    "max_leftover_pause_s": 0.25,
+    "guard_edge_s": 0.12,
+    "guard_long_s": 0.35
+  },
+  "qa": {
+    "face_center_tol": 0.05,
+    "face_jump_tol": 0.03,
+    "empty_card_std": 2.0
+  }
+}

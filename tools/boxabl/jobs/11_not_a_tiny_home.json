@@ -1,0 +1,25 @@
+{
+ "name": "11_not_a_tiny_home",
+ "title": "Not a Tiny Home (2-Story)",
+ "version": 1,
+ "angle": "new product: 2-story family home",
+ "sources": {"twostory": "/1. Most Viewed YouTube/BOXABL debuts NEW 2-STORY DESIGN.mp4"},
+ "_why": "Ellie in Space at IBS 2023 (her logo sits bottom-left, outside the 4:3 crop). Paolo's 'uh' (18:09) cut out. Skipped: the Elon NDA joke, factory-size/cost talk.",
+ "segments": [
+  {"v": "twostory", "vs": 114.65, "ve": 123.85, "home": true},
+  {"v": "twostory", "vs": 123.9, "ve": 132.75},
+  {"v": "twostory", "vs": 1098.0, "ve": 1101.5, "a": "twostory", "as": 1086.1, "ae": 1088.76, "home": true},
+  {"v": "twostory", "vs": 1101.5, "ve": 1110.0, "a": "twostory", "as": 1089.72, "ae": 1094.95, "home": true},
+  {"v": "twostory", "vs": 187.0, "ve": 190.05},
+  {"v": "twostory", "vs": 1291.5, "ve": 1296.5, "a": "twostory", "as": 1302.38, "ae": 1304.75}
+ ],
+ "overlays": [
+  {"s": 0, "e": 9.2, "text": "THIS IS NOT A\n*TINY HOME*"},
+  {"s": 9.2, "e": 18.05, "text": "*BOXABL* MODULES\nSTACKED UP"},
+  {"s": 18.05, "e": 25.95, "text": "3 BED • 2.5 BATH\n*2-STORY*"},
+  {"s": 25.95, "e": 29.0, "text": "*1,100 SQ FT*"},
+  {"s": 29.0, "e": 31.4, "text": "THE *BOXABL*\n2-STORY"}
+ ],
+ "post": {"short": "You've never seen BOXABL like this 👀 A 3-bed, 2.5-bath two-story home built from Casita modules. @boxabl #boxabl #casita #prefab #modularhome",
+          "x": "You've never seen BOXABL like this 👀 A 3-bed, 2.5-bath two-story home. [TRACKING URL]"}
+}

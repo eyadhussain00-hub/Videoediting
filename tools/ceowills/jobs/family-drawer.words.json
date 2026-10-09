@@ -1,0 +1,872 @@
+[
+{
+"word": "It's",
+"start": 1.14,
+"end": 1.66,
+"p": 0.71
+},
+{
+"word": "such",
+"start": 1.66,
+"end": 1.88,
+"p": 0.92
+},
+{
+"word": "an",
+"start": 1.88,
+"end": 2.1,
+"p": 0.97
+},
+{
+"word": "awkward",
+"start": 2.1,
+"end": 2.34,
+"p": 1.0
+},
+{
+"word": "experience",
+"start": 2.34,
+"end": 2.9,
+"p": 0.99
+},
+{
+"word": "when",
+"start": 2.9,
+"end": 3.14,
+"p": 0.96
+},
+{
+"word": "you",
+"start": 3.14,
+"end": 3.24,
+"p": 0.99
+},
+{
+"word": "have",
+"start": 3.24,
+"end": 3.38,
+"p": 0.96
+},
+{
+"word": "to",
+"start": 3.38,
+"end": 3.56,
+"p": 0.99
+},
+{
+"word": "sit",
+"start": 3.56,
+"end": 3.76,
+"p": 0.99
+},
+{
+"word": "down",
+"start": 3.76,
+"end": 4.14,
+"p": 0.99
+},
+{
+"word": "and",
+"start": 4.14,
+"end": 4.62,
+"p": 0.93
+},
+{
+"word": "talk",
+"start": 4.62,
+"end": 4.9,
+"p": 0.99
+},
+{
+"word": "to",
+"start": 4.9,
+"end": 5.08,
+"p": 0.99
+},
+{
+"word": "a",
+"start": 5.08,
+"end": 5.32,
+"p": 0.93
+},
+{
+"word": "family",
+"start": 5.32,
+"end": 5.58,
+"p": 0.99
+},
+{
+"word": "or",
+"start": 5.58,
+"end": 5.72,
+"p": 0.92
+},
+{
+"word": "potential",
+"start": 5.72,
+"end": 6.14,
+"p": 0.96
+},
+{
+"word": "client",
+"start": 6.14,
+"end": 6.56,
+"p": 0.99
+},
+{
+"word": "about",
+"start": 6.56,
+"end": 6.9,
+"p": 0.98
+},
+{
+"word": "why",
+"start": 6.9,
+"end": 7.22,
+"p": 0.99
+},
+{
+"word": "they",
+"start": 7.22,
+"end": 7.44,
+"p": 0.99
+},
+{
+"word": "need",
+"start": 7.44,
+"end": 7.62,
+"p": 0.96
+},
+{
+"word": "to",
+"start": 7.62,
+"end": 7.74,
+"p": 0.95
+},
+{
+"word": "have",
+"start": 7.74,
+"end": 7.86,
+"p": 0.99
+},
+{
+"word": "things",
+"start": 7.86,
+"end": 8.1,
+"p": 0.98
+},
+{
+"word": "written",
+"start": 8.1,
+"end": 8.34,
+"p": 0.99
+},
+{
+"word": "down.",
+"start": 8.34,
+"end": 8.78,
+"p": 0.99
+},
+{
+"word": "It's",
+"start": 9.42,
+"end": 9.62,
+"p": 0.96
+},
+{
+"word": "not",
+"start": 9.62,
+"end": 9.76,
+"p": 0.99
+},
+{
+"word": "just",
+"start": 9.76,
+"end": 10.02,
+"p": 0.96
+},
+{
+"word": "the",
+"start": 10.02,
+"end": 10.26,
+"p": 0.96
+},
+{
+"word": "pain",
+"start": 10.26,
+"end": 10.5,
+"p": 0.99
+},
+{
+"word": "of",
+"start": 10.5,
+"end": 10.7,
+"p": 0.99
+},
+{
+"word": "not",
+"start": 10.7,
+"end": 10.84,
+"p": 0.98
+},
+{
+"word": "knowing,",
+"start": 10.84,
+"end": 11.2,
+"p": 1.0
+},
+{
+"word": "it's",
+"start": 11.72,
+"end": 11.98,
+"p": 0.96
+},
+{
+"word": "the",
+"start": 11.98,
+"end": 12.24,
+"p": 0.95
+},
+{
+"word": "absence",
+"start": 12.24,
+"end": 13.56,
+"p": 0.98
+},
+{
+"word": "of",
+"start": 13.56,
+"end": 13.86,
+"p": 0.99
+},
+{
+"word": "not",
+"start": 13.86,
+"end": 14.12,
+"p": 0.95
+},
+{
+"word": "knowing",
+"start": 14.12,
+"end": 14.5,
+"p": 0.99
+},
+{
+"word": "that",
+"start": 14.5,
+"end": 14.82,
+"p": 0.96
+},
+{
+"word": "creates",
+"start": 14.82,
+"end": 15.3,
+"p": 0.98
+},
+{
+"word": "turmoil,",
+"start": 15.3,
+"end": 15.9,
+"p": 1.0
+},
+{
+"word": "that",
+"start": 16.18,
+"end": 16.22,
+"p": 0.94
+},
+{
+"word": "creates",
+"start": 16.22,
+"end": 16.68,
+"p": 0.97
+},
+{
+"word": "really",
+"start": 16.68,
+"end": 17.68,
+"p": 0.87
+},
+{
+"word": "bad,",
+"start": 17.68,
+"end": 18.16,
+"p": 0.99
+},
+{
+"word": "awkward",
+"start": 18.7,
+"end": 18.9,
+"p": 0.99
+},
+{
+"word": "memories",
+"start": 18.9,
+"end": 19.4,
+"p": 0.99
+},
+{
+"word": "after",
+"start": 19.4,
+"end": 19.84,
+"p": 0.94
+},
+{
+"word": "you've",
+"start": 19.84,
+"end": 20.14,
+"p": 0.76
+},
+{
+"word": "passed",
+"start": 20.14,
+"end": 20.3,
+"p": 0.99
+},
+{
+"word": "on.",
+"start": 20.3,
+"end": 20.58,
+"p": 0.89
+},
+{
+"word": "Families",
+"start": 21.16,
+"end": 21.44,
+"p": 0.97
+},
+{
+"word": "should",
+"start": 21.44,
+"end": 21.7,
+"p": 1.0
+},
+{
+"word": "be",
+"start": 21.7,
+"end": 21.8,
+"p": 0.99
+},
+{
+"word": "able",
+"start": 21.8,
+"end": 21.98,
+"p": 1.0
+},
+{
+"word": "to",
+"start": 21.98,
+"end": 22.46,
+"p": 0.99
+},
+{
+"word": "reach",
+"start": 22.46,
+"end": 22.84,
+"p": 0.99
+},
+{
+"word": "into",
+"start": 22.84,
+"end": 23.18,
+"p": 0.96
+},
+{
+"word": "the",
+"start": 23.18,
+"end": 23.38,
+"p": 0.99
+},
+{
+"word": "drawer,",
+"start": 23.38,
+"end": 23.6,
+"p": 0.89
+},
+{
+"word": "see",
+"start": 24.16,
+"end": 24.4,
+"p": 0.99
+},
+{
+"word": "a",
+"start": 24.4,
+"end": 24.68,
+"p": 0.99
+},
+{
+"word": "document",
+"start": 24.68,
+"end": 25.04,
+"p": 1.0
+},
+{
+"word": "and",
+"start": 25.04,
+"end": 25.5,
+"p": 0.58
+},
+{
+"word": "hold",
+"start": 25.5,
+"end": 25.88,
+"p": 0.99
+},
+{
+"word": "it",
+"start": 25.88,
+"end": 26.0,
+"p": 0.99
+},
+{
+"word": "up",
+"start": 26.0,
+"end": 26.12,
+"p": 0.99
+},
+{
+"word": "to",
+"start": 26.12,
+"end": 26.3,
+"p": 0.98
+},
+{
+"word": "themselves",
+"start": 26.3,
+"end": 26.6,
+"p": 0.99
+},
+{
+"word": "to",
+"start": 26.6,
+"end": 26.78,
+"p": 0.96
+},
+{
+"word": "be",
+"start": 26.78,
+"end": 26.88,
+"p": 0.16
+},
+{
+"word": "able",
+"start": 26.88,
+"end": 27.04,
+"p": 1.0
+},
+{
+"word": "to",
+"start": 27.04,
+"end": 27.22,
+"p": 1.0
+},
+{
+"word": "see",
+"start": 27.22,
+"end": 27.5,
+"p": 1.0
+},
+{
+"word": "where",
+"start": 27.5,
+"end": 28.16,
+"p": 0.99
+},
+{
+"word": "the",
+"start": 28.16,
+"end": 28.38,
+"p": 1.0
+},
+{
+"word": "money",
+"start": 28.38,
+"end": 28.56,
+"p": 1.0
+},
+{
+"word": "is,",
+"start": 28.56,
+"end": 28.9,
+"p": 0.99
+},
+{
+"word": "where",
+"start": 29.12,
+"end": 29.42,
+"p": 0.99
+},
+{
+"word": "it's",
+"start": 29.42,
+"end": 29.7,
+"p": 0.93
+},
+{
+"word": "paid",
+"start": 29.7,
+"end": 29.84,
+"p": 1.0
+},
+{
+"word": "into,",
+"start": 29.84,
+"end": 30.24,
+"p": 0.93
+},
+{
+"word": "what",
+"start": 30.68,
+"end": 30.88,
+"p": 1.0
+},
+{
+"word": "debts",
+"start": 30.88,
+"end": 31.22,
+"p": 0.99
+},
+{
+"word": "are",
+"start": 31.22,
+"end": 31.4,
+"p": 0.98
+},
+{
+"word": "due,",
+"start": 31.4,
+"end": 31.58,
+"p": 1.0
+},
+{
+"word": "what",
+"start": 32.0,
+"end": 32.12,
+"p": 0.99
+},
+{
+"word": "the",
+"start": 32.12,
+"end": 32.3,
+"p": 0.97
+},
+{
+"word": "estate",
+"start": 32.3,
+"end": 32.64,
+"p": 0.94
+},
+{
+"word": "owes,",
+"start": 32.64,
+"end": 33.36,
+"p": 0.98
+},
+{
+"word": "how",
+"start": 33.74,
+"end": 34.02,
+"p": 0.99
+},
+{
+"word": "to",
+"start": 34.02,
+"end": 34.24,
+"p": 1.0
+},
+{
+"word": "discharge",
+"start": 34.24,
+"end": 34.66,
+"p": 0.99
+},
+{
+"word": "of",
+"start": 34.66,
+"end": 34.92,
+"p": 0.93
+},
+{
+"word": "this,",
+"start": 34.92,
+"end": 35.12,
+"p": 0.99
+},
+{
+"word": "what",
+"start": 35.66,
+"end": 35.92,
+"p": 1.0
+},
+{
+"word": "goes",
+"start": 35.92,
+"end": 36.36,
+"p": 1.0
+},
+{
+"word": "to",
+"start": 36.36,
+"end": 36.66,
+"p": 1.0
+},
+{
+"word": "whom",
+"start": 36.66,
+"end": 36.98,
+"p": 0.99
+},
+{
+"word": "and",
+"start": 36.98,
+"end": 37.62,
+"p": 0.59
+},
+{
+"word": "exactly",
+"start": 37.62,
+"end": 38.18,
+"p": 1.0
+},
+{
+"word": "how",
+"start": 38.18,
+"end": 38.82,
+"p": 1.0
+},
+{
+"word": "divisions",
+"start": 38.82,
+"end": 39.36,
+"p": 0.99
+},
+{
+"word": "are",
+"start": 39.36,
+"end": 39.86,
+"p": 1.0
+},
+{
+"word": "made.",
+"start": 39.86,
+"end": 40.12,
+"p": 1.0
+},
+{
+"word": "That's",
+"start": 40.42,
+"end": 40.98,
+"p": 0.99
+},
+{
+"word": "the",
+"start": 40.98,
+"end": 41.18,
+"p": 1.0
+},
+{
+"word": "importance",
+"start": 41.18,
+"end": 41.54,
+"p": 1.0
+},
+{
+"word": "of",
+"start": 41.54,
+"end": 41.8,
+"p": 1.0
+},
+{
+"word": "a",
+"start": 41.8,
+"end": 41.94,
+"p": 0.95
+},
+{
+"word": "will.",
+"start": 41.94,
+"end": 42.06,
+"p": 0.94
+},
+{
+"word": "So",
+"start": 42.82,
+"end": 42.82,
+"p": 0.99
+},
+{
+"word": "brothers",
+"start": 42.82,
+"end": 43.54,
+"p": 0.42
+},
+{
+"word": "and",
+"start": 43.54,
+"end": 43.78,
+"p": 0.99
+},
+{
+"word": "sisters,",
+"start": 43.78,
+"end": 44.08,
+"p": 1.0
+},
+{
+"word": "children,",
+"start": 44.92,
+"end": 45.26,
+"p": 1.0
+},
+{
+"word": "parents,",
+"start": 46.16,
+"end": 46.6,
+"p": 0.99
+},
+{
+"word": "you",
+"start": 46.82,
+"end": 47.14,
+"p": 1.0
+},
+{
+"word": "need",
+"start": 47.14,
+"end": 47.42,
+"p": 1.0
+},
+{
+"word": "a",
+"start": 47.42,
+"end": 47.68,
+"p": 1.0
+},
+{
+"word": "will",
+"start": 47.68,
+"end": 47.88,
+"p": 0.98
+},
+{
+"word": "not",
+"start": 47.88,
+"end": 48.28,
+"p": 0.51
+},
+{
+"word": "just",
+"start": 48.28,
+"end": 48.5,
+"p": 1.0
+},
+{
+"word": "because",
+"start": 48.5,
+"end": 48.8,
+"p": 1.0
+},
+{
+"word": "it",
+"start": 48.8,
+"end": 49.02,
+"p": 1.0
+},
+{
+"word": "gives",
+"start": 49.02,
+"end": 49.4,
+"p": 1.0
+},
+{
+"word": "administrative",
+"start": 49.4,
+"end": 50.24,
+"p": 0.9
+},
+{
+"word": "ease",
+"start": 50.24,
+"end": 50.66,
+"p": 1.0
+},
+{
+"word": "but",
+"start": 50.66,
+"end": 50.84,
+"p": 0.79
+},
+{
+"word": "because",
+"start": 50.84,
+"end": 51.1,
+"p": 1.0
+},
+{
+"word": "it",
+"start": 51.1,
+"end": 51.26,
+"p": 1.0
+},
+{
+"word": "gives",
+"start": 51.26,
+"end": 51.44,
+"p": 1.0
+},
+{
+"word": "clarity",
+"start": 51.44,
+"end": 52.04,
+"p": 1.0
+},
+{
+"word": "and",
+"start": 52.04,
+"end": 52.58,
+"p": 0.7
+},
+{
+"word": "here",
+"start": 52.58,
+"end": 52.74,
+"p": 0.99
+},
+{
+"word": "at",
+"start": 52.74,
+"end": 52.94,
+"p": 0.96
+},
+{
+"word": "CEOwills",
+"start": 52.94,
+"end": 53.4,
+"p": 0.52
+},
+{
+"word": "that's",
+"start": 53.4,
+"end": 53.78,
+"p": 0.79
+},
+{
+"word": "something",
+"start": 53.78,
+"end": 54.02,
+"p": 1.0
+},
+{
+"word": "we",
+"start": 54.02,
+"end": 54.22,
+"p": 0.99
+},
+{
+"word": "prioritize.",
+"start": 54.22,
+"end": 54.7,
+"p": 0.87
+}
+]
