@@ -1,0 +1,90 @@
+{
+  "_comment": "From Adnan's doc 'NASHEEDS TO USE for videos'. Voice-only — never anything with instruments. YouTube blocks cloud containers, but SoundCloud works: yt-dlp -x --audio-format mp3 -o '<key>.%(ext)s' '<soundcloud url>'. Copies also live in Drive 'RSV Video/SK/Files/nasheeds/'.",
+  "ila-rabbi": {
+    "title": "Ila Rabbi (Muffled) – AbdulAziz AlRashed",
+    "url": "https://www.youtube.com/watch?v=ShPLqycQSJc",
+    "mood": "calm, reflective",
+    "soundcloud": "https://api.soundcloud.com/tracks/soundcloud%3Atracks%3A2372485319"
+  },
+  "asmoo": {
+    "title": "Asmoo (Muffled) – Abdul Raziq",
+    "url": "https://www.youtube.com/watch?v=HBxUm2P5YU8",
+    "mood": "uplifting",
+    "soundcloud": null,
+    "note": "SoundCloud copy is DRM-locked"
+  },
+  "ilahi": {
+    "title": "Ilahi (Muffled) – AbdulAziz AlRashed",
+    "url": "https://www.youtube.com/watch?v=f0In8iPJvf8",
+    "mood": "emotional, serious",
+    "note": "not on SoundCloud"
+  },
+  "taweel-al-shawq": {
+    "title": "Taweel Al Shawq – Ahmed Bukhatir",
+    "url": "https://www.youtube.com/watch?v=_PlHjuh8Ed8",
+    "mood": "warm, has clear lyrics — keep very low",
+    "soundcloud": "https://api.soundcloud.com/tracks/soundcloud%3Atracks%3A1385277445"
+  },
+  "hona-marro": {
+    "title": "Hona Marro (Muffled) – Mubarak Al-Nwaibet",
+    "url": "https://www.youtube.com/watch?v=9QBx6NRBkyI",
+    "mood": "nostalgic, family",
+    "soundcloud": "https://api.soundcloud.com/tracks/soundcloud%3Atracks%3A248645800"
+  },
+  "bika-moulhimi": {
+    "title": "Bika Moulhimi (Muffled)",
+    "url": "https://www.youtube.com/watch?v=QDLlu9MGwvQ",
+    "mood": "confident, business",
+    "soundcloud": "https://api.soundcloud.com/tracks/soundcloud%3Atracks%3A1953623587"
+  },
+  "shukran-laka-rabbi": {
+    "title": "Shukran Laka Rabbi (Muffled)",
+    "url": "https://www.youtube.com/watch?v=OMJXmrgkBXI",
+    "mood": "grateful, light",
+    "soundcloud": "https://api.soundcloud.com/tracks/soundcloud%3Atracks%3A1943713503"
+  },
+  "arihna-biha": {
+    "title": "Arihna Biha",
+    "url": "https://www.youtube.com/watch?v=CD1-2qaUy6Q",
+    "mood": "beautiful, soft",
+    "note": "not on SoundCloud"
+  },
+  "fiya-hubbun": {
+    "title": "Fiya Hubbun Extended (Muffled)",
+    "url": "https://www.youtube.com/watch?v=vi2lTx9iQIc",
+    "mood": "gentle",
+    "soundcloud": "https://api.soundcloud.com/tracks/soundcloud%3Atracks%3A1964373051"
+  },
+  "wedding": {
+    "title": "Wedding Nasheed (Muffled)",
+    "url": "https://www.youtube.com/watch?v=SGRT31OFS_Q",
+    "mood": "happy — only for positive family topics",
+    "soundcloud": "https://api.soundcloud.com/tracks/soundcloud%3Atracks%3A1931384198"
+  },
+  "ya-nabi-salam": {
+    "title": "Ya Nabi Salam Alayka (Muffled)",
+    "url": "https://www.youtube.com/watch?v=eYXXHHa5iJo",
+    "mood": "devotional",
+    "soundcloud": "https://api.soundcloud.com/tracks/soundcloud%3Atracks%3A104507736",
+    "note": "use the 'No Music' upload — Maher Zain's release has instruments"
+  },
+  "the-sins": {
+    "title": "The Sins (Al-Khataya) – Muhammad Al Muqit, slowed + reverb",
+    "url": "https://www.youtube.com/watch?v=yDmyTP73qNg",
+    "mood": "heavy, warning (death, debts, akhirah)",
+    "soundcloud": "https://api.soundcloud.com/tracks/soundcloud%3Atracks%3A2295597086"
+  },
+  "allahu-yalamu": {
+    "title": "Allahu Ya'lamu (Muffled)",
+    "url": "https://www.youtube.com/watch?v=ePDI4_7xrTE",
+    "mood": "reassuring",
+    "soundcloud": "https://api.soundcloud.com/tracks/soundcloud%3Atracks%3A2372484200"
+  },
+  "waqafa-al-teflo": {
+    "title": "Waqafa al Teflo – slowed + reverb",
+    "url": "https://www.youtube.com/watch?v=LcG8uO4bcv0",
+    "mood": "sad, children/orphans",
+    "soundcloud": "https://api.soundcloud.com/tracks/soundcloud%3Atracks%3A1663913481"
+  },
+  "_pick": "Match mood to the message: tax/money/business → bika-moulhimi or asmoo; daughters/family fairness → hona-marro or ilahi; death/debts/akhirah → the-sins or ila-rabbi; children/guardianship → waqafa-al-teflo."
+}

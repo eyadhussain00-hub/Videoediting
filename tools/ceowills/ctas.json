@@ -1,0 +1,94 @@
+{
+  "_comment": "Adnan's iMessage-style CTA PNGs (client Drive 'CEOWILLS TikTok, Reels and Shorts/CALL TO ACTIONS', folder 1pBrqRGxeXbz0U23VF0v33eWysUedmD6G). render.py picks the most relevant unused one per slot by matching `tags` against the transcript; 'generic' ones fill the rest. Rule (Adnan): one CTA every ~30 s, each on screen ~5 s. None in reels shorter than 30 s. Add new CTAs here with their Drive id.",
+  "legacy-decades": {
+    "id": "15RY1xr4RgO6cx0UMm90GXYijSIe4uxAW",
+    "text": "you've spent decades building your legacy, please make sure you pass it down correctly with ceowills.",
+    "tags": [
+      "legacy",
+      "decades",
+      "pass",
+      "down",
+      "generations",
+      "built",
+      "building"
+    ]
+  },
+  "assume-family-inherit": {
+    "id": "1ARohxfMUB0r6684E1PIsZa9hBZaFEEkT",
+    "text": "Hey friend, before you assume your family will just inherit everything. Have a clarity conversation with me.",
+    "tags": [
+      "inherit",
+      "inheritance",
+      "family",
+      "assume",
+      "estate",
+      "everything",
+      "children",
+      "wife"
+    ]
+  },
+  "got-you-thinking": {
+    "id": "1wkWcWGAwmM2fD-Cju6a5tDwmJm5KzK0X",
+    "text": "hey ceo, if this got you thinking... you can find more clarity at ceowills.com",
+    "tags": [
+      "generic",
+      "ceo",
+      "business",
+      "owner",
+      "thinking"
+    ]
+  },
+  "see-for-your-family": {
+    "id": "1OzhQBsbwSNVjTMZ7RMmObMvl_c5MhwdG",
+    "text": "hey friend, if you want to see what this could look like for your family, visit ceowills.com (link is in my bio)",
+    "tags": [
+      "family",
+      "children",
+      "daughters",
+      "sons",
+      "parents",
+      "plan"
+    ]
+  },
+  "islamic-uk-law": {
+    "id": "1DiwfTFsqD396Y9s_4ghMKvewIgvDRxkP",
+    "text": "hey brother, if you want to understand how to protect your family in line with Islam and UK law... visit ceowills.com",
+    "tags": [
+      "islam",
+      "islamic",
+      "sharia",
+      "quran",
+      "allah",
+      "uk",
+      "law",
+      "muslim",
+      "haqq",
+      "shares"
+    ]
+  },
+  "clarity": {
+    "id": "1IwULE5BJCOBdHNVytu4LlWTXcGBOXRig",
+    "text": "hey friend, if you want more clarity or info, visit ceowills.com :)",
+    "tags": [
+      "generic",
+      "clarity",
+      "info"
+    ]
+  },
+  "business-properties-wealth": {
+    "id": "15wYmnVRZx2JjSZe-J8SumYsa3PykJIwC",
+    "text": "you've built the business, the properties and the wealth. Now you just need to protect it with ceowills.",
+    "tags": [
+      "business",
+      "properties",
+      "property",
+      "wealth",
+      "iht",
+      "tax",
+      "owner",
+      "company",
+      "protect",
+      "assets"
+    ]
+  }
+}

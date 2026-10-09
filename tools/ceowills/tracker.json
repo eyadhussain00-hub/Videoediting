@@ -1,0 +1,183 @@
+{
+  "_comment": "Which CEOwills videos we edit, in what order, and where each one is. Source: Adnan's 'Social media videos and scripts' board (SK Media chat, 27 Sep). White-marked rows are the other editor's, red-marked rows are already edited — we only do the UNMARKED rows. Work one mic part at a time (current_mic), first 'todo' in board order within it; when a mic part has no todo left, move to the next mic part that has one. Update this file (status, version, export) in the same commit as the job. n/mic refer to mic_map.json.",
+  "current_mic": "Mic 4",
+  "statuses": {
+    "todo": "ours, not started",
+    "edited": "final preview sent, export not in Drive yet",
+    "exported": "final uploaded to RSV Video/Adnan/Export",
+    "other_editor": "white-marked on Adnan's board — not ours",
+    "edited_by_others": "red-marked on Adnan's board — already edited",
+    "not_on_board": "raw exists but isn't on Adnan's board — skip unless Eyad adds it"
+  },
+  "videos": [
+    {
+      "n": 6,
+      "board": "hmrc can take up to 40%",
+      "mic": "Mic 2",
+      "status": "exported",
+      "version": "v11",
+      "export": "CEOwills - HMRC can take up to 40% - v11.mp4",
+      "job": "jobs/hmrc-40-percent.edit.json",
+      "final_pass": "5 Oct: Sofian's 30 Sep notes (captions below his chin, gradient from y 1300, one title size, no blurred fill over his head, director's 'go' gone, ExamQA-fast cuts) + Eyad 4 Oct: voice only, no nasheed. check/qa ALL PASS + stutters; replaced in place in Export (same link); no Telegram preview (Eyad) | 5 Oct later: Eyad 'without the ctas' → no iMessage cards (and no ping); replaced in place again | 7 Oct: Adnan's end card + nasheed rotation (the-sins), still no iMessage cards; QA + stutters pass; replaced in place",
+      "nasheed": "the-sins"
+    },
+    {
+      "n": 7,
+      "board": "if you are a business leader that wants to feed family",
+      "mic": "Mic 2",
+      "status": "exported",
+      "version": "v12",
+      "export": "CEOwills - Business leader feeding your family - v12.mp4",
+      "job": "jobs/business-leader-feed-family.edit.json",
+      "final_pass": "5 Oct: Sofian's 30 Sep notes (captions below his chin, gradient from y 1300, one title size, no blurred fill over his head, director's 'go' gone, ExamQA-fast cuts) + Eyad 4 Oct: voice only, no nasheed. check/qa ALL PASS + stutters; replaced in place in Export (same link); no Telegram preview (Eyad) | 5 Oct later: Eyad 'without the ctas' → no iMessage cards (and no ping); replaced in place again | 7 Oct: Adnan's end card + nasheed rotation (the-sins), still no iMessage cards; QA + stutters pass; replaced in place",
+      "nasheed": "the-sins"
+    },
+    {
+      "n": 9,
+      "board": "ceowills bridge",
+      "mic": "Mic 3",
+      "status": "exported",
+      "version": "v9",
+      "export": "CEOwills - CEOwills bridges your company and your will - v9.mp4",
+      "job": "jobs/ceowills-bridge.edit.json",
+      "note": "no spoken CTA in the take",
+      "final_pass": "5 Oct: Sofian's 30 Sep notes (captions below his chin, gradient from y 1300, one title size, no blurred fill over his head, director's 'go' gone, ExamQA-fast cuts) + Eyad 4 Oct: voice only, no nasheed. check/qa ALL PASS + stutters; replaced in place in Export (same link); no Telegram preview (Eyad) | 5 Oct later: Eyad 'without the ctas' → no iMessage cards (and no ping); replaced in place again | 7 Oct: Adnan's end card + nasheed rotation (bika-moulhimi), still no iMessage cards; QA + stutters pass; replaced in place",
+      "nasheed": "bika-moulhimi"
+    },
+    {
+      "n": 10,
+      "board": "business owners",
+      "mic": "Mic 3",
+      "status": "exported",
+      "version": "v8",
+      "export": "CEOwills - Business owners deep dark IHT conversation - v8.mp4",
+      "job": "jobs/business-owners-deep-dark.edit.json",
+      "note": "two-keyword CTA (MORE + CALCULATOR) kept on purpose",
+      "final_pass": "5 Oct: Sofian's 30 Sep notes (captions below his chin, gradient from y 1300, one title size, no blurred fill over his head, director's 'go' gone, ExamQA-fast cuts) + Eyad 4 Oct: voice only, no nasheed. check/qa ALL PASS + stutters; replaced in place in Export (same link); no Telegram preview (Eyad) | 5 Oct later: Eyad 'without the ctas' → no iMessage cards (and no ping); replaced in place again | 7 Oct: Adnan's end card + nasheed rotation (bika-moulhimi), still no iMessage cards; QA + stutters pass; replaced in place",
+      "nasheed": "bika-moulhimi"
+    },
+    {
+      "n": 12,
+      "board": "bestfriends partnership",
+      "mic": "Mic 3",
+      "status": "exported",
+      "version": "v7",
+      "export": "CEOwills - Business partners agree your succession - v7.mp4",
+      "job": "jobs/business-partners-succession.edit.json",
+      "final_pass": "5 Oct: Sofian's 30 Sep notes (captions below his chin, gradient from y 1300, one title size, no blurred fill over his head, director's 'go' gone, ExamQA-fast cuts) + Eyad 4 Oct: voice only, no nasheed. check/qa ALL PASS + stutters; replaced in place in Export (same link); no Telegram preview (Eyad) | 5 Oct later: Eyad 'without the ctas' → no iMessage cards (and no ping); replaced in place again | 7 Oct: Adnan's end card + nasheed rotation (bika-moulhimi), still no iMessage cards; QA + stutters pass; replaced in place",
+      "nasheed": "bika-moulhimi"
+    },
+    {
+      "n": 14,
+      "board": "rafael nadal blooper",
+      "mic": "Mic 4",
+      "status": "exported",
+      "version": "v5",
+      "export": "CEOwills - Plan like Rafa Nadal - v5.mp4",
+      "job": "jobs/rafa-nadal.edit.json",
+      "note": "31 s, no spoken CTA, no card",
+      "final_pass": "5 Oct: Sofian's 30 Sep notes (captions below his chin, gradient from y 1300, one title size, no blurred fill over his head, director's 'go' gone, ExamQA-fast cuts) + Eyad 4 Oct: voice only, no nasheed. check/qa ALL PASS + stutters; replaced in place in Export (same link); no Telegram preview (Eyad) | 7 Oct: Adnan's end card + nasheed rotation (hona-marro), still no iMessage cards; QA + stutters pass; replaced in place",
+      "nasheed": "hona-marro"
+    },
+    {
+      "n": 16,
+      "board": "family should have access to your private information",
+      "mic": "Mic 4",
+      "status": "exported",
+      "version": "v7",
+      "export": "CEOwills - Families should find it in the drawer - v7.mp4",
+      "job": "jobs/family-drawer.edit.json",
+      "note": "v1 also still in Export (Eyad declined binning it)",
+      "final_pass": "5 Oct: Sofian's 30 Sep notes (captions below his chin, gradient from y 1300, one title size, no blurred fill over his head, director's 'go' gone, ExamQA-fast cuts) + Eyad 4 Oct: voice only, no nasheed. check/qa ALL PASS + stutters; replaced in place in Export (same link); no Telegram preview (Eyad) | 5 Oct later: Eyad 'without the ctas' → no iMessage cards (and no ping); replaced in place again | 7 Oct: Adnan's end card + nasheed rotation (hona-marro), still no iMessage cards; QA + stutters pass; replaced in place",
+      "nasheed": "hona-marro"
+    },
+    {
+      "n": 17,
+      "board": "business owners juggling",
+      "mic": "Mic 4",
+      "status": "exported",
+      "version": "v14",
+      "export": "CEOwills - Business owner juggling - v14.mp4",
+      "job": "jobs/business-owner-juggling.edit.json",
+      "note": "v10 = current style (29 Sep); the old-style v9 from another session is still in Export",
+      "final_pass": "5 Oct: Sofian's 30 Sep notes (captions below his chin, gradient from y 1300, one title size, no blurred fill over his head, director's 'go' gone, ExamQA-fast cuts) + Eyad 4 Oct: voice only, no nasheed. check/qa ALL PASS + stutters; replaced in place in Export (same link); no Telegram preview (Eyad) | 7 Oct: Adnan's end card + nasheed rotation (hona-marro), still no iMessage cards; QA + stutters pass; replaced in place",
+      "nasheed": "hona-marro"
+    },
+    {
+      "n": 2,
+      "board": "culture leaving daughters out",
+      "mic": "Mic 1",
+      "status": "exported",
+      "version": "v9",
+      "export": "CEOwills - Culture leaving daughters out - v9.mp4",
+      "job": "jobs/culture-leaving-daughters-out.edit.json",
+      "final_pass": "5 Oct: Sofian's 30 Sep notes (captions below his chin, gradient from y 1300, one title size, no blurred fill over his head, director's 'go' gone, ExamQA-fast cuts) + Eyad 4 Oct: voice only, no nasheed. check/qa ALL PASS + stutters; replaced in place in Export (same link); no Telegram preview (Eyad) | 5 Oct later: Eyad 'without the ctas' → no iMessage cards (and no ping); replaced in place again | 7 Oct: Adnan's end card + nasheed rotation (the-sins), still no iMessage cards; QA + stutters pass; replaced in place",
+      "nasheed": "the-sins"
+    },
+    {
+      "n": 3,
+      "board": "film GROB video",
+      "mic": "Mic 1",
+      "status": "other_editor"
+    },
+    {
+      "n": 8,
+      "board": "walk&talk documentary style with sol and parham",
+      "mic": "Mic 2",
+      "status": "other_editor"
+    },
+    {
+      "n": 11,
+      "board": "how you should pass assets to a business partner",
+      "mic": "Mic 3",
+      "status": "other_editor"
+    },
+    {
+      "n": 13,
+      "board": "kids worried about parents estates",
+      "mic": "Mic 3",
+      "status": "other_editor"
+    },
+    {
+      "n": null,
+      "board": "how wills work in under 60 seconds.MP4",
+      "mic": null,
+      "status": "other_editor",
+      "note": "separate folder in Adnan's Drive, not part of the 22 Sep map"
+    },
+    {
+      "n": 15,
+      "board": "prophet and debts",
+      "mic": "Mic 4",
+      "status": "edited_by_others"
+    },
+    {
+      "n": null,
+      "board": "3 myths Muslim families believe about inheritance",
+      "mic": null,
+      "status": "edited_by_others"
+    },
+    {
+      "n": 1,
+      "board": null,
+      "mic": null,
+      "status": "not_on_board",
+      "note": "21years old parelegal — also has no mic part"
+    },
+    {
+      "n": 4,
+      "board": null,
+      "mic": "Mic 1",
+      "status": "not_on_board",
+      "note": "Last year hmrc collected billions"
+    },
+    {
+      "n": 5,
+      "board": null,
+      "mic": "Mic 1",
+      "status": "not_on_board",
+      "note": "pensions get twice tax from pension and iht"
+    }
+  ],
+  "nasheed_rule": "Adnan, 7 Oct (SK Media chat): 'if you have 12 videos try to follow this ratio - every 3 or 4 videos use a separate nasheed; then after 12 videos are done you can use the same 3 nasheeds again, rinse and repeat'. Board order, 3 videos per nasheed, cycling the-sins → bika-moulhimi → hona-marro (each group's topics fit its mood). check.py fails a job whose nasheed differs from its row."
+}

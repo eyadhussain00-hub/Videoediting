@@ -1,0 +1,114 @@
+{
+ "_source": "Raw 'business owner juggling.MP4' (client Drive id 1fYYZPsmOpmYUJhfRW1hzLY-HH0AjKMxg); mic = 'wills work 60 seconds, verbal agreement sofa.wav' @ 1303.101 s v10 (29 Sep): re-rendered in the current house style (was v9, exported by another session in the old script/serif look). 4 Oct (Eyad): no background sound — voice only, no nasheed. 5 Oct (Eyad): no iMessage cards (\"without the ctas\") — ctas: [], so no card ping either. 7 Oct (Adnan via SK Media; Eyad: finalise): nasheed back on — hona-marro in his 3-per-nasheed rotation (tracker.json nasheed_rule); his 'Great Wealth Transfer' follow card added at the end (layout endcard); still no iMessage cards (Eyad, 7 Oct: the CTA to remove is the cards — the spoken 'comment … below' stays).",
+ "name": "Business owner juggling",
+ "video": "src/juggling.mp4",
+ "rotate": "ccw",
+ "audio": "mic/juggling.mic.wav",
+ "words": "words/juggling.mic.json",
+ "cuts": [
+  {
+   "in": 1.84,
+   "out": 3.08
+  },
+  {
+   "in": 3.24,
+   "out": 3.8,
+   "punch": true
+  },
+  {
+   "in": 3.92,
+   "out": 5.7
+  },
+  {
+   "in": 6.2,
+   "out": 7.08,
+   "punch": true
+  },
+  {
+   "in": 7.2,
+   "out": 9.4
+  },
+  {
+   "in": 9.52,
+   "out": 12.8,
+   "punch": true
+  },
+  {
+   "in": 12.88,
+   "out": 14.92
+  },
+  {
+   "in": 15.12,
+   "out": 17.24,
+   "punch": true
+  },
+  {
+   "in": 17.32,
+   "out": 18.48
+  },
+  {
+   "in": 18.56,
+   "out": 19.4,
+   "punch": true
+  }
+ ],
+ "punch_at": [
+  17.4
+ ],
+ "keywords": [
+  "muslim",
+  "juggling",
+  "legacy",
+  "guy",
+  "back",
+  "trouble",
+  "day",
+  "little",
+  "possible",
+  "paying",
+  "more"
+ ],
+ "cta": {
+  "at": 17.4,
+  "keyword": "IHT",
+  "script": [
+   "below"
+  ],
+  "underline": [
+   "IHT"
+  ]
+ },
+ "nasheed": {
+  "file": "nasheed/hona-marro.mp3",
+  "start": 0
+ },
+ "chunks": [
+  "Are you a",
+  "Muslim owner",
+  "juggling",
+  "your business,",
+  "your life and your legacy?",
+  "Well, just like",
+  "this guy",
+  "who's juggling",
+  "in the back,",
+  "I don't want you",
+  "to be in trouble",
+  "one day",
+  "when it comes",
+  "to IHT.",
+  "I want you",
+  "to pay as little",
+  "as possible.",
+  "Make sure",
+  "you aren't paying",
+  "more than",
+  "you need to."
+ ],
+ "hook": [
+  "Muslim business owner?",
+  "*Don't overpay* _IHT_"
+ ],
+ "hook_until": 5.7,
+ "ctas": []
+}

@@ -1,0 +1,242 @@
+{
+ "_source": "Raw 'hmrc can take up to 40% for IHT where will your family learn how to do.MP4' (client Drive id 1M1FpmsV6gNyknTlodY6HEOxtcFRYEUdL); mic = 'hmr took 8.5bn in inheritance tax.wav' (Mic 2) @ 890.1657 s. Kept: 'So many of my clients…the generation after', then the second (clean) 'Where are they going to get the liquidity…not HMRC' (the first try said 'the fines' and restarts), then the second CTA take 'comment calculator below' (the director asks for the calculator between the takes). Pauses cut by pauses.py; last cut held to the end of the raw so the CTA reads. Words: '40' + '%' merged into '40%' (words/hmrc40.fixed.json). Nasheed the-sins (warning). v5: latest house style (no script, The Sins, gradient) + the doubled 'work with, with yourselves' cut to one 'with' (verbatim stutter pass). v6: sans title, doubled gradient, centred logo, iPhone chime; his hair reaches y≈325 at the card time, so this job's card is 540 px (ends ≈311). 4 Oct (Eyad): no background sound — voice only, no nasheed. 5 Oct (Eyad): no iMessage cards (\"without the ctas\") — ctas: [], so no card ping either. 7 Oct (Adnan via SK Media; Eyad: finalise): nasheed back on — the-sins in his 3-per-nasheed rotation (tracker.json nasheed_rule); his 'Great Wealth Transfer' follow card added at the end (layout endcard); still no iMessage cards (Eyad, 7 Oct: the CTA to remove is the cards — the spoken 'comment … below' stays).",
+ "name": "HMRC can take up to 40%",
+ "video": "src/hmrc40.MP4",
+ "rotate": "ccw",
+ "audio": "mic/hmrc40.mic.wav",
+ "words": "words/hmrc40.fixed.json",
+ "cuts": [
+  {
+   "in": 3.2,
+   "out": 8.8
+  },
+  {
+   "in": 8.88,
+   "out": 10.08,
+   "punch": true
+  },
+  {
+   "in": 10.48,
+   "out": 13.0
+  },
+  {
+   "in": 13.08,
+   "out": 16.72,
+   "punch": true
+  },
+  {
+   "in": 17.16,
+   "out": 19.88
+  },
+  {
+   "in": 20.32,
+   "out": 22.04,
+   "punch": true
+  },
+  {
+   "in": 22.48,
+   "out": 24.68
+  },
+  {
+   "in": 24.8,
+   "out": 27.96,
+   "punch": true
+  },
+  {
+   "in": 28.24,
+   "out": 32.24
+  },
+  {
+   "in": 33.08,
+   "out": 38.1,
+   "punch": true
+  },
+  {
+   "in": 43.84,
+   "out": 45.68
+  },
+  {
+   "in": 45.92,
+   "out": 48.0,
+   "punch": true
+  },
+  {
+   "in": 48.32,
+   "out": 49.92
+  },
+  {
+   "in": 50.28,
+   "out": 51.9,
+   "punch": true
+  },
+  {
+   "in": 52.64,
+   "out": 53.56
+  },
+  {
+   "in": 53.68,
+   "out": 54.48,
+   "punch": true
+  },
+  {
+   "in": 54.64,
+   "out": 57.28
+  },
+  {
+   "in": 57.4,
+   "out": 58.68,
+   "punch": true
+  },
+  {
+   "in": 58.92,
+   "out": 62.36
+  },
+  {
+   "in": 62.56,
+   "out": 64.4,
+   "punch": true
+  },
+  {
+   "in": 64.64,
+   "out": 65.75
+  },
+  {
+   "in": 90.32,
+   "out": 94.84,
+   "punch": true
+  },
+  {
+   "in": 94.96,
+   "out": 97.34
+  }
+ ],
+ "punch_at": [
+  95.0
+ ],
+ "hook": [
+  "UK business owners?",
+  "_HMRC_ *could take*",
+  "_40%_ of your *legacy*"
+ ],
+ "hook_until": 10.08,
+ "keywords": [
+  "clients",
+  "idea",
+  "traps",
+  "wealth",
+  "issues",
+  "relentless",
+  "collected",
+  "inheritance",
+  "careful",
+  "success",
+  "category",
+  "taking",
+  "everything",
+  "built",
+  "lifetime",
+  "suffer",
+  "generation",
+  "liquidity",
+  "funds",
+  "pay",
+  "carefully",
+  "yourselves",
+  "family",
+  "business",
+  "sure",
+  "worked",
+  "hard",
+  "hands",
+  "potentially",
+  "paying"
+ ],
+ "cta": {
+  "at": 95.08,
+  "keyword": "CALCULATOR",
+  "script": [
+   "below"
+  ],
+  "underline": [
+   "CALCULATOR"
+  ]
+ },
+ "nasheed": {
+  "file": "nasheed/the-sins.mp3",
+  "start": 0
+ },
+ "chunks": [
+  "So many",
+  "of my clients",
+  "have no idea",
+  "of what sort",
+  "of tax traps",
+  "they fall into",
+  "when they make",
+  "their wealth.",
+  "And one of",
+  "the issues",
+  "that I see",
+  "is that HMRC",
+  "are relentless.",
+  "They've collected",
+  "eight and a half",
+  "billion",
+  "in the year 2024",
+  "to 2025",
+  "in just",
+  "inheritance taxes.",
+  "If you're",
+  "not careful,",
+  "I think you will,",
+  "as part of",
+  "your success,",
+  "fall into",
+  "that category",
+  "where HMRC",
+  "will end up",
+  "taking 40%",
+  "of everything",
+  "you've built",
+  "in your lifetime.",
+  "And the issue",
+  "with that is",
+  "it's not you",
+  "that's going",
+  "to suffer,",
+  "it's the",
+  "generation after.",
+  "Where are they",
+  "going to get",
+  "the liquidity,",
+  "the funds",
+  "to pay off HMRC",
+  "and the IHT",
+  "that's due?",
+  "That's something",
+  "we carefully",
+  "work with",
+  "yourselves,",
+  "with you",
+  "as a CEO",
+  "of not just",
+  "your family,",
+  "but your business",
+  "also,",
+  "to make sure",
+  "that everything",
+  "you worked",
+  "so hard for",
+  "actually falls",
+  "into the",
+  "right hands,",
+  "not HMRC.",
+  "Now, if you",
+  "want to know",
+  "what you",
+  "potentially",
+  "could be paying",
+  "HMRC,"
+ ],
+ "ctas": []
+}

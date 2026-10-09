@@ -1,0 +1,18 @@
+{
+  "_doc": "Single source of truth for the Boxabl clip style. If PRESET.md and this file disagree, this file wins.",
+  "canvas": {"w": 1080, "h": 1920, "fps": 30},
+  "band": {"_doc": "the source video sits in a 4:3 band over a blurred, darkened copy of itself",
+           "y": 520, "h": 810, "aspect": [4, 3], "bg_blur": "boxblur=30:2", "bg_brightness": -0.18},
+  "fonts": {"title": "Anton", "caption": "Montserrat Black", "tag": "Montserrat Black"},
+  "colors": {"_doc": "ASS colours are &HBBGGRR", "text": "&HFFFFFF&", "accent": "&H00E6FF&", "outline": "&H000000&"},
+  "title": {"size": 116, "outline": 7, "shadow": 3, "spacing": 1, "baseline_y": 480,
+            "_doc": "bottom-aligned 40 px above the band; *word* = accent colour; \\n = line break; <= 22 chars a line"},
+  "caption": {"size": 84, "outline": 7, "shadow": 3, "y": 1520, "max_words": 3, "gap_break": 0.6, "tail": 0.25,
+              "_doc": "centred below the band; active word in the accent colour; chunk breaks at 3 words, a >0.6 s gap, . ? ! or a cut"},
+  "tag": {"size": 54, "box_pad": 14, "_doc": "small boxed label, e.g. KITCHEN • BATHROOM • BEDROOM; needs pos [x, y]"},
+  "audio": {"lufs": -14, "tp": -1.5, "lra": 11},
+  "encode": {"crf": 20, "preset": "medium", "seg_crf": 18, "seg_preset": "veryfast", "abitrate": "192k"},
+  "length": {"min": 15, "max": 60, "target": [25, 45]},
+  "hook": {"_doc": "the first overlay must start at 0 and name the talent or the payoff", "max_start": 0.0, "min_len": 2.0},
+  "qa": {"lufs_tol": 1.5, "black_max": 0.5, "freeze_max": 2.0}
+}

@@ -6,3 +6,9 @@ renders/
 models/
 .DS_Store
 Thumbs.db
+
+# client video pipelines (tools/): never commit media
+/output/
+/tools/ceowills/fonts/
+__pycache__/
+/tools/*/.cache/

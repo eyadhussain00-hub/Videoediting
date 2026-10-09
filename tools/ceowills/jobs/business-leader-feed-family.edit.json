@@ -1,0 +1,367 @@
+{
+ "_source": "Raw 'if you are a business leader that wants to feed family.MP4' (client Drive id 1b_1RMw3LYFEWSqygIWl4yJGeXgDzzchQ); mic = 'hmr took 8.5bn in inheritance tax.wav' (Mic 2) @ 1081.8074 s. One clean take (slate 'three, two, one… ready Mike? go, testing' cut); pauses by pauses.py over 7.10–99.84, last cut held to 101.0 (silent) so the CTA reads. Words: 'CEO'+'Wills' → 'CEOwills', '40'+'%' → '40%' (jobs/business-leader-feed-family.words.json → words/leader.fixed.json; src/leader.MP4 and mic/leader.mic.wav are symlinks to the full-name files). Nasheed the-sins (muffled; Eyad asked for it on v3, was bika-moulhimi). v5 (Eyad): 'setting off and' cut (keep 'putting off'), the doubled 'blueprint, blueprint' cut to one, 0.6 s pause after 'wills and' tightened; words re-timed from a verbatim pass. iMessage cards picked by topic (Eyad 29 Sep: switch them up, match what he's saying): legacy-decades, got-you-thinking. 4 Oct (Eyad): no background sound — voice only, no nasheed. 5 Oct (Eyad): no iMessage cards (\"without the ctas\") — ctas: [], so no card ping either. 7 Oct (Adnan via SK Media; Eyad: finalise): nasheed back on — the-sins in his 3-per-nasheed rotation (tracker.json nasheed_rule); his 'Great Wealth Transfer' follow card added at the end (layout endcard); still no iMessage cards (Eyad, 7 Oct: the CTA to remove is the cards — the spoken 'comment … below' stays).",
+ "name": "Business leader feeding your family",
+ "video": "src/leader.MP4",
+ "rotate": "ccw",
+ "audio": "mic/leader.mic.wav",
+ "words": "words/leader.fixed.json",
+ "cuts": [
+  {
+   "in": 7.2,
+   "out": 8.2
+  },
+  {
+   "in": 8.48,
+   "out": 9.72,
+   "punch": true
+  },
+  {
+   "in": 9.84,
+   "out": 10.88
+  },
+  {
+   "in": 11.12,
+   "out": 12.32,
+   "punch": true
+  },
+  {
+   "in": 12.6,
+   "out": 15.24
+  },
+  {
+   "in": 15.56,
+   "out": 23.04,
+   "punch": true
+  },
+  {
+   "in": 23.16,
+   "out": 26.08
+  },
+  {
+   "in": 26.4,
+   "out": 27.4,
+   "punch": true
+  },
+  {
+   "in": 27.52,
+   "out": 28.39
+  },
+  {
+   "in": 29.27,
+   "out": 30.32,
+   "punch": true
+  },
+  {
+   "in": 30.56,
+   "out": 32.0
+  },
+  {
+   "in": 32.94,
+   "out": 33.76,
+   "punch": true
+  },
+  {
+   "in": 33.84,
+   "out": 35.28
+  },
+  {
+   "in": 35.6,
+   "out": 37.16,
+   "punch": true
+  },
+  {
+   "in": 37.28,
+   "out": 37.76
+  },
+  {
+   "in": 38.04,
+   "out": 38.42,
+   "punch": true
+  },
+  {
+   "in": 38.96,
+   "out": 42.56
+  },
+  {
+   "in": 42.84,
+   "out": 44.32,
+   "punch": true
+  },
+  {
+   "in": 44.44,
+   "out": 45.48
+  },
+  {
+   "in": 45.96,
+   "out": 49.16,
+   "punch": true
+  },
+  {
+   "in": 49.28,
+   "out": 50.08
+  },
+  {
+   "in": 50.16,
+   "out": 51.56,
+   "punch": true
+  },
+  {
+   "in": 51.76,
+   "out": 52.92
+  },
+  {
+   "in": 53.04,
+   "out": 57.12,
+   "punch": true
+  },
+  {
+   "in": 57.48,
+   "out": 60.6
+  },
+  {
+   "in": 60.92,
+   "out": 63.52,
+   "punch": true
+  },
+  {
+   "in": 63.88,
+   "out": 65.92
+  },
+  {
+   "in": 66.0,
+   "out": 70.04,
+   "punch": true
+  },
+  {
+   "in": 70.24,
+   "out": 71.88
+  },
+  {
+   "in": 72.12,
+   "out": 73.56,
+   "punch": true
+  },
+  {
+   "in": 73.92,
+   "out": 75.48
+  },
+  {
+   "in": 75.8,
+   "out": 77.88,
+   "punch": true
+  },
+  {
+   "in": 78.36,
+   "out": 80.16
+  },
+  {
+   "in": 80.4,
+   "out": 81.48,
+   "punch": true
+  },
+  {
+   "in": 81.84,
+   "out": 85.72
+  },
+  {
+   "in": 86.16,
+   "out": 88.32,
+   "punch": true
+  },
+  {
+   "in": 88.96,
+   "out": 89.84
+  },
+  {
+   "in": 90.04,
+   "out": 91.88,
+   "punch": true
+  },
+  {
+   "in": 92.0,
+   "out": 93.76
+  },
+  {
+   "in": 93.96,
+   "out": 96.8,
+   "punch": true
+  },
+  {
+   "in": 97.12,
+   "out": 98.28
+  },
+  {
+   "in": 98.36,
+   "out": 99.88,
+   "punch": true
+  },
+  {
+   "in": 100.16,
+   "out": 101.0
+  }
+ ],
+ "punch_at": [
+  98.5
+ ],
+ "hook": [
+  "CEOs & business owners?",
+  "*Where's your*",
+  "family _BLUEPRINT_?"
+ ],
+ "hook_until": 15.24,
+ "keywords": [
+  "owner",
+  "business",
+  "company",
+  "life",
+  "sweat",
+  "tears",
+  "energy",
+  "feed",
+  "family",
+  "provide",
+  "looked",
+  "ask",
+  "creation",
+  "blueprint",
+  "trusts",
+  "wills",
+  "assets",
+  "solid",
+  "follow",
+  "skeptical",
+  "taxes",
+  "sure",
+  "opportunity",
+  "educate",
+  "education's",
+  "succeed",
+  "wealth",
+  "success",
+  "hate",
+  "stand",
+  "effort",
+  "worry",
+  "result",
+  "gone",
+  "understand",
+  "assist",
+  "bulletproof"
+ ],
+ "cta": {
+  "at": 98.56,
+  "keyword": "BLUEPRINT",
+  "script": [
+   "below"
+  ],
+  "underline": [
+   "BLUEPRINT"
+  ]
+ },
+ "nasheed": {
+  "file": "nasheed/the-sins.mp3",
+  "start": 0
+ },
+ "chunks": [
+  "If you are",
+  "an owner managed",
+  "business,",
+  "a CEO",
+  "or a business leader,",
+  "and you're running",
+  "a company,",
+  "and you thought",
+  "to yourself,",
+  "I put all",
+  "my life",
+  "and my sweat",
+  "and my tears",
+  "and energy",
+  "into this project,",
+  "into this company,",
+  "so that I could",
+  "feed my family,",
+  "provide for them",
+  "and make sure",
+  "that they were",
+  "well looked after.",
+  "Well let me",
+  "ask you this,",
+  "why have you",
+  "been putting off",
+  "the creation",
+  "of a blueprint",
+  "financial wealth plan,",
+  "not just trusts,",
+  "wills,",
+  "and passing on",
+  "assets,",
+  "but creating",
+  "a solid blueprint",
+  "for your family",
+  "to follow",
+  "once you've",
+  "passed on?",
+  "Is it because",
+  "you're skeptical",
+  "about how much",
+  "you might pay",
+  "in taxes?",
+  "Is it because",
+  "you're not sure",
+  "what you",
+  "need to do?",
+  "Or is it because",
+  "you haven't given",
+  "yourself the",
+  "opportunity",
+  "to educate",
+  "yourself?",
+  "Education's",
+  "a big part",
+  "of what I do",
+  "here at CEOwills,",
+  "is to make sure",
+  "that business owners",
+  "like you",
+  "succeed.",
+  "You aren't paying",
+  "more taxes",
+  "than you need to,",
+  "to make sure",
+  "you actually get",
+  "the opportunity",
+  "to pass all",
+  "this wealth on,",
+  "to pass all",
+  "this success on.",
+  "Because there's",
+  "one thing I hate,",
+  "one thing",
+  "that I can't stand,",
+  "is when a",
+  "business owner",
+  "like yourself",
+  "puts all that",
+  "time and effort",
+  "into the business,",
+  "but you don't",
+  "worry about",
+  "what you have",
+  "to pay",
+  "as a result",
+  "of your success.",
+  "That 40%",
+  "gone to HMRC,",
+  "I can't stand it.",
+  "Now, if you",
+  "want to understand",
+  "how we help you",
+  "here at CEOwills,",
+  "how we assist you",
+  "in making sure",
+  "your blueprint",
+  "is bulletproof,"
+ ],
+ "ctas": []
+}

@@ -1,6 +1,7 @@
 # Projects
 
-One folder per video. Each follows the skill's project layout (`PROGRESS.md` first, then `LOG.md`).
+One-off videos made with Motion Video Director. Recurring clients (SK Media, CEOwills, BOXABL) work in
+`tools/<client>/` instead. One folder per video. Each follows the skill's project layout (`PROGRESS.md` first, then `LOG.md`).
 
 | Project | What it is | Status |
 |---|---|---|

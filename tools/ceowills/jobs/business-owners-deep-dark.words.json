@@ -1,0 +1,752 @@
+[
+{
+"word": "Wealthy",
+"start": 3.7,
+"end": 4.3,
+"p": 0.64
+},
+{
+"word": "CEOs,",
+"start": 4.3,
+"end": 4.74,
+"p": 0.8
+},
+{
+"word": "business",
+"start": 5.42,
+"end": 5.64,
+"p": 0.9
+},
+{
+"word": "owners,",
+"start": 5.64,
+"end": 5.98,
+"p": 1.0
+},
+{
+"word": "business",
+"start": 6.26,
+"end": 6.52,
+"p": 0.98
+},
+{
+"word": "leaders,",
+"start": 6.52,
+"end": 6.9,
+"p": 1.0
+},
+{
+"word": "if",
+"start": 7.0,
+"end": 7.56,
+"p": 0.92
+},
+{
+"word": "you're",
+"start": 7.56,
+"end": 7.78,
+"p": 0.92
+},
+{
+"word": "earning",
+"start": 7.78,
+"end": 8.04,
+"p": 0.99
+},
+{
+"word": "more",
+"start": 8.04,
+"end": 8.26,
+"p": 0.99
+},
+{
+"word": "than",
+"start": 8.26,
+"end": 8.42,
+"p": 0.99
+},
+{
+"word": "a",
+"start": 8.42,
+"end": 8.82,
+"p": 0.87
+},
+{
+"word": "million",
+"start": 8.82,
+"end": 9.14,
+"p": 0.98
+},
+{
+"word": "pounds",
+"start": 9.14,
+"end": 9.44,
+"p": 0.95
+},
+{
+"word": "in",
+"start": 9.44,
+"end": 9.66,
+"p": 0.97
+},
+{
+"word": "revenue",
+"start": 9.66,
+"end": 9.94,
+"p": 0.99
+},
+{
+"word": "a",
+"start": 9.94,
+"end": 10.16,
+"p": 0.95
+},
+{
+"word": "year,",
+"start": 10.16,
+"end": 10.36,
+"p": 1.0
+},
+{
+"word": "I'm",
+"start": 10.66,
+"end": 10.9,
+"p": 0.98
+},
+{
+"word": "sure",
+"start": 10.9,
+"end": 11.06,
+"p": 1.0
+},
+{
+"word": "you",
+"start": 11.06,
+"end": 11.24,
+"p": 0.99
+},
+{
+"word": "have",
+"start": 11.24,
+"end": 11.48,
+"p": 0.96
+},
+{
+"word": "deep,",
+"start": 11.48,
+"end": 11.96,
+"p": 0.96
+},
+{
+"word": "dark",
+"start": 12.42,
+"end": 12.5,
+"p": 1.0
+},
+{
+"word": "conversations",
+"start": 12.5,
+"end": 13.16,
+"p": 0.99
+},
+{
+"word": "with",
+"start": 13.16,
+"end": 13.44,
+"p": 1.0
+},
+{
+"word": "your",
+"start": 13.44,
+"end": 13.62,
+"p": 1.0
+},
+{
+"word": "accountant.",
+"start": 13.62,
+"end": 14.06,
+"p": 0.99
+},
+{
+"word": "I",
+"start": 15.28,
+"end": 15.48,
+"p": 1.0
+},
+{
+"word": "want",
+"start": 15.48,
+"end": 15.64,
+"p": 0.99
+},
+{
+"word": "you",
+"start": 15.64,
+"end": 15.76,
+"p": 0.99
+},
+{
+"word": "to",
+"start": 15.76,
+"end": 15.86,
+"p": 1.0
+},
+{
+"word": "have",
+"start": 15.86,
+"end": 15.94,
+"p": 1.0
+},
+{
+"word": "a",
+"start": 15.94,
+"end": 16.12,
+"p": 0.99
+},
+{
+"word": "deep,",
+"start": 16.12,
+"end": 16.24,
+"p": 1.0
+},
+{
+"word": "dark",
+"start": 16.4,
+"end": 16.46,
+"p": 1.0
+},
+{
+"word": "conversation",
+"start": 16.46,
+"end": 17.02,
+"p": 0.98
+},
+{
+"word": "with",
+"start": 17.02,
+"end": 17.42,
+"p": 0.99
+},
+{
+"word": "me",
+"start": 17.42,
+"end": 17.7,
+"p": 1.0
+},
+{
+"word": "about",
+"start": 17.7,
+"end": 18.14,
+"p": 0.98
+},
+{
+"word": "IHT,",
+"start": 18.14,
+"end": 18.84,
+"p": 0.91
+},
+{
+"word": "inheritance",
+"start": 19.12,
+"end": 19.48,
+"p": 0.66
+},
+{
+"word": "tax,",
+"start": 19.48,
+"end": 20.0,
+"p": 0.99
+},
+{
+"word": "because",
+"start": 20.38,
+"end": 20.74,
+"p": 0.99
+},
+{
+"word": "what",
+"start": 20.74,
+"end": 20.98,
+"p": 1.0
+},
+{
+"word": "you",
+"start": 20.98,
+"end": 21.18,
+"p": 1.0
+},
+{
+"word": "do,",
+"start": 21.18,
+"end": 21.44,
+"p": 1.0
+},
+{
+"word": "every",
+"start": 21.82,
+"end": 22.08,
+"p": 1.0
+},
+{
+"word": "business",
+"start": 22.08,
+"end": 22.48,
+"p": 1.0
+},
+{
+"word": "decision",
+"start": 22.48,
+"end": 22.9,
+"p": 1.0
+},
+{
+"word": "you",
+"start": 22.9,
+"end": 23.1,
+"p": 1.0
+},
+{
+"word": "make",
+"start": 23.1,
+"end": 23.5,
+"p": 1.0
+},
+{
+"word": "has",
+"start": 23.5,
+"end": 24.16,
+"p": 0.69
+},
+{
+"word": "an",
+"start": 24.16,
+"end": 24.92,
+"p": 0.41
+},
+{
+"word": "implication",
+"start": 24.92,
+"end": 25.6,
+"p": 1.0
+},
+{
+"word": "on",
+"start": 25.6,
+"end": 25.94,
+"p": 0.99
+},
+{
+"word": "how",
+"start": 25.94,
+"end": 26.26,
+"p": 1.0
+},
+{
+"word": "your",
+"start": 26.26,
+"end": 26.6,
+"p": 0.98
+},
+{
+"word": "IHT",
+"start": 26.6,
+"end": 27.08,
+"p": 1.0
+},
+{
+"word": "works.",
+"start": 27.08,
+"end": 27.62,
+"p": 1.0
+},
+{
+"word": "So,",
+"start": 28.26,
+"end": 28.68,
+"p": 0.75
+},
+{
+"word": "CEOwills",
+"start": 29.22,
+"end": 29.84,
+"p": 0.59
+},
+{
+"word": "helps",
+"start": 29.84,
+"end": 30.32,
+"p": 0.95
+},
+{
+"word": "you",
+"start": 30.32,
+"end": 30.6,
+"p": 0.98
+},
+{
+"word": "make",
+"start": 30.6,
+"end": 30.86,
+"p": 0.95
+},
+{
+"word": "sure",
+"start": 30.86,
+"end": 31.14,
+"p": 1.0
+},
+{
+"word": "that",
+"start": 31.14,
+"end": 31.58,
+"p": 0.74
+},
+{
+"word": "you",
+"start": 31.58,
+"end": 31.74,
+"p": 1.0
+},
+{
+"word": "aren't",
+"start": 31.74,
+"end": 32.0,
+"p": 0.97
+},
+{
+"word": "paying",
+"start": 32.0,
+"end": 32.32,
+"p": 0.99
+},
+{
+"word": "more",
+"start": 32.32,
+"end": 32.76,
+"p": 0.99
+},
+{
+"word": "than",
+"start": 32.76,
+"end": 32.96,
+"p": 0.98
+},
+{
+"word": "what",
+"start": 32.96,
+"end": 33.1,
+"p": 0.82
+},
+{
+"word": "you",
+"start": 33.1,
+"end": 33.18,
+"p": 1.0
+},
+{
+"word": "need",
+"start": 33.18,
+"end": 33.36,
+"p": 0.99
+},
+{
+"word": "to,",
+"start": 33.36,
+"end": 33.62,
+"p": 0.96
+},
+{
+"word": "because",
+"start": 33.9,
+"end": 34.1,
+"p": 0.96
+},
+{
+"word": "who,",
+"start": 34.1,
+"end": 34.66,
+"p": 0.92
+},
+{
+"word": "tell",
+"start": 34.98,
+"end": 35.1,
+"p": 0.97
+},
+{
+"word": "me,",
+"start": 35.1,
+"end": 35.4,
+"p": 1.0
+},
+{
+"word": "likes",
+"start": 35.76,
+"end": 35.96,
+"p": 0.97
+},
+{
+"word": "to",
+"start": 35.96,
+"end": 36.2,
+"p": 0.99
+},
+{
+"word": "give",
+"start": 36.2,
+"end": 36.3,
+"p": 0.99
+},
+{
+"word": "more",
+"start": 36.3,
+"end": 36.66,
+"p": 0.99
+},
+{
+"word": "to",
+"start": 36.66,
+"end": 37.16,
+"p": 0.99
+},
+{
+"word": "HMRC",
+"start": 37.16,
+"end": 37.76,
+"p": 1.0
+},
+{
+"word": "than",
+"start": 37.76,
+"end": 38.22,
+"p": 0.91
+},
+{
+"word": "they",
+"start": 38.22,
+"end": 38.36,
+"p": 0.99
+},
+{
+"word": "already",
+"start": 38.36,
+"end": 38.6,
+"p": 0.99
+},
+{
+"word": "do?",
+"start": 38.6,
+"end": 38.88,
+"p": 1.0
+},
+{
+"word": "Not",
+"start": 39.44,
+"end": 39.54,
+"p": 0.95
+},
+{
+"word": "me,",
+"start": 39.54,
+"end": 39.78,
+"p": 0.99
+},
+{
+"word": "not",
+"start": 40.34,
+"end": 40.5,
+"p": 0.97
+},
+{
+"word": "you.",
+"start": 40.5,
+"end": 40.96,
+"p": 1.0
+},
+{
+"word": "Comment",
+"start": 41.56,
+"end": 41.72,
+"p": 0.98
+},
+{
+"word": "more",
+"start": 41.72,
+"end": 42.06,
+"p": 0.96
+},
+{
+"word": "if",
+"start": 42.06,
+"end": 42.58,
+"p": 0.95
+},
+{
+"word": "you",
+"start": 42.58,
+"end": 42.76,
+"p": 0.99
+},
+{
+"word": "want",
+"start": 42.76,
+"end": 43.02,
+"p": 0.65
+},
+{
+"word": "a...",
+"start": 43.02,
+"end": 44.22,
+"p": 0.67
+},
+{
+"word": "Comment",
+"start": 47.84,
+"end": 48.4,
+"p": 0.34
+},
+{
+"word": "MORE",
+"start": 48.4,
+"end": 48.96,
+"p": 0.98
+},
+{
+"word": "if",
+"start": 48.96,
+"end": 49.2,
+"p": 0.98
+},
+{
+"word": "you",
+"start": 49.2,
+"end": 49.34,
+"p": 1.0
+},
+{
+"word": "would",
+"start": 49.34,
+"end": 49.48,
+"p": 0.94
+},
+{
+"word": "like",
+"start": 49.48,
+"end": 49.76,
+"p": 1.0
+},
+{
+"word": "a",
+"start": 49.76,
+"end": 50.04,
+"p": 1.0
+},
+{
+"word": "free",
+"start": 50.04,
+"end": 50.52,
+"p": 0.96
+},
+{
+"word": "blueprint",
+"start": 50.52,
+"end": 51.08,
+"p": 0.94
+},
+{
+"word": "as",
+"start": 51.08,
+"end": 51.48,
+"p": 0.97
+},
+{
+"word": "to",
+"start": 51.48,
+"end": 51.62,
+"p": 1.0
+},
+{
+"word": "how",
+"start": 51.62,
+"end": 51.8,
+"p": 1.0
+},
+{
+"word": "you",
+"start": 51.8,
+"end": 52.04,
+"p": 0.99
+},
+{
+"word": "can",
+"start": 52.04,
+"end": 52.3,
+"p": 1.0
+},
+{
+"word": "save,",
+"start": 52.3,
+"end": 52.6,
+"p": 1.0
+},
+{
+"word": "and",
+"start": 53.06,
+"end": 53.42,
+"p": 0.98
+},
+{
+"word": "if",
+"start": 53.42,
+"end": 53.62,
+"p": 0.92
+},
+{
+"word": "you",
+"start": 53.62,
+"end": 53.72,
+"p": 1.0
+},
+{
+"word": "want",
+"start": 53.72,
+"end": 53.9,
+"p": 1.0
+},
+{
+"word": "our",
+"start": 53.9,
+"end": 54.44,
+"p": 0.72
+},
+{
+"word": "IHT",
+"start": 54.44,
+"end": 54.98,
+"p": 0.89
+},
+{
+"word": "calculator,",
+"start": 54.98,
+"end": 55.68,
+"p": 0.81
+},
+{
+"word": "comment",
+"start": 56.32,
+"end": 56.46,
+"p": 0.85
+},
+{
+"word": "calculator",
+"start": 56.46,
+"end": 56.98,
+"p": 0.54
+},
+{
+"word": "below.",
+"start": 56.98,
+"end": 57.28,
+"p": 0.99
+}
+]

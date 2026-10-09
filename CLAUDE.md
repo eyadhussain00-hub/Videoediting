@@ -5,9 +5,23 @@ videos — is done in **this repository**, and only here. Don't put video projec
 A session for video work needs only this repo; the one exception is below (recording new RSV dashboard
 footage).
 
-## The skill
+## Client work comes first
 
-Use **Motion Video Director** for every job: `skills/motion-video-director/SKILL.md`. It's linked into
+Recurring clients have their own pipeline in `tools/`, with house rules that win over everything below:
+
+| Client | Say | Start with |
+|---|---|---|
+| SK Media (Sofian): TJR funnel-breakdown reels | "TJR video 4", "SK Media" | `tools/sk-media/PRESET.md`, then `README.md`; `jobs/tjr-v3.json` is the worked example |
+| CEOwills (Adnan) | "CEOwills", "Adnan" | the `ceowills-reel` skill → `tools/ceowills/PRESET.md` |
+| BOXABL clipping campaign (ClipFlow) | "Boxabl", "ClipFlow" | the `boxabl-clips` skill → `tools/boxabl/PRESET.md` |
+
+Shared helpers: `tools/common/` (stutter check, preview, `pack.sh` client zips) and `tools/tg.sh` (Telegram).
+Each `setup.sh` prepares a fresh container. Output goes to `output/<client>/` (gitignored); footage stays on
+Drive. To add a client, copy the closest `tools/<client>/` as the `ceowills-reel` skill describes.
+
+## Everything else: the skill
+
+Use **Motion Video Director** for every other job: `skills/motion-video-director/SKILL.md`. It's linked into
 `.claude/skills/` so it loads automatically; if it isn't listed, read the file and follow it anyway. Its
 golden rules apply: send the kickoff message on a new project, run preflight, get approval at each gate,
 and keep `PROGRESS.md` current. Don't build or render scenes before the voiceover MP3 arrives, unless the
@@ -20,6 +34,7 @@ Also here: `playwright-cli` (browsing, grabbing reference frames and assets, rec
 
 ```
 skills/motion-video-director/   the skill (from the upstream fork; README.md describes it)
+tools/<client>/                 client pipelines (sk-media, ceowills, boxabl) + tools/common, tools/tg.sh
 projects/<name>/                one folder per video, laid out as the skill's §1 says
 projects/rsv-demo-video/        RSV's Remotion project: the clinic demo ad and the Command Centre film
 brand/rsv/                      RSV Studio's DESIGN.md, PRODUCT.md, backgrounds and icons
@@ -51,5 +66,6 @@ When the app's look changes, refresh `brand/rsv/` and `src/command/vendor/` from
 
 ## Command Centre
 
-`.claude/settings.json` reports this session's activity to the RSV Command Centre, as `rsv-studio`
-does, when `RSV_COMMAND_TOKEN` is set in the environment. Without the token, the hooks do nothing.
+`.claude/settings.json` reports this session's activity to the RSV Command Centre when `RSV_COMMAND_TOKEN`
+is set in the environment. Without the token, the hooks do nothing. (`rsv-studio` also has a hook that
+lets the Command Centre answer permission prompts; it isn't copied here.)
