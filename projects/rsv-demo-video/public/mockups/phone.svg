@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="430" height="880" viewBox="0 0 430 880">
+  <!-- Stage-2 stand-in. The screen (x 20, y 18, 390×844, rounded) is masked out, so the recording shows through. -->
+  <defs>
+    <mask id="screen">
+      <rect width="430" height="880" rx="62" fill="#fff"/>
+      <rect x="20" y="18" width="390" height="844" rx="46" fill="#000"/>
+    </mask>
+  </defs>
+  <rect width="430" height="880" rx="62" fill="#11151d" mask="url(#screen)"/>
+  <rect x="0.75" y="0.75" width="428.5" height="878.5" rx="61.25" fill="none" stroke="#2a3244" stroke-width="1.5"/>
+  <rect x="175" y="7" width="80" height="4" rx="2" fill="#232a38"/>
+</svg>

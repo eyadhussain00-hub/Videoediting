@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1480" height="940" viewBox="0 0 1480 940">
+  <!-- Stage-2 stand-in. The screen (x 60, y 30, 1360×850) is a hole, so the recording shows through. -->
+  <path fill-rule="evenodd" fill="#11151d" d="M58 0 H1422 A28 28 0 0 1 1450 28 V890 H30 V28 A28 28 0 0 1 58 0 Z M60 30 V880 H1420 V30 Z"/>
+  <path fill="none" stroke="#2a3244" stroke-width="1.5" d="M58 0.75 H1422 A27.25 27.25 0 0 1 1449.25 28 V889.25 H30.75 V28 A27.25 27.25 0 0 1 58 0.75 Z"/>
+  <circle cx="740" cy="15" r="4" fill="#232a38"/>
+  <path fill="#1b212c" d="M0 890 H1480 V902 Q1480 930 1440 934 L1380 940 H100 L40 934 Q0 930 0 902 Z"/>
+  <path fill="#0d1016" d="M640 890 H840 V896 Q840 902 832 902 H648 Q640 902 640 896 Z"/>
+</svg>
