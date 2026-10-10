@@ -7,9 +7,8 @@ prompt never goes stale when the style changes.
 ```
 CEOwills: edit Adnan's videos — <batch | one at a time>, <"next in the tracker" | which ones>.
 
-1. Setup: git fetch origin claude/ceo1-video-sync-cleanup-s1cq6n && git merge origin/claude/ceo1-video-sync-cleanup-s1cq6n
-   That branch is the shared home of the video toolkit and tracker. You have my permission to push your commits to it
-   as well as to your own branch, so the next session starts where you finished.
+1. Setup: this is the Videoediting repo; its main branch is the shared home of the video toolkit and tracker. You have
+   my permission to merge your work into main when the videos are delivered, so the next session starts where you finished.
 2. Read tools/ceowills/PRESET.md in full and follow .claude/skills/ceowills-reel/SKILL.md.
 3. Telegram: only finished previews (and real blockers), each ending with this session's link (SESSION_URL=… for deliver.sh).
 ```

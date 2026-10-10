@@ -1,5 +1,5 @@
 {
- "_source": "Raw 'ceowills bridges companies and wills between each other.MP4' (client Drive id 1tXLSZLLaZ9W6exLc5uleaNPqUZjEVnSZ); mic = 'standing under vines deep dark conversation.wav' (Mic 3) @ 714.1779 s. One complete take 1.9–42.8 ('…don't waste any more money'); the clip ends on 'I'm going to try that again' (cut) — the next thing filmed is a different script (#10), so there is no retake. He says no comment CTA in this take → no end CTA (captions verbatim); the one iMessage card at 25 s carries the ask. 'CEO'+'Wills' merged (jobs/ceowills-bridge.words.json → words/bridge.fixed.json; src/bridge.MP4, mic/bridge.mic.wav = symlinks). Nasheed the-sins (muffled). v2 (Eyad): the 'One of the, one of the' stutter cut (starts on the second), and 'one-plus, one-million' re-ordered by cuts into '1 million plus' (render.py sorts kept words by output time). iMessage cards picked by topic (Eyad 29 Sep: switch them up, match what he's saying): business-properties-wealth. 4 Oct (Eyad): no background sound — voice only, no nasheed. 5 Oct (Eyad): no iMessage cards (\"without the ctas\") — ctas: [], so no card ping either. 7 Oct (Adnan via SK Media; Eyad: finalise): nasheed back on — bika-moulhimi in his 3-per-nasheed rotation (tracker.json nasheed_rule); his 'Great Wealth Transfer' follow card added at the end (layout endcard); still no iMessage cards (Eyad, 7 Oct: the CTA to remove is the cards — the spoken 'comment … below' stays).",
+ "_source": "Raw 'ceowills bridges companies and wills between each other.MP4' (client Drive id 1tXLSZLLaZ9W6exLc5uleaNPqUZjEVnSZ); mic = 'standing under vines deep dark conversation.wav' (Mic 3) @ 714.1779 s. One complete take 1.9–42.8 ('…don't waste any more money'); the clip ends on 'I'm going to try that again' (cut) — the next thing filmed is a different script (#10), so there is no retake. He says no comment CTA in this take → no end CTA (captions verbatim); the one iMessage card at 25 s carries the ask. 'CEO'+'Wills' merged (jobs/ceowills-bridge.words.json → words/bridge.fixed.json; src/bridge.MP4, mic/bridge.mic.wav = symlinks). Nasheed the-sins (muffled). v2 (Eyad): the 'One of the, one of the' stutter cut (starts on the second), and 'one-plus, one-million' re-ordered by cuts into '1 million plus' (render.py sorts kept words by output time). iMessage cards picked by topic (Eyad 29 Sep: switch them up, match what he's saying): business-properties-wealth. 4 Oct (Eyad): no background sound — voice only, no nasheed. 5 Oct (Eyad): no iMessage cards (\"without the ctas\") — ctas: [], so no card ping either. 7 Oct (Adnan via SK Media; Eyad: finalise): nasheed back on — bika-moulhimi in his 3-per-nasheed rotation (tracker.json nasheed_rule); his 'Great Wealth Transfer' follow card added at the end (layout endcard); still no iMessage cards (Eyad, 7 Oct: the CTA to remove is the cards — the spoken 'comment … below' stays). 10 Oct (Sofian, 9 Oct, SK Media chat: 'ALL VIDEOS -> remove the top text on all videos, add call to action banner at the end of all videos'): no title; end banner = Adnan's CTA PNG 'got-you-thinking' (Eyad: his own PNGs) over the last seconds.",
  "name": "CEOwills bridges your company and your will",
  "video": "src/bridge.MP4",
  "rotate": "ccw",
@@ -75,13 +75,9 @@
   }
  ],
  "punch_at": [],
- "hook": [
-  "£1M+ business owners?",
-  "Bridge your _COMPANY_ & *will*"
- ],
- "hook_until": 12.8,
  "keywords": [],
  "cta": null,
+ "end_banner": "got-you-thinking",
  "nasheed": {
   "file": "nasheed/bika-moulhimi.mp3",
   "start": 0

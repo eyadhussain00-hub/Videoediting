@@ -1,5 +1,5 @@
 {
- "_source": "Raw 'hmrc can take up to 40% for IHT where will your family learn how to do.MP4' (client Drive id 1M1FpmsV6gNyknTlodY6HEOxtcFRYEUdL); mic = 'hmr took 8.5bn in inheritance tax.wav' (Mic 2) @ 890.1657 s. Kept: 'So many of my clients…the generation after', then the second (clean) 'Where are they going to get the liquidity…not HMRC' (the first try said 'the fines' and restarts), then the second CTA take 'comment calculator below' (the director asks for the calculator between the takes). Pauses cut by pauses.py; last cut held to the end of the raw so the CTA reads. Words: '40' + '%' merged into '40%' (words/hmrc40.fixed.json). Nasheed the-sins (warning). v5: latest house style (no script, The Sins, gradient) + the doubled 'work with, with yourselves' cut to one 'with' (verbatim stutter pass). v6: sans title, doubled gradient, centred logo, iPhone chime; his hair reaches y≈325 at the card time, so this job's card is 540 px (ends ≈311). 4 Oct (Eyad): no background sound — voice only, no nasheed. 5 Oct (Eyad): no iMessage cards (\"without the ctas\") — ctas: [], so no card ping either. 7 Oct (Adnan via SK Media; Eyad: finalise): nasheed back on — the-sins in his 3-per-nasheed rotation (tracker.json nasheed_rule); his 'Great Wealth Transfer' follow card added at the end (layout endcard); still no iMessage cards (Eyad, 7 Oct: the CTA to remove is the cards — the spoken 'comment … below' stays).",
+ "_source": "Raw 'hmrc can take up to 40% for IHT where will your family learn how to do.MP4' (client Drive id 1M1FpmsV6gNyknTlodY6HEOxtcFRYEUdL); mic = 'hmr took 8.5bn in inheritance tax.wav' (Mic 2) @ 890.1657 s. Kept: 'So many of my clients…the generation after', then the second (clean) 'Where are they going to get the liquidity…not HMRC' (the first try said 'the fines' and restarts), then the second CTA take 'comment calculator below' (the director asks for the calculator between the takes). Pauses cut by pauses.py; last cut held to the end of the raw so the CTA reads. Words: '40' + '%' merged into '40%' (words/hmrc40.fixed.json). Nasheed the-sins (warning). v5: latest house style (no script, The Sins, gradient) + the doubled 'work with, with yourselves' cut to one 'with' (verbatim stutter pass). v6: sans title, doubled gradient, centred logo, iPhone chime; his hair reaches y≈325 at the card time, so this job's card is 540 px (ends ≈311). 4 Oct (Eyad): no background sound — voice only, no nasheed. 5 Oct (Eyad): no iMessage cards (\"without the ctas\") — ctas: [], so no card ping either. 7 Oct (Adnan via SK Media; Eyad: finalise): nasheed back on — the-sins in his 3-per-nasheed rotation (tracker.json nasheed_rule); his 'Great Wealth Transfer' follow card added at the end (layout endcard); still no iMessage cards (Eyad, 7 Oct: the CTA to remove is the cards — the spoken 'comment … below' stays). 10 Oct (Sofian, 9 Oct, SK Media chat: 'ALL VIDEOS -> remove the top text on all videos, add call to action banner at the end of all videos'): no title; end banner = Adnan's CTA PNG 'business-properties-wealth' (Eyad: his own PNGs) over the last seconds. Same day (Sofian: 'please entirely remove 2024 caption and words/audio — only mention 2025, 2024 is an incorrect statistic'): '2024 to' cut out of the audio (17.79–18.76: 'year' ends 17.74, the 't' of 'twenty twenty-five' bursts at 18.78), so he says 'in the year 2025'; the words and the chunk follow; every cut after the split flips its punch so wide/punched still alternate. The last cut (94.96, 'Comment…') is now the punched one, so it punches in at the CTA by itself and punch_at 95.0 goes (it would have zoomed back out).",
  "name": "HMRC can take up to 40%",
  "video": "src/hmrc40.MP4",
  "rotate": "ccw",
@@ -26,99 +26,96 @@
   },
   {
    "in": 17.16,
-   "out": 19.88
+   "out": 17.79
+  },
+  {
+   "in": 18.76,
+   "out": 19.88,
+   "punch": true
   },
   {
    "in": 20.32,
-   "out": 22.04,
-   "punch": true
+   "out": 22.04
   },
   {
    "in": 22.48,
-   "out": 24.68
+   "out": 24.68,
+   "punch": true
   },
   {
    "in": 24.8,
-   "out": 27.96,
-   "punch": true
+   "out": 27.96
   },
   {
    "in": 28.24,
-   "out": 32.24
+   "out": 32.24,
+   "punch": true
   },
   {
    "in": 33.08,
-   "out": 38.1,
-   "punch": true
+   "out": 38.1
   },
   {
    "in": 43.84,
-   "out": 45.68
+   "out": 45.68,
+   "punch": true
   },
   {
    "in": 45.92,
-   "out": 48.0,
-   "punch": true
+   "out": 48.0
   },
   {
    "in": 48.32,
-   "out": 49.92
+   "out": 49.92,
+   "punch": true
   },
   {
    "in": 50.28,
-   "out": 51.9,
-   "punch": true
+   "out": 51.9
   },
   {
    "in": 52.64,
-   "out": 53.56
+   "out": 53.56,
+   "punch": true
   },
   {
    "in": 53.68,
-   "out": 54.48,
-   "punch": true
+   "out": 54.48
   },
   {
    "in": 54.64,
-   "out": 57.28
+   "out": 57.28,
+   "punch": true
   },
   {
    "in": 57.4,
-   "out": 58.68,
-   "punch": true
+   "out": 58.68
   },
   {
    "in": 58.92,
-   "out": 62.36
+   "out": 62.36,
+   "punch": true
   },
   {
    "in": 62.56,
-   "out": 64.4,
-   "punch": true
+   "out": 64.4
   },
   {
    "in": 64.64,
-   "out": 65.75
-  },
-  {
-   "in": 90.32,
-   "out": 94.84,
+   "out": 65.75,
    "punch": true
   },
   {
+   "in": 90.32,
+   "out": 94.84
+  },
+  {
    "in": 94.96,
-   "out": 97.34
+   "out": 97.34,
+   "punch": true
   }
  ],
- "punch_at": [
-  95.0
- ],
- "hook": [
-  "UK business owners?",
-  "_HMRC_ *could take*",
-  "_40%_ of your *legacy*"
- ],
- "hook_until": 10.08,
+ "punch_at": [],
  "keywords": [
   "clients",
   "idea",
@@ -161,6 +158,7 @@
    "CALCULATOR"
   ]
  },
+ "end_banner": "business-properties-wealth",
  "nasheed": {
   "file": "nasheed/the-sins.mp3",
   "start": 0
@@ -182,8 +180,7 @@
   "They've collected",
   "eight and a half",
   "billion",
-  "in the year 2024",
-  "to 2025",
+  "in the year 2025",
   "in just",
   "inheritance taxes.",
   "If you're",

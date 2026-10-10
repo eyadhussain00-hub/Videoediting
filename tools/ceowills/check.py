@@ -72,7 +72,9 @@ def main():
 
     # ---- title
     hook = E.get("hook")
-    if not hook: fail("no title (\"hook\") — frame 1 must carry the title")
+    if L["hook"].get("off"):   # Sofian, 9 Oct: "remove the top text on all videos"
+        if hook: fail("this job still has a title (\"hook\") — titles are off on every video (layout.json hook.off)")
+    elif not hook: fail("no title (\"hook\") — frame 1 must carry the title")
     else:
         for line in hook:
             plain = re.sub(r"[*_]", "", line)
@@ -121,6 +123,19 @@ def main():
                 warn(f"card '{k}' at {t0:.0f} s: none of its topics ({', '.join(tags[:5])}) come up around it — is it the right card?")
             if k in recent: warn(f"card '{k}' was used in one of the last {N.get('recent_videos', 4)} videos — switch it up")
         if not spec: warn(f"no cards in a {dur:.0f} s reel (≥ {N['min_video_s']} s gets one every {N['every_s']} s)")
+
+    # ---- end banner: one of Adnan's CTA PNGs over the last seconds (Sofian, 9 Oct)
+    EB = E.get("end_banner"); ek = EB["key"] if isinstance(EB, dict) else EB
+    if not EB: fail("no end banner (\"end_banner\": a ctas.json key) — every video ends on one of Adnan's CTA PNGs")
+    elif ek not in render.CTAS: fail(f"end banner '{ek}' is not in ctas.json")
+    else:
+        B = {**L["end_banner"], **(EB if isinstance(EB, dict) else {})}
+        if dur < B["hold_s"] + 3: fail(f"a {dur:.0f} s reel is too short for a {B['hold_s']} s end banner")
+        tags = [x for x in render.CTAS[ek]["tags"] if x != "generic"]
+        if words and tags and "generic" not in render.CTAS[ek]["tags"] and not any(re.search(r"\b" + re.escape(x), said(0, dur)) for x in tags):
+            warn(f"end banner '{ek}': none of its topics ({', '.join(tags[:5])}) come up in this video — is it the right one?")
+        prev = [v for name, v in hist.items() if name != E.get("name")][-1:]
+        if prev and "end:" + ek in prev[0]: warn(f"end banner '{ek}' was also on the last video rendered — switch it up")
 
     # ---- hand-set caption chunks
     if E.get("chunks") and words:

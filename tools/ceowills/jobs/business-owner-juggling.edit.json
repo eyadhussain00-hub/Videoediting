@@ -1,5 +1,5 @@
 {
- "_source": "Raw 'business owner juggling.MP4' (client Drive id 1fYYZPsmOpmYUJhfRW1hzLY-HH0AjKMxg); mic = 'wills work 60 seconds, verbal agreement sofa.wav' @ 1303.101 s v10 (29 Sep): re-rendered in the current house style (was v9, exported by another session in the old script/serif look). 4 Oct (Eyad): no background sound — voice only, no nasheed. 5 Oct (Eyad): no iMessage cards (\"without the ctas\") — ctas: [], so no card ping either. 7 Oct (Adnan via SK Media; Eyad: finalise): nasheed back on — hona-marro in his 3-per-nasheed rotation (tracker.json nasheed_rule); his 'Great Wealth Transfer' follow card added at the end (layout endcard); still no iMessage cards (Eyad, 7 Oct: the CTA to remove is the cards — the spoken 'comment … below' stays).",
+ "_source": "Raw 'business owner juggling.MP4' (client Drive id 1fYYZPsmOpmYUJhfRW1hzLY-HH0AjKMxg); mic = 'wills work 60 seconds, verbal agreement sofa.wav' @ 1303.101 s v10 (29 Sep): re-rendered in the current house style (was v9, exported by another session in the old script/serif look). 4 Oct (Eyad): no background sound — voice only, no nasheed. 5 Oct (Eyad): no iMessage cards (\"without the ctas\") — ctas: [], so no card ping either. 7 Oct (Adnan via SK Media; Eyad: finalise): nasheed back on — hona-marro in his 3-per-nasheed rotation (tracker.json nasheed_rule); his 'Great Wealth Transfer' follow card added at the end (layout endcard); still no iMessage cards (Eyad, 7 Oct: the CTA to remove is the cards — the spoken 'comment … below' stays). 10 Oct (Sofian, 9 Oct, SK Media chat: 'ALL VIDEOS -> remove the top text on all videos, add call to action banner at the end of all videos'): no title; end banner = Adnan's CTA PNG 'islamic-uk-law' (Eyad: his own PNGs) over the last seconds.",
  "name": "Business owner juggling",
  "video": "src/juggling.mp4",
  "rotate": "ccw",
@@ -78,6 +78,7 @@
    "IHT"
   ]
  },
+ "end_banner": "islamic-uk-law",
  "nasheed": {
   "file": "nasheed/hona-marro.mp3",
   "start": 0
@@ -105,10 +106,5 @@
   "more than",
   "you need to."
  ],
- "hook": [
-  "Muslim business owner?",
-  "*Don't overpay* _IHT_"
- ],
- "hook_until": 5.7,
  "ctas": []
 }

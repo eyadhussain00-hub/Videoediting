@@ -13,4 +13,4 @@ description: Edit BOXABL clipping-campaign clips (ClipFlow × ASG) end to end �
    Gates: `check.py` prints `OK` before rendering; `qa.py` prints `ALL PASS` after; then look at the contact sheet.
 5. Deliver with `deliver.sh` (Telegram, ending with this session's link) **and** SendUserFile the clips + a posting pack.
 6. Wrap up in one commit: `jobs/`, `tracker.json`, new rules → PRESET.md/layout.json/a check, lessons → HISTORY.md.
-   Push your branch and the shared branch `claude/ceo1-video-sync-cleanup-s1cq6n`.
+   Push your branch and merge it into `main` (this repo's `main` is the shared home of every client's video tools).

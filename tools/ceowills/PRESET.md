@@ -67,7 +67,8 @@
    always Eyad's first note. When the director asks for a different take between tries, use the last one he asked for.
    Don't cut inside a ≤0.5 s breath straight after a key line. Every pause ≥ 0.16 s is cut to 0.08 s (`pauses.py`;
    `tighten.py` re-cuts an existing job that way and moves its cards onto the new timeline).
-5. **Frame 1 carries the title and the logo.**
+5. **No title on any video** (Sofian, 9 Oct: "ALL VIDEOS -> remove the top text on all videos"; `hook.off` in
+   layout.json, check.py fails a job with a `hook`). Frame 1 carries the logo.
 6. **Nothing covers Adnan's head.** The title and the iMessage cards sit high; his hair top is at y ≈ 325–440 depending
    on how far he leans, and grazing the top of his hair is the limit. `qa.py` checks it on real frames; when a card
    would touch his hair, move it (`"ctas": [{"key", "at_out"}]`) to where he's lower or shrink it for that job
@@ -86,11 +87,12 @@
 | Element | Now |
 |---|---|
 | Captions | Baseline y 1430, below his chin. Inter Tight 700, 72 px, white, strong 3-pass drop shadow. ALL-CAPS and numbers → Playfair 800 white with a red underline that draws in (honorifics SWT/SAW/PBUH stay plain). **Never the Pinyon script.** 1–3 words per chunk, broken on phrases; each word appears as he says it; the chunk is laid out once so nothing shifts |
-| Title (hook) | Top of frame over a soft black scrim: every line — the question included — **one sans size, 64 px** (Sofian 30 Sep: "the question mark and text are different size"; `hook.uniform`); `_MARKED_` words keep a red underline. ≤ 22 characters a line. Fades at `hook_until` (end of the first sentence, before the first card at 25 s) |
+| Title (hook) | **Off on every video since 9 Oct** (Sofian). When it was on: top of frame over a soft black scrim: every line — the question included — **one sans size, 64 px** (Sofian 30 Sep: "the question mark and text are different size"; `hook.uniform`); `_MARKED_` words keep a red underline. ≤ 22 characters a line. Fades at `hook_until` (end of the first sentence, before the first card at 25 s) |
 | Logo | Red `CEOwills` (Arimo 700, `#EB1519`, 392 px wide, baseline 1600), centred on its ink, every frame, over a black bottom gradient from y 1300 (30 Sep, Sofian: "the gradient is so high" — it started at 1000, doubled) |
 | Frame | **Zoomed 1.08× and moved down 190 px** (Sofian, 30 Sep) so there's room above his head; the space above is the same shot zoomed + blurred, faded in over 70 px (190–260; was 170, it smeared his hair). No move-down in a reel without cards where he leans in (#14) |
 | iMessage cards | **Off** (Eyad, 5 Oct: "send them again without the ctas" → `"ctas": []`; 7 Oct: "remove call to action" = these cards, the spoken "Comment … below" stays; ask before putting them back. Adnan also sent a new headshot "for the iMessage picture" — Eyad: ignore it, the cards are off). When on: **Real-size iPhone banners** (Sofian/Eyad, 30 Sep: "so small it looks unrealistic"): 1000 px wide at y 100, Adnan's contact photo (his face from the video) with the Messages badge, "Adnan · now", frosted glass, ceowills.com in red, drawn by render.py (`notify.style: ios`). Slide down, 6 s each, first at 25 s then every 30 s, never over the end CTA, none in reels under 30 s, notification sound on each. **Text written for what he's saying at that moment, different in every video** — see below |
 | End CTA | From "Comment" to the end, 1.12× size, the keyword in the job's spelling with the red underline. Two keywords (#10) is fine when he says two |
+| End banner | **Every video** (Sofian, 9 Oct: "add call to action banner at the end of all videos"; Eyad: Adnan's own CTA PNG, not the drawn iPhone card): one of Adnan's seven PNGs (`ctas.json`) slides down at the top over the last 5 s, gone before the end card, with the notification sound. Pick it for the video's topic and never the same one as the video before it in board order (`"end_banner": "<key>"` in the job; check.py warns on both). qa.py checks it against his head; shrink it for one job with `{"key", "width"}` |
 | End card | **Every video** (Adnan, 7 Oct: "add it at the end of every video please"): his "Welcome to the Great Wealth Transfer / follow me on social media" card (`endcard/great-wealth-transfer.jpg`) for 3 s after the last frame — 0.3 s cross-fade in, slow 1.03 push-in, no logo or captions on it, the nasheed carries on under it and fades out at the very end (`endcard` in layout.json; a job opts out with `"endcard": null`). qa.py checks it's the last thing on screen |
 | Motion | Alternating 1.00/1.08 punch-ins at cuts, slow 3 % drift, one in-shot punch-in where he says the CTA |
 | Grade | Sofian's Premiere look: **safe** 33³ LUT (`luts/sofian-juggling-safe.cube`) + measured vignette (`grade_fit`). The raw fitted LUT made grey/red blotches on bright skin (#14, a red cheek in #2) — 30 Sep: its difference from the curves is now smoothed and capped. Look at his face in close, bright shots on every contact sheet. New numbers from him go in layout.json, never hand-tuned filters |
@@ -141,8 +143,8 @@ bash $T/setup.sh $W                                         # ffmpeg, pillow, op
    the link)"** (see `deliver.sh`) so the link Adnan has never changes and nothing goes to the Bin. Check the Drive
    `fileSize` equals the local size, then trash the `upload-session-*.txt`.
 10. **Wrap up** — save `edit.json` (+ fixed words) to `jobs/`, update `tracker.json`, add any new lesson to `HISTORY.md`
-    and any new rule to this file / layout.json / a check, commit, push your branch and the shared branch
-    (`claude/ceo1-video-sync-cleanup-s1cq6n`). If the prompt or house style changed, rebuild the client zip
+    and any new rule to this file / layout.json / a check, commit, push your branch and merge it into `main` of the
+    Videoediting repo (the shared home of every client's video tools since 9 Oct). If the prompt or house style changed, rebuild the client zip
     (`bash tools/common/pack.sh ceowills`) and refresh `Adnan Files/`.
 
 Bump the version after every delivered render.

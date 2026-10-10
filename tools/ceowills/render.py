@@ -17,6 +17,8 @@ edit.json (paths relative to the file):
   "hook_until": 5.70,                  source time the hook fades out (omit = stays the whole video)
   "keywords": ["legacy", "juggling"],  words set in the big script when spoken (ALL-CAPS / numbers → white bold serif, red underline)
   "cta": {"at": 17.40, "keyword": "IHT", "script": ["below"], "underline": ["IHT"]},   from "at" to the end: the CTA words, larger
+  "end_banner": "clarity" | {"key": "clarity", "width": 700},   one of Adnan's CTA PNGs (ctas.json) over the last
+                                       end_banner.hold_s of the video (Sofian, 9 Oct); omit = none
   "nasheed": {"file": "nasheed/bika-moulhimi.wav", "start": 0} | null,
   "endcard": null                      omit = layout.json "endcard" (Adnan's follow card after the last word); null = none
 }
@@ -501,14 +503,21 @@ def card_text(key): return CTAS[key]["text"]
 
 @lru_cache(None)
 def cta_layer(key, W):
-    """→ (layer, glass mask or None, top of the visible card inside the layer)."""
-    N = L["notify"]
-    if N.get("style") == "ios":
+    """→ (layer, glass mask or None, top of the visible card inside the layer). Keys "end:<ctas.json key>" are the end
+    banner: always Adnan's own PNG, sized by layout.json end_banner."""
+    N = card_cfg(key)
+    if key.startswith("end:"): key = key[4:]
+    elif N.get("style") == "ios":
         lay, mask, top = ios_card(card_text(key), N["width"]); return lay, mask, top
     im = Image.open(cta_png(key)).convert("RGBA")
     im = im.resize((N["width"], int(im.height * N["width"] / im.width)), Image.LANCZOS)
     layer = Image.new("RGBA", (W, im.height), (0, 0, 0, 0)); layer.alpha_composite(im, ((W - im.width) // 2, 0))
     return layer, None, 0
+
+
+def card_cfg(key):
+    """Size and timing for a card: the end banner has its own (layout.json end_banner), every other card uses notify."""
+    return L["end_banner"] if key.startswith("end:") else L["notify"]
 
 
 def card_height(key, W):
@@ -518,7 +527,7 @@ def card_height(key, W):
 
 def cta_frame(key, t, t0, W):
     """Slide down from above (ease-out-back), hold, slide back up + fade. Returns (img, y, glass mask, opacity) or None."""
-    N = L["notify"]; dt = t - t0; hold = N["hold_s"]
+    N = card_cfg(key); dt = t - t0; hold = N["hold_s"]
     if dt < 0 or dt > hold: return None
     img, mask, top = cta_layer(key, W); h = img.height; y_on, y_off = N["y"] - top, -h - 20; op = 1.0
     pin, pout = dt * 1000 / N["in_ms"], (hold - dt) * 1000 / N["out_ms"]
@@ -570,6 +579,8 @@ def main():
     a = ap.parse_args()
     E_path = Path(a.edit).resolve(); base = E_path.parent; E = json.loads(E_path.read_text(encoding="utf-8"))
     if E.get("notify"): L["notify"].update(E["notify"])   # per-job card override, e.g. {"width": 540} when he stands tall
+    EB = E.get("end_banner")   # Adnan's CTA PNG at the end (Sofian, 9 Oct: "add call to action banner at the end of all videos")
+    if isinstance(EB, dict): L["end_banner"].update({k: v for k, v in EB.items() if k != "key"})
     P = lambda k: (base / E[k]) if E.get(k) else None
     out = Path(a.out).resolve() if a.out else base / ("draft.mp4" if a.draft else "final.mp4")
     W, H = L["canvas"]["w"], L["canvas"]["h"]
@@ -630,11 +641,12 @@ def main():
     # ---- audio (runs while video renders)
     aud = out.with_suffix(".audio.wav")
     ctas = plan_ctas(E, " ".join(w["word"] for w in kept), dur, cta_t)
-    if ctas and L["notify"].get("style") == "ios":
+    if EB: ctas.append(("end:" + (EB["key"] if isinstance(EB, dict) else EB), round(dur - L["end_banner"]["hold_s"], 3)))
+    if any(not k.startswith("end:") for k, _ in ctas) and L["notify"].get("style") == "ios":
         make_avatar(P("video"), E["cuts"][0]["in"] + 1.0, {"ccw": "transpose=2,", "cw": "transpose=1,"}.get(E.get("rotate"), ""))
     if ctas: print("ctas: " + ", ".join(f"{k} @ {t:.1f}s" for k, t in ctas))
-    boxes["cards"] = [{"key": k, "in": t0, "out": t0 + L["notify"]["hold_s"], "top": L["notify"]["y"],
-                       "bottom": L["notify"]["y"] + card_height(k, W)} for k, t0 in ctas]
+    boxes["cards"] = [{"key": k, "in": t0, "out": t0 + card_cfg(k)["hold_s"], "top": card_cfg(k)["y"],
+                       "bottom": card_cfg(k)["y"] + card_height(k, W)} for k, t0 in ctas]
     if not a.draft: log_ctas(E.get("name", E_path.stem), [k for k, _ in ctas])
     if EC: boxes["endcard"] = [round(dur, 3), round(full, 3)]   # qa.py: no face/caption/freeze checks on the card
     build_audio(E, base, segs, full, aud, sfx=[t for _, t in ctas])   # the voice ends at dur; the nasheed runs on under the card

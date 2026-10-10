@@ -117,13 +117,14 @@ def main():
     ec = b.get("endcard")   # [start, end] of the follow card (7 Oct) — a slow push-in on a still, so freezedetect stops before it
     e = ff(["-i", a.video, "-map", "0:v"] + (["-t", f"{ec[0]:.3f}"] if ec else []) + ["-vf", "blackdetect=d=0.04:pix_th=0.06,freezedetect=n=0.002:d=1.2", "-f", "null", "-"])
     check("video: no black frames", "black_start" not in e); check("video: no frozen video ≥1.2s", "freeze_start" not in e)
-    # first frame must already carry the hook text (white type in the hook band) and the red logo
+    # first frame must already carry the red logo (and the hook text, while titles are on — off since 9 Oct, Sofian)
     W, H = cv["w"] // 4, cv["h"] // 4
-    raw = subprocess.run(["ffmpeg", "-v", "error", "-i", a.video, "-vf", f"scale={W}:{H},format=gray", "-frames:v", "1", "-f", "rawvideo", "-"], capture_output=True).stdout
-    f0 = np.frombuffer(raw, np.uint8).reshape(H, W)
-    hy = L["hook"]["top"] // 4; band = f0[hy - 12:hy + 40]
-    white = int((band > 225).sum())
-    check("hook: text visible on frame 1", white > 150, f"{white} bright px in hook band")
+    if not L["hook"].get("off"):
+        raw = subprocess.run(["ffmpeg", "-v", "error", "-i", a.video, "-vf", f"scale={W}:{H},format=gray", "-frames:v", "1", "-f", "rawvideo", "-"], capture_output=True).stdout
+        f0 = np.frombuffer(raw, np.uint8).reshape(H, W)
+        hy = L["hook"]["top"] // 4; band = f0[hy - 12:hy + 40]
+        white = int((band > 225).sum())
+        check("hook: text visible on frame 1", white > 150, f"{white} bright px in hook band")
     rgb = subprocess.run(["ffmpeg", "-v", "error", "-i", a.video, "-vf", f"scale={W}:{H}", "-frames:v", "1", "-f", "rawvideo", "-pix_fmt", "rgb24", "-"], capture_output=True).stdout
     c0 = np.frombuffer(rgb, np.uint8).reshape(H, W, 3).astype(int); G = L["logo"]
     lb = c0[(G["baseline_y"] - 70) // 4:G["baseline_y"] // 4, (G["center_x"] - G["width"] // 2) // 4:(G["center_x"] + G["width"] // 2) // 4]
@@ -157,8 +158,12 @@ def main():
     if a.boxes:
         em = L["hook"].get("edge_margin", S["y0"])   # Eyad: overlays high and off his face, but not tight to the edge
         htop = L["hook"]["bar"]["top"] if L["hook"].get("style") == "bar" else L["hook"]["top"] - L["hook"]["eyebrow_px"]
-        check("layout: hook clear of the top edge", htop >= em, f"hook top {htop}, margin ≥ {em}")
+        if not L["hook"].get("off"): check("layout: hook clear of the top edge", htop >= em, f"hook top {htop}, margin ≥ {em}")
         check("layout: iMessage CTA clear of the top edge", L["notify"]["y"] >= em, f"card top {L['notify']['y']}")
+        ends = [c for c in b.get("cards", []) if c["key"].startswith("end:")]   # Sofian, 9 Oct: a CTA banner at the end of every video
+        check("end banner: Adnan's CTA PNG over the last seconds", len(ends) == 1 and abs(ends[0]["out"] - (ec[0] if ec else dur)) < 0.1,
+              ", ".join(f"{c['key'][4:]} {c['in']:.1f}–{c['out']:.1f}s" for c in ends) or "none")
+        if ends: check("end banner: clear of the top edge", ends[0]["top"] >= em, f"banner top {ends[0]['top']}")
         check("layout: captions above the logo", L["caption"]["baseline_y"] + 60 < L["logo"]["baseline_y"] - L["logo"]["px"], f"caption baseline {L['caption']['baseline_y']}")
         check("layout: logo above platform UI", L["logo"]["baseline_y"] <= S["y1"] + 60, f"logo baseline {L['logo']['baseline_y']}")
         head_clearance(a.video, b, L)

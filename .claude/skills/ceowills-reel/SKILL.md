@@ -1,6 +1,6 @@
 ---
 name: ceowills-reel
-description: Edit CEOwills (Adnan) short-form reels end to end — pick the videos from the tracker, fetch the raw and its lav-mic part, sync, transcribe, cut, render the CEOwills house style (sans + red-underlined serif captions, sans title, red logo over a black gradient, topic-matched iMessage cards, voice-only nasheed), QA and deliver. Use when Eyad says "CEOwills", "Adnan", "new video for Adnan", names a CEOwills raw file, or asks to set up a new video-editing client the same way.
+description: Edit CEOwills (Adnan) short-form reels end to end — pick the videos from the tracker, fetch the raw and its lav-mic part, sync, transcribe, cut, render the CEOwills house style (sans + red-underlined serif captions, no title, red logo over a black gradient, one of Adnan's CTA PNGs at the end, voice-only nasheed, follow card), QA and deliver. Use when Eyad says "CEOwills", "Adnan", "new video for Adnan", names a CEOwills raw file, or asks to set up a new video-editing client the same way.
 ---
 
 # CEOwills reels
@@ -15,7 +15,7 @@ description: Edit CEOwills (Adnan) short-form reels end to end — pick the vide
    Gates you must pass: `check.py` (before rendering), `qa.py` ALL PASS and `stutters.py` PASS (after).
 5. Eyad sees finished previews only (`deliver.sh`, Telegram, ending with this session's link) and blockers that need him.
 6. Wrap up in one commit: `jobs/`, `tracker.json`, new rules → PRESET.md/layout.json/a check, new lessons → HISTORY.md.
-   Push your branch and the shared branch `claude/ceo1-video-sync-cleanup-s1cq6n`.
+   Push your branch and merge it into `main` (this repo's `main` is the shared home of every client's video tools).
 
 ## Setting up another video-editing client the same way
 

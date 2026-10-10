@@ -192,7 +192,9 @@
       "px": 64,
       "line_gap": 82,
       "_note": "30 Sep (Sofian, SK Media chat 15:32–15:36): 'the question mark and text are different size' → every title line (the question included) in one sans size; _MARKED_ words keep the red underline, *marked* words are no longer bigger."
-    }
+    },
+    "off": true,
+    "_9oct": "Sofian (SK Media, 9 Oct): 'ALL VIDEOS -> remove the top text on all videos'. off = no title on any video: check.py fails a job that still has \"hook\", qa.py stops looking for it on frame 1. The settings below stay for if it ever comes back."
   },
   "logo": {
     "text": "CEOwills",
@@ -255,6 +257,14 @@
     "sfx_file": "sfx/notify-iphone-real.wav",
     "_sfx_30sep": "Eyad sent the real iPhone notification sound (Drive 1npRGhDBtXxlnJIHo8jkmCT0UbFMtfyXR, IPHONE NOTIFICATION SOUND EFFECT (PING-DING).mp3) → trimmed to the sound (1.05–3.30 s), mono 48k, peak -1 dB.",
     "_sfx_note": "27 Sep, Eyad: 'use the iPhone message notification sound instead of that ding' → a synthesized tri-tone-style chime (3 quick bell notes, not Apple's file); the old one-tone ping is sfx/notify.wav"
+  },
+  "end_banner": {
+    "_note": "Sofian (SK Media, 9 Oct): 'add call to action banner at the end of all videos'; Eyad: Adnan's own CTA PNG (ctas.json), not the drawn iPhone card. One per video, chosen for the topic, different from the video before it in board order. Slides down over the last hold_s of the video (so over the spoken 'Comment … below' too — it sits at the top, the CTA words at the bottom) and is gone before the end card. qa.py checks it against his head like any card; 807 = the PNGs' native width (crisp; ends ≈ y 416, well above his head on #6 v12); shrink it for a job with {\"key\", \"width\"}.",
+    "y": 100,
+    "width": 807,
+    "hold_s": 5.0,
+    "in_ms": 480,
+    "out_ms": 320
   },
   "lumetri": {
     "_source": "Sofian's Premiere Lumetri on 'business owner juggling' (v6): Basic Correction + Vignette",

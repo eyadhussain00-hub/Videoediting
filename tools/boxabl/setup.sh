@@ -18,7 +18,7 @@ f="${@: -1}"; ffmpeg -hide_banner -i "$f" 2>&1 | sed -n 's/.*Duration: \([0-9]*\
 SH
   chmod +x /usr/local/bin/ffprobe
 fi
-python3 -c "import faster_whisper" 2>/dev/null || { log "installing faster-whisper"; pip install -q faster-whisper 2>&1 | grep -v WARN; }
+python3 -c "import faster_whisper, av; assert int(av.__version__.split('.')[0]) < 16" 2>/dev/null || { log "installing faster-whisper (av<16: see ceowills/setup.sh)"; timeout 900 pip install -q --progress-bar off faster-whisper "av<16" 2>&1 | grep -v WARN; }
 ls "$HERE/fonts"/*.ttf >/dev/null 2>&1 && log "fonts ok ($(ls "$HERE/fonts" | tr '\n' ' '))" || log "FONTS MISSING in $HERE/fonts"
 ( python3 -c "from faster_whisper import WhisperModel; WhisperModel('small.en', device='cpu', compute_type='int8')" >/dev/null 2>&1 & )
 [ -n "${TELEGRAM_BOT_TOKEN:-}" ] || [ -f ~/.sk-media.env ] && log "secrets: Telegram configured" || log "secrets: no Telegram — previews only in the session"
