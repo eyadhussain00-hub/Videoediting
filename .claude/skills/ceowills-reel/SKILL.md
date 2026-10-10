@@ -1,6 +1,6 @@
 ---
 name: ceowills-reel
-description: Edit CEOwills (Adnan) short-form reels end to end — pick the videos from the tracker, fetch the raw and its lav-mic part, sync, transcribe, cut, render the CEOwills house style (sans + red-underlined serif captions, no title, red logo over a black gradient, one of Adnan's CTA PNGs at the end, voice-only nasheed, follow card), QA and deliver. Use when Eyad says "CEOwills", "Adnan", "new video for Adnan", names a CEOwills raw file, or asks to set up a new video-editing client the same way.
+description: Edit CEOwills (Adnan) short-form reels end to end — pick the videos from the tracker, fetch the raw and its lav-mic part, sync, transcribe, cut, render the CEOwills house style (sans + red-underlined serif captions, no title, red logo over a black gradient, an iPhone CTA banner at the end, voice-only nasheed, follow card), QA and deliver. Use when Eyad says "CEOwills", "Adnan", "new video for Adnan", names a CEOwills raw file, or asks to set up a new video-editing client the same way.
 ---
 
 # CEOwills reels

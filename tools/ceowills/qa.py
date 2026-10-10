@@ -166,7 +166,7 @@ def main():
         if not L["hook"].get("off"): check("layout: hook clear of the top edge", htop >= em, f"hook top {htop}, margin ≥ {em}")
         check("layout: iMessage CTA clear of the top edge", L["notify"]["y"] >= em, f"card top {L['notify']['y']}")
         ends = [c for c in b.get("cards", []) if c["key"].startswith("end:")]   # Sofian, 9 Oct: a CTA banner at the end of every video
-        check("end banner: Adnan's CTA PNG over the last seconds", len(ends) == 1 and abs(ends[0]["out"] - (ec[0] if ec else dur)) < 0.1,
+        check("end banner: CTA banner over the last seconds", len(ends) == 1 and abs(ends[0]["out"] - (ec[0] if ec else dur)) < 0.1,
               ", ".join(f"{c['key'][4:]} {c['in']:.1f}–{c['out']:.1f}s" for c in ends) or "none")
         if ends: check("end banner: clear of the top edge", ends[0]["top"] >= em, f"banner top {ends[0]['top']}")
         check("layout: captions above the logo", L["caption"]["baseline_y"] + 60 < L["logo"]["baseline_y"] - L["logo"]["px"], f"caption baseline {L['caption']['baseline_y']}")

@@ -281,14 +281,16 @@ talking about; it helps choose the right CTA. Good CTAs help make more money for
   in-shot `punch_at` there (which toggles) went.
 - **"ALL VIDEOS → remove the top text on all videos"** → `hook.off` in layout.json; check.py fails a job with a `hook`,
   qa.py no longer looks for title ink on frame 1.
-- **"Add call to action banner at the end of all videos"** → Eyad picked Adnan's own CTA PNGs (not the drawn iPhone
-  card): `end_banner` per job, over the last 5 s at the PNG's native 807 px, gone before the follow card. The mid-video
-  iMessage cards stay off. Picked per topic, never the same PNG twice in a row in board order (check.py warns).
+- **"Add call to action banner at the end of all videos"** → first round with Adnan's own CTA PNGs (Eyad picked them
+  from a choice of three); after seeing them, Eyad: **"nah not the png use the banner"** → the drawn iPhone banner (the
+  30 Sep card look) with text written for each video's ending, over the last 5 s, gone before the follow card
+  (`end_banner` {"text"}; layout end_banner.style ios, 1000 px). The mid-video iMessage cards stay off.
 - **With the title gone, qa.py saw the plant behind the fill as a face** (#7 at 2.8/16.2 s: a ~300 px box at y≈120 next
   to his 370 px one; his_face takes the top-most big box, so "his hair" landed in the fill and the seam check failed on
   a render that was fine) → a box that starts above the seam is dropped when a clearly bigger box sits below it.
 - **#14 has no move-down** (he leans into the lens 5–12 s), so the full banner over the last 5 s met his hair while he
-  leant in at 25–26 s → that job's banner is 660 px over the last 2.6 s, after he sits back (head top ≥ 349).
+  leant in at 25–26 s → that job's banner is smaller (PNG 660 px, iPhone banner 800 px) over the last 2.6 s, after he
+  sits back (head top ≥ 349).
 - #7's stutter hit "need to, to make sure" (51.18 s) is two words he meant (`--ok 51.18`).
 - Setup: `pip install -q` stalled 17 min with no output on a fresh container (killed and re-run, it took 30 s) → setup.sh
   wraps pip in `timeout` and shows failures. PyAV 19 again: our scripts decode with ffmpeg, but an ad-hoc Whisper call on

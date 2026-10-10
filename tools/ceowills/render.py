@@ -17,8 +17,9 @@ edit.json (paths relative to the file):
   "hook_until": 5.70,                  source time the hook fades out (omit = stays the whole video)
   "keywords": ["legacy", "juggling"],  words set in the big script when spoken (ALL-CAPS / numbers → white bold serif, red underline)
   "cta": {"at": 17.40, "keyword": "IHT", "script": ["below"], "underline": ["IHT"]},   from "at" to the end: the CTA words, larger
-  "end_banner": "clarity" | {"key": "clarity", "width": 700},   one of Adnan's CTA PNGs (ctas.json) over the last
-                                       end_banner.hold_s of the video (Sofian, 9 Oct); omit = none
+  "end_banner": {"text": "Hey CEO, … ceowills.com"} | "clarity",   the CTA banner over the last end_banner.hold_s of the
+                                       video (Sofian, 9 Oct): the drawn iPhone banner with text written for this video, or
+                                       a ctas.json key; "width"/"hold_s" override layout.json end_banner; omit = none
   "nasheed": {"file": "nasheed/bika-moulhimi.wav", "start": 0} | null,
   "endcard": null                      omit = layout.json "endcard" (Adnan's follow card after the last word); null = none
 }
@@ -503,11 +504,11 @@ def card_text(key): return CTAS[key]["text"]
 
 @lru_cache(None)
 def cta_layer(key, W):
-    """→ (layer, glass mask or None, top of the visible card inside the layer). Keys "end:<ctas.json key>" are the end
-    banner: always Adnan's own PNG, sized by layout.json end_banner."""
+    """→ (layer, glass mask or None, top of the visible card inside the layer). Keys "end:<key>" are the end banner,
+    styled and sized by layout.json end_banner (ios = the drawn iPhone banner, png = Adnan's own PNG)."""
     N = card_cfg(key)
     if key.startswith("end:"): key = key[4:]
-    elif N.get("style") == "ios":
+    if N.get("style") == "ios":
         lay, mask, top = ios_card(card_text(key), N["width"]); return lay, mask, top
     im = Image.open(cta_png(key)).convert("RGBA")
     im = im.resize((N["width"], int(im.height * N["width"] / im.width)), Image.LANCZOS)
@@ -641,8 +642,11 @@ def main():
     # ---- audio (runs while video renders)
     aud = out.with_suffix(".audio.wav")
     ctas = plan_ctas(E, " ".join(w["word"] for w in kept), dur, cta_t)
-    if EB: ctas.append(("end:" + (EB["key"] if isinstance(EB, dict) else EB), round(dur - L["end_banner"]["hold_s"], 3)))
-    if any(not k.startswith("end:") for k, _ in ctas) and L["notify"].get("style") == "ios":
+    if EB:
+        ek = EB if isinstance(EB, str) else EB.get("key") or "say:" + re.sub(r"[^a-z0-9]+", "-", EB["text"].lower()).strip("-")[:48]
+        if isinstance(EB, dict) and EB.get("text"): CTAS[ek] = {"text": EB["text"], "tags": []}
+        ctas.append(("end:" + ek, round(dur - L["end_banner"]["hold_s"], 3)))
+    if any(card_cfg(k).get("style") == "ios" for k, _ in ctas):
         make_avatar(P("video"), E["cuts"][0]["in"] + 1.0, {"ccw": "transpose=2,", "cw": "transpose=1,"}.get(E.get("rotate"), ""))
     if ctas: print("ctas: " + ", ".join(f"{k} @ {t:.1f}s" for k, t in ctas))
     boxes["cards"] = [{"key": k, "in": t0, "out": t0 + card_cfg(k)["hold_s"], "top": card_cfg(k)["y"],

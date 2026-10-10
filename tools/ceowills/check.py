@@ -124,18 +124,20 @@ def main():
             if k in recent: warn(f"card '{k}' was used in one of the last {N.get('recent_videos', 4)} videos — switch it up")
         if not spec: warn(f"no cards in a {dur:.0f} s reel (≥ {N['min_video_s']} s gets one every {N['every_s']} s)")
 
-    # ---- end banner: one of Adnan's CTA PNGs over the last seconds (Sofian, 9 Oct)
-    EB = E.get("end_banner"); ek = EB["key"] if isinstance(EB, dict) else EB
-    if not EB: fail("no end banner (\"end_banner\": a ctas.json key) — every video ends on one of Adnan's CTA PNGs")
-    elif ek not in render.CTAS: fail(f"end banner '{ek}' is not in ctas.json")
+    # ---- end banner: the CTA banner over the last seconds (Sofian, 9 Oct; Eyad 10 Oct: the drawn iPhone banner)
+    EB = E.get("end_banner"); B = {**L["end_banner"], **(EB if isinstance(EB, dict) else {})}
+    if not EB: fail("no end banner (\"end_banner\": {\"text\": …}) — every video ends on a CTA banner")
+    elif isinstance(EB, dict) and EB.get("text"):
+        tx = EB["text"]
+        if "ceowills.com" not in tx.lower(): warn(f"end banner '{tx[:30]}…' doesn't end on ceowills.com")
+        if len(tx) > 120: warn(f"end banner is {len(tx)} characters — keep it to ~3 lines (≤ ~110)")
+        jobs = [json.loads(j.read_text(encoding="utf-8")) for j in (HERE / "jobs").glob("*.edit.json")]
+        same = [o.get("name", "?") for o in jobs if o.get("name") != E.get("name") and isinstance(o.get("end_banner"), dict) and o["end_banner"].get("text") == tx]
+        if same: warn(f"end banner text is the same as in {', '.join(same)} — write one for this video")
     else:
-        B = {**L["end_banner"], **(EB if isinstance(EB, dict) else {})}
-        if dur < B["hold_s"] + 3: fail(f"a {dur:.0f} s reel is too short for a {B['hold_s']} s end banner")
-        tags = [x for x in render.CTAS[ek]["tags"] if x != "generic"]
-        if words and tags and "generic" not in render.CTAS[ek]["tags"] and not any(re.search(r"\b" + re.escape(x), said(0, dur)) for x in tags):
-            warn(f"end banner '{ek}': none of its topics ({', '.join(tags[:5])}) come up in this video — is it the right one?")
-        prev = [v for name, v in hist.items() if name != E.get("name")][-1:]
-        if prev and "end:" + ek in prev[0]: warn(f"end banner '{ek}' was also on the last video rendered — switch it up")
+        ek = EB["key"] if isinstance(EB, dict) else EB
+        if ek not in render.CTAS: fail(f"end banner '{ek}' is not in ctas.json")
+    if EB and dur < B["hold_s"] + 3: fail(f"a {dur:.0f} s reel is too short for a {B['hold_s']} s end banner")
 
     # ---- hand-set caption chunks
     if E.get("chunks") and words:

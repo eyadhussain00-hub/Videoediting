@@ -259,9 +259,10 @@
     "_sfx_note": "27 Sep, Eyad: 'use the iPhone message notification sound instead of that ding' → a synthesized tri-tone-style chime (3 quick bell notes, not Apple's file); the old one-tone ping is sfx/notify.wav"
   },
   "end_banner": {
-    "_note": "Sofian (SK Media, 9 Oct): 'add call to action banner at the end of all videos'; Eyad: Adnan's own CTA PNG (ctas.json), not the drawn iPhone card. One per video, chosen for the topic, different from the video before it in board order. Slides down over the last hold_s of the video (so over the spoken 'Comment … below' too — it sits at the top, the CTA words at the bottom) and is gone before the end card. qa.py checks it against his head like any card; 807 = the PNGs' native width (crisp; ends ≈ y 416, well above his head on #6 v12); shrink it for a job with {\"key\", \"width\"}.",
+    "_note": "Sofian (SK Media, 9 Oct): 'add call to action banner at the end of all videos'. Eyad (10 Oct): the drawn iPhone banner, not Adnan's PNGs ('nah not the png use the banner'). Same look as the 30 Sep iMessage cards (notify.style ios: Adnan's contact photo, 'Adnan · now', frosted glass, ceowills.com in red), text written for each video's ending in the job (\"end_banner\": {\"text\": …}), different in every video. Slides down over the last hold_s (over the spoken 'Comment … below' too — it's at the top, the CTA words at the bottom) and is gone before the end card. qa.py checks it against his head; a job overrides width/hold_s when he leans in (#14). style png = Adnan's PNG (ctas.json key).",
+    "style": "ios",
     "y": 100,
-    "width": 807,
+    "width": 1000,
     "hold_s": 5.0,
     "in_ms": 480,
     "out_ms": 320

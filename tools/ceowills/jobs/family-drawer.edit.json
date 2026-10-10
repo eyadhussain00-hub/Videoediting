@@ -1,5 +1,5 @@
 {
- "_source": "Raw 'family access to all docs with steps - awkward family member writing things down, its not pain of not knowing its possibly creating turmoil.MP4' (client Drive id 1T7Z3ENDhcG9bPwN4i4iYjHc_w4GlBLcS); mic = 'wills work 60 seconds, verbal agreement sofa.wav' (Mic 4) @ 913.4985 s. One clean take 1.1–54.7 (verbatim pass: no stutters; 'the absence of not knowing' is what he says). 'CEO'+'wills' merged (words/fam.fixed.json). No spoken CTA → --no-cta; the iMessage card carries the ask. Last cut held to 56.4 (silent). Nasheed the-sins. iMessage cards picked by topic (Eyad 29 Sep: switch them up, match what he's saying): see-for-your-family. 4 Oct (Eyad): no background sound — voice only, no nasheed. 5 Oct (Eyad): no iMessage cards (\"without the ctas\") — ctas: [], so no card ping either. 7 Oct (Adnan via SK Media; Eyad: finalise): nasheed back on — hona-marro in his 3-per-nasheed rotation (tracker.json nasheed_rule); his 'Great Wealth Transfer' follow card added at the end (layout endcard); still no iMessage cards (Eyad, 7 Oct: the CTA to remove is the cards — the spoken 'comment … below' stays). 10 Oct (Sofian, 9 Oct, SK Media chat: 'ALL VIDEOS -> remove the top text on all videos, add call to action banner at the end of all videos'): no title; end banner = Adnan's CTA PNG 'see-for-your-family' (Eyad: his own PNGs) over the last seconds.",
+ "_source": "Raw 'family access to all docs with steps - awkward family member writing things down, its not pain of not knowing its possibly creating turmoil.MP4' (client Drive id 1T7Z3ENDhcG9bPwN4i4iYjHc_w4GlBLcS); mic = 'wills work 60 seconds, verbal agreement sofa.wav' (Mic 4) @ 913.4985 s. One clean take 1.1–54.7 (verbatim pass: no stutters; 'the absence of not knowing' is what he says). 'CEO'+'wills' merged (words/fam.fixed.json). No spoken CTA → --no-cta; the iMessage card carries the ask. Last cut held to 56.4 (silent). Nasheed the-sins. iMessage cards picked by topic (Eyad 29 Sep: switch them up, match what he's saying): see-for-your-family. 4 Oct (Eyad): no background sound — voice only, no nasheed. 5 Oct (Eyad): no iMessage cards (\"without the ctas\") — ctas: [], so no card ping either. 7 Oct (Adnan via SK Media; Eyad: finalise): nasheed back on — hona-marro in his 3-per-nasheed rotation (tracker.json nasheed_rule); his 'Great Wealth Transfer' follow card added at the end (layout endcard); still no iMessage cards (Eyad, 7 Oct: the CTA to remove is the cards — the spoken 'comment … below' stays). 10 Oct (Sofian, 9 Oct, SK Media chat: 'ALL VIDEOS -> remove the top text on all videos, add call to action banner at the end of all videos'): no title; end banner = Adnan's CTA PNG 'see-for-your-family' (Eyad: his own PNGs) over the last seconds. Eyad, 10 Oct ('nah not the png use the banner'): the end banner is the drawn iPhone banner with its own text for this ending.",
  "name": "Families should find it in the drawer",
  "video": "src/fam.MP4",
  "rotate": "ccw",
@@ -127,7 +127,9 @@
  "punch_at": [],
  "keywords": [],
  "cta": null,
- "end_banner": "see-for-your-family",
+ "end_banner": {
+  "text": "Hey friend, give your family clarity, not a search through the drawers. Sort your will at ceowills.com"
+ },
  "nasheed": {
   "file": "nasheed/hona-marro.mp3",
   "start": 0

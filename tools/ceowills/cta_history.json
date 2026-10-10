@@ -2,31 +2,31 @@
  "_comment": "iMessage CTA cards used per video, oldest first (render.py writes this on every final render; plan_ctas penalises cards used in the last few videos).",
  "videos": {
   "HMRC can take up to 40%": [
-   "end:business-properties-wealth"
+   "end:say:hey-ceo-don-t-let-hmrc-take-40-of-what-you-ve-bu"
   ],
   "Culture leaving daughters out": [
-   "end:see-for-your-family"
-  ],
-  "Business leader feeding your family": [
-   "end:legacy-decades"
+   "end:say:hey-sister-your-share-is-your-haqq-from-allah-le"
   ],
   "CEOwills bridges your company and your will": [
-   "end:got-you-thinking"
+   "end:say:hey-ceo-give-your-family-a-blueprint-to-follow-n"
+  ],
+  "Business leader feeding your family": [
+   "end:say:hey-brother-you-built-it-to-feed-your-family-let"
   ],
   "Business owners: deep, dark IHT conversation": [
-   "end:assume-family-inherit"
+   "end:say:hey-friend-have-the-deep-dark-iht-conversation-w"
   ],
   "Business partners: agree your succession": [
-   "end:business-properties-wealth"
-  ],
-  "Families should find it in the drawer": [
-   "end:see-for-your-family"
-  ],
-  "Business owner juggling": [
-   "end:islamic-uk-law"
+   "end:say:hey-brother-three-hours-with-your-partners-now-s"
   ],
   "Plan like Rafa Nadal": [
-   "end:clarity"
+   "end:say:hey-friend-plan-your-succession-with-nadal-level"
+  ],
+  "Families should find it in the drawer": [
+   "end:say:hey-friend-give-your-family-clarity-not-a-search"
+  ],
+  "Business owner juggling": [
+   "end:say:hey-brother-you-re-juggling-enough-already-let-u"
   ]
  }
 }

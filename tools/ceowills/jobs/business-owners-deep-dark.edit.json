@@ -1,5 +1,5 @@
 {
- "_source": "Raw 'businessowners comment calculator and more.MP4' (client Drive id 1iiz9rd8HYKbin8s9jsjEhxS4NqhXfHkr); mic = 'standing under vines deep dark conversation.wav' (Mic 3) @ 787.4582 s. One take 3.7–41.0; the false start 'Comment more if you want a…' (41.6–43.4) cut, the full two-keyword CTA re-said at 47.9–57.3 kept ('Comment MORE if you would like a free blueprint… comment calculator below' — the director kept both keywords). 'more' in the CTA set in caps so it gets the serif + underline; end CTA = 'comment CALCULATOR below'. Verbatim stutter pass: none. Last cut held to 58.5 (silent). Nasheed the-sins. iMessage cards picked by topic (Eyad 29 Sep: switch them up, match what he's saying): assume-family-inherit. 4 Oct (Eyad): no background sound — voice only, no nasheed. 5 Oct (Eyad): no iMessage cards (\"without the ctas\") — ctas: [], so no card ping either. 7 Oct (Adnan via SK Media; Eyad: finalise): nasheed back on — bika-moulhimi in his 3-per-nasheed rotation (tracker.json nasheed_rule); his 'Great Wealth Transfer' follow card added at the end (layout endcard); still no iMessage cards (Eyad, 7 Oct: the CTA to remove is the cards — the spoken 'comment … below' stays). 10 Oct (Sofian, 9 Oct, SK Media chat: 'ALL VIDEOS -> remove the top text on all videos, add call to action banner at the end of all videos'): no title; end banner = Adnan's CTA PNG 'assume-family-inherit' (Eyad: his own PNGs) over the last seconds.",
+ "_source": "Raw 'businessowners comment calculator and more.MP4' (client Drive id 1iiz9rd8HYKbin8s9jsjEhxS4NqhXfHkr); mic = 'standing under vines deep dark conversation.wav' (Mic 3) @ 787.4582 s. One take 3.7–41.0; the false start 'Comment more if you want a…' (41.6–43.4) cut, the full two-keyword CTA re-said at 47.9–57.3 kept ('Comment MORE if you would like a free blueprint… comment calculator below' — the director kept both keywords). 'more' in the CTA set in caps so it gets the serif + underline; end CTA = 'comment CALCULATOR below'. Verbatim stutter pass: none. Last cut held to 58.5 (silent). Nasheed the-sins. iMessage cards picked by topic (Eyad 29 Sep: switch them up, match what he's saying): assume-family-inherit. 4 Oct (Eyad): no background sound — voice only, no nasheed. 5 Oct (Eyad): no iMessage cards (\"without the ctas\") — ctas: [], so no card ping either. 7 Oct (Adnan via SK Media; Eyad: finalise): nasheed back on — bika-moulhimi in his 3-per-nasheed rotation (tracker.json nasheed_rule); his 'Great Wealth Transfer' follow card added at the end (layout endcard); still no iMessage cards (Eyad, 7 Oct: the CTA to remove is the cards — the spoken 'comment … below' stays). 10 Oct (Sofian, 9 Oct, SK Media chat: 'ALL VIDEOS -> remove the top text on all videos, add call to action banner at the end of all videos'): no title; end banner = Adnan's CTA PNG 'assume-family-inherit' (Eyad: his own PNGs) over the last seconds. Eyad, 10 Oct ('nah not the png use the banner'): the end banner is the drawn iPhone banner with its own text for this ending.",
  "name": "Business owners: deep, dark IHT conversation",
  "video": "src/biz.MP4",
  "rotate": "ccw",
@@ -129,7 +129,9 @@
    "CALCULATOR"
   ]
  },
- "end_banner": "assume-family-inherit",
+ "end_banner": {
+  "text": "Hey friend, have the deep, dark IHT conversation with me before HMRC has it for you. ceowills.com"
+ },
  "nasheed": {
   "file": "nasheed/bika-moulhimi.mp3",
   "start": 0
