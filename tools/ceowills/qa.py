@@ -18,9 +18,14 @@ def ff(args):
     return subprocess.run(["ffmpeg", "-hide_banner", "-nostats", *args], capture_output=True, text=True).stderr
 
 
-def his_face(faces):
+def his_face(faces, seam=None):
     """Adnan's face among the Haar hits: the top-most of the big ones (a hand or his shirt can come out as a second
-    'face' of the same size lower down — #9 at 29 s picked a box on his chest)."""
+    'face' of the same size lower down — #9 at 29 s picked a box on his chest). A box that starts in the blurred fill
+    (y < seam) is the plant behind him when a clearly bigger box sits below the seam — he's nearest the camera, so his
+    face is the biggest (#7 at 2.8/16.2 s, 10 Oct: with the title gone, the plant came out as a ~300 px 'face' at y≈120
+    next to his 370 px one at y≈680)."""
+    low = [f for f in faces if seam and f[1] >= seam]
+    if low: faces = [f for f in faces if f[1] >= seam or f[2] >= 0.9 * max(g[2] for g in low)]
     big = max(f[2] for f in faces)
     return min((f for f in faces if f[2] >= 0.7 * big), key=lambda f: f[1])
 
@@ -52,7 +57,7 @@ def head_clearance(video, b, L):
         g = np.frombuffer(raw, np.uint8).reshape(H, W)
         faces = casc.detectMultiScale(g, 1.1, 6, minSize=(W // 6, W // 6))
         if not len(faces): blind.append(f"{what} @{t:.1f}s"); continue
-        x, y, w, h = his_face(faces); head = y - hair * h
+        x, y, w, h = his_face(faces, b.get("seam_end")); head = y - hair * h
         if bottom > head + tol: bad.append(f"{what} @{t:.1f}s ends y {bottom}, his head starts ≈{head:.0f}")
         elif bottom > head - tol: near.append(f"{what} @{t:.1f}s ({bottom} vs head ≈{head:.0f})")
     check("layout: title and cards clear of his head (real frames)", not bad, "; ".join(bad) or (f"{len(probes) - len(blind)} frames checked" if probes else "nothing to check"))
@@ -78,7 +83,7 @@ def chin_and_seam(video, b, L, dur):
         g = np.frombuffer(buf, np.uint8).reshape(H, W)
         faces = casc.detectMultiScale(g, 1.1, 6, minSize=(W // 6, W // 6))
         if not len(faces): continue
-        seen += 1; x, y, w, h = his_face(faces)
+        seen += 1; x, y, w, h = his_face(faces, seam)
         chin, head = y + h * (1 + chin_k), y - hair * h
         cap = next((c for c in caps if c[0] <= t < c[1]), None)
         if cap and cap[2] < chin: on_chin.append(f"{t:.1f}s (caption top {cap[2]}, chin ≈{chin:.0f})")
