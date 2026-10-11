@@ -8,9 +8,9 @@ Reference: an Instagram "what if humans disappeared" timelapse reel (format only
 
 | Version | Status |
 |---|---|
-| Tilt-Shift (`tiltshift/`) | scene, HUD, captions, score and mix built; full render next |
-| Isometric Infographic (`iso/`) | not started |
-| Blend (`blend/`) | not started |
+| Tilt-Shift (`tiltshift/`) | scene, HUD, captions, score and mix built; first full render timed out (3 WebGL workers on 4 CPU cores); re-render with 2 workers |
+| Isometric Infographic (`iso/`) | built (Canvas 2D, ~0.3 s/frame); rendering |
+| Blend (`blend/`) | built (iso board + tilt-shift lens band, 16th-note stutter, speed readout); score and mix done; render after Tilt-Shift |
 
 ## Files
 - `TREATMENT.md`: structures, shots, beat sheet, cue map, sound design (shared story)
@@ -19,3 +19,8 @@ Reference: an Instagram "what if humans disappeared" timelapse reel (format only
   `music/score.py`, `mix.py`, `build.sh`
 
 Renders (`out/`, `*.mp4`) are gitignored; send them with SendUserFile.
+
+## Notes
+- Cloud container has no GPU: the 3D Tilt-Shift frames take ~5–6 s each at ssaa 1.5; never run more than 2 WebGL workers
+  alongside other renders, or page screenshots hit the 30 s timeout.
+- Samples: `sh tools/fetch.sh instruments vcsl` and `freepats` in the library; `setup.sh deps music` for the music box (numba).
