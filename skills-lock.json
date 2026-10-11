@@ -7,6 +7,12 @@
       "skillPath": "skills/taste-skill/SKILL.md",
       "computedHash": "6d838b246d0e35d0b53f4f23f98ba7a1dd561937e64f7d0c7553b0928e376c3e"
     },
+    "lemo-opuscar": {
+      "source": "lemomo-ai/lemo-opuscar",
+      "sourceType": "github",
+      "skillPath": "plugin/skills/lemo-opuscar/SKILL.md",
+      "computedHash": "50076498718de9d5243c6a320999ea2d860318baa0da1cee73e3c6bddf9690ce"
+    },
     "playwright-cli": {
       "source": "microsoft/playwright-cli",
       "sourceType": "github",
