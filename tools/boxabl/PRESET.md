@@ -105,5 +105,5 @@ bash $T/setup.sh $W                                   # ffmpeg (+ ffprobe shim),
 9. **Deliver** — `SESSION_URL=… bash $T/deliver.sh $W/out/<name>.mp4 "<Title>" v1 "<one line: angle + hook>"`, and
    `SendUserFile` the mp4s + a combined posting pack (all `*.post.md`, with the posting order).
 10. **Wrap up** — copy the job to `jobs/`, add it to `tracker.json` (`status`, `version`, `angle`), lessons →
-    `HISTORY.md`, rules → this file / layout.json / a check; commit; push your branch and the shared branch
-    `claude/ceo1-video-sync-cleanup-s1cq6n`; `bash tools/common/pack.sh boxabl` if the toolkit changed.
+    `HISTORY.md`, rules → this file / layout.json / a check; commit; push your branch and merge it into
+    `main` (Videoediting's shared home for the video tools); `bash tools/common/pack.sh boxabl` if the toolkit changed.

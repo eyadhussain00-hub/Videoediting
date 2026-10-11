@@ -72,7 +72,9 @@ def main():
 
     # ---- title
     hook = E.get("hook")
-    if not hook: fail("no title (\"hook\") — frame 1 must carry the title")
+    if L["hook"].get("off"):   # Sofian, 9 Oct: "remove the top text on all videos"
+        if hook: fail("this job still has a title (\"hook\") — titles are off on every video (layout.json hook.off)")
+    elif not hook: fail("no title (\"hook\") — frame 1 must carry the title")
     else:
         for line in hook:
             plain = re.sub(r"[*_]", "", line)
@@ -121,6 +123,21 @@ def main():
                 warn(f"card '{k}' at {t0:.0f} s: none of its topics ({', '.join(tags[:5])}) come up around it — is it the right card?")
             if k in recent: warn(f"card '{k}' was used in one of the last {N.get('recent_videos', 4)} videos — switch it up")
         if not spec: warn(f"no cards in a {dur:.0f} s reel (≥ {N['min_video_s']} s gets one every {N['every_s']} s)")
+
+    # ---- end banner: the CTA banner over the last seconds (Sofian, 9 Oct; Eyad 10 Oct: the drawn iPhone banner)
+    EB = E.get("end_banner"); B = {**L["end_banner"], **(EB if isinstance(EB, dict) else {})}
+    if not EB: fail("no end banner (\"end_banner\": {\"text\": …}) — every video ends on a CTA banner")
+    elif isinstance(EB, dict) and EB.get("text"):
+        tx = EB["text"]
+        if "ceowills.com" not in tx.lower(): warn(f"end banner '{tx[:30]}…' doesn't end on ceowills.com")
+        if len(tx) > 120: warn(f"end banner is {len(tx)} characters — keep it to ~3 lines (≤ ~110)")
+        jobs = [json.loads(j.read_text(encoding="utf-8")) for j in (HERE / "jobs").glob("*.edit.json")]
+        same = [o.get("name", "?") for o in jobs if o.get("name") != E.get("name") and isinstance(o.get("end_banner"), dict) and o["end_banner"].get("text") == tx]
+        if same: warn(f"end banner text is the same as in {', '.join(same)} — write one for this video")
+    else:
+        ek = EB["key"] if isinstance(EB, dict) else EB
+        if ek not in render.CTAS: fail(f"end banner '{ek}' is not in ctas.json")
+    if EB and dur < B["hold_s"] + 3: fail(f"a {dur:.0f} s reel is too short for a {B['hold_s']} s end banner")
 
     # ---- hand-set caption chunks
     if E.get("chunks") and words:

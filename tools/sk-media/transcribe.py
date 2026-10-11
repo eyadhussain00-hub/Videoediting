@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Local, free word-level transcription (faster-whisper, CPU int8). Caches by file hash.
-Usage: uv run --with faster-whisper python transcribe.py <media> <out.json> [model=medium.en]
+Usage: uv run --with faster-whisper --with 'av<16' python transcribe.py <media> <out.json> [model=medium.en]
 Output: {"text", "words": [{"w","s","e","p"}]}. medium.en keeps false starts that small.en drops — use it for cutting."""
 import hashlib, json, shutil, subprocess, sys, tempfile
 from pathlib import Path

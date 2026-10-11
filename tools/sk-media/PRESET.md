@@ -54,7 +54,7 @@ creates** — the sandbox won't let Claude write credentials to disk. Never echo
 |---|---|---|
 | Ingest | Drive connector → `ids.txt` → `fetch.sh ids.txt $WS/src` | 4 parallel, ~6 s for 300 MB. Pull webcams from **all** video folders of the subject. |
 | Sync | `uv run --with "numpy<2.3" python sync.py $WS/src` | Every .mp4 × every .mov. Accept NCC ≥ 0.9. Re-probe at 3–5 points to confirm zero drift. |
-| Transcribe | `uv run --with faster-whisper python transcribe.py <file> words/<src>.json medium.en` | Run in background right after download. **medium.en** (small.en drops false starts → bad cuts). Cached by hash. |
+| Transcribe | `uv run --with faster-whisper --with 'av<16' python transcribe.py <file> words/<src>.json medium.en` | Run in background right after download. **medium.en** (small.en drops false starts → bad cuts). Cached by hash. |
 | Overlap check | transcribe the previous video's export (`small.en` is fine) and diff | If > 30 % of the new material was already used, say so in one line and carry on (Eyad: "treat it as its own video"). |
 | Face track | `uv run --with "opencv-python-headless==4.10.0.84" --with "numpy<2.3" python facetrack.py <cam> ft_<src>.json <t0> <t1>` | Background, parallel with transcription. |
 | Screen region | look at 3–4 Loom frames | Crop the Miro canvas only (OBS/Loom UI covers the right side). V3: `[522,550,50,130]` on 1152×720. |
@@ -63,7 +63,7 @@ creates** — the sandbox won't let Claude write credentials to disk. Never echo
 | Stills | `render.py plan.json --out stills/s --graphics --stills 1,5.6,12.8,…` | ~5 s. Look at one still per section before the full render. |
 | Render | `uv run --with pillow --with "numpy<2.3" python render.py $WS/plan.json --out out/final.mp4 --graphics --jobs 4` | 1080×1920, ~2.8 min for 95 s. Writes boxes.json + face_track.json. |
 | QA | `uv run --with "numpy<2.3" python qa.py out/final.mp4 --boxes out/boxes.json --faces out/face_track.json --captions captions.txt` | Must print **ALL PASS**. Then **look at** `contact.jpg`. |
-| Stutters | `uv run --with faster-whisper python tools/common/stutters.py out/final.mp4` | Verbatim ASR hunt for restarts ("so how does… okay, so how does"), cut-off words ("re- reality"), repeats, um/uh. Must PASS. Normal transcripts hide these. |
+| Stutters | `uv run --with faster-whisper --with 'av<16' python tools/common/stutters.py out/final.mp4` | Verbatim ASR hunt for restarts ("so how does… okay, so how does"), cut-off words ("re- reality"), repeats, um/uh. Must PASS. Normal transcripts hide these. |
 | Deliver | `SESSION_URL=… bash tools/sk-media/deliver.sh out/final.mp4 "<Subject>" <N> v<ver> "<what changed>" [<existing export id>]` | Preview < 29 MB → Telegram + chat; prints the Drive upload (new file, or replace in place for a new version). Verify Drive `fileSize` == local bytes; trash the temp session file. |
 
 ### Cutting (job.json → `cuts`)

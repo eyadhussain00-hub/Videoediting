@@ -271,3 +271,29 @@ talking about; it helps choose the right CTA. Good CTAs help make more money for
   voice-only set, rotation in tracker.json (3 per nasheed, board order). #14 keeps Sofian's late start (`from` 18.64).
 - faster-whisper 1.2 + PyAV 19 broke (`open() got an unexpected keyword argument 'metadata_errors'`) → transcribe.py and
   stutters.py decode with ffmpeg and pass Whisper the samples, so the PyAV version no longer matters.
+
+## Sofian's notes, 9 Oct (SK Media chat, passed on by Eyad) → all 9 re-rendered 10 Oct
+- **#6: "please entirely remove 2024 caption and words/audio — only mention 2025, as 2024 is an incorrect statistic"** →
+  "in the year 2024 to 2025" became "in the year 2025": the cut splits at 17.79 / 18.76 (found on the mic's 10 ms energy
+  map plus a prompted Whisper pass: "year" ends 17.74, the "t" of "twenty twenty-five" bursts at 18.78), "2024" and
+  "to" leave the words file, the chunk becomes "in the year 2025". A new cut inside an alternating wide/punched run
+  needs every later cut flipped, or two shots in a row share a framing; that made the CTA cut the punched one, so the
+  in-shot `punch_at` there (which toggles) went.
+- **"ALL VIDEOS → remove the top text on all videos"** → `hook.off` in layout.json; check.py fails a job with a `hook`,
+  qa.py no longer looks for title ink on frame 1.
+- **"Add call to action banner at the end of all videos"** → first round with Adnan's own CTA PNGs (Eyad picked them
+  from a choice of three); after seeing them, Eyad: **"nah not the png use the banner"** → the drawn iPhone banner (the
+  30 Sep card look) with text written for each video's ending, over the last 5 s, gone before the follow card
+  (`end_banner` {"text"}; layout end_banner.style ios, 1000 px). The mid-video iMessage cards stay off.
+- **With the title gone, qa.py saw the plant behind the fill as a face** (#7 at 2.8/16.2 s: a ~300 px box at y≈120 next
+  to his 370 px one; his_face takes the top-most big box, so "his hair" landed in the fill and the seam check failed on
+  a render that was fine) → a box that starts above the seam is dropped when a clearly bigger box sits below it.
+- **#14 has no move-down** (he leans into the lens 5–12 s), so the full banner over the last 5 s met his hair while he
+  leant in at 25–26 s → that job's banner is smaller (PNG 660 px, iPhone banner 800 px) over the last 2.6 s, after he
+  sits back (head top ≥ 349).
+- #7's stutter hit "need to, to make sure" (51.18 s) is two words he meant (`--ok 51.18`).
+- Setup: `pip install -q` stalled 17 min with no output on a fresh container (killed and re-run, it took 30 s) → setup.sh
+  wraps pip in `timeout` and shows failures. PyAV 19 again: our scripts decode with ffmpeg, but an ad-hoc Whisper call on
+  a file failed → setup.sh pins `av<16` (also SK Media's uv commands and BOXABL's setup, whose transcribers pass paths).
+- **Make isn't connected in this account any more** (no Make connector on 10 Oct), so the Export replace-in-place
+  (7680385) couldn't run from the session; the Drive connector can't upload video.

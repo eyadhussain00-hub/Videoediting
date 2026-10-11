@@ -7,7 +7,7 @@ log(){ printf '• %s\n' "$*"; }
 command -v ffmpeg >/dev/null || { log "installing ffmpeg"; apt-get update -qq && apt-get install -y -qq ffmpeg >/dev/null; }
 # Python deps run through uv (system python has no numpy). Pre-warm the envs so later steps start instantly.
 ( uv run -q --with "numpy<2.3" --with pillow --with "opencv-python-headless==4.10.0.84" python -c "import numpy, PIL, cv2" \
-  && uv run -q --with faster-whisper python -c "import faster_whisper" ) && log "python envs ready" || log "uv env warm-up FAILED"
+  && uv run -q --with faster-whisper --with 'av<16' python -c "import faster_whisper" ) && log "python envs ready" || log "uv env warm-up FAILED"
 # hypit / WhisperX are NOT used (runtime init fails in this container) — transcription is local faster-whisper (transcribe.py)
 
 # Secrets
