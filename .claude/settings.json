@@ -64,6 +64,15 @@
             "async": true
           }
         ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "[ -n \"$RSV_COMMAND_TOKEN\" ] || exit 0; u=\"${RSV_COMMAND_URL:-https://rsv-studio-vercel.vercel.app/api/command/events}\"; head -c 20000 | curl -sf -m 65 -H \"Authorization: Bearer $RSV_COMMAND_TOKEN\" -H 'Content-Type: application/json' --data-binary @- \"${u%/events}/approve\" || true",
+            "timeout": 70
+          }
+        ]
       }
     ],
     "Notification": [

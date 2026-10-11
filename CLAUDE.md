@@ -67,5 +67,5 @@ When the app's look changes, refresh `brand/rsv/` and `src/command/vendor/` from
 ## Command Centre
 
 `.claude/settings.json` reports this session's activity to the RSV Command Centre when `RSV_COMMAND_TOKEN`
-is set in the environment. Without the token, the hooks do nothing. (`rsv-studio` also has a hook that
-lets the Command Centre answer permission prompts; it isn't copied here.)
+is set in the environment. Without the token, the hooks do nothing. Like `rsv-studio`'s, it also lets the
+Command Centre answer permission prompts from the phone while "Answer Claude Code from here" (Alerts) is on.
