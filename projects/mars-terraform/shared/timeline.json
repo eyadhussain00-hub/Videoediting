@@ -132,7 +132,7 @@
       "text": "A crew lands in an empty crater."
     },
     {
-      "t0": 9.8,
+      "t0": 9.72,
       "t1": 14.3,
       "text": "Domes go up. Nobody goes outside without a suit."
     },
@@ -142,7 +142,7 @@
       "text": "Factories pump greenhouse gas into the sky."
     },
     {
-      "t0": 22.0,
+      "t0": 21.92,
       "t1": 26.1,
       "text": "The ice melts. Water pools in the crater."
     },
@@ -162,8 +162,8 @@
       "text": "Forests grow. The sky turns blue. The domes come down."
     },
     {
-      "t0": 46.2,
-      "t1": 50.2,
+      "t0": 46.1,
+      "t1": 50.36,
       "text": "Plants have made enough air to breathe."
     }
   ],

@@ -7,7 +7,7 @@ What if we terraformed Mars?
 A crew lands in an empty crater.
 
 3
-00:00:09,800 --> 00:00:14,300
+00:00:09,720 --> 00:00:14,300
 Domes go up. Nobody goes outside without a suit.
 
 4
@@ -15,7 +15,7 @@ Domes go up. Nobody goes outside without a suit.
 Factories pump greenhouse gas into the sky.
 
 5
-00:00:22,000 --> 00:00:26,100
+00:00:21,920 --> 00:00:26,100
 The ice melts. Water pools in the crater.
 
 6
@@ -31,7 +31,7 @@ Moss, then grass. Rivers carve new valleys.
 Forests grow. The sky turns blue. The domes come down.
 
 9
-00:00:46,200 --> 00:00:50,200
+00:00:46,100 --> 00:00:50,360
 Plants have made enough air to breathe.
 
 10

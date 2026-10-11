@@ -125,3 +125,28 @@ beat start under the tape-stop (J-cut).
   speed readout under it (`×86,400 TIME-LAPSE` → `×1 REAL TIME`).
 - **Jumps**: "+10 YEARS" punches in big at frame centre for ~1.2 s on the downbeat.
 - Title and end card sit high in the sky band where nothing blocks them.
+
+## 9. Isometric Infographic version (`iso/`)
+
+Same beats, captions and score timing; the medium tells it as a diagram that fills up.
+
+- **Board**: one square diorama of the crater, floating on a pale ground. Its two front faces are a
+  **strata section**: bedrock, an ice layer under the crater, regolith on top. At the melt the ice
+  layer in the section turns blue (the ice becomes water underground too): the strata are the story.
+- **Hues** (one meaning each): rust = Mars soil, ice white, blue = water, green = life, stone grey =
+  built things, mustard = greenhouse gas, **orange = the hero figure only** (reserved for the end).
+- **Isotype gauges** under the counter: AIR (10 bars, % of Earth pressure), TEMP (°C number),
+  O₂ (21 leaves, 1 leaf = 1 % oxygen). They fill as the eras pass and reach Earth values at 100,000 years.
+- **Label pins** arrive with each station: LANDER, HABITAT, GAS FACTORIES, ICE SHEET → LAKE, RIVER, FOREST, TOWN.
+
+| # | Time | Camera | Why |
+|---|---|---|---|
+| 1 | 0–4.4 | locked wide; the title lies on the empty board as extruded isometric type | the question written on the board (opening) |
+| 2 | 3.6–21.6 | locked, slow log push toward the base as it accumulates | a system filling up |
+| 3 | 21.6–26.4 | tilt down to the board's front edge: the strata section, ice → water | layers; what happens underground |
+| 4 | 26.4–45.6 | rise back; slow pull-out until every label is on screen at 44 s | the big picture |
+| 5 | 45.6–50.4 | log push on the figure; everything greys except orange (focus + context) | "this one" |
+| 6 | 50.4–60 | a circular inset opens from the figure: helmet off, first breath; end card in the empty corner | the individual and the system together; ends on the person, not a pull-back |
+
+Checked against the library's iso demo (one route, close-up opening, nested dive, pull-back ending):
+structure, opening, signature (strata melt + inset vs nested dive), camera path and ending differ.

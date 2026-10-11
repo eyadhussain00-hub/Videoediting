@@ -151,8 +151,8 @@ function hud(t, tq) {
   }
   // big jump punch-in
   for (const J of JUMPS) {
-    const dt = t - J.t; if (dt < 0 || dt > 2.4) continue;
-    const a = ss(seg(dt, 0, .08)) * (1 - ss(seg(dt, 2.1, 2.4))), sc = 1 + .35 * Math.exp(-dt * 9) * Math.cos(dt * 22);
+    const dt = t - J.t; if (dt < 0 || dt > 2.8) continue;
+    const a = ss(seg(dt, 0, .08)) * (1 - ss(seg(dt, 2.5, 2.8))), sc = 1 + .35 * Math.exp(-dt * 9) * Math.cos(dt * 22);
     const [num, ...rest] = J.text.split(' ');
     g.save(); g.globalAlpha = a; g.translate(W / 2, px(720)); g.scale(sc, sc); g.textAlign = 'center';
     g.shadowColor = 'rgba(10,14,18,.55)'; g.shadowBlur = px(30); g.shadowOffsetY = px(6);
