@@ -5,4 +5,5 @@ One-off videos made with Motion Video Director. Recurring clients (SK Media, CEO
 
 | Project | What it is | Status |
 |---|---|---|
+| `executive-presence-reel` | Premium motion-graphics re-edit of @hijeffdav's "coalescing" reel: burned captions removed, subject cut-out, kinetic type, quote cards, title reveal, synthesised SFX. | v1 delivered 2026-10-11, awaiting feedback. |
 | `rsv-demo-video` | RSV Studio's Remotion project: the self-running clinic demo ad (AR/EN, from recorded dashboard footage) and the 50-second Command Centre film (drawn in code, no footage). | Moved from `rsv-studio/marketing/demo-video`. The Command Centre film renders from here as is. The demo ad needs recordings, which need `rsv-studio` (see its README). |

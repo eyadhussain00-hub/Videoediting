@@ -8,3 +8,4 @@
 - 16:25 Remotion project + scenes. public/grain.png = 1024² gaussian noise (seed 7); public/last.jpg = last source frame.
 - 16:30 Preview sheets 0–68.6 s: fixed closing-quote placement, enlarged chaos bubbles + kept them off the caption band and inside the right safe zone, chip fades before "clarity", title card held to 28.3 s (dropped the overlapping caption group), more knotted tangle.
 - 16:33 Sound: 57 synthesised SFX events, music −3 dB + 30 % sidechain duck, dropout 23.3–25.3 s before the title hit, dip on "step back", one-bar extension under the end card. Loudnorm two-pass: −14.0 LUFS, −1.5 dBTP.
+- 16:47 Full render (Remotion, ~9 min) → re-encoded for delivery: renders/final/coalescing_v1.mp4 (H.264 CRF 20, AAC 256k/48 kHz, faststart, 117 MB, 68.65 s). QA: 1 fps sheet over the whole video clean; −14.0 LUFS / −1.5 dBTP. Sent to the user.
