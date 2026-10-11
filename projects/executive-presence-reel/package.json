@@ -1,0 +1,19 @@
+{
+  "name": "executive-presence-reel",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "studio": "remotion studio",
+    "typecheck": "tsc --noEmit",
+    "render": "remotion render Reel renders/final/reel.mp4",
+    "preview": "node scripts/preview.mjs"
+  },
+  "devDependencies": {
+    "@remotion/cli": "4.0.526",
+    "@types/react": "^19.3.0",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
+    "remotion": "4.0.526",
+    "typescript": "^5"
+  }
+}
