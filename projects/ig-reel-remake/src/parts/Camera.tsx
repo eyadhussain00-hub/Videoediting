@@ -38,7 +38,7 @@ export const zoomAt = (t: number) => {
 };
 
 // The cut-out subject (scripts/fg.sh). Off only while the matte is still being generated.
-const HAS_FG = false;
+const HAS_FG = true;
 
 const GRADE = "contrast(1.1) saturate(0.86) brightness(0.96)";
 

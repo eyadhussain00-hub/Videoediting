@@ -17,7 +17,11 @@ const WORDS: Word[] = [
   { text: "BOND", a: B.bond - 0.05, b: 55.2 },
 ];
 
-const CENTER_Y = 440; // wall band between the top of his head and the couch back
+// Placed so the top of each word clears his head: the skull hides only the lower middle of the letters.
+const CENTER_Y = 350;
+
+/** 0–1: how much a big word is on screen at t (the chapter HUD steps aside for it). */
+export const bigWordAt = (t: number) => (WORDS.some((x) => t >= x.a - 0.15 && t < x.b + 0.15) ? 1 : 0);
 
 export const BigWords = () => {
   const t = useCurrentFrame() / useVideoConfig().fps;
@@ -32,7 +36,7 @@ export const BigWords = () => {
         position: "absolute",
         left: 0,
         right: 0,
-        top: Math.max(300, CENTER_Y - size * 0.62),
+        top: Math.max(170, CENTER_Y - size * 0.62),
         textAlign: "center",
         opacity: 1 - out,
         transform: `scale(${1 + out * 0.06})`,

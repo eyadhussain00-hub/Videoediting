@@ -1,6 +1,7 @@
 import { interpolate, useCurrentFrame, useVideoConfig } from "remotion";
 import { B, ease, easeIO, env, lerp, ramp } from "../beats";
 import { C, MONO, SANS, SERIF } from "../theme";
+import { bigWordAt } from "./BigWords";
 import { Center, glass, pop } from "./ui";
 
 const W = 860;
@@ -141,7 +142,9 @@ const CH = [
   { n: "03", name: "TRUST", a: B.ch3, b: 33.6 },
 ];
 const Hud = ({ t }: { t: number }) => {
-  const v = env(t, B.ch1 + 0.2, 33.8, 0.4, 0.4);
+  // fades out while a chapter word fills the top of the frame
+  const clear = Math.min(...[-0.2, -0.1, 0, 0.1, 0.2].map((d) => 1 - bigWordAt(t + d)));
+  const v = env(t, B.ch1 + 0.2, 33.8, 0.4, 0.4) * (0.15 + 0.85 * clear);
   if (v <= 0) return null;
   return (
     <Center y={232} style={{ gap: 14, opacity: v, transform: `translateY(${(1 - v) * -30}px)` }}>

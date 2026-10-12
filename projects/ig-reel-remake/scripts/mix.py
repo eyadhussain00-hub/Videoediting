@@ -170,9 +170,24 @@ def main():
     with wave.open(tmp, "w") as w:
         w.setnchannels(1); w.setsampwidth(2); w.setframerate(SR)
         w.writeframes((np.clip(out / max(1, np.abs(out).max()), -1, 1) * 32767).astype(np.int16).tobytes())
+    # two-pass loudnorm: measure, then apply linearly → −14 LUFS integrated, −1.5 dBTP
+    import json, re
+    p = subprocess.run(["ffmpeg", "-hide_banner", "-i", tmp, "-af", "loudnorm=I=-14:TP=-1.5:LRA=11:print_format=json",
+                        "-f", "null", "-"], capture_output=True, text=True).stderr
+    m = json.loads(re.search(r"\{[^{}]*\"input_i\"[^{}]*\}", p).group(0))
+    gain = -14.0 - float(m["input_i"])  # static gain + true-peak limiter keeps the mix dynamics untouched
     subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", tmp, "-af",
-                    "loudnorm=I=-14:TP=-1.5:LRA=11,aformat=channel_layouts=stereo", "-ar", "48000", "public/mix.wav"], check=True)
-    print(f"mix: {len(CUES)} cues → public/mix.wav")
+                    f"volume={gain:.2f}dB,alimiter=limit=0.84:attack=1:release=60:level=disabled,aformat=channel_layouts=stereo",
+                    "-ar", "48000", "public/mix.wav"], check=True)
+    # the stereo file measures differently from the mono pre-mix: trim once against the real output
+    p = subprocess.run(["ffmpeg", "-hide_banner", "-nostats", "-i", "public/mix.wav", "-af", "ebur128", "-f", "null", "-"],
+                       capture_output=True, text=True).stderr
+    i_out = float(re.findall(r"I:\s+(-?[\d.]+) LUFS", p)[-1])
+    if abs(i_out + 14) > 0.2:
+        subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", "public/mix.wav", "-af",
+                        f"volume={-14 - i_out:.2f}dB,alimiter=limit=0.84:attack=1:release=60:level=disabled", tmp], check=True)
+        subprocess.run(["mv", tmp, "public/mix.wav"], check=True)
+    print(f"mix: {len(CUES)} cues → public/mix.wav (was {i_out} LUFS before trim)")
 
 
 if __name__ == "__main__":
