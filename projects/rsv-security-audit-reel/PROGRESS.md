@@ -15,11 +15,11 @@ Next step: on MP3 arrival — ffprobe + transcribe (word timings), lock beats.js
 for approval, then scenes. DO NOT build/render scenes before the VO MP3 arrives (skill golden rule #9).
 
 Open issues / user feedback not yet fixed:
-- Confirm AR dialect (script is light Gulf; offer MSA/other).
-- Confirm brand voice + whether one multilingual voice covers both languages.
-- Confirm final CTA keyword ("SCALE") and what the "kit in DMs" link points to.
+- "Kit in DMs" link target still TBD (what the CTA points followers to) — ask before final render.
 
-Key decisions & preferences:
+Key decisions & preferences (locked 2026-10-12):
+- AR dialect: light Gulf (as written). CTA keyword: "SCALE" / "سكيل".
+- Voices: separate EN + AR narrators (not one multilingual voice).
 - Ethical angle only: every mention of testing says "with the owner's written sign-off first". No cold scanning.
 - No hacker-in-hoodie / pixelated-face imagery; clean RSV-dark style.
 
