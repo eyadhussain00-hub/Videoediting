@@ -1,0 +1,7 @@
+# generated media: rebuild with scripts/ (see PROGRESS.md)
+public/*.mp4
+public/*.webm
+public/*.wav
+public/*.jpg
+public/clones/
+assets/footage/*.mp4
