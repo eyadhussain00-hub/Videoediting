@@ -52,7 +52,7 @@ def rustle(v=1.):
     d = .35; return bp(noise(d), 1500, 7000) * np.sin(np.pi * t_(d) / d) ** 2 * v
 def seal(v=1.):     # helmet latch + pressure hiss
     d = .9; t = t_(d); h = hp(noise(d), 2500) * np.exp(-t / .25) * .5
-    c = np.zeros_like(t); c[:int(.02 * SR)] = hp(noise(.02), 2000) * 1.2
+    c = np.zeros_like(t); c[:int(.02 * SR)] = hp(noise(.02), 2000) * .35
     return (h + c) * v
 def breath(v=1.):   # one deep inhale + exhale
     d = 2.2; t = t_(d); x = bp(noise(d), 300, 2600)
@@ -62,10 +62,10 @@ add(fx, lp(roar(td - .3, .9), 1600) * np.interp(np.arange(int((td - .3) * SR)) /
 add(fx, thump(1, 55), td, .9, 0); add(fx, whoosh(.9, .7), td, .25, 0)
 for e in T('dome'): add(fx, pop(.9), e['t'], .35, -.4 + e['i'] * .13)
 for e in T('panels'): [add(fx, clack(1.4, .6), e['t'] + k * .075, .08, .4) for k in range(5)]
-for e in T('factory'): add(fx, thump(.8, 90), e['t'], .4, -.4); add(fx, clack(.8, 1), e['t'] + .05, .2, -.4)
+for e in T('factory'): add(fx, thump(.8, 90), e['t'], .3, -.4); add(fx, clack(.8, 1), e['t'] + .05, .1, -.4)
 for e in T('domeDown'): add(fx, whoosh(.3, .5), e['t'], .12, .2)
 for e in T('house'): add(fx, clack(1.1 + (e['i'] % 4) * .1, .8), e['t'], .12, .5 - (e['i'] % 3) * .5)
-for e in T('iceCrack'): add(fx, crack(1), e['t'], .4, .3 - e['k'] * .3)
+for e in T('iceCrack'): add(fx, crack(1), e['t'], .16, .3 - e['k'] * .3)
 for e in T('thunder'): add(fx, rumble(2.5, .9 if not e.get('far') else .5), e['t'], .5 if not e.get('far') else .3, -.3)
 for e in T('trees'): add(fx, rustle(min(1, .3 + e['n'] * .02)), e['t'], .18, rng.uniform(-.6, .6))
 for e in T('jump'): add(fx, whoosh(.4, .8), e['t'] - .25, .25, 0)
@@ -82,8 +82,14 @@ add(fx, breath(1), T('breath')[0]['t'], .16, 0)
 # —— music, ducked slightly under the key foley ——
 mus, sr = sf.read(os.path.join(HERE, 'music', 'score.wav')); mus = mus[:N]
 if len(mus) < N: mus = np.pad(mus, ((0, N - len(mus)), (0, 0)))
+from scipy.ndimage import maximum_filter1d, uniform_filter1d
+def link_limit(x, ceil, look=.006):   # stereo-linked look-ahead limiter along time
+    n = int(look * SR); pk = maximum_filter1d(np.abs(x).max(1), size=2 * n + 1)
+    g = uniform_filter1d(np.minimum(1, ceil / np.maximum(pk, 1e-9)), size=n); return x * g[:, None]
 mix = amb * .9 + fx * .8 + mus * 1.0
-mix = limit(mix * .9)
+rms = np.sqrt(np.mean(mix ** 2))
+mix = link_limit(mix, rms * 3.4)            # crest ≤ ~11 dB so the −14 LUFS master keeps its true-peak headroom
+mix = mix * (.9 / np.abs(mix).max())
 os.makedirs(os.path.join(HERE, 'out'), exist_ok=True)
 sf.write(os.path.join(HERE, 'out', 'mix.wav'), mix.astype(np.float32), SR)
 print('out/mix.wav', mix.shape)

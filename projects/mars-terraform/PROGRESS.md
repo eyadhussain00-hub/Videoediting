@@ -8,9 +8,9 @@ Reference: an Instagram "what if humans disappeared" timelapse reel (format only
 
 | Version | Status |
 |---|---|
-| Tilt-Shift (`tiltshift/`) | scene, HUD, captions, score and mix built; first full render timed out (3 WebGL workers on 4 CPU cores); re-render with 2 workers |
-| Isometric Infographic (`iso/`) | built (Canvas 2D, ~0.3 s/frame); rendering |
-| Blend (`blend/`) | built (iso board + tilt-shift lens band, 16th-note stutter, speed readout); score and mix done; render after Tilt-Shift |
+| Tilt-Shift (`tiltshift/`) | **delivered** 2026-10-12 on Telegram: `mars-tiltshift.mp4` (60 s, −13.9 LUFS, peak −3.8 dB, no black frames). Rendered with `shared/chunks.mjs` (2 workers, ssaa 1.25, ~1 h 55 min) |
+| Isometric Infographic (`iso/`) | rendered and sent in the app 2026-10-11 (before the mix limiter fix: re-mix + re-mux before reusing it) |
+| Blend (`blend/`) | **on hold** (user: only the first video for now). Scene, score and mix built; not rendered |
 
 ## Files
 - `TREATMENT.md`: structures, shots, beat sheet, cue map, sound design (shared story)
