@@ -10,3 +10,6 @@
 - 21:27 scripts/mix.py: synthesised ambient pad (84 BPM Am9–Fmaj7–Cmaj7–G6, sub pulse, hats) ducked −9 dB under voice, 85 SFX cues; loudnorm −14.
 - 21:28 Google Fonts unreachable from headless Chromium (proxy CA) → fonts vendored into public/fonts, loaded with FontFace + delayRender.
 - 21:30 Sheets 0–11, 11–33, 33–62: fixed big words into the top UI zone, "3" clipped, chapter labels colliding with the HUD, book/pay card too low; added the complicated→simple scribble (14.4–17 s).
+- 21:35 fg.webm done; big words moved up (CENTER_Y 350) so his head only hides the lower middle of the letters; the HUD fades while a big word is up. Mix: static gain + limiter, trimmed against the stereo output → −14.0 LUFS.
+- 21:48 Full render v1 (Remotion, concurrency 4, ~10 min). Re-encoded yuvj420p → yuv420p (tv range), faststart. Full-video sheet checked: no overlaps or clipping.
+- 21:52 Sent a 3 Mbps preview (24 MB; the master is 40 MB, over the 30 MB send limit) + 2 stills.
