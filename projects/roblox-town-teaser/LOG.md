@@ -11,3 +11,5 @@
 - Audio: scripts/audio.py 2565 → cache/audio/mix_raw.wav; 5 ms end ramps against clicks; two-pass loudnorm
   (I=-14, TP=-1.5, linear) → cache/audio/mix.wav, measured -13.8 LUFS.
 - Full render: 660 frames at 1080×1920 → mux with mix.wav → renders/final/plot-town-teaser_v1.mp4.
+- Rendered 660 frames in 19 min (~1.75 s/frame). Muxed: H.264 crf 18 + AAC 192k, 1080×1920, 30 fps, 22.0 s, -13.8 LUFS.
+  Telegram copy at crf 23 (25 MB; Bot API limit is 50 MB) sent with tools/tg.sh. QA contact sheet clean.

@@ -1,6 +1,6 @@
 # PROGRESS – roblox-town-teaser   (updated 2026-10-12)
 Phase: final (v1 render)
-Current version: v1 → renders/final/plot-town-teaser_v1.mp4 (not committed; sent to the user)
+Current version: v1 → renders/final/plot-town-teaser_v1.mp4 (55 MB, not committed) + _v1_tg.mp4 (25 MB, sent on Telegram)
 Done:
 - Brief: teaser for a Roblox game idea ("every player gets a permanent house in one shared town"), inspired by
   @notarealcity's "Internet Town" reel. 9:16, 22 s, music + SFX only (no VO), working title PLOT TOWN.
