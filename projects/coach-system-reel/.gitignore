@@ -1,0 +1,14 @@
+node_modules
+dist
+.DS_Store
+.env
+
+# Ignore the output video from Git but not videos you import into src/.
+out
+
+# third-party source footage and intermediate renders: rebuild them (see README)
+public/footage.mp4
+out-render.log
+
+# the finished film (mix.sh writes it here): renders live on Drive, not in git
+/coach-system-reel.mp4

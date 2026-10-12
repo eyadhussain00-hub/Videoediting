@@ -6,3 +6,4 @@ One-off videos made with Motion Video Director. Recurring clients (SK Media, CEO
 | Project | What it is | Status |
 |---|---|---|
 | `rsv-demo-video` | RSV Studio's Remotion project: the self-running clinic demo ad (AR/EN, from recorded dashboard footage) and the 50-second Command Centre film (drawn in code, no footage). | Moved from `rsv-studio/marketing/demo-video`. The Command Centre film renders from here as is. The demo ad needs recordings, which need `rsv-studio` (see its README). |
+| `coach-system-reel` | 51.5 s spec re-edit of a fitness coach's talking-head reel (@stevemartnjr): kinetic captions, full-screen graphics for each point, synthesised score. A pitch piece, not for publishing without his permission. | Done, 12 Oct. Moved from `rsv-studio` (branch `ccr-0ecc953a-42jzsv`). The film is on Drive, not in git. |
