@@ -6,3 +6,4 @@ One-off videos made with Motion Video Director. Recurring clients (SK Media, CEO
 | Project | What it is | Status |
 |---|---|---|
 | `rsv-demo-video` | RSV Studio's Remotion project: the self-running clinic demo ad (AR/EN, from recorded dashboard footage) and the 50-second Command Centre film (drawn in code, no footage). | Moved from `rsv-studio/marketing/demo-video`. The Command Centre film renders from here as is. The demo ad needs recordings, which need `rsv-studio` (see its README). |
+| `roblox-town-teaser` | 22 s 9:16 teaser for a Roblox game idea ("PLOT TOWN", placeholder): every player gets a permanent house in one shared town. Three.js scene + synthesised music/SFX, no footage, no VO. | v1 rendered; waiting on feedback. |

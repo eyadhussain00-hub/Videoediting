@@ -1,0 +1,12 @@
+{
+  "name": "roblox-town-teaser",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "render": "node src/render.js --from 0 --to 20 --fps 30 --scale 1 --out cache/frames --jpg"
+  },
+  "dependencies": {
+    "playwright": "1.56.1",
+    "three": "0.180.0"
+  }
+}
