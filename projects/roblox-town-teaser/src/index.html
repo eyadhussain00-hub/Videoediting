@@ -1,0 +1,99 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Plot Town teaser</title>
+<style>
+  @font-face { font-family: 'Fredoka'; src: url('/assets/fonts/Fredoka.ttf') format('truetype'); font-weight: 300 700; }
+  html, body { margin: 0; padding: 0; overflow: hidden; background: #000; }
+  canvas#gl { position: absolute; left: 0; top: 0; display: block; }
+  #ov { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; transform-origin: 0 0;
+        font-family: 'Fredoka', sans-serif; color: #fff; pointer-events: none; }
+  #ov * { box-sizing: border-box; }
+  .ink { --ink: #1D1A39; }
+
+  /* population counter */
+  #counter { position: absolute; left: 540px; top: 228px; transform: translateX(-50%);
+    background: #1D1A39; border: 7px solid #fff; border-radius: 44px; padding: 14px 46px 18px;
+    text-align: center; box-shadow: 0 12px 0 rgba(29,26,57,.55); min-width: 420px; }
+  #counter .lab { font-weight: 600; font-size: 30px; letter-spacing: .16em; color: #FFC845; display: flex;
+    align-items: center; justify-content: center; gap: 12px; }
+  #counter .lab svg { width: 34px; height: 34px; }
+  #counter .num { font-weight: 700; font-size: 104px; line-height: 1; margin-top: 4px; font-variant-numeric: tabular-nums; }
+
+  /* captions */
+  #cap { position: absolute; left: 0; top: 1190px; width: 1080px; text-align: center; }
+  .cline { display: block; white-space: nowrap; line-height: 1.02; }
+  .w { display: inline-block; margin: 0 .12em; font-weight: 700; font-size: 96px; color: #fff; will-change: transform, filter;
+    text-shadow: 0 0 0 #1D1A39; }
+  .w.key { font-size: 176px; color: #FFC845; letter-spacing: .01em; }
+
+  /* district chips */
+  .chip { position: absolute; left: 540px; top: 470px; background: #1D1A39; border: 7px solid #fff; border-radius: 34px;
+    padding: 18px 44px 22px; text-align: center; box-shadow: 0 12px 0 rgba(29,26,57,.55); white-space: nowrap; }
+  .chip .lab { font-weight: 600; font-size: 32px; letter-spacing: .14em; color: #fff; opacity: .9;
+    display: flex; align-items: center; justify-content: center; gap: 12px; }
+  .chip .lab svg { width: 34px; height: 34px; }
+  .chip .name { font-weight: 700; font-size: 92px; line-height: 1; color: #FFC845; margin-top: 6px; }
+
+  /* join feed */
+  .card { position: absolute; left: 0; top: 0; height: 92px; display: flex; align-items: center; gap: 16px;
+    background: #fff; border: 5px solid #1D1A39; border-radius: 28px; padding: 0 30px 0 14px;
+    box-shadow: 0 8px 0 rgba(29,26,57,.5); white-space: nowrap; }
+  .card .ic { width: 60px; height: 60px; border-radius: 18px; display: flex; align-items: center; justify-content: center; }
+  .card .ic svg { width: 44px; height: 44px; }
+  .card .u { font-weight: 700; font-size: 38px; color: #1D1A39; }
+  .card .m { font-weight: 500; font-size: 34px; color: #6B6880; }
+
+  /* @you pin */
+  #pin { position: absolute; left: 0; top: 0; transform-origin: 50% 100%; }
+  #pin .b { background: #fff; border: 6px solid #1D1A39; border-radius: 26px; padding: 6px 28px 10px; font-weight: 700;
+    font-size: 52px; color: #1D1A39; box-shadow: 0 8px 0 rgba(29,26,57,.5); white-space: nowrap; }
+  #pin .tri { width: 0; height: 0; margin: -2px auto 0; border-left: 18px solid transparent; border-right: 18px solid transparent;
+    border-top: 22px solid #1D1A39; }
+
+  /* title card */
+  #veil { position: absolute; inset: 0; background: radial-gradient(ellipse 80% 60% at 50% 48%, rgba(10,8,30,.35), rgba(10,8,30,.82)); }
+  #logo { position: absolute; left: 540px; top: 560px; width: 250px; height: 250px; margin-left: -125px; }
+  #word { position: absolute; left: 0; top: 830px; width: 1080px; text-align: center; white-space: nowrap; }
+  #word .l { display: inline-block; font-weight: 700; font-size: 168px; line-height: 1; }
+  #word .sp { display: inline-block; width: 40px; }
+  #claim { position: absolute; left: 0; top: 1080px; width: 1080px; text-align: center; font-weight: 600; font-size: 66px; }
+  #ctaPill { position: absolute; left: 540px; top: 1210px; transform: translateX(-50%); background: #FFC845; color: #1D1A39;
+    border: 7px solid #1D1A39; border-radius: 999px; padding: 18px 54px 24px; font-weight: 700; font-size: 52px;
+    letter-spacing: .04em; white-space: nowrap; box-shadow: 0 12px 0 #1D1A39; }
+  #follow { position: absolute; left: 0; top: 1370px; width: 1080px; text-align: center; font-weight: 500; font-size: 42px; color: rgba(255,255,255,.88); }
+</style>
+<script type="importmap">
+{ "imports": { "three": "/node_modules/three/build/three.module.js", "three/addons/": "/node_modules/three/examples/jsm/" } }
+</script>
+</head>
+<body>
+<canvas id="gl"></canvas>
+<div id="ov">
+  <div id="pin"><div class="b">@you</div><div class="tri"></div></div>
+  <div id="feed"></div>
+  <div id="counter"><div class="lab"><svg viewBox="0 0 64 64"><use href="#house"/></svg>POPULATION</div><div class="num">0</div></div>
+  <div id="chips"></div>
+  <div id="cap"></div>
+  <div id="title">
+    <div id="veil"></div>
+    <svg id="logo" viewBox="0 0 64 64"><use href="#house"/></svg>
+    <div id="word"></div>
+    <div id="claim">Claim your plot.</div>
+    <div id="ctaPill">COMING SOON TO ROBLOX</div>
+    <div id="follow">Follow to claim yours first</div>
+  </div>
+</div>
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <g id="house" stroke="#1D1A39" stroke-width="4.5" stroke-linejoin="round" stroke-linecap="round">
+      <rect x="13" y="30" width="38" height="26" rx="3" fill="#FFF6E6"/>
+      <path d="M6 33 L32 9 L58 33 Z" fill="var(--roof, #FF6B5B)"/>
+      <rect x="27" y="40" width="10" height="16" rx="2" fill="#1D1A39"/>
+    </g>
+  </defs>
+</svg>
+<script type="module" src="./scene.js"></script>
+</body>
+</html>

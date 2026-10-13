@@ -1,0 +1,7 @@
+{
+  "assets": [
+    { "path": "assets/fonts/Fredoka.ttf", "source": "https://github.com/google/fonts/tree/main/ofl/fredoka", "author": "Milena Brandão / Hafontia", "license": "SIL OFL 1.1 (assets/fonts/OFL-Fredoka.txt)", "use": "final" }
+  ],
+  "audio": "All music and SFX synthesised in scripts/audio.py — no third-party samples.",
+  "reference": { "url": "https://www.instagram.com/reel/DeVxv6-TOq2/", "author": "@notarealcity", "use": "reference-only (concept inspiration; nothing copied)" }
+}
