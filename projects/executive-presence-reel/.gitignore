@@ -1,0 +1,11 @@
+node_modules/
+cache/
+renders/
+models/
+public/*.mp4
+public/*.webm
+public/*.wav
+public/*.jpg
+public/*.png
+public/fonts/
+assets/footage/
