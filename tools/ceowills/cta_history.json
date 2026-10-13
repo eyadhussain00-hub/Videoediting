@@ -1,9 +1,6 @@
 {
  "_comment": "iMessage CTA cards used per video, oldest first (render.py writes this on every final render; plan_ctas penalises cards used in the last few videos).",
  "videos": {
-  "Business owners: deep, dark IHT conversation": [
-   "end:say:hey-friend-have-the-deep-dark-iht-conversation-w"
-  ],
   "Business partners: agree your succession": [
    "end:say:hey-brother-three-hours-with-your-partners-now-s"
   ],
@@ -19,6 +16,7 @@
   "Culture leaving daughters out": [],
   "HMRC can take up to 40%": [],
   "Business leader feeding your family": [],
-  "CEOwills bridges your company and your will": []
+  "CEOwills bridges your company and your will": [],
+  "Business owners: deep, dark IHT conversation": []
  }
 }
