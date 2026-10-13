@@ -1,6 +1,7 @@
-# PROGRESS – winter-arc-reel   (updated 2026-10-13 20:10)
-Phase: assets → first full render (v1)
-Current version: none yet → renders/final/winter-arc_v1.mp4
+# PROGRESS – winter-arc-reel   (updated 2026-10-13 22:40)
+Phase: preview (v1 sent on Telegram, awaiting Eyad's notes)
+Current version: v1 → renders/final/winter-arc_v1.mp4 (1080×1920, 30 fps, H.264 crf 17, AAC 192k, -14 LUFS, 62 MB; not committed).
+  Telegram preview: renders/previews/winter-arc_v1_preview.mp4 (43 MB, 4.8 Mb/s). App copy: winter-arc_v1_720p.mp4 (26 MB).
 
 Done:
 - Source: instagram.com/reel/Dd9ds6kI-q9 (@big.esa, "The Muslim Winter Arc: 90-day playbook", 69.7 s). Spec edit,
@@ -8,10 +9,10 @@ Done:
   (Drive link left blank until Eyad uploads it).
 - Transcript (plan/words.json → src/words.json), storyboard (plan/storyboard.md), all scene code, sound design (public/mix.wav).
 
-In progress: caption removal (cache/clean_a.mp4 + clean_b.mp4) and speaker matte (cache/matte.mp4).
+- Clean plate (public/clean.mp4), speaker matte → public/fg.webm, v1 rendered (Remotion, concurrency 4: ~17 min) and sent.
 
-Next step: concat clean halves → public/clean.mp4; alphamerge clean + matte → public/fg.webm; contact sheets;
-  render v1; send the preview on Telegram (tools/tg.sh video, <50 MB).
+Next step: Eyad's notes → v2. When he uploads the master to Drive, he fills the link into the Big Esa DM draft.
+  The master is not in git: re-render it (steps below) if this container is gone.
 
 Rebuild from scratch (fresh container):
   npm ci · pip install yt-dlp faster-whisper opencv-python-headless rembg onnxruntime scipy torch (CPU) ·

@@ -16,3 +16,9 @@
 - Remotion scenes written (src/scenes: base, depth, hud, steps, offer, fx). Stills checked on the raw plate.
 - scripts/audio.py: cold minor pad + felt-piano arp + sub pulse + wind bed, synthesised SFX on word cues, voice ducking,
   loudnorm -14 LUFS / -1.5 dBTP. np.convolve smoothing replaced with a cumsum moving average (was minutes → 12 s).
+- Caption removal (two halves, ~62 min) and matte (~60 min) done; concat → public/clean.mp4; alphamerge → public/fg.webm.
+  The clean plate holds up on the full contact sheet (no header ghost, subtitles gone).
+- Fixes after stills: crescent hidden during the 04:00 clock, step-6 card hands over to the checklist without overlap,
+  payoff counter clear of the letterbox, offer ring hidden until "hosting".
+- v1 render: cache/v1_raw.mp4 → renders/final/winter-arc_v1.mp4 (crf 17) + Telegram preview (4.8 Mb/s, 43 MB).
+  Loudness -14.0 LUFS. Sent on Telegram (tg.sh video: ok).
