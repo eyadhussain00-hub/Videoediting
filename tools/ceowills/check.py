@@ -2,7 +2,7 @@
 """Pre-render check for a CEOwills edit.json — catches the notes Eyad kept sending back, before any render time is spent.
 Usage: check.py edit.json        → FAIL lines must be fixed; WARN lines must be read (fix, or say why in _source). Exit 1 on FAIL.
 
-Checks: files (raw, lav audio, words, nasheed), cuts and length, title (present, ≤22 chars a line, gone before the first
+Checks: files (raw, lav audio, words), no nasheed / iMessage cards / end banner (13 Oct), cuts and length, title (present, ≤22 chars a line, gone before the first
 card), end CTA (keyword actually spoken at `cta.at`), iMessage cards (chosen by hand, exist, fit the frame timeline,
 match what he says around them, not repeated from recent videos), suspected stutters (long words inside kept cuts),
 hand-set caption chunks that don't match the transcript."""
@@ -32,16 +32,10 @@ def main():
     if not E.get("audio"): fail("no \"audio\": the lav mic is required (match_mic.py), never the camera audio")
     elif not P("audio").exists(): fail(f"lav audio missing: {E['audio']}")
     if not E.get("words") or not P("words").exists(): fail(f"words file missing: {E.get('words')}")
-    nas = E.get("nasheed")
-    if not nas: warn("no nasheed — the house bed is the-sins (muffled) unless Eyad said otherwise")
-    elif not (base / nas["file"]).exists(): fail(f"nasheed file missing: {nas['file']} (the render would go out voice-only)")
-    elif Path(nas["file"]).stem not in json.loads((HERE / "nasheeds.json").read_text(encoding="utf-8")):
-        warn(f"nasheed '{Path(nas['file']).stem}' is not in nasheeds.json (Adnan's approved list)")
-    # Adnan's rotation (7 Oct): a new nasheed every 3–4 videos, then reuse the same 3 → tracker.json says which one per video
-    row = next((v for v in json.loads((HERE / "tracker.json").read_text(encoding="utf-8"))["videos"]
-                if Path(v.get("job", "")).name == E_path.name), None)
-    if row and row.get("nasheed") and (not nas or Path(nas["file"]).stem != row["nasheed"]):
-        fail(f"nasheed should be '{row['nasheed']}' (tracker.json rotation), job has {nas and Path(nas['file']).stem}")
+    # Eyad, 13 Oct (Adnan's chat): "all videos must have no top text, no imessage cta, no background music — that's it"
+    if E.get("nasheed"): fail(f"nasheed {E['nasheed'].get('file')} — no background music on any video (13 Oct): \"nasheed\": null")
+    if E.get("ctas", "auto") != []: fail("\"ctas\" must be [] — no iMessage cards (5 Oct, again 13 Oct); a missing key means auto cards")
+    if E.get("end_banner"): fail("end_banner — no iMessage-style CTA banner at the end (13 Oct); remove the key")
     ec = E["endcard"] if "endcard" in E else L.get("endcard")
     if ec and not (HERE / ec["file"]).exists(): fail(f"end card missing: {ec['file']}")
     elif not ec: warn("no end card — Adnan wants his follow card at the end of every video (7 Oct)")
@@ -94,7 +88,7 @@ def main():
             if "comment" not in near: warn(f"no 'comment' spoken at cta.at ({cta_t:.1f} s out): '{near[:60]}'")
             if cta["keyword"].lower() not in near: fail(f"CTA keyword '{cta['keyword']}' isn't spoken after cta.at — the underline would never draw")
 
-    # ---- iMessage cards
+    # ---- iMessage cards (off since 5 Oct and 13 Oct; the checks stay for if Eyad turns them back on)
     spec = E.get("ctas", "auto")
     hist = render.cta_history()["videos"]
     recent = [k for name, ks in list(hist.items())[-N.get("recent_videos", 4):] if name != E.get("name") for k in ks]
@@ -122,22 +116,6 @@ def main():
             if tags and not any(re.search(r"\b" + re.escape(x), ctx) for x in tags) and "generic" not in render.CTAS[k]["tags"]:
                 warn(f"card '{k}' at {t0:.0f} s: none of its topics ({', '.join(tags[:5])}) come up around it — is it the right card?")
             if k in recent: warn(f"card '{k}' was used in one of the last {N.get('recent_videos', 4)} videos — switch it up")
-        if not spec: warn(f"no cards in a {dur:.0f} s reel (≥ {N['min_video_s']} s gets one every {N['every_s']} s)")
-
-    # ---- end banner: the CTA banner over the last seconds (Sofian, 9 Oct; Eyad 10 Oct: the drawn iPhone banner)
-    EB = E.get("end_banner"); B = {**L["end_banner"], **(EB if isinstance(EB, dict) else {})}
-    if not EB: fail("no end banner (\"end_banner\": {\"text\": …}) — every video ends on a CTA banner")
-    elif isinstance(EB, dict) and EB.get("text"):
-        tx = EB["text"]
-        if "ceowills.com" not in tx.lower(): warn(f"end banner '{tx[:30]}…' doesn't end on ceowills.com")
-        if len(tx) > 120: warn(f"end banner is {len(tx)} characters — keep it to ~3 lines (≤ ~110)")
-        jobs = [json.loads(j.read_text(encoding="utf-8")) for j in (HERE / "jobs").glob("*.edit.json")]
-        same = [o.get("name", "?") for o in jobs if o.get("name") != E.get("name") and isinstance(o.get("end_banner"), dict) and o["end_banner"].get("text") == tx]
-        if same: warn(f"end banner text is the same as in {', '.join(same)} — write one for this video")
-    else:
-        ek = EB["key"] if isinstance(EB, dict) else EB
-        if ek not in render.CTAS: fail(f"end banner '{ek}' is not in ctas.json")
-    if EB and dur < B["hold_s"] + 3: fail(f"a {dur:.0f} s reel is too short for a {B['hold_s']} s end banner")
 
     # ---- hand-set caption chunks
     if E.get("chunks") and words:
