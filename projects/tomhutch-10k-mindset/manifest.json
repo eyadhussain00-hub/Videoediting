@@ -1,0 +1,10 @@
+{
+  "assets": [
+    {"path": "assets/footage/source.mp4", "source": "https://www.instagram.com/reel/DdeGMVYzACe/", "author": "Thomas Hutcheson (@tomhutchmove)", "license": "third-party reel, link supplied by the user; usage rights not verified", "use": "final"},
+    {"path": "assets/fonts/InterTight.ttf", "source": "Google Fonts (copied from tools/sk-media/fonts)", "license": "OFL-1.1", "use": "final"},
+    {"path": "assets/fonts/InstrumentSerif-Regular.ttf", "source": "https://github.com/google/fonts/tree/main/ofl/instrumentserif", "license": "OFL-1.1 (assets/fonts/InstrumentSerif-OFL.txt)", "use": "final"},
+    {"path": "assets/fonts/InstrumentSerif-Italic.ttf", "source": "https://github.com/google/fonts/tree/main/ofl/instrumentserif", "license": "OFL-1.1", "use": "final"},
+    {"path": "assets/fonts/JetBrainsMono.ttf", "source": "https://github.com/google/fonts/tree/main/ofl/jetbrainsmono", "license": "OFL-1.1", "use": "final"},
+    {"path": "public/mix.wav (generated)", "source": "scripts/sfx.py — all SFX synthesised in code", "license": "own work", "use": "final"}
+  ]
+}

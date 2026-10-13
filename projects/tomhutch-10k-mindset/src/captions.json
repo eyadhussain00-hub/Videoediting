@@ -1,0 +1,1053 @@
+[
+ {
+  "s": 0.0,
+  "words": [
+   {
+    "w": "10K",
+    "t": 0.0,
+    "key": false
+   },
+   {
+    "w": "per",
+    "t": 0.28,
+    "key": false
+   },
+   {
+    "w": "month",
+    "t": 0.48,
+    "key": false
+   },
+   {
+    "w": "means",
+    "t": 0.66,
+    "key": false
+   },
+   {
+    "w": "absolutely",
+    "t": 0.98,
+    "key": false
+   },
+   {
+    "w": "nothing.",
+    "t": 1.68,
+    "key": false
+   }
+  ],
+  "hide": true,
+  "e": 2.4
+ },
+ {
+  "s": 2.4,
+  "words": [
+   {
+    "w": "When",
+    "t": 2.4,
+    "key": false
+   },
+   {
+    "w": "you",
+    "t": 2.48,
+    "key": false
+   },
+   {
+    "w": "hit",
+    "t": 2.62,
+    "key": true
+   },
+   {
+    "w": "it,",
+    "t": 2.8,
+    "key": false
+   }
+  ],
+  "hide": false,
+  "e": 3.06
+ },
+ {
+  "s": 3.06,
+  "words": [
+   {
+    "w": "you",
+    "t": 3.06,
+    "key": false
+   },
+   {
+    "w": "wake",
+    "t": 3.12,
+    "key": false
+   },
+   {
+    "w": "up",
+    "t": 3.3,
+    "key": false
+   },
+   {
+    "w": "in",
+    "t": 3.44,
+    "key": false
+   }
+  ],
+  "hide": false,
+  "e": 3.54
+ },
+ {
+  "s": 3.54,
+  "words": [
+   {
+    "w": "the",
+    "t": 3.54,
+    "key": false
+   },
+   {
+    "w": "same",
+    "t": 3.66,
+    "key": true
+   },
+   {
+    "w": "bed",
+    "t": 3.82,
+    "key": false
+   }
+  ],
+  "hide": false,
+  "e": 4.0
+ },
+ {
+  "s": 4.0,
+  "words": [
+   {
+    "w": "the",
+    "t": 4.0,
+    "key": false
+   },
+   {
+    "w": "next",
+    "t": 4.12,
+    "key": false
+   },
+   {
+    "w": "morning,",
+    "t": 4.28,
+    "key": false
+   }
+  ],
+  "hide": false,
+  "e": 4.68
+ },
+ {
+  "s": 4.68,
+  "words": [
+   {
+    "w": "you",
+    "t": 4.68,
+    "key": false
+   },
+   {
+    "w": "have",
+    "t": 4.74,
+    "key": false
+   },
+   {
+    "w": "the",
+    "t": 4.84,
+    "key": false
+   },
+   {
+    "w": "same",
+    "t": 5.0,
+    "key": true
+   }
+  ],
+  "hide": false,
+  "e": 5.2
+ },
+ {
+  "s": 5.2,
+  "words": [
+   {
+    "w": "girlfriend",
+    "t": 5.2,
+    "key": false
+   },
+   {
+    "w": "or",
+    "t": 5.48,
+    "key": false
+   },
+   {
+    "w": "boyfriend,",
+    "t": 5.68,
+    "key": false
+   }
+  ],
+  "hide": false,
+  "e": 6.18
+ },
+ {
+  "s": 6.18,
+  "words": [
+   {
+    "w": "you",
+    "t": 6.18,
+    "key": false
+   },
+   {
+    "w": "work",
+    "t": 6.28,
+    "key": false
+   },
+   {
+    "w": "with",
+    "t": 6.52,
+    "key": false
+   },
+   {
+    "w": "the",
+    "t": 6.68,
+    "key": false
+   },
+   {
+    "w": "same",
+    "t": 6.86,
+    "key": true
+   }
+  ],
+  "hide": false,
+  "e": 7.16
+ },
+ {
+  "s": 7.16,
+  "words": [
+   {
+    "w": "or",
+    "t": 7.16,
+    "key": false
+   },
+   {
+    "w": "maybe",
+    "t": 7.32,
+    "key": false
+   }
+  ],
+  "hide": false,
+  "e": 7.5
+ },
+ {
+  "s": 7.5,
+  "words": [
+   {
+    "w": "a",
+    "t": 7.5,
+    "key": false
+   },
+   {
+    "w": "few",
+    "t": 7.7,
+    "key": false
+   },
+   {
+    "w": "extra",
+    "t": 7.88,
+    "key": false
+   },
+   {
+    "w": "clients.",
+    "t": 8.14,
+    "key": true
+   }
+  ],
+  "hide": false,
+  "e": 8.62
+ },
+ {
+  "s": 8.62,
+  "words": [
+   {
+    "w": "Maybe",
+    "t": 8.62,
+    "key": false
+   },
+   {
+    "w": "you",
+    "t": 8.78,
+    "key": false
+   },
+   {
+    "w": "can",
+    "t": 8.98,
+    "key": false
+   }
+  ],
+  "hide": false,
+  "e": 9.1
+ },
+ {
+  "s": 9.1,
+  "words": [
+   {
+    "w": "start",
+    "t": 9.1,
+    "key": false
+   },
+   {
+    "w": "to",
+    "t": 9.3,
+    "key": false
+   },
+   {
+    "w": "give",
+    "t": 9.48,
+    "key": false
+   },
+   {
+    "w": "money",
+    "t": 9.62,
+    "key": true
+   }
+  ],
+  "hide": false,
+  "e": 9.84
+ },
+ {
+  "s": 9.84,
+  "words": [
+   {
+    "w": "to",
+    "t": 9.84,
+    "key": false
+   },
+   {
+    "w": "your",
+    "t": 10.04,
+    "key": false
+   },
+   {
+    "w": "family",
+    "t": 10.18,
+    "key": true
+   }
+  ],
+  "hide": false,
+  "e": 10.54
+ },
+ {
+  "s": 10.54,
+  "words": [
+   {
+    "w": "or",
+    "t": 10.54,
+    "key": false
+   },
+   {
+    "w": "support",
+    "t": 10.92,
+    "key": false
+   },
+   {
+    "w": "your",
+    "t": 11.26,
+    "key": false
+   },
+   {
+    "w": "friends.",
+    "t": 11.46,
+    "key": true
+   }
+  ],
+  "hide": false,
+  "e": 11.84
+ },
+ {
+  "s": 11.84,
+  "words": [
+   {
+    "w": "You",
+    "t": 11.84,
+    "key": false
+   },
+   {
+    "w": "might",
+    "t": 11.98,
+    "key": false
+   },
+   {
+    "w": "even",
+    "t": 12.22,
+    "key": false
+   }
+  ],
+  "hide": false,
+  "e": 12.52
+ },
+ {
+  "s": 12.52,
+  "words": [
+   {
+    "w": "be",
+    "t": 12.52,
+    "key": false
+   },
+   {
+    "w": "able",
+    "t": 12.66,
+    "key": false
+   },
+   {
+    "w": "to",
+    "t": 12.8,
+    "key": false
+   },
+   {
+    "w": "afford",
+    "t": 12.92,
+    "key": true
+   }
+  ],
+  "hide": false,
+  "e": 13.2
+ },
+ {
+  "s": 13.2,
+  "words": [
+   {
+    "w": "a",
+    "t": 13.2,
+    "key": false
+   },
+   {
+    "w": "business",
+    "t": 13.32,
+    "key": true
+   },
+   {
+    "w": "class",
+    "t": 13.52,
+    "key": true
+   },
+   {
+    "w": "flight",
+    "t": 13.78,
+    "key": false
+   }
+  ],
+  "hide": false,
+  "e": 14.12
+ },
+ {
+  "s": 14.12,
+  "words": [
+   {
+    "w": "and",
+    "t": 14.12,
+    "key": false
+   },
+   {
+    "w": "larp",
+    "t": 14.3,
+    "key": true
+   },
+   {
+    "w": "on",
+    "t": 14.48,
+    "key": false
+   },
+   {
+    "w": "Instagram,",
+    "t": 14.68,
+    "key": false
+   }
+  ],
+  "hide": false,
+  "e": 15.14
+ },
+ {
+  "s": 15.14,
+  "words": [
+   {
+    "w": "like",
+    "t": 15.14,
+    "key": false
+   },
+   {
+    "w": "me.",
+    "t": 15.4,
+    "key": false
+   }
+  ],
+  "hide": false,
+  "e": 15.74
+ },
+ {
+  "s": 15.74,
+  "words": [
+   {
+    "w": "But",
+    "t": 15.74,
+    "key": false
+   },
+   {
+    "w": "other",
+    "t": 15.82,
+    "key": false
+   },
+   {
+    "w": "than",
+    "t": 15.96,
+    "key": false
+   },
+   {
+    "w": "that,",
+    "t": 16.14,
+    "key": false
+   }
+  ],
+  "hide": false,
+  "e": 16.4
+ },
+ {
+  "s": 16.4,
+  "words": [
+   {
+    "w": "nothing",
+    "t": 16.4,
+    "key": false
+   },
+   {
+    "w": "really",
+    "t": 16.64,
+    "key": false
+   },
+   {
+    "w": "changes.",
+    "t": 16.92,
+    "key": false
+   }
+  ],
+  "hide": true,
+  "e": 17.44
+ },
+ {
+  "s": 17.44,
+  "words": [
+   {
+    "w": "You",
+    "t": 17.44,
+    "key": false
+   },
+   {
+    "w": "just",
+    "t": 17.5,
+    "key": false
+   },
+   {
+    "w": "keep",
+    "t": 17.76,
+    "key": false
+   }
+  ],
+  "hide": false,
+  "e": 17.94
+ },
+ {
+  "s": 17.94,
+  "words": [
+   {
+    "w": "playing",
+    "t": 17.94,
+    "key": false
+   },
+   {
+    "w": "the",
+    "t": 18.18,
+    "key": false
+   },
+   {
+    "w": "game.",
+    "t": 18.34,
+    "key": true
+   }
+  ],
+  "hide": false,
+  "e": 18.7
+ },
+ {
+  "s": 18.7,
+  "words": [
+   {
+    "w": "The",
+    "t": 18.7,
+    "key": false
+   },
+   {
+    "w": "point",
+    "t": 18.7,
+    "key": false
+   },
+   {
+    "w": "in",
+    "t": 18.78,
+    "key": false
+   },
+   {
+    "w": "this",
+    "t": 18.9,
+    "key": false
+   },
+   {
+    "w": "video",
+    "t": 19.04,
+    "key": false
+   }
+  ],
+  "hide": false,
+  "e": 19.26
+ },
+ {
+  "s": 19.26,
+  "words": [
+   {
+    "w": "is",
+    "t": 19.26,
+    "key": false
+   },
+   {
+    "w": "to",
+    "t": 19.345,
+    "key": false
+   },
+   {
+    "w": "get",
+    "t": 19.43,
+    "key": false
+   },
+   {
+    "w": "you",
+    "t": 19.515,
+    "key": false
+   }
+  ],
+  "hide": false,
+  "e": 19.6
+ },
+ {
+  "s": 19.6,
+  "words": [
+   {
+    "w": "to",
+    "t": 19.6,
+    "key": false
+   },
+   {
+    "w": "stop",
+    "t": 19.7,
+    "key": false
+   },
+   {
+    "w": "pedestalizing",
+    "t": 19.82,
+    "key": true
+   }
+  ],
+  "hide": false,
+  "e": 20.02
+ },
+ {
+  "s": 20.02,
+  "words": [
+   {
+    "w": "10K",
+    "t": 20.02,
+    "key": true
+   },
+   {
+    "w": "a",
+    "t": 20.44,
+    "key": false
+   },
+   {
+    "w": "month,",
+    "t": 20.86,
+    "key": false
+   }
+  ],
+  "hide": false,
+  "e": 21.28
+ },
+ {
+  "s": 21.28,
+  "words": [
+   {
+    "w": "because",
+    "t": 21.28,
+    "key": false
+   },
+   {
+    "w": "the",
+    "t": 21.6,
+    "key": false
+   },
+   {
+    "w": "minute",
+    "t": 21.74,
+    "key": false
+   }
+  ],
+  "hide": false,
+  "e": 21.86
+ },
+ {
+  "s": 21.86,
+  "words": [
+   {
+    "w": "you",
+    "t": 21.86,
+    "key": false
+   },
+   {
+    "w": "stop",
+    "t": 22.05,
+    "key": false
+   },
+   {
+    "w": "looking",
+    "t": 22.24,
+    "key": true
+   },
+   {
+    "w": "up",
+    "t": 22.43,
+    "key": true
+   },
+   {
+    "w": "to",
+    "t": 22.62,
+    "key": false
+   },
+   {
+    "w": "it,",
+    "t": 22.81,
+    "key": false
+   }
+  ],
+  "hide": false,
+  "e": 23.0
+ },
+ {
+  "s": 23.0,
+  "words": [
+   {
+    "w": "it",
+    "t": 23.0,
+    "key": false
+   },
+   {
+    "w": "comes",
+    "t": 23.145,
+    "key": true
+   },
+   {
+    "w": "to",
+    "t": 23.29,
+    "key": false
+   },
+   {
+    "w": "you",
+    "t": 23.435,
+    "key": false
+   }
+  ],
+  "hide": false,
+  "e": 23.58
+ },
+ {
+  "s": 23.58,
+  "words": [
+   {
+    "w": "a",
+    "t": 23.58,
+    "key": false
+   },
+   {
+    "w": "lot",
+    "t": 23.6,
+    "key": false
+   },
+   {
+    "w": "easier.",
+    "t": 23.72,
+    "key": true
+   }
+  ],
+  "hide": false,
+  "e": 24.18
+ },
+ {
+  "s": 24.18,
+  "words": [
+   {
+    "w": "The",
+    "t": 24.18,
+    "key": false
+   },
+   {
+    "w": "minute",
+    "t": 24.22,
+    "key": false
+   },
+   {
+    "w": "you",
+    "t": 24.32,
+    "key": false
+   }
+  ],
+  "hide": false,
+  "e": 24.52
+ },
+ {
+  "s": 24.52,
+  "words": [
+   {
+    "w": "normalize",
+    "t": 24.52,
+    "key": true
+   },
+   {
+    "w": "it",
+    "t": 25.16,
+    "key": false
+   }
+  ],
+  "hide": false,
+  "e": 25.26
+ },
+ {
+  "s": 25.26,
+  "words": [
+   {
+    "w": "in",
+    "t": 25.26,
+    "key": false
+   },
+   {
+    "w": "your",
+    "t": 25.38,
+    "key": false
+   },
+   {
+    "w": "mind,",
+    "t": 25.52,
+    "key": true
+   }
+  ],
+  "hide": false,
+  "e": 25.9
+ },
+ {
+  "s": 25.9,
+  "words": [
+   {
+    "w": "it",
+    "t": 25.9,
+    "key": false
+   },
+   {
+    "w": "starts",
+    "t": 26.065,
+    "key": false
+   },
+   {
+    "w": "to",
+    "t": 26.23,
+    "key": false
+   },
+   {
+    "w": "appear",
+    "t": 26.395,
+    "key": true
+   }
+  ],
+  "hide": false,
+  "e": 26.56
+ },
+ {
+  "s": 26.56,
+  "words": [
+   {
+    "w": "in",
+    "t": 26.56,
+    "key": false
+   },
+   {
+    "w": "your",
+    "t": 26.72,
+    "key": false
+   },
+   {
+    "w": "reality,",
+    "t": 26.86,
+    "key": true
+   }
+  ],
+  "hide": false,
+  "e": 27.38
+ },
+ {
+  "s": 27.38,
+  "words": [
+   {
+    "w": "you'll",
+    "t": 27.38,
+    "key": false
+   },
+   {
+    "w": "also",
+    "t": 27.58,
+    "key": false
+   },
+   {
+    "w": "just",
+    "t": 27.76,
+    "key": false
+   }
+  ],
+  "hide": false,
+  "e": 27.94
+ },
+ {
+  "s": 27.94,
+  "words": [
+   {
+    "w": "be",
+    "t": 27.94,
+    "key": false
+   },
+   {
+    "w": "able",
+    "t": 28.04,
+    "key": false
+   },
+   {
+    "w": "to",
+    "t": 28.14,
+    "key": false
+   },
+   {
+    "w": "regulate",
+    "t": 28.26,
+    "key": true
+   }
+  ],
+  "hide": false,
+  "e": 28.58
+ },
+ {
+  "s": 28.58,
+  "words": [
+   {
+    "w": "your",
+    "t": 28.58,
+    "key": false
+   },
+   {
+    "w": "emotions",
+    "t": 28.8,
+    "key": true
+   }
+  ],
+  "hide": false,
+  "e": 29.2
+ },
+ {
+  "s": 29.2,
+  "words": [
+   {
+    "w": "a",
+    "t": 29.2,
+    "key": false
+   },
+   {
+    "w": "lot",
+    "t": 29.36,
+    "key": false
+   },
+   {
+    "w": "easier",
+    "t": 29.48,
+    "key": false
+   }
+  ],
+  "hide": false,
+  "e": 29.74
+ },
+ {
+  "s": 29.74,
+  "words": [
+   {
+    "w": "if",
+    "t": 29.74,
+    "key": false
+   },
+   {
+    "w": "you",
+    "t": 29.96,
+    "key": false
+   },
+   {
+    "w": "think",
+    "t": 30.08,
+    "key": false
+   },
+   {
+    "w": "of",
+    "t": 30.22,
+    "key": false
+   },
+   {
+    "w": "it",
+    "t": 30.34,
+    "key": false
+   }
+  ],
+  "hide": false,
+  "e": 30.42
+ },
+ {
+  "s": 30.42,
+  "words": [
+   {
+    "w": "in",
+    "t": 30.42,
+    "key": false
+   },
+   {
+    "w": "this",
+    "t": 30.5,
+    "key": false
+   },
+   {
+    "w": "way.",
+    "t": 30.62,
+    "key": false
+   }
+  ],
+  "hide": false,
+  "e": 30.96
+ },
+ {
+  "s": 30.96,
+  "words": [
+   {
+    "w": "You're",
+    "t": 30.96,
+    "key": false
+   },
+   {
+    "w": "welcome.",
+    "t": 31.0,
+    "key": false
+   }
+  ],
+  "hide": true,
+  "e": 32.4
+ }
+]

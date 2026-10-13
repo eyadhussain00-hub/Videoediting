@@ -6,3 +6,4 @@ One-off videos made with Motion Video Director. Recurring clients (SK Media, CEO
 | Project | What it is | Status |
 |---|---|---|
 | `rsv-demo-video` | RSV Studio's Remotion project: the self-running clinic demo ad (AR/EN, from recorded dashboard footage) and the 50-second Command Centre film (drawn in code, no footage). | Moved from `rsv-studio/marketing/demo-video`. The Command Centre film renders from here as is. The demo ad needs recordings, which need `rsv-studio` (see its README). |
+| `tomhutch-10k-mindset` | Premium motion-graphics re-edit of @tomhutchmove's "$10k/month means nothing" reel (9:16, 33 s): burned-in captions removed, gold-serif kinetic type, 10 graphic beats, synthesised SFX. Remotion. | v1 preview sent. |
