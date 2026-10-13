@@ -1,0 +1,23 @@
+{
+  "about": "Launch announcement. Tagline and pitch from offer.ts.",
+  "slides": [
+    {
+      "type": "cta",
+      "title": {
+        "en": "Every inquiry answered. **Every lead followed up.**",
+        "ar": "كل استفسار له رد. **وكل عميل له متابعة.**"
+      },
+      "body": {
+        "en": "We set up and run a lead dashboard for your clinic or property office, so no inquiry goes unanswered.",
+        "ar": "بنجهّز وبنشغّل لوحة متابعة لعيادتك أو مكتبك العقاري، عشان مفيش استفسار يفضل من غير رد."
+      },
+      "button": {
+        "label": {
+          "en": "Message us on WhatsApp",
+          "ar": "ابعتلنا على واتساب"
+        },
+        "value": "{{whatsapp}}"
+      }
+    }
+  ]
+}
