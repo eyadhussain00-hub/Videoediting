@@ -1,5 +1,5 @@
 # PROGRESS – tomhutch-10k-mindset   (updated 2026-10-13)
-Phase: preview (v1 sent to Telegram for review)
+Phase: preview (v1 sent to Telegram for review; merged to main)
 Current version: v1 → renders/final/tomhutch-10k-mindset_v1.mp4 (not committed; rebuild with the steps below)
 
 Source: Instagram reel by @tomhutchmove (Thomas Hutcheson) — https://www.instagram.com/reel/DdeGMVYzACe/
