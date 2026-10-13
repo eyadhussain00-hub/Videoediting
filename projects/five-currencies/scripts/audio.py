@@ -72,6 +72,27 @@ def shimmer(d=1.2):
         out[s:] += np.sin(2 * np.pi * f * tt) * np.exp(-tt / 0.35) * 0.25
     return out
 
+def thud(d=0.9):
+    n = int(d * SR); t = np.arange(n) / SR
+    body = np.sin(2 * np.pi * (55 + 60 * np.exp(-t / 0.03)) * t) * np.exp(-t / 0.22)
+    click = band(n, 2000, 9000) * env(n, 0.0003, 0.004)
+    return 0.9 * body + 0.25 * click
+def swell(d=0.6):
+    # reversed noise+tone bloom that ends exactly on the hit
+    n = int(d * SR); k = np.arange(n) / n; t = np.arange(n) / SR
+    x = band(n, 300, 7000) * 0.5 + np.sin(2 * np.pi * 220 * t) * 0.2
+    return x * k ** 3
+def braam(d=2.6):
+    n = int(d * SR); t = np.arange(n) / SR
+    x = np.zeros(n)
+    for f in (55, 55 * 1.007, 82.4, 110 * 0.995, 110 * 1.006):
+        ph = 2 * np.pi * f * t
+        x += 2 / np.pi * np.arctan(4 * np.sin(ph))  # soft-clipped "saw-ish" body
+    from scipy.signal import butter as _b, lfilter as _l
+    bb, aa = _b(2, 900 / (SR / 2)); x = _l(bb, aa, x)
+    a = np.minimum(1, t / 0.08) * np.exp(-t / 1.1)
+    return x / (np.abs(x).max() + 1e-9) * a
+
 fx = np.zeros(N)
 def put(sig, t, gain_db):
     i = int(t * SR)
@@ -119,6 +140,14 @@ for k in range(14): put(tick(), at("23") - 0.25 + k * 0.035 * (1 + k * 0.08), -2
 put(boom(), at("million") + 0.1, -5)
 for k in range(5): put(pop(0.14, 1800 + k * 200), at("five", 2) + k * 0.08, -18)
 put(shimmer(1.4), at("five", 2) + 0.4, -20)
+# v2 depth beats: swell + thud on the hook's giant 5 and on every currency title / CTA word
+put(swell(0.6), T["five"] - 0.6, -18)
+put(boom(1.6), T["five"], -9)
+put(shimmer(1.0), T["five"] + 0.1, -22)
+for s_ in ["time", "identity", "money", "energy", "reputation"]:
+    put(thud(), T[s_] - 0.02, -13)
+put(braam(), T["proof"] - 0.02, -15)
+put(thud(), T["cta"] - 0.02, -14)
 # CTA
 put(whoosh(0.5), T["cta"] - 0.2, -16)
 for k in range(5): put(tick(0.05, 1800), at("coach") - 0.02 + k * 0.055, -14)
@@ -156,7 +185,22 @@ for i in range(int(DUR / beat)):
     put_at = int(tb * SR); seg = kick[: N - put_at]; pulse[put_at: put_at + len(seg)] += seg * (0.5 if i % 2 == 0 else 0.25)
     h = tick(0.05, 6000); hi_ = int((tb + beat / 2) * SR)
     if hi_ < N: seg = h[: N - hi_]; pulse[hi_: hi_ + len(seg)] += seg * 0.08
-music = pad + pulse
+# plucked arpeggio (eighths) with a dotted-eighth echo: movement under the voice
+arp = np.zeros(N)
+pl_n = int(0.6 * SR); pt = np.arange(pl_n) / SR
+for i in range(int(DUR / (beat / 2))):
+    tb = i * beat / 2
+    if T["collageIn"] < tb < T["collageOut"]: continue
+    ci = int(tb // (2 * bar)) % 4
+    notes = chords[ci]
+    m = notes[[0, 2, 4, 3, 1, 2, 4, 3][i % 8]] + 12
+    f = mtof(m)
+    pl = (np.sin(2 * np.pi * f * pt) + 0.25 * np.sin(4 * np.pi * f * pt)) * np.exp(-pt / 0.16)
+    for dly, g in ((0.0, 1.0), (0.75 * beat, 0.35), (1.5 * beat, 0.12)):
+        j = int((tb + dly) * SR)
+        if j >= N: continue
+        seg = pl[: N - j]; arp[j: j + len(seg)] += seg * g * 0.05
+music = pad + pulse + arp
 # music drops out for the YES stamp and swells after the boom; tail fade
 gain = np.ones(N)
 def ramp(t0, t1, g0, g1):

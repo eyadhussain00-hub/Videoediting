@@ -28,32 +28,52 @@ const zoomAt = (t: number) => {
   return lerp(prevEnd, cur, prog(t, a - 0.03, 0.13, inOutCubic));
 };
 
-export const Footage = () => {
+// Section changes get a short punch: a blur/scale kick on top of the framing snap (a "whip" without a cut).
+export const PUNCHES = [T.five, T.listIn, T.time, T.identity, T.money, T.energy, T.reputation, T.proof, T.cta];
+const bump = (x: number, d: number) => (x < 0 || x > d ? 0 : Math.sin((x / d) * Math.PI));
+export const camAt = (t: number) => {
+  let blur = 0;
+  let kick = 0;
+  for (const p of PUNCHES) {
+    blur = Math.max(blur, bump(t - p + 0.07, 0.22) * 5);
+    kick = Math.max(kick, bump(t - p + 0.07, 0.3) * 0.035);
+  }
+  return { z: zoomAt(t) * (1 + kick), blur };
+};
+
+/** Clean plate (or the person-only alpha layer) framed by the shared camera, so both stay pixel-aligned. */
+export const Plate = ({ src, transparent = false, grade = true }: { src: string; transparent?: boolean; grade?: boolean }) => {
   const t = useCurrentFrame() / FPS;
-  const z = zoomAt(t);
-  // proof beat: slightly cooler, punchier
+  const { z, blur } = camAt(t);
   const p = Math.min(prog(t, T.proof, 0.2), 1 - prog(t, T.cta - 0.1, 0.25));
   return (
-    <AbsoluteFill style={{ overflow: "hidden", background: "#000" }}>
-      <AbsoluteFill style={{ transform: `scale(${z})`, transformOrigin: "50% 27%" }}>
+    <AbsoluteFill style={{ overflow: "hidden" }}>
+      <AbsoluteFill style={{ transform: `scale(${z})`, transformOrigin: "50% 27%", filter: blur > 0.05 ? `blur(${blur}px)` : undefined }}>
         <OffthreadVideo
-          src={staticFile("clean.mp4")}
+          src={staticFile(src)}
           muted
+          transparent={transparent}
           style={{
             width: 1080,
             height: 1920,
-            filter: `contrast(${1.07 + 0.06 * p}) saturate(${0.9 - 0.25 * p}) brightness(${0.97 - 0.08 * p})`,
+            filter: grade ? `contrast(${1.08 + 0.06 * p}) saturate(${0.88 - 0.22 * p}) brightness(${0.98 - 0.06 * p})` : undefined,
           }}
         />
       </AbsoluteFill>
-      {/* warm/teal split grade */}
-      <AbsoluteFill style={{ background: "linear-gradient(180deg, rgba(255,170,90,0.06), rgba(20,40,60,0.10))", mixBlendMode: "soft-light" }} />
     </AbsoluteFill>
   );
 };
 
+export const Footage = () => (
+  <AbsoluteFill style={{ background: "#000" }}>
+    <Plate src="clean.mp4" />
+  </AbsoluteFill>
+);
+
 export const Shade = () => (
   <>
+    {/* warm/teal split grade, over background and speaker alike */}
+    <AbsoluteFill style={{ background: "linear-gradient(180deg, rgba(255,170,90,0.06), rgba(20,40,60,0.10))", mixBlendMode: "soft-light" }} />
     <AbsoluteFill style={{ background: "linear-gradient(180deg, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0) 14%, rgba(0,0,0,0) 52%, rgba(0,0,0,0.38) 72%, rgba(0,0,0,0.7) 100%)" }} />
     <AbsoluteFill style={{ background: "radial-gradient(ellipse 85% 65% at 50% 38%, rgba(0,0,0,0) 55%, rgba(0,0,0,0.45) 100%)" }} />
   </>

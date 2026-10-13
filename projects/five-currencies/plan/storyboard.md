@@ -23,3 +23,21 @@ Type: Inter Tight (UI and captions), Instrument Serif Italic (keywords, in gold)
 | 22.75–27.7 | reputation → how they look in front of peers | 05 Reputation: 5 stars fill; flash on "look"; 6 peer avatars pop in | star pops, shutter |
 | 27.75–32.2 | I've closed more than 23 million in sales… five exact currencies | Card blurs out; punch-in, cooler grade; **$0 → $23M+** gold counter, boom on "million"; five gold coins flip in | riser, counter ticks, boom, coin chimes |
 | 32.2–37.0 | comment coach below and I'll send you the details | Glass comment bar; COACH types in, send button turns gold, chevrons bounce "below"; "Details sent to your DMs" chip | typing ticks, click |
+
+## v2: "full capability" pass (2026-10-13)
+
+The user sent the same reel again and asked for the most premium version possible. v2 keeps v1's beats and timings
+and adds a depth layer plus cinematic finishing:
+- **Depth / type behind the speaker.** rembg (u2net_human_seg) matte per frame, temporally smoothed (scripts/matte.py)
+  → `public/fg.webm` (clean plate + alpha). Layer order: plate → background dim → rays → gold dust → **type** →
+  speaker → graphics. Free space behind him is a left column (x < 230) and a right column (x > 790) down to the shoulders.
+  - Hook: a giant gold serif **5** rises behind his head on "five"; light rays rotate behind him; vertical mono
+    "THE 5 CURRENCIES" on the left.
+  - Each currency: gold numeral **01–05** (left) and the currency as a **vertical serif word** (right), letters dropping
+    in one by one; a mono sub-label beside it. CTA: vertical **Coach**.
+  - Background pushed back (dimmed) under every title, so he separates from the wall.
+- **Camera:** the framing snaps now get a blur/scale kick (whip feel without cuts), shared by plate and speaker layer.
+- **Light:** warm light leak sweeps on every section change, red/cyan fringe flicker on the punches, anamorphic flare on
+  "million" and the YES stamp, gold bokeh dust behind him (and a few soft motes in front), rays + letterbox on the $23M proof.
+- **Sound:** sub boom + reverse swell on the 5, a thud on every currency title, a low braam into the proof beat,
+  a plucked arpeggio with echo added to the pad.

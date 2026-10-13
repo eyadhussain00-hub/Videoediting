@@ -1,6 +1,12 @@
 # PROGRESS – five-currencies   (updated 2026-10-13)
-Phase: preview (v1 delivered, awaiting feedback)
-Current version: v1 → renders/final/five-currencies_v1.mp4 (1080×1920, 30 fps, H.264 yuv420p, AAC 48 kHz, -14 LUFS / -1.5 dBTP; not committed, sent to the user)
+Phase: preview (v2 delivered on Telegram, awaiting feedback). The user re-sent the same reel asking for the most premium version.
+Current version: v2 → renders/final/five-currencies_v2.mp4 (1080×1920, 30 fps, H.264 yuv420p, AAC 48 kHz, -14 LUFS / -1.6 dBTP, 40 MB; not committed). v1 (renders/final/five-currencies_v1.mp4) was delivered earlier; its code is in git history (commit 0b5bb3f).
+
+v2 adds (plan/storyboard.md, "v2" section): speaker matte (scripts/matte.py → public/fg.webm with alpha) so type sits
+behind him (giant gold 5, numerals 01–05 + vertical currency words, vertical Coach), background dim, light rays,
+gold bokeh dust, camera punch kicks, light leaks, chroma fringe, flares, letterbox on the proof beat, extruded $23M,
+thick 3D coins, and an upgraded mix (boom/swell/thuds/braam/arpeggio). New files: src/scenes/depth.tsx, src/scenes/fx.tsx.
+v2 rebuild adds: python3 scripts/matte.py cache/raw.mp4 cache/matte.mp4 · ffmpeg alphamerge clean+matte → public/fg.webm (see LOG).
 
 Done:
 - Downloaded both reels with yt-dlp. Source footage: instagram.com/reel/DcHh55Rz8TG (sales coach, 37 s, 1080×1920 30 fps).
@@ -15,7 +21,7 @@ Done:
 - Sound: scripts/audio.py → public/mix.wav (voice + synthesized pad/pulse + synthesized SFX, -14 LUFS / -1.5 dBTP).
 - Remotion scenes in src/ (base, list, card, collage, proof, cta). Contact sheets checked (scripts/sheet.sh).
 
-Next step: review v1 with the user. Apply their notes, then render v2.
+Next step: review v2 with the user. Apply their notes, then render v3.
 
 Rebuild from scratch (fresh container):
   npm ci · pip install yt-dlp faster-whisper opencv-python-headless rembg onnxruntime scipy torch (CPU) ·
@@ -23,9 +29,14 @@ Rebuild from scratch (fresh container):
   python3 scripts/clean_captions.py cache/raw.mp4 cache/clean.mp4 && cp cache/clean.mp4 public/clean.mp4 ·
   python3 scripts/halftone.py cache/raw.mp4 public/halftone.mp4 11.0 13.95 ·
   python3 scripts/audio.py cache/raw.mp4 public/mix.wav ·
-  npx remotion render Reel renders/final/five-currencies_v1.mp4
+  python3 scripts/matte.py cache/raw.mp4 cache/matte.mp4 ·
+  ffmpeg -i public/clean.mp4 -i cache/matte.mp4 -filter_complex "[1:v]format=gray[m];[0:v][m]alphamerge,format=yuva420p" -c:v libvpx-vp9 -pix_fmt yuva420p -b:v 0 -crf 22 -an public/fg.webm ·
+  npx remotion render Reel cache/v2_raw.mp4 → ffmpeg re-encode (crf 17, yuv420p, aac 192k 48 kHz, +faststart)
+  LaMa is slow when it shares the CPU: run clean_captions.py with --threads 2 in two --range halves and concat.
 
 Open issues / user feedback not yet fixed: none yet.
+Gotcha: never put preserve-3d/translateZ layers in this composition: Chrome punched transparent holes into the frame
+  (white blocks in JPEG frames). The coins now fake their thickness in 2D.
 Key decisions: one accent colour (gold, from his watch); captions = Inter Tight + gold Instrument Serif keywords;
   music and SFX synthesized (no licences needed); the reel's own audio is the voice, so no ElevenLabs step.
 Key files: src/data.ts (timings), src/scenes/*.tsx, scripts/*.py, plan/storyboard.md
