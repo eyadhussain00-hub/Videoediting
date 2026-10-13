@@ -1,0 +1,4 @@
+# per-job footage, intermediates and renders: rebuilt by scripts/reel.sh
+public/jobs/
+work/
+renders/

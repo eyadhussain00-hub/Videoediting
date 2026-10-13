@@ -44,6 +44,7 @@ skills/motion-video-director/   the skill (from the upstream fork; README.md des
 tools/<client>/                 client pipelines (sk-media, ceowills, boxabl) + tools/common, tools/tg.sh
 projects/<name>/                one folder per video, laid out as the skill's §1 says
 projects/rsv-demo-video/        RSV's Remotion project: the clinic demo ad and the Command Centre film
+projects/coach-reel-template/   talking-head clip + job file → coach-style 9:16 reel (README.md)
 brand/rsv/                      RSV Studio's DESIGN.md, PRODUCT.md, backgrounds and icons
 ```
 
