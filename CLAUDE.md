@@ -27,8 +27,15 @@ golden rules apply: send the kickoff message on a new project, run preflight, ge
 and keep `PROGRESS.md` current. Don't build or render scenes before the voiceover MP3 arrives, unless the
 user asks for a temporary guide track or the video has no voiceover (keeping the original audio counts).
 
-Also here: `playwright-cli` (browsing, grabbing reference frames and assets, recording web UIs) and
-`design-taste-frontend` (for frames drawn in HTML/CSS). Both are pinned in `skills-lock.json`.
+Also here: `playwright-cli` (browsing, grabbing reference frames and assets, recording web UIs),
+`design-taste-frontend` (for frames drawn in HTML/CSS) and `lemo-opuscar` (short films drawn entirely in
+code in one of 43 named styles: ink wash, ukiyo-e, impasto, pixel RPG…). All are pinned in `skills-lock.json`.
+
+Use `lemo-opuscar` when the user asks for a film in one of its styles or asks which styles there are. Its
+`setup.sh` clones the style library to `~/lemo-opuscar` each session (it isn't committed here), and
+`setup.sh deps` installs its packages plus its own headless Chrome next to the pre-installed one. Put the
+film in `projects/<name>/`, not where the skill's guides say. There's no GPU here, so 3D and CRT styles
+render slowly on software WebGL.
 
 ## Layout
 
