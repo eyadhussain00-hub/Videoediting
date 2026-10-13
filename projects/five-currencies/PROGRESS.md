@@ -1,6 +1,12 @@
 # PROGRESS – five-currencies   (updated 2026-10-13)
-Phase: preview (v1 delivered, awaiting feedback)
-Current version: v1 → renders/final/five-currencies_v1.mp4 (1080×1920, 30 fps, H.264 yuv420p, AAC 48 kHz, -14 LUFS / -1.5 dBTP; not committed, sent to the user)
+Phase: v2 build (user re-sent the same reel: "use your full capability… premium high end… merge and send preview on Telegram")
+Current version: v2 in progress → renders/final/five-currencies_v2.mp4. v1 (renders/final/five-currencies_v1.mp4) was delivered earlier; its code is in git history (commit 0b5bb3f).
+
+v2 adds (plan/storyboard.md, "v2" section): speaker matte (scripts/matte.py → public/fg.webm with alpha) so type sits
+behind him (giant gold 5, numerals 01–05 + vertical currency words, vertical Coach), background dim, light rays,
+gold bokeh dust, camera punch kicks, light leaks, chroma fringe, flares, letterbox on the proof beat, extruded $23M,
+thick 3D coins, and an upgraded mix (boom/swell/thuds/braam/arpeggio). New files: src/scenes/depth.tsx, src/scenes/fx.tsx.
+v2 rebuild adds: python3 scripts/matte.py cache/raw.mp4 cache/matte.mp4 · ffmpeg alphamerge clean+matte → public/fg.webm (see LOG).
 
 Done:
 - Downloaded both reels with yt-dlp. Source footage: instagram.com/reel/DcHh55Rz8TG (sales coach, 37 s, 1080×1920 30 fps).
