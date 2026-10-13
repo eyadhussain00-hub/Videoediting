@@ -29,6 +29,7 @@ export const NightSky = () => {
   const a = Math.min(prog(t, T.s1 - 0.1, 0.8), 1 - prog(t, T.s4 + 0.2, 1.4, inOutCubic));
   if (a <= 0) return null;
   const moonP = prog(t, T.s1, 1.2, outExpo);
+  const moonA = 1 - win(t, T.s3 - 0.2, T.s4 + 0.3, 0.3, 0.3); // clear of the 04:00 clock
   return (
     <AbsoluteFill style={{ opacity: a }}>
       <AbsoluteFill style={{ background: "linear-gradient(180deg, rgba(6,18,40,0.78) 0%, rgba(8,26,54,0.55) 30%, rgba(8,26,54,0) 58%)" }} />
@@ -41,7 +42,7 @@ export const NightSky = () => {
         return <Abs key={i} style={{ left: x, top: y, width: s, height: s, borderRadius: "50%", background: "#EAF6FF", opacity: tw * birth * (1 - y / 1100), boxShadow: `0 0 ${s * 3}px rgba(200,230,255,0.9)` }} />;
       })}
       {/* crescent: a lit disc with a darker disc offset over it */}
-      <Abs style={{ left: 470, top: 250 + (1 - moonP) * 60, width: 150, height: 150, opacity: moonP, filter: "drop-shadow(0 0 40px rgba(190,225,255,0.65))" }}>
+      <Abs style={{ left: 470, top: 250 + (1 - moonP) * 60, width: 150, height: 150, opacity: moonP * moonA, filter: "drop-shadow(0 0 40px rgba(190,225,255,0.65))" }}>
         <svg width="150" height="150" viewBox="0 0 150 150">
           <defs>
             <mask id="cres">
