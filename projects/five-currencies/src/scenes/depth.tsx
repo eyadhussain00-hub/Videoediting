@@ -21,7 +21,7 @@ export const BEATS: Beat[] = [
 
 /** How strongly the background is pushed back (dimmed) at time t. */
 const dimAt = (t: number) => {
-  const hook = Math.min(prog(t, T.five - 0.15, 0.35), 1 - prog(t, T.listIn, 0.4)) * 0.5;
+  const hook = Math.min(0.22 + 0.78 * prog(t, T.five - 0.15, 0.35), 1 - prog(t, T.listIn, 0.4)) * 0.5;
   const beats = Math.max(...BEATS.map((b) => Math.min(prog(t, b.s - 0.1, 0.35), 1 - prog(t, b.e - 0.2, 0.3)))) * 0.36;
   const proof = Math.min(prog(t, T.proof - 0.1, 0.4), 1 - prog(t, T.cta - 0.2, 0.3)) * 0.55;
   return Math.max(hook, beats, proof, 0);
@@ -37,7 +37,7 @@ export const BgDim = () => {
 export const Rays = () => {
   const t = useCurrentFrame() / FPS;
   const a = Math.max(
-    Math.min(prog(t, T.five - 0.05, 0.5), 1 - prog(t, T.listIn + 0.2, 0.5)) * 0.9,
+    Math.min(0.45 + 0.55 * prog(t, T.five - 0.05, 0.5), 1 - prog(t, T.listIn + 0.2, 0.5)) * 0.9,
     Math.min(prog(t, T.m23 - 0.4, 0.6), 1 - prog(t, T.cta - 0.2, 0.4)),
     Math.min(prog(t, T.coach - 0.1, 0.6), 1 - prog(t, 36.6, 0.4)) * 0.55,
   );
