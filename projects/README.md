@@ -5,5 +5,6 @@ One-off videos made with Motion Video Director. Recurring clients (SK Media, CEO
 
 | Project | What it is | Status |
 |---|---|---|
+| `tiktok-money-explainer` | Arabic talking-head explainer: how people really make money on TikTok. | Script v1, waiting on Eyad (presenter + dialect). |
 | `ig-reel-remake` | Premium motion-graphics remake of Cole DaSilva's "3 reasons nobody buys from your content" reel (Remotion, footage + matte + synthesised mix). | v1 preview, waiting on Eyad's notes. |
 | `rsv-demo-video` | RSV Studio's Remotion project: the self-running clinic demo ad (AR/EN, from recorded dashboard footage) and the 50-second Command Centre film (drawn in code, no footage). | Moved from `rsv-studio/marketing/demo-video`. The Command Centre film renders from here as is. The demo ad needs recordings, which need `rsv-studio` (see its README). |
