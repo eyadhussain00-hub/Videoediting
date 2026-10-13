@@ -12,3 +12,14 @@
   occurrence; $23M counter stopped at 22 (easing never reaches 1); Time card height; CTA label contrast; star size.
 - Sound: scripts/audio.py, voice + pad + pulse + synthesized SFX on word timings, sidechain duck, loudnorm -14 LUFS.
 - v1 rendered (Remotion, 5 min at concurrency 4), re-encoded to yuv420p + faststart, QA sheet clean (no old captions anywhere), -14.0 LUFS / -1.5 dBTP. Sent to the user.
+- 2026-10-13 (v2): User re-sent the same reel asking for a "full capability" premium version → v2 on top of v1.
+  Re-downloaded the source; transcript reused (plan/words.json). New scripts/matte.py (rembg u2net_human_seg at 540×960,
+  upscaled, contrast-tightened, 3-frame median + EMA) → cache/matte.mp4, clean on head/hands/mic.
+- Caption removal (LaMa) was ~10× slower when it shared 4 cores with the matte job (thread oversubscription).
+  Restarted it with --threads 2 in two frame ranges (0–555, 555–1110), joined with ffmpeg concat. ~45 min total. QA band sheets clean.
+- fg.webm = clean plate + matte (alphamerge, VP9 yuva420p crf 22) rendered with OffthreadVideo transparent under the same camera.
+- Built depth layer (src/scenes/depth.tsx: BgDim, Rays, Dust, BehindType, Person) and fx (src/scenes/fx.tsx: LightLeaks,
+  Flares, Letterbox, ChromaKick); camera punch kicks in base.tsx; extruded $23M + thick coins in proof.tsx.
+- Sheets 0–9, 9–23, 23–37 reviewed on stand-in footage: alignment exact, columns clear of his head. Tweaks: hook 5 moved
+  down/smaller, no flare across the face, softer punch blur, dim + rays from frame 0.
+- Audio: + reverse swell/boom/shimmer on "five", thud per currency title and CTA, braam into proof, plucked arpeggio with echo.
