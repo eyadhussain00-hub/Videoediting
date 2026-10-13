@@ -11,3 +11,4 @@
 - Sheets 0–37 s reviewed; fixes: repeated words (identity/money/reputation/they/to/solution) need the right
   occurrence; $23M counter stopped at 22 (easing never reaches 1); Time card height; CTA label contrast; star size.
 - Sound: scripts/audio.py, voice + pad + pulse + synthesized SFX on word timings, sidechain duck, loudnorm -14 LUFS.
+- v1 rendered (Remotion, 5 min at concurrency 4), re-encoded to yuv420p + faststart, QA sheet clean (no old captions anywhere), -14.0 LUFS / -1.5 dBTP. Sent to the user.

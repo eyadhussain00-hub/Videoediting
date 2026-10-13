@@ -1,6 +1,6 @@
 # PROGRESS – five-currencies   (updated 2026-10-13)
-Phase: final (v1 rendering)
-Current version: v1 → renders/final/five-currencies_v1.mp4 (not committed; sent to the user)
+Phase: preview (v1 delivered, awaiting feedback)
+Current version: v1 → renders/final/five-currencies_v1.mp4 (1080×1920, 30 fps, H.264 yuv420p, AAC 48 kHz, -14 LUFS / -1.5 dBTP; not committed, sent to the user)
 
 Done:
 - Downloaded both reels with yt-dlp. Source footage: instagram.com/reel/DcHh55Rz8TG (sales coach, 37 s, 1080×1920 30 fps).
