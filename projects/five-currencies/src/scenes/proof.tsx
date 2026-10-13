@@ -17,12 +17,12 @@ export const Proof = () => {
     <>
       {/* dark pool behind the number */}
       <Abs style={{ left: -200, right: -200, top: 760, height: 760, background: "radial-gradient(ellipse 50% 50% at 50% 50%, rgba(0,0,0,0.62), rgba(0,0,0,0))", opacity: inP * (1 - out) }} />
-      <Abs style={{ left: 0, right: 0, top: lerp(880, 800, lift), textAlign: "center", opacity: inP * (1 - out), transform: `scale(${lerp(1, 0.72, lift) * (1 + 0.06 * (1 - land) * (land > 0 ? 1 : 0))})`, filter: `blur(${out * 12}px)` }}>
+      <Abs style={{ left: 0, right: 0, top: lerp(880, 800, lift), textAlign: "center", opacity: inP * (1 - out), transform: `scale(${lerp(1, 0.72, lift) * (1 + 0.06 * (1 - land) * (land > 0 ? 1 : 0))})`, filter: out > 0.001 ? `blur(${out * 12}px)` : undefined }}>
         <div style={{ fontFamily: MONO, fontSize: 26, letterSpacing: 8, color: "rgba(255,255,255,0.7)" }}>I'VE CLOSED MORE THAN</div>
         {/* extruded gold: 14 darker copies stepped down-right under the gradient face */}
         <div style={{ position: "relative", display: "inline-block", fontFamily: SANS, fontWeight: 800, fontSize: 250, lineHeight: 1.05, letterSpacing: -12, paddingRight: 14 }}>
           {Array.from({ length: 14 }).map((_, k) => (
-            <div key={k} style={{ position: "absolute", left: (k + 1) * 0.9 * (0.4 + 0.6 * land), top: (k + 1) * 1.3 * (0.4 + 0.6 * land), color: k === 13 ? "rgba(0,0,0,0.55)" : `rgb(${110 - k * 4},${72 - k * 3},${16 - k})`, filter: k === 13 ? "blur(10px)" : undefined }}>
+            <div key={k} style={{ position: "absolute", left: (k + 1) * 0.9 * (0.4 + 0.6 * land), top: (k + 1) * 1.3 * (0.4 + 0.6 * land), color: k === 13 ? "transparent" : `rgb(${110 - k * 4},${72 - k * 3},${16 - k})`, textShadow: k === 13 ? "0 0 14px rgba(0,0,0,0.6)" : undefined }}>
               ${Math.min(23, Math.floor(v + 0.03))}M+
             </div>
           ))}
@@ -37,20 +37,24 @@ export const Proof = () => {
         <div style={{ fontFamily: MONO, fontSize: 26, letterSpacing: 8, color: GOLD, opacity: land }}>IN SALES</div>
       </Abs>
       {/* coins */}
-      <Abs style={{ left: 0, right: 0, top: 1150, display: "flex", justifyContent: "center", gap: 22, opacity: 1 - out, perspective: 800 }}>
+      <Abs style={{ left: 0, right: 0, top: 1150, display: "flex", justifyContent: "center", gap: 22, opacity: 1 - out }}>
         {CURRENCIES.map((c, i) => {
           const Icon = ICONS[i];
           const p = prog(t, T.fiveExact + i * 0.08, 0.5, outBack);
+          const ang = (1 - p) * 180;
+          const side = Math.sin((ang * Math.PI) / 180);
+          // flat 2D layers, each with its own perspective: no shared 3D context (preserve-3d + translateZ punched
+          // transparent holes into the frame in Chrome). The edge is faked by stacking darker discs offset sideways.
+          const rot = (dx: number) => `perspective(800px) translateX(${dx}px) rotateY(${ang}deg)`;
           return (
-            <div key={c.n} style={{ textAlign: "center", transform: `rotateY(${(1 - p) * 180}deg) translateY(${(1 - p) * 60}px)`, opacity: Math.min(1, p * 2), transformStyle: "preserve-3d" }}>
-              <div style={{ position: "relative", width: 150, height: 150, transformStyle: "preserve-3d" }}>
-                {/* coin edge: stacked darker discs give it thickness while it flips */}
-                {[1, 2, 3, 4, 5, 6, 7, 8].map((z) => (
-                  <div key={z} style={{ position: "absolute", inset: 0, borderRadius: 75, background: z === 8 ? "#6E4A12" : "#9A6B1E", transform: `translateZ(${-z * 1.6}px)` }} />
+            <div key={c.n} style={{ textAlign: "center", transform: `translateY(${(1 - p) * 60}px)`, opacity: Math.min(1, p * 2) }}>
+              <div style={{ position: "relative", width: 150, height: 150 }}>
+                {[8, 7, 6, 5, 4, 3, 2, 1].map((z) => (
+                  <div key={z} style={{ position: "absolute", inset: 0, borderRadius: 75, background: z === 8 ? "#6E4A12" : "#9A6B1E", transform: rot(-z * 1.6 * side + z * 0.5), top: z * 0.6 }} />
                 ))}
-              <div style={{ position: "relative", width: 150, height: 150, borderRadius: 75, background: "radial-gradient(circle at 35% 30%, #FFF1C9, #F2C46D 45%, #A9741F 100%)", boxShadow: "0 0 30px rgba(242,196,109,0.45), inset 0 -8px 16px rgba(110,70,10,0.5), inset 0 6px 10px rgba(255,255,255,0.5)", display: "flex", alignItems: "center", justifyContent: "center", border: "4px solid #E2AE52" }}>
-                <Icon size={76} color="#5A3A0A" />
-              </div>
+                <div style={{ position: "relative", width: 150, height: 150, borderRadius: 75, background: "radial-gradient(circle at 35% 30%, #FFF1C9, #F2C46D 45%, #A9741F 100%)", boxShadow: "0 0 30px rgba(242,196,109,0.45), inset 0 -8px 16px rgba(110,70,10,0.5), inset 0 6px 10px rgba(255,255,255,0.5)", display: "flex", alignItems: "center", justifyContent: "center", border: "4px solid #E2AE52", boxSizing: "border-box", transform: rot(0) }}>
+                  <Icon size={76} color="#5A3A0A" />
+                </div>
               </div>
               <div style={{ fontFamily: SANS, fontWeight: 700, fontSize: 26, color: "#fff", marginTop: 12, letterSpacing: -0.3 }}>{c.name}</div>
             </div>

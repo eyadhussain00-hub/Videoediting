@@ -23,3 +23,7 @@
 - Sheets 0–9, 9–23, 23–37 reviewed on stand-in footage: alignment exact, columns clear of his head. Tweaks: hook 5 moved
   down/smaller, no flare across the face, softer punch blur, dim + rays from frame 0.
 - Audio: + reverse swell/boom/shimmer on "five", thud per currency title and CTA, braam into proof, plucked arpeggio with echo.
+- v2 full render (Remotion, concurrency 4): QA found a white block above his head at 31.2–32.1 s. Traced with a layer
+  bisect (getInputProps "off" list): the coins' preserve-3d + translateZ edge discs punched transparent holes in the
+  page (JPEG frames turn them white). Rebuilt the coin edges in 2D, re-rendered frames 900–1000, spliced with ffmpeg
+  overlay. White-block scan over all 1110 frames is clean. -14.0 LUFS / -1.6 dBTP. Sent to Telegram.
