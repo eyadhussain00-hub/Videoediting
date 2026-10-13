@@ -17,7 +17,7 @@ export const StepCards = () => {
   return (
     <>
       {STEPS.map((s, i) => {
-        const end = s.n === 6 ? T.listIn - 0.1 : s.e;
+        const end = s.n === 6 ? T.listIn - 0.35 : s.e;
         const a = win(t, s.s - 0.05, end + 0.05, 0.3, 0.25);
         if (a <= 0) return null;
         const p = prog(t, s.s - 0.05, 0.55, outExpo);

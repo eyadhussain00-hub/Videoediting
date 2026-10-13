@@ -41,7 +41,7 @@ export const NightSky = () => {
         return <Abs key={i} style={{ left: x, top: y, width: s, height: s, borderRadius: "50%", background: "#EAF6FF", opacity: tw * birth * (1 - y / 1100), boxShadow: `0 0 ${s * 3}px rgba(200,230,255,0.9)` }} />;
       })}
       {/* crescent: a lit disc with a darker disc offset over it */}
-      <Abs style={{ left: 820, top: 150 + (1 - moonP) * 60, width: 150, height: 150, opacity: moonP, filter: "drop-shadow(0 0 40px rgba(190,225,255,0.65))" }}>
+      <Abs style={{ left: 470, top: 250 + (1 - moonP) * 60, width: 150, height: 150, opacity: moonP, filter: "drop-shadow(0 0 40px rgba(190,225,255,0.65))" }}>
         <svg width="150" height="150" viewBox="0 0 150 150">
           <defs>
             <mask id="cres">
