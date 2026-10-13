@@ -13,8 +13,7 @@ const BEHIND: [number, number, number][] = [
   // [start, end, dim strength]
   [T.first - 0.1, T.three - 0.2, 0.42],
   ...CHAPTERS.map((c) => [c.s - 0.05, c.s + 4.2, 0.4] as [number, number, number]),
-  [T.not - 0.1, 34.7, 0.4],
-  [T.hundred - 0.5, T.ch3 - 0.1, 0.48],
+    [T.hundred - 0.5, T.ch3 - 0.1, 0.48],
   [T.attention - 0.2, 65.55, 0.5],
   [T.somebody - 0.2, T.end, 0.5],
 ];
@@ -99,16 +98,8 @@ export const BehindType = () => {
   if (isBroll(t)) return null;
   return (
     <>
-      {/* hook: "the FIRST" across the top, tucked behind his head */}
-      <Abs style={{ left: 0, right: 0, top: 46, textAlign: "center", fontFamily: MONO, fontSize: 26, letterSpacing: 14, color: "rgba(255,240,215,0.85)", opacity: win(t, T.first + 0.1, T.three, 0.4, 0.3) }}>
-        YOUR FAMILY'S
-      </Abs>
-      <Big t={t} s={T.first} e={T.three - 0.1} text="First" size={400} left={60} top={60} align="center" />
       {CHAPTERS.map((c, i) => (t >= c.s - 0.2 && t < c.s + 4.6 ? <ChapterType key={i} c={c} t={t} /> : null))}
-      <Big t={t} s={T.not} e={34.75} text="≠" size={600} left={60} top={-110} align="center" glow={0.5} />
-      <HundredX t={t} />
       <Cycle t={t} />
-      <Big t={t} s={T.you} e={T.end + 1} text="You." size={420} left={40} top={0} align="center" glow={0.6} />
     </>
   );
 };
@@ -145,24 +136,6 @@ const ChapterType = ({ c, t }: { c: (typeof CHAPTERS)[number]; t: number }) => {
         {c.label}
       </Abs>
     </>
-  );
-};
-
-/** "×1 → ×100" multiplier counter behind him on "a hundred times more". */
-const HundredX = ({ t }: { t: number }) => {
-  const s = T.hundred - 0.45;
-  if (t < s - 0.1 || t > T.ch3 + 0.3) return null;
-  const p = prog(t, s, 0.5, outExpo);
-  const n = Math.round(lerp(1, 100, prog(t, s, 1.0, inOutCubic)));
-  const out = prog(t, T.ch3 - 0.35, 0.35, inOutCubic);
-  const land = t > s + 1.0 ? 1 - prog(t, s + 1.0, 0.6) : 0;
-  return (
-    <Abs style={{ left: 0, right: 0, top: 30, textAlign: "center", opacity: p * (1 - out) }}>
-      <span style={{ display: "inline-block", fontFamily: SANS, fontWeight: 800, fontSize: 330, letterSpacing: -14, lineHeight: 1, ...goldText, fontVariantNumeric: "tabular-nums",
-        transform: `scale(${lerp(0.8, 1, p) * (1 + 0.06 * land)}) translateY(${-out * 60}px)`, filter: `blur(${(1 - p) * 14 + out * 10}px) drop-shadow(0 0 ${40 + 60 * land}px rgba(235,194,122,0.5))` }}>
-        ×{n}
-      </span>
-    </Abs>
   );
 };
 

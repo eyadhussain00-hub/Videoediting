@@ -16,20 +16,30 @@ const Enter = ({ t, s, e, children, style, dy = 40 }: { t: number; s: number; e:
   );
 };
 
-/** $0 → $1,000,000 on "millionaire". */
+/** Hook title + $0 → $1,000,000 on "first millionaire". */
 export const MillionCounter = () => {
   const t = useT();
   const s = T.millionaire - 0.1, e = T.three - 0.15;
-  if (t < s - 0.05 || t > e) return null;
+  if (t < T.first - 0.1 || t > e) return null;
   const n = Math.round(lerp(0, 1_000_000, prog(t, s + 0.1, 1.5, inOutCubic)));
   const done = t > s + 1.6 ? 1 - prog(t, s + 1.6, 0.8) : 0;
+  const f = prog(t, T.first - 0.04, 0.55, outExpo), m = prog(t, T.millionaire - 0.04, 0.55, outExpo);
+  const o = prog(t, e - 0.35, 0.35, inOutCubic);
+  const rise = (p: number): CSSProperties => ({ opacity: p * (1 - o), transform: `translateY(${(1 - p) * 50 - o * 20}px) scale(${lerp(1.15, 1, p)})`, filter: `blur(${(1 - p) * 14 + o * 8}px)` });
   return (
-    <Enter t={t} s={s} e={e} style={{ left: 0, right: 0, top: 1110, textAlign: "center" }}>
-      <div style={{ ...label, letterSpacing: 10, marginBottom: 6 }}>Net worth</div>
-      <span style={{ fontFamily: SANS, fontWeight: 800, fontSize: 132, letterSpacing: -5, ...goldText, fontVariantNumeric: "tabular-nums", display: "inline-block", filter: `drop-shadow(0 0 ${20 + 50 * done}px rgba(235,194,122,${0.3 + 0.4 * done}))` }}>
-        ${n.toLocaleString("en-US")}
-      </span>
-    </Enter>
+    <Abs style={{ left: 0, right: 0, top: 910, textAlign: "center" }}>
+      <Abs style={{ left: -100, right: -100, top: -140, height: 760, background: "radial-gradient(ellipse 52% 46% at 50% 50%, rgba(8,6,4,0.55), rgba(8,6,4,0) 75%)", opacity: f * (1 - o) }} />
+      <div style={{ position: "relative", ...label, fontSize: 24, letterSpacing: 14, color: IVORY, ...rise(f) }}>Your family's</div>
+      <div style={{ position: "relative", fontFamily: SERIF, fontStyle: "italic", lineHeight: 0.95, marginTop: 6, ...rise(f) }}>
+        <span style={{ fontSize: 210, ...goldText, paddingRight: 14, display: "inline-block", filter: "drop-shadow(0 6px 30px rgba(0,0,0,0.5))" }}>First</span>
+      </div>
+      <div style={{ position: "relative", fontFamily: SANS, fontWeight: 800, fontSize: 64, letterSpacing: 10, color: IVORY, marginTop: 4, ...rise(m), textShadow: "0 4px 24px rgba(0,0,0,0.6)" }}>MILLIONAIRE</div>
+      <div style={{ position: "relative", marginTop: 14, ...rise(m) }}>
+        <span style={{ fontFamily: SANS, fontWeight: 800, fontSize: 96, letterSpacing: -3, ...goldText, fontVariantNumeric: "tabular-nums", display: "inline-block", filter: `drop-shadow(0 0 ${16 + 40 * done}px rgba(235,194,122,${0.3 + 0.4 * done}))` }}>
+          ${n.toLocaleString("en-US")}
+        </span>
+      </div>
+    </Abs>
   );
 };
 
@@ -287,7 +297,7 @@ export const Lever = () => {
   if (t < s - 0.05 || t > e) return null;
   const tilt = lerp(-14, 12, prog(t, at("effort", 2) - 0.1, 1.1, inOutCubic));
   const grow = prog(t, T.hundred - 0.3, 0.8, outBack);
-  const cx = 540, cy = 1210, L = 330;
+  const cx = 500, cy = 1230, L = 290;
   const rad = (tilt * Math.PI) / 180;
   const lx = cx - L * Math.cos(rad), ly = cy + 0 - L * Math.sin(rad) * -1;
   const rx = cx + L * Math.cos(rad), ry = cy - L * Math.sin(rad) * -1;
@@ -307,7 +317,8 @@ export const Lever = () => {
         <defs><linearGradient id="lg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stopColor="#FFEBC2" /><stop offset="1" stopColor="#B98A3E" /></linearGradient></defs>
       </svg>
       <Abs style={{ left: 150, top: 1015, ...label, fontSize: 18, color: IVORY }}>Effort ×1</Abs>
-      <Abs style={{ right: 150, top: 1015, ...label, fontSize: 18, color: GOLD, opacity: 0.4 + 0.6 * grow }}>Result ×{Math.round(lerp(1, 100, grow))}</Abs>
+      <Abs style={{ right: 150, top: 1015, ...label, fontSize: 18, color: GOLD }}>Result</Abs>
+      <Abs style={{ right: 140, top: 1042, fontFamily: SANS, fontWeight: 800, fontSize: 92, letterSpacing: -3, lineHeight: 1, ...goldText, fontVariantNumeric: "tabular-nums", transform: `scale(${1 + 0.1 * (t > T.hundred + 0.5 ? 1 - prog(t, T.hundred + 0.5, 0.6) : 0)})`, transformOrigin: "100% 50%", filter: `drop-shadow(0 0 ${24 * grow}px rgba(235,194,122,0.5))` }}>×{Math.round(lerp(1, 100, prog(t, T.hundred - 0.45, 1.0, inOutCubic)))}</Abs>
     </Enter>
   );
 };
@@ -398,16 +409,19 @@ export const SpeakWriteSeen = () => {
   );
 };
 
-/** Closing sign-off under "You." */
+/** Closing: "Let it be" → huge "You." in front of him (a tight shot leaves no room behind), then the kicker. */
 export const SignOff = () => {
   const t = useT();
-  const p = prog(t, T.you + 0.7, 0.8, inOutCubic);
-  if (p <= 0) return null;
+  if (t < T.let - 0.1) return null;
+  const a = prog(t, T.let - 0.05, 0.4, outExpo), y = prog(t, T.you - 0.04, 0.55, outExpo), k = prog(t, T.you + 0.8, 0.7, inOutCubic);
   return (
-    <Abs style={{ left: 0, right: 0, top: 1290, textAlign: "center", opacity: p }}>
-      <div style={{ margin: "0 auto 26px", width: 460 * p, height: 2, background: "linear-gradient(90deg, rgba(235,194,122,0), #EBC27A, rgba(235,194,122,0))" }} />
-      <div style={{ fontFamily: SERIF, fontStyle: "italic", fontSize: 78, ...goldText, display: "inline-block", paddingRight: 8 }}>Let it be you.</div>
-      <div style={{ ...label, fontSize: 20, letterSpacing: 12, marginTop: 18, opacity: prog(t, T.you + 1.2, 0.6) }}>Break the cycle</div>
+    <Abs style={{ left: 0, right: 0, top: 930, textAlign: "center" }}>
+      <Abs style={{ left: -100, right: -100, top: -160, height: 820, background: "radial-gradient(ellipse 50% 45% at 50% 50%, rgba(8,6,4,0.55), rgba(8,6,4,0) 75%)" }} />
+      <div style={{ position: "relative", fontFamily: SANS, fontWeight: 700, fontSize: 58, letterSpacing: 2, color: IVORY, opacity: a, transform: `translateY(${(1 - a) * 20}px)`, textShadow: "0 4px 20px rgba(0,0,0,0.6)" }}>Let it be</div>
+      <div style={{ position: "relative", fontFamily: SERIF, fontStyle: "italic", fontSize: 330, lineHeight: 0.95, ...goldText, display: "inline-block", paddingRight: 30, opacity: y,
+        transform: `translateY(${(1 - y) * 80}px) scale(${lerp(1.25, 1, y)})`, filter: `blur(${(1 - y) * 16}px) drop-shadow(0 8px 40px rgba(0,0,0,0.55)) drop-shadow(0 0 40px rgba(235,194,122,0.45))` }}>You.</div>
+      <div style={{ position: "relative", margin: "18px auto 18px", width: 460 * k, height: 2, background: "linear-gradient(90deg, rgba(235,194,122,0), #EBC27A, rgba(235,194,122,0))" }} />
+      <div style={{ position: "relative", ...label, fontSize: 22, letterSpacing: 14, opacity: k, color: IVORY }}>Break the cycle</div>
     </Abs>
   );
 };

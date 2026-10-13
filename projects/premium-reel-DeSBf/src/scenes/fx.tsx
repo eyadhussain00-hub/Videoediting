@@ -29,7 +29,7 @@ export const LightLeaks = () => {
 };
 
 /** Anamorphic flare streaks on the big hits. */
-const FLARES: [number, number][] = [[T.first, 330], [T.wealth, 1130], [T.hundred, 200], [T.breakW + 0.05, 470], [T.you, 300]];
+const FLARES: [number, number][] = [[T.first, 330], [T.wealth, 1130], [T.hundred, 200], [T.breakW + 0.05, 470], [T.you, 1150]];
 export const Flares = () => {
   const t = useCurrentFrame() / FPS;
   return (

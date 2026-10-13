@@ -91,6 +91,7 @@ export const CHAPTERS = [
 
 // Captions are hidden while a graphic is already saying the words.
 export const CAPTION_HIDE: [number, number][] = [
+  [T.first - 0.1, T.three - 0.15],
   [T.ch1 - 0.05, T.beliefs - 0.15],
   [T.follow - 0.6, T.respect + 1.15],
   [T.playbook - 0.25, T.ch2],
