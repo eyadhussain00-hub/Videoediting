@@ -1,0 +1,23 @@
+{
+  "about": "Single image: log the source of every lead (the Growth report shows which source books the most).",
+  "slides": [
+    {
+      "type": "cta",
+      "title": {
+        "en": "Ask every new client **one question.**",
+        "ar": "اسأل كل عميل جديد **سؤال واحد.**"
+      },
+      "body": {
+        "en": "“How did you hear about us?” Log the answer. After a month you know which ad is worth paying for.",
+        "ar": "«عرفتنا منين؟» وسجّل الإجابة. بعد شهر هتعرف أنهي إعلان يستاهل تدفع فيه."
+      },
+      "button": {
+        "label": {
+          "en": "Message us on WhatsApp",
+          "ar": "ابعتلنا على واتساب"
+        },
+        "value": "{{whatsapp}}"
+      }
+    }
+  ]
+}

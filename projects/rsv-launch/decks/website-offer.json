@@ -1,0 +1,83 @@
+{
+  "about": "The second line: one-page websites (WEBSITE_OFFER in offer.ts).",
+  "slides": [
+    {
+      "type": "cover",
+      "kicker": {
+        "en": "For clinics, salons and offices",
+        "ar": "للعيادات والصالونات والمكاتب"
+      },
+      "title": {
+        "en": "They look you up **before they call.**",
+        "ar": "بيدوروا عليك **قبل ما يتصلوا.**"
+      },
+      "body": {
+        "en": "3 signs your website is costing you calls.",
+        "ar": "3 علامات إن موقعك بيضيّع عليك مكالمات."
+      }
+    },
+    {
+      "type": "item",
+      "tag": {
+        "en": "Google search",
+        "ar": "بحث جوجل"
+      },
+      "title": {
+        "en": "There's no website at all.",
+        "ar": "مفيش موقع خالص."
+      },
+      "body": {
+        "en": "A business with only a map pin looks smaller than it is. A clear page with prices, photos and hours builds trust before the first call.",
+        "ar": "البيزنس اللي ليه بس مكان على الخريطة بيبان أصغر من حجمه. صفحة واضحة فيها الأسعار والصور والمواعيد بتبني ثقة قبل أول مكالمة."
+      }
+    },
+    {
+      "type": "item",
+      "tag": {
+        "en": "Phone screen",
+        "ar": "شاشة الموبايل"
+      },
+      "title": {
+        "en": "It breaks on a phone.",
+        "ar": "بيبوظ على الموبايل."
+      },
+      "body": {
+        "en": "Most people find you on their phone. Tiny text, sideways scrolling or a slow page, and they go back to the results.",
+        "ar": "أغلب الناس بتلاقيك من الموبايل. كلام صغير، أو الصفحة بتتحرك يمين وشمال، أو بطيئة، فبيرجعوا للنتايج."
+      }
+    },
+    {
+      "type": "item",
+      "tag": {
+        "en": "Calls",
+        "ar": "المكالمات"
+      },
+      "title": {
+        "en": "They can't call in one tap.",
+        "ar": "مش عارفين يتصلوا بضغطة."
+      },
+      "body": {
+        "en": "The number, WhatsApp and directions should be one tap away on every screen, not hidden at the bottom.",
+        "ar": "الرقم والواتساب والعنوان لازم يبقوا على بعد ضغطة في كل شاشة، مش مستخبيين تحت."
+      }
+    },
+    {
+      "type": "cta",
+      "title": {
+        "en": "A one-page site, **built for you.**",
+        "ar": "موقع صفحة واحدة، **متعمل مخصوص ليك.**"
+      },
+      "body": {
+        "en": "{{site.setup}} once to go live on your own domain, then {{site.monthly}} for hosting, the domain and small changes.",
+        "ar": "{{site.setup}} مرة واحدة عشان يشتغل على الدومين بتاعك، وبعدها {{site.monthly}} للاستضافة والدومين والتعديلات الصغيرة."
+      },
+      "button": {
+        "label": {
+          "en": "Message us on WhatsApp",
+          "ar": "ابعتلنا على واتساب"
+        },
+        "value": "{{whatsapp}}"
+      }
+    }
+  ]
+}

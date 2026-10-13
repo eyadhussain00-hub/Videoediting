@@ -1,0 +1,270 @@
+{
+  "about": "The clinic template's real overdue rules (handbook: New after 2 days, No-show same day, Contacted after 7 days).",
+  "slides": [
+    {
+      "type": "cover",
+      "kicker": {
+        "en": "For clinic owners",
+        "ar": "لأصحاب العيادات"
+      },
+      "title": {
+        "en": "3 follow-up rules **every clinic needs.**",
+        "ar": "3 قواعد متابعة **كل عيادة محتاجاها.**"
+      },
+      "body": {
+        "en": "The same 3 rules an RSV dashboard checks for you every day.",
+        "ar": "نفس القواعد اللي لوحة RSV بتراجعها بدالك كل يوم."
+      }
+    },
+    {
+      "type": "item",
+      "tag": {
+        "en": "New inquiry",
+        "ar": "استفسار جديد"
+      },
+      "title": {
+        "en": "Reply within 2 days.",
+        "ar": "رد في خلال يومين."
+      },
+      "body": {
+        "en": "After two days most people have booked somewhere else. Anything older gets flagged.",
+        "ar": "بعد يومين أغلب الناس بتكون حجزت في مكان تاني. أي استفسار أقدم من كده بيظهرلك."
+      },
+      "visual": {
+        "kind": "chat",
+        "initials": {
+          "en": "S",
+          "ar": "س"
+        },
+        "name": {
+          "en": "Sara",
+          "ar": "سارة"
+        },
+        "status": {
+          "en": "New inquiry",
+          "ar": "استفسار جديد"
+        },
+        "messages": [
+          {
+            "from": "them",
+            "time": "21:40",
+            "text": {
+              "en": "Do you do braces for adults? How much?",
+              "ar": "بتعملوا تقويم للكبار؟ بكام؟"
+            }
+          },
+          {
+            "from": "us",
+            "time": "09:15",
+            "text": {
+              "en": "Hi Sara, yes we do. A consultation is the first step. Is Saturday at 5 good for you?",
+              "ar": "أهلاً يا سارة، أيوه بنعمل. أول خطوة كشف واستشارة، يناسبك السبت الساعة 5؟"
+            }
+          },
+          {
+            "note": {
+              "en": "Answered the next morning",
+              "ar": "اترد عليها تاني يوم الصبح"
+            },
+            "tone": "good"
+          }
+        ]
+      },
+      "chips": [
+        {
+          "label": {
+            "en": "Flag",
+            "ar": "تنبيه"
+          },
+          "value": {
+            "en": "After 2 days",
+            "ar": "بعد يومين"
+          }
+        },
+        {
+          "label": {
+            "en": "Fix",
+            "ar": "الحل"
+          },
+          "value": {
+            "en": "A morning list",
+            "ar": "قايمة الصبح"
+          }
+        }
+      ]
+    },
+    {
+      "type": "item",
+      "tag": {
+        "en": "No-show",
+        "ar": "محضرش"
+      },
+      "title": {
+        "en": "Rebook a no-show the same day.",
+        "ar": "اللي محضرش، احجزله في نفس اليوم."
+      },
+      "body": {
+        "en": "A missed appointment is a patient who still needs you. Call before the day ends.",
+        "ar": "الميعاد اللي اتفوّت ده مريض لسه محتاجك. كلّمه قبل اليوم ما يخلص."
+      },
+      "visual": {
+        "kind": "chat",
+        "initials": {
+          "en": "A",
+          "ar": "أ"
+        },
+        "name": {
+          "en": "Ahmed",
+          "ar": "أحمد"
+        },
+        "status": {
+          "en": "Missed 4pm today",
+          "ar": "فوّت ميعاد 4 النهارده"
+        },
+        "messages": [
+          {
+            "from": "us",
+            "time": "17:10",
+            "text": {
+              "en": "Hi Ahmed, we missed you at 4 today. Shall we move you to Saturday at 6?",
+              "ar": "أهلاً يا أحمد، افتقدناك الساعة 4 النهارده. ننقلك السبت الساعة 6؟"
+            }
+          },
+          {
+            "from": "them",
+            "time": "17:24",
+            "text": {
+              "en": "Sorry, something came up. Saturday works.",
+              "ar": "معلش حصل ظرف. السبت تمام."
+            }
+          }
+        ]
+      },
+      "chips": [
+        {
+          "label": {
+            "en": "Flag",
+            "ar": "تنبيه"
+          },
+          "value": {
+            "en": "Same day",
+            "ar": "نفس اليوم"
+          }
+        },
+        {
+          "label": {
+            "en": "Fix",
+            "ar": "الحل"
+          },
+          "value": {
+            "en": "One call",
+            "ar": "مكالمة واحدة"
+          }
+        }
+      ]
+    },
+    {
+      "type": "item",
+      "tag": {
+        "en": "Contacted, not booked",
+        "ar": "اتكلمنا ومحجزش"
+      },
+      "title": {
+        "en": "Check in after a week.",
+        "ar": "تابع بعد أسبوع."
+      },
+      "body": {
+        "en": "Someone you spoke to who hasn't booked gets one more message after 7 days.",
+        "ar": "أي حد اتكلمت معاه ومحجزش، ابعتله رسالة كمان بعد 7 أيام."
+      },
+      "visual": {
+        "kind": "board",
+        "rows": [
+          {
+            "name": {
+              "en": "Mona · Implants",
+              "ar": "منى · زراعة"
+            },
+            "detail": {
+              "en": "Contacted · 8 days ago",
+              "ar": "اتواصلنا · من 8 أيام"
+            },
+            "badge": {
+              "en": "Check in",
+              "ar": "تابع"
+            },
+            "state": "overdue"
+          },
+          {
+            "name": {
+              "en": "Hoda · Whitening",
+              "ar": "هدى · تبييض"
+            },
+            "detail": {
+              "en": "Contacted · 3 days ago",
+              "ar": "اتواصلنا · من 3 أيام"
+            },
+            "badge": {
+              "en": "Waiting",
+              "ar": "مستني"
+            },
+            "state": "none"
+          },
+          {
+            "name": {
+              "en": "Karim · Check-up",
+              "ar": "كريم · كشف"
+            },
+            "detail": {
+              "en": "Booked · Sunday",
+              "ar": "اتحجز · الحد"
+            },
+            "badge": {
+              "en": "Booked",
+              "ar": "اتحجز"
+            },
+            "state": "ok"
+          }
+        ]
+      },
+      "chips": [
+        {
+          "label": {
+            "en": "Flag",
+            "ar": "تنبيه"
+          },
+          "value": {
+            "en": "After 7 days",
+            "ar": "بعد 7 أيام"
+          }
+        },
+        {
+          "label": {
+            "en": "Fix",
+            "ar": "الحل"
+          },
+          "value": {
+            "en": "One polite message",
+            "ar": "رسالة لطيفة"
+          }
+        }
+      ]
+    },
+    {
+      "type": "cta",
+      "title": {
+        "en": "We check these **for you.**",
+        "ar": "إحنا بنجهّز ده **بدالك.**"
+      },
+      "body": "{{tagline}}",
+      "plans": true,
+      "button": {
+        "label": {
+          "en": "Message us on WhatsApp",
+          "ar": "ابعتلنا على واتساب"
+        },
+        "value": "{{whatsapp}}"
+      }
+    }
+  ]
+}

@@ -1,0 +1,99 @@
+{
+  "about": "For clinic owners in Egypt. Four places an inquiry goes missing, then what RSV sets up. The chats, board and bars are illustrations and carry an Example tag; no slide quotes a real client or a measured number.",
+  "slides": [
+    {
+      "type": "cover",
+      "kicker": { "en": "For clinic owners", "ar": "لأصحاب العيادات" },
+      "title": { "en": "You don't need more ads. You need **faster replies.**", "ar": "مش محتاج إعلانات أكتر. محتاج **ترد أسرع.**" },
+      "body": { "en": "4 places inquiries go missing, and how to close each one.", "ar": "4 أماكن بيضيع فيها الاستفسار، وإزاي تقفل كل واحد فيهم." }
+    },
+    {
+      "type": "item",
+      "tag": { "en": "WhatsApp · after hours", "ar": "واتساب · بعد مواعيد العمل" },
+      "title": { "en": "The 11pm “how much?”", "ar": "«بكام؟» الساعة 11 بالليل" },
+      "body": { "en": "People ask when they're free, which is often after you close. By morning they've asked two other clinics.", "ar": "الناس بتسأل وقت فراغها، وغالباً بعد ما تقفل. وعلى الصبح يكونوا سألوا عيادتين تانيين." },
+      "visual": {
+        "kind": "chat",
+        "initials": { "en": "S", "ar": "س" },
+        "name": { "en": "Sara", "ar": "سارة" },
+        "status": { "en": "New inquiry", "ar": "استفسار جديد" },
+        "messages": [
+          { "from": "them", "time": "23:14", "text": { "en": "Hi, how much is a cleaning and whitening session?", "ar": "السلام عليكم، بكام جلسة التنظيف والتبييض؟" } },
+          { "note": { "en": "Next day, 09:40 · still no reply", "ar": "تاني يوم 09:40 · لسه مفيش رد" }, "tone": "warn", "later": true }
+        ]
+      },
+      "chips": [
+        { "label": { "en": "Costs you", "ar": "بيكلّفك" }, "value": { "en": "The booking", "ar": "الحجز" } },
+        { "label": { "en": "Fix", "ar": "الحل" }, "value": { "en": "A morning list of who's waiting", "ar": "قايمة الصبح بالناس المستنية" } }
+      ]
+    },
+    {
+      "type": "item",
+      "tag": { "en": "Front desk · handover", "ar": "الاستقبال · تسليم الشيفت" },
+      "title": { "en": "“I thought you replied.”", "ar": "«أنا افتكرتك رديت»" },
+      "body": { "en": "Two people on the phone, one on WhatsApp, and nobody owns the lead. Everyone assumes someone else followed up.", "ar": "اتنين على التليفون وواحد على الواتساب، ومحدش مسؤول عن العميل. وكل واحد فاكر التاني تابع معاه." },
+      "visual": {
+        "kind": "board",
+        "rows": [
+          { "name": { "en": "Mona · Implants", "ar": "منى · زراعة أسنان" }, "detail": { "en": "Instagram · 3 days ago", "ar": "إنستجرام · من 3 أيام" }, "state": "overdue", "badge": { "en": "Overdue 1 day", "ar": "متأخر يوم" } },
+          { "name": { "en": "Ahmed · Braces", "ar": "أحمد · تقويم" }, "detail": { "en": "Referral · missed yesterday", "ar": "ترشيح · محضرش امبارح" }, "state": "overdue", "badge": { "en": "No-show", "ar": "محضرش" } },
+          { "name": { "en": "Hoda · Whitening", "ar": "هدى · تبييض" }, "detail": { "en": "WhatsApp · today", "ar": "واتساب · النهارده" }, "state": "new", "badge": { "en": "New", "ar": "جديد" } },
+          { "name": { "en": "Karim · Check-up", "ar": "كريم · كشف" }, "detail": { "en": "Walk-in · today", "ar": "زيارة مباشرة · النهارده" }, "state": "ok", "badge": { "en": "Booked", "ar": "اتحجز" } }
+        ]
+      },
+      "chips": [
+        { "label": { "en": "Costs you", "ar": "بيكلّفك" }, "value": { "en": "The follow-up", "ar": "المتابعة" } },
+        { "label": { "en": "Fix", "ar": "الحل" }, "value": { "en": "One list everyone sees", "ar": "قايمة واحدة الكل شايفها" } }
+      ]
+    },
+    {
+      "type": "item",
+      "tag": { "en": "Follow-up", "ar": "المتابعة" },
+      "title": { "en": "“I’ll think about it” isn’t a no.", "ar": "«هفكر» مش معناها لأ." },
+      "body": { "en": "Usually it's the last message anyone sends. One polite check-in a few days later brings some of them back.", "ar": "غالباً بتبقى آخر رسالة في المحادثة. رسالة متابعة لطيفة بعد كام يوم بترجّع بعضهم." },
+      "visual": {
+        "kind": "chat",
+        "initials": { "en": "M", "ar": "م" },
+        "name": { "en": "Mona", "ar": "منى" },
+        "status": { "en": "Asked about implants", "ar": "سألت عن زراعة الأسنان" },
+        "messages": [
+          { "from": "them", "time": "18:02", "text": { "en": "OK thanks, I'll think about it", "ar": "تمام شكراً، هفكر وأرد عليكم" } },
+          { "note": { "en": "A few days later", "ar": "بعد كام يوم" }, "tone": "good" },
+          { "from": "us", "time": "11:30", "text": { "en": "Hi Mona, we have a slot Thursday at 5. Shall we book it for you?", "ar": "أهلاً يا منى، حبّينا نتابع معاكي. عندنا ميعاد الخميس الساعة 5 العصر، نحجزهولك؟" } },
+          { "from": "them", "time": "11:41", "text": { "en": "Yes please, book me in", "ar": "أيوه، احجزولي" } }
+        ]
+      },
+      "chips": [
+        { "label": { "en": "Costs you", "ar": "بيكلّفك" }, "value": { "en": "Warm leads", "ar": "عملاء مهتمين" } },
+        { "label": { "en": "Fix", "ar": "الحل" }, "value": { "en": "A reminder to follow up", "ar": "تذكير بالمتابعة" } }
+      ]
+    },
+    {
+      "type": "item",
+      "tag": { "en": "Ads · sources", "ar": "الإعلانات · المصادر" },
+      "title": { "en": "You might be paying for the wrong ad.", "ar": "ممكن تكون بتصرف على الإعلان الغلط." },
+      "body": { "en": "Ask every new patient where they found you, and log it. The {{plan.Growth.name}} report then shows which source books the most.", "ar": "اسأل كل مريض جديد عرفك منين، وسجّل المصدر. وتقرير باقة {{plan.Growth.name}} بيوريك أنهي مصدر بيجيب حجوزات أكتر." },
+      "visual": {
+        "kind": "bars",
+        "rows": [
+          { "label": { "en": "Google", "ar": "جوجل" }, "value": 21 },
+          { "label": { "en": "Referral", "ar": "ترشيح" }, "value": 17 },
+          { "label": { "en": "Instagram", "ar": "إنستجرام" }, "value": 14 },
+          { "label": { "en": "Facebook", "ar": "فيسبوك" }, "value": 9 }
+        ],
+        "caption": { "en": "Bookings by source, one month", "ar": "حجوزات الشهر حسب المصدر" }
+      },
+      "chips": [
+        { "label": { "en": "Costs you", "ar": "بيكلّفك" }, "value": { "en": "Ad budget", "ar": "ميزانية الإعلانات" } },
+        { "label": { "en": "Fix", "ar": "الحل" }, "value": { "en": "Log the source", "ar": "سجّل المصدر" } }
+      ]
+    },
+    {
+      "type": "cta",
+      "title": { "en": "We set this up **for you.**", "ar": "إحنا بنجهّز ده **بدالك.**" },
+      "body": "{{tagline}}",
+      "plans": true,
+      "button": { "label": { "en": "Message us on WhatsApp", "ar": "ابعتلنا على واتساب" }, "value": "{{whatsapp}}" }
+    }
+  ]
+}

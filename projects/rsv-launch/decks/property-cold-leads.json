@@ -1,0 +1,360 @@
+{
+  "about": "For property offices in Egypt. Four moments a buyer slips away, then what RSV sets up. Visuals are illustrations with an Example tag; no real client, quote or number.",
+  "slides": [
+    {
+      "type": "cover",
+      "kicker": {
+        "en": "For property offices",
+        "ar": "لأصحاب المكاتب العقارية"
+      },
+      "title": {
+        "en": "The lead didn't go cold. **Nobody called back.**",
+        "ar": "العميل مبردش. **محدش كلّمه تاني.**"
+      },
+      "body": {
+        "en": "4 moments a buyer slips away, and how to catch each one.",
+        "ar": "4 لحظات المشتري بيضيع فيها منك، وإزاي تلحقه."
+      }
+    },
+    {
+      "type": "item",
+      "tag": {
+        "en": "Ads · the weekend",
+        "ar": "الإعلانات · الويك إند"
+      },
+      "title": {
+        "en": "The ad worked. The replies didn't.",
+        "ar": "الإعلان نجح. الرد لأ."
+      },
+      "body": {
+        "en": "A campaign brings a weekend of messages. By Sunday the team answers the newest, and the first ones have moved on.",
+        "ar": "الحملة بتجيب رسايل طول الويك إند. ويوم الحد الفريق بيرد على الأحدث، وأول ناس سألوا يكونوا مشيوا."
+      },
+      "visual": {
+        "kind": "chat",
+        "initials": {
+          "en": "O",
+          "ar": "ع"
+        },
+        "name": {
+          "en": "Omar",
+          "ar": "عمر"
+        },
+        "status": {
+          "en": "From the Facebook ad",
+          "ar": "من إعلان فيسبوك"
+        },
+        "messages": [
+          {
+            "from": "them",
+            "time": "22:47",
+            "text": {
+              "en": "Is the 3-bedroom in New Cairo still available? What's the down payment?",
+              "ar": "الشقة التلات أوض في التجمع لسه متاحة؟ والمقدم كام؟"
+            }
+          },
+          {
+            "note": {
+              "en": "Sunday 13:10 · still no reply",
+              "ar": "الحد 13:10 · لسه مفيش رد"
+            },
+            "tone": "warn",
+            "later": true
+          }
+        ]
+      },
+      "chips": [
+        {
+          "label": {
+            "en": "Costs you",
+            "ar": "بيكلّفك"
+          },
+          "value": {
+            "en": "The buyer",
+            "ar": "المشتري"
+          }
+        },
+        {
+          "label": {
+            "en": "Fix",
+            "ar": "الحل"
+          },
+          "value": {
+            "en": "Oldest waiting first",
+            "ar": "اللي مستني من بدري الأول"
+          }
+        }
+      ]
+    },
+    {
+      "type": "item",
+      "tag": {
+        "en": "After the viewing",
+        "ar": "بعد المعاينة"
+      },
+      "title": {
+        "en": "Nobody called after the viewing.",
+        "ar": "محدش اتصل بعد المعاينة."
+      },
+      "body": {
+        "en": "A viewing is the warmest moment. If nobody calls within a few days, they're viewing someone else's unit.",
+        "ar": "المعاينة أسخن لحظة. لو محدش كلّمه في كام يوم، بيكون بيعاين وحدة عند حد تاني."
+      },
+      "visual": {
+        "kind": "board",
+        "rows": [
+          {
+            "name": {
+              "en": "Omar · 3-bed, New Cairo",
+              "ar": "عمر · 3 أوض، التجمع"
+            },
+            "detail": {
+              "en": "Viewed 6 days ago",
+              "ar": "عاين من 6 أيام"
+            },
+            "state": "overdue",
+            "badge": {
+              "en": "Overdue",
+              "ar": "متأخر"
+            }
+          },
+          {
+            "name": {
+              "en": "Nour · Studio, Zayed",
+              "ar": "نور · ستوديو، زايد"
+            },
+            "detail": {
+              "en": "Negotiating · 7 days",
+              "ar": "تفاوض · من 7 أيام"
+            },
+            "state": "overdue",
+            "badge": {
+              "en": "Overdue",
+              "ar": "متأخر"
+            }
+          },
+          {
+            "name": {
+              "en": "Hany · Villa, October",
+              "ar": "هاني · فيلا، أكتوبر"
+            },
+            "detail": {
+              "en": "Instagram · today",
+              "ar": "إنستجرام · النهارده"
+            },
+            "state": "new",
+            "badge": {
+              "en": "New",
+              "ar": "جديد"
+            }
+          },
+          {
+            "name": {
+              "en": "Laila · Apartment",
+              "ar": "ليلى · شقة"
+            },
+            "detail": {
+              "en": "Referral · this week",
+              "ar": "ترشيح · الأسبوع ده"
+            },
+            "state": "ok",
+            "badge": {
+              "en": "Reserved",
+              "ar": "اتحجزت"
+            }
+          }
+        ]
+      },
+      "chips": [
+        {
+          "label": {
+            "en": "Costs you",
+            "ar": "بيكلّفك"
+          },
+          "value": {
+            "en": "The deal",
+            "ar": "البيعة"
+          }
+        },
+        {
+          "label": {
+            "en": "Fix",
+            "ar": "الحل"
+          },
+          "value": {
+            "en": "A flag after 5 days",
+            "ar": "تنبيه بعد 5 أيام"
+          }
+        }
+      ]
+    },
+    {
+      "type": "item",
+      "tag": {
+        "en": "Negotiation",
+        "ar": "التفاوض"
+      },
+      "title": {
+        "en": "“Let me discuss it at home.”",
+        "ar": "«هشوف البيت وأرد عليك»"
+      },
+      "body": {
+        "en": "That's a step, not a no. One check-in with a clear next step keeps it moving.",
+        "ar": "دي خطوة، مش رفض. رسالة متابعة فيها خطوة واضحة بتكمّل البيعة."
+      },
+      "visual": {
+        "kind": "chat",
+        "initials": {
+          "en": "N",
+          "ar": "ن"
+        },
+        "name": {
+          "en": "Nour",
+          "ar": "نور"
+        },
+        "status": {
+          "en": "Studio, Sheikh Zayed",
+          "ar": "ستوديو، الشيخ زايد"
+        },
+        "messages": [
+          {
+            "from": "them",
+            "time": "19:20",
+            "text": {
+              "en": "Thanks, let me discuss it at home",
+              "ar": "تمام شكراً، هتكلم في البيت وأرد عليك"
+            }
+          },
+          {
+            "note": {
+              "en": "A few days later",
+              "ar": "بعد كام يوم"
+            },
+            "tone": "good"
+          },
+          {
+            "from": "us",
+            "time": "12:05",
+            "text": {
+              "en": "Hi Nour, shall I book a second viewing for Thursday at 6?",
+              "ar": "أهلاً يا نور، أحجزلك معاينة تانية الخميس الساعة 6؟"
+            }
+          },
+          {
+            "from": "them",
+            "time": "12:31",
+            "text": {
+              "en": "Yes, Thursday works",
+              "ar": "أيوه، الخميس مناسب"
+            }
+          }
+        ]
+      },
+      "chips": [
+        {
+          "label": {
+            "en": "Costs you",
+            "ar": "بيكلّفك"
+          },
+          "value": {
+            "en": "Warm buyers",
+            "ar": "مشترين مهتمين"
+          }
+        },
+        {
+          "label": {
+            "en": "Fix",
+            "ar": "الحل"
+          },
+          "value": {
+            "en": "A reminder to follow up",
+            "ar": "تذكير بالمتابعة"
+          }
+        }
+      ]
+    },
+    {
+      "type": "item",
+      "tag": {
+        "en": "Team · who owns it",
+        "ar": "الفريق · مين ماسك"
+      },
+      "title": {
+        "en": "Three agents, one buyer, no owner.",
+        "ar": "3 في المبيعات، عميل واحد، ومحدش ماسكه."
+      },
+      "body": {
+        "en": "When a lead belongs to everyone, nobody follows it up. The {{plan.Scale.name}} report shows each person's reply time.",
+        "ar": "لما العميل يبقى بتاع الكل، محدش بيتابعه. وتقرير باقة {{plan.Scale.name}} بيوريك سرعة رد كل واحد."
+      },
+      "visual": {
+        "kind": "bars",
+        "rows": [
+          {
+            "label": {
+              "en": "Ahmed",
+              "ar": "أحمد"
+            },
+            "value": 9
+          },
+          {
+            "label": {
+              "en": "Mariam",
+              "ar": "مريم"
+            },
+            "value": 4
+          },
+          {
+            "label": {
+              "en": "Youssef",
+              "ar": "يوسف"
+            },
+            "value": 2
+          }
+        ],
+        "caption": {
+          "en": "Buyers waiting for a reply, by agent",
+          "ar": "عملاء مستنيين رد، حسب الموظف"
+        }
+      },
+      "chips": [
+        {
+          "label": {
+            "en": "Costs you",
+            "ar": "بيكلّفك"
+          },
+          "value": {
+            "en": "Accountability",
+            "ar": "المسؤولية"
+          }
+        },
+        {
+          "label": {
+            "en": "Fix",
+            "ar": "الحل"
+          },
+          "value": {
+            "en": "One owner per lead",
+            "ar": "مسؤول لكل عميل"
+          }
+        }
+      ]
+    },
+    {
+      "type": "cta",
+      "title": {
+        "en": "We set this up **for you.**",
+        "ar": "إحنا بنجهّز ده **بدالك.**"
+      },
+      "body": "{{tagline}}",
+      "plans": true,
+      "button": {
+        "label": {
+          "en": "Message us on WhatsApp",
+          "ar": "ابعتلنا على واتساب"
+        },
+        "value": "{{whatsapp}}"
+      }
+    }
+  ]
+}

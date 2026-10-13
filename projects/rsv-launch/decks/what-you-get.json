@@ -1,0 +1,434 @@
+{
+  "about": "What RSV sets up for a clinic or property office, on day one. Facts from offer.ts and the handbook; visuals carry the Example tag.",
+  "slides": [
+    {
+      "type": "cover",
+      "kicker": {
+        "en": "RSV Studio · what you get",
+        "ar": "RSV Studio · هتاخد إيه"
+      },
+      "title": {
+        "en": "Every inquiry in one place. **Run for you.**",
+        "ar": "كل استفسار في مكان واحد. **وإحنا بنديره.**"
+      },
+      "body": {
+        "en": "What your clinic or property office gets on day one.",
+        "ar": "اللي عيادتك أو مكتبك العقاري بياخده من أول يوم."
+      }
+    },
+    {
+      "type": "item",
+      "tag": {
+        "en": "Setup",
+        "ar": "التجهيز"
+      },
+      "title": {
+        "en": "Shaped around your work.",
+        "ar": "متفصّلة على شغلك."
+      },
+      "body": {
+        "en": "Nothing to install. You open a link, type your password, and your stages are already there.",
+        "ar": "مفيش حاجة تتسطّب. بتفتح لينك، تكتب الباسورد، وتلاقي مراحل شغلك جاهزة."
+      },
+      "visual": {
+        "kind": "board",
+        "rows": [
+          {
+            "name": {
+              "en": "Clinic",
+              "ar": "عيادة"
+            },
+            "detail": {
+              "en": "New → Contacted → Booked → Attended",
+              "ar": "جديد ← اتواصلنا ← اتحجز ← حضر"
+            },
+            "badge": {
+              "en": "4 stages",
+              "ar": "4 مراحل"
+            },
+            "state": "new"
+          },
+          {
+            "name": {
+              "en": "Property office",
+              "ar": "مكتب عقاري"
+            },
+            "detail": {
+              "en": "New → Viewing → Negotiating → Reserved",
+              "ar": "جديد ← معاينة ← تفاوض ← اتحجزت"
+            },
+            "badge": {
+              "en": "4 stages",
+              "ar": "4 مراحل"
+            },
+            "state": "new"
+          }
+        ]
+      },
+      "chips": [
+        {
+          "label": {
+            "en": "You",
+            "ar": "إنت"
+          },
+          "value": {
+            "en": "Open a link",
+            "ar": "تفتح لينك"
+          }
+        },
+        {
+          "label": {
+            "en": "We",
+            "ar": "إحنا"
+          },
+          "value": {
+            "en": "Do the setup",
+            "ar": "نجهّز كل حاجة"
+          }
+        }
+      ]
+    },
+    {
+      "type": "item",
+      "tag": {
+        "en": "Logging",
+        "ar": "التسجيل"
+      },
+      "title": {
+        "en": "A few seconds per inquiry.",
+        "ar": "ثواني لكل استفسار."
+      },
+      "body": {
+        "en": "Your team adds each inquiry as it arrives: WhatsApp, Instagram, a call or a walk-in.",
+        "ar": "فريقك بيضيف كل استفسار أول ما يوصل: واتساب، إنستجرام، مكالمة أو زيارة."
+      },
+      "visual": {
+        "kind": "board",
+        "rows": [
+          {
+            "name": {
+              "en": "Hoda · Whitening",
+              "ar": "هدى · تبييض"
+            },
+            "detail": {
+              "en": "WhatsApp · 09:12",
+              "ar": "واتساب · 09:12"
+            },
+            "badge": {
+              "en": "New",
+              "ar": "جديد"
+            },
+            "state": "new"
+          },
+          {
+            "name": {
+              "en": "Karim · Check-up",
+              "ar": "كريم · كشف"
+            },
+            "detail": {
+              "en": "Call · 10:40",
+              "ar": "مكالمة · 10:40"
+            },
+            "badge": {
+              "en": "New",
+              "ar": "جديد"
+            },
+            "state": "new"
+          },
+          {
+            "name": {
+              "en": "Salma · Braces",
+              "ar": "سلمى · تقويم"
+            },
+            "detail": {
+              "en": "Instagram · 11:05",
+              "ar": "إنستجرام · 11:05"
+            },
+            "badge": {
+              "en": "New",
+              "ar": "جديد"
+            },
+            "state": "new"
+          },
+          {
+            "name": {
+              "en": "Tarek · Implants",
+              "ar": "طارق · زراعة"
+            },
+            "detail": {
+              "en": "Walk-in · 12:30",
+              "ar": "زيارة · 12:30"
+            },
+            "badge": {
+              "en": "Booked",
+              "ar": "اتحجز"
+            },
+            "state": "ok"
+          }
+        ]
+      },
+      "chips": [
+        {
+          "label": {
+            "en": "Takes",
+            "ar": "بياخد"
+          },
+          "value": {
+            "en": "Seconds",
+            "ar": "ثواني"
+          }
+        },
+        {
+          "label": {
+            "en": "From",
+            "ar": "من"
+          },
+          "value": {
+            "en": "Any channel",
+            "ar": "أي مكان"
+          }
+        }
+      ]
+    },
+    {
+      "type": "item",
+      "tag": {
+        "en": "Flags",
+        "ar": "التنبيهات"
+      },
+      "title": {
+        "en": "Anyone waiting gets flagged.",
+        "ar": "أي حد مستني بيظهرلك."
+      },
+      "body": {
+        "en": "A new inquiry with no reply after 2 days, or a no-show not rebooked, is flagged. Nobody has to remember.",
+        "ar": "استفسار جديد من غير رد بعد يومين، أو حد محضرش ومتحجزلوش تاني، بيظهر لوحده. محدش محتاج يفتكر."
+      },
+      "visual": {
+        "kind": "board",
+        "rows": [
+          {
+            "name": {
+              "en": "Mona · Implants",
+              "ar": "منى · زراعة"
+            },
+            "detail": {
+              "en": "New · 3 days, no reply",
+              "ar": "جديد · 3 أيام من غير رد"
+            },
+            "badge": {
+              "en": "Overdue",
+              "ar": "متأخر"
+            },
+            "state": "overdue"
+          },
+          {
+            "name": {
+              "en": "Ahmed · Braces",
+              "ar": "أحمد · تقويم"
+            },
+            "detail": {
+              "en": "No-show · today",
+              "ar": "محضرش · النهارده"
+            },
+            "badge": {
+              "en": "Rebook today",
+              "ar": "احجزله النهارده"
+            },
+            "state": "overdue"
+          },
+          {
+            "name": {
+              "en": "Sara · Cleaning",
+              "ar": "سارة · تنظيف"
+            },
+            "detail": {
+              "en": "Contacted · 2 days",
+              "ar": "اتواصلنا · من يومين"
+            },
+            "badge": {
+              "en": "On track",
+              "ar": "تمام"
+            },
+            "state": "ok"
+          }
+        ]
+      },
+      "chips": [
+        {
+          "label": {
+            "en": "Checks",
+            "ar": "بيراجع"
+          },
+          "value": {
+            "en": "Every day",
+            "ar": "كل يوم"
+          }
+        },
+        {
+          "label": {
+            "en": "You see",
+            "ar": "بتشوف"
+          },
+          "value": {
+            "en": "Who to call",
+            "ar": "تكلّم مين"
+          }
+        }
+      ]
+    },
+    {
+      "type": "item",
+      "tag": {
+        "en": "Rasid · the assistant",
+        "ar": "راصد · المساعد"
+      },
+      "title": {
+        "en": "Ask who to call first.",
+        "ar": "اسأل تكلّم مين الأول."
+      },
+      "body": {
+        "en": "Rasid, the assistant inside your dashboard, reads your live list and drafts the follow-up.",
+        "ar": "راصد، المساعد اللي جوه اللوحة، بيقرا قايمتك وبيكتبلك رسالة المتابعة."
+      },
+      "visual": {
+        "kind": "chat",
+        "initials": {
+          "en": "R",
+          "ar": "ر"
+        },
+        "name": {
+          "en": "Rasid",
+          "ar": "راصد"
+        },
+        "status": {
+          "en": "Your assistant",
+          "ar": "مساعدك"
+        },
+        "messages": [
+          {
+            "from": "us",
+            "time": "09:02",
+            "text": {
+              "en": "Who should we call first today?",
+              "ar": "نكلّم مين الأول النهارده؟"
+            }
+          },
+          {
+            "from": "them",
+            "time": "09:02",
+            "text": {
+              "en": "Mona (implants): 3 days with no reply. Then Ahmed, a no-show yesterday. Shall I draft Mona's message?",
+              "ar": "منى (زراعة): 3 أيام من غير رد. وبعدها أحمد، محضرش امبارح. أكتبلك رسالة منى؟"
+            }
+          }
+        ]
+      },
+      "chips": [
+        {
+          "label": {
+            "en": "Reads",
+            "ar": "بيقرا"
+          },
+          "value": {
+            "en": "Your live list",
+            "ar": "قايمتك"
+          }
+        },
+        {
+          "label": {
+            "en": "Writes",
+            "ar": "بيكتب"
+          },
+          "value": {
+            "en": "Follow-ups",
+            "ar": "المتابعات"
+          }
+        }
+      ]
+    },
+    {
+      "type": "item",
+      "tag": {
+        "en": "Monthly report",
+        "ar": "التقرير الشهري"
+      },
+      "title": {
+        "en": "How did the team do?",
+        "ar": "الفريق عمل إيه الشهر ده؟"
+      },
+      "body": {
+        "en": "On the 1st: reply speed on every plan, sources and a next step on {{plan.Growth.name}}, each person on {{plan.Scale.name}}.",
+        "ar": "أول كل شهر: سرعة الرد في كل الباقات، والمصادر وخطوة جاية في {{plan.Growth.name}}، وأداء كل فرد في {{plan.Scale.name}}."
+      },
+      "visual": {
+        "kind": "bars",
+        "rows": [
+          {
+            "label": {
+              "en": "Sara",
+              "ar": "سارة"
+            },
+            "value": 5
+          },
+          {
+            "label": {
+              "en": "Mariam",
+              "ar": "مريم"
+            },
+            "value": 9
+          },
+          {
+            "label": {
+              "en": "Ahmed",
+              "ar": "أحمد"
+            },
+            "value": 16
+          }
+        ],
+        "caption": {
+          "en": "Average hours to first reply, by person",
+          "ar": "متوسط ساعات أول رد، لكل فرد"
+        }
+      },
+      "chips": [
+        {
+          "label": {
+            "en": "Arrives",
+            "ar": "بيوصل"
+          },
+          "value": {
+            "en": "On the 1st",
+            "ar": "أول الشهر"
+          }
+        },
+        {
+          "label": {
+            "en": "Answers",
+            "ar": "بيجاوب"
+          },
+          "value": {
+            "en": "What next",
+            "ar": "نعمل إيه"
+          }
+        }
+      ]
+    },
+    {
+      "type": "cta",
+      "title": {
+        "en": "We set this up **for you.**",
+        "ar": "إحنا بنجهّز ده **بدالك.**"
+      },
+      "body": "{{tagline}}",
+      "plans": true,
+      "button": {
+        "label": {
+          "en": "Message us on WhatsApp",
+          "ar": "ابعتلنا على واتساب"
+        },
+        "value": "{{whatsapp}}"
+      }
+    }
+  ]
+}

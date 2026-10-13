@@ -6,3 +6,4 @@ One-off videos made with Motion Video Director. Recurring clients (SK Media, CEO
 | Project | What it is | Status |
 |---|---|---|
 | `rsv-demo-video` | RSV Studio's Remotion project: the self-running clinic demo ad (AR/EN, from recorded dashboard footage) and the 50-second Command Centre film (drawn in code, no footage). | Moved from `rsv-studio/marketing/demo-video`. The Command Centre film renders from here as is. The demo ad needs recordings, which need `rsv-studio` (see its README). |
+| `rsv-launch` | RSV Studio's own Instagram + Facebook launch: 15 posts, 14 Oct – 10 Nov 2026. Carousels, singles, two slideshow reels, captions, and a live plan page with a posted tracker. | Published (link in its PROGRESS.md). Three reels still to film. |

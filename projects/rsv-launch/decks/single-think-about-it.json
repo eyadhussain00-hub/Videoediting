@@ -1,0 +1,23 @@
+{
+  "about": "Single image: the follow-up idea.",
+  "slides": [
+    {
+      "type": "cta",
+      "title": {
+        "en": "“I'll think about it” **isn't a no.**",
+        "ar": "«هفكر» **مش معناها لأ.**"
+      },
+      "body": {
+        "en": "It's usually the last message in the chat. One polite check-in a few days later brings some of them back.",
+        "ar": "غالباً بتبقى آخر رسالة في الشات. رسالة متابعة لطيفة بعد كام يوم بترجّع بعضهم."
+      },
+      "button": {
+        "label": {
+          "en": "Message us on WhatsApp",
+          "ar": "ابعتلنا على واتساب"
+        },
+        "value": "{{whatsapp}}"
+      }
+    }
+  ]
+}

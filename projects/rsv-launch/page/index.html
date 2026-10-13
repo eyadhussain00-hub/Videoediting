@@ -1,0 +1,532 @@
+<title>RSV Launch Plan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=IBM+Plex+Sans+Arabic:wght@400;600;700&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+/* Layout: a phone-first posting checklist. One column of dated posts grouped by week, each opening to its images, caption and a "posted" tick. RSV's own brand: indigo, cream, ink, gold. */
+:root {
+  --bg: #f6f2ea; --surface: #fffdf8; --sunk: #efe9dd; --fg: #14151a; --soft: #4a4d58; --faint: #6f7280;
+  --line: #e2dbcc; --accent: #3538cd; --accent-ink: #ffffff; --accent-soft: #e6e7fb; --gold: #9a6a24;
+  --ok: #0d7a4b; --ok-bg: #e2f3e9; --warn: #a2481c; --warn-bg: #fbeadf;
+  --sans: "Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --ar: "IBM Plex Sans Arabic", "Plus Jakarta Sans", Tahoma, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #121318; --surface: #1b1c23; --sunk: #23252e; --fg: #f1ece2; --soft: #c3c0b8; --faint: #9a988f;
+  --line: #2f313b; --accent: #8f92ff; --accent-ink: #121318; --accent-soft: #272a52; --gold: #e2ad62;
+  --ok: #5fd39a; --ok-bg: #173226; --warn: #f0a07a; --warn-bg: #3a2219; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #121318; --surface: #1b1c23; --sunk: #23252e; --fg: #f1ece2; --soft: #c3c0b8; --faint: #9a988f;
+  --line: #2f313b; --accent: #8f92ff; --accent-ink: #121318; --accent-soft: #272a52; --gold: #e2ad62;
+  --ok: #5fd39a; --ok-bg: #173226; --warn: #f0a07a; --warn-bg: #3a2219; color-scheme: dark }
+
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font: 15px/1.55 var(--sans); -webkit-font-smoothing: antialiased; }
+.wrap { max-width: 760px; margin: 0 auto; padding-inline: 16px; padding-block: 28px 80px; display: grid; gap: 36px; }
+h1, h2, h3 { margin: 0; text-wrap: balance; }
+h1 { font-size: clamp(30px, 7vw, 44px); line-height: 1.05; font-weight: 800; letter-spacing: -0.02em; }
+h2 { font-size: 20px; font-weight: 800; letter-spacing: -0.01em; }
+h3 { font-size: 16px; font-weight: 700; }
+p { margin: 0; }
+.label { font: 500 11.5px/1.2 var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--faint); }
+.muted { color: var(--soft); }
+button { font: inherit; color: inherit; cursor: pointer; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 6px; }
+[dir="rtl"] { font-family: var(--ar); }
+
+/* header */
+.head { display: grid; gap: 14px; }
+.head .sub { font-size: 16px; color: var(--soft); max-width: 60ch; }
+.bar { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 18px; }
+.progress { flex: 1 1 220px; display: grid; gap: 6px; }
+.track { height: 8px; border-radius: 99px; background: var(--sunk); overflow: hidden; }
+.track i { display: block; height: 100%; width: 0; background: var(--accent); border-radius: 99px; transition: width .3s; }
+.seg { display: inline-flex; border: 1px solid var(--line); border-radius: 99px; padding: 3px; background: var(--surface); }
+.seg button { border: 0; background: none; padding: 6px 14px; border-radius: 99px; font-size: 13px; font-weight: 600; color: var(--soft); }
+.seg button[aria-pressed="true"] { background: var(--fg); color: var(--bg); }
+.save-note { font-size: 12.5px; color: var(--faint); }
+
+/* section blocks */
+section { display: grid; gap: 14px; }
+.sec-head { display: grid; gap: 4px; }
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 16px; display: grid; gap: 12px; }
+
+/* checklist rows */
+.check { display: grid; grid-template-columns: auto 1fr; gap: 12px; align-items: start; }
+.tick { width: 26px; height: 26px; border-radius: 8px; border: 2px solid var(--line); background: var(--surface); display: grid; place-items: center; padding: 0; flex: none; }
+.tick svg { width: 16px; height: 16px; opacity: 0; }
+.tick[aria-pressed="true"] { background: var(--ok); border-color: var(--ok); color: var(--bg); }
+.tick[aria-pressed="true"] svg { opacity: 1; }
+.check .what { min-width: 0; display: grid; gap: 6px; }
+.check.done .what > b { text-decoration: line-through; color: var(--faint); }
+
+/* copy blocks */
+.copy { position: relative; background: var(--sunk); border-radius: 12px; padding: 12px 14px; white-space: pre-wrap; font-size: 14.5px; line-height: 1.65; min-width: 0; overflow-wrap: anywhere; }
+.copy[dir="rtl"] { font-size: 15.5px; line-height: 1.85; }
+.row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.btn { display: inline-flex; align-items: center; gap: 6px; border: 1px solid var(--line); background: var(--surface); border-radius: 10px; padding: 8px 12px; font-size: 13.5px; font-weight: 600; text-decoration: none; color: var(--fg); }
+.btn.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+.btn svg { width: 15px; height: 15px; }
+.btn[data-state="ok"] { border-color: var(--ok); color: var(--ok); }
+
+/* next up */
+.next { background: var(--fg); color: var(--bg); border-radius: 18px; padding: 18px; display: grid; gap: 10px; }
+.next .label { color: color-mix(in srgb, var(--bg) 70%, transparent); }
+.next h2 { font-size: 22px; }
+.next .btn { background: var(--bg); color: var(--fg); border-color: transparent; justify-self: start; }
+
+/* weeks + posts */
+.week { display: grid; gap: 10px; }
+.week-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; border-bottom: 1px solid var(--line); padding-bottom: 8px; }
+details.post { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; overflow: hidden; }
+details.post[open] { border-color: color-mix(in srgb, var(--accent) 45%, var(--line)); }
+details.post.done { background: color-mix(in srgb, var(--surface) 55%, var(--bg)); }
+details.post > summary { list-style: none; display: grid; grid-template-columns: 52px 1fr auto; gap: 12px; align-items: center; padding: 12px 14px; cursor: pointer; }
+details.post > summary::-webkit-details-marker { display: none; }
+.date { display: grid; justify-items: center; border-radius: 12px; background: var(--sunk); padding: 6px 0; font-variant-numeric: tabular-nums; }
+.date b { font-size: 20px; line-height: 1; font-weight: 800; }
+.date span { font: 500 10.5px/1.4 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--faint); }
+.post .sum { min-width: 0; display: grid; gap: 4px; }
+.post .sum b { font-size: 15.5px; line-height: 1.3; }
+.post.done .sum b { color: var(--faint); }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip { font: 500 11px/1 var(--mono); letter-spacing: .04em; padding: 5px 8px; border-radius: 99px; background: var(--sunk); color: var(--soft); white-space: nowrap; }
+.chip.ready { background: var(--ok-bg); color: var(--ok); }
+.chip.film { background: var(--warn-bg); color: var(--warn); }
+.chip.posted { background: var(--ok); color: var(--bg); }
+.post .body { padding: 4px 14px 16px; display: grid; gap: 16px; border-top: 1px solid var(--line); padding-top: 14px; }
+.post .block { display: grid; gap: 8px; min-width: 0; }
+
+.strip { display: flex; gap: 10px; overflow-x: auto; padding-bottom: 6px; scroll-snap-type: x mandatory; }
+.strip figure { margin: 0; flex: 0 0 auto; width: min(58vw, 230px); display: grid; gap: 6px; scroll-snap-align: start; }
+.strip img, .strip video { width: 100%; border-radius: 10px; border: 1px solid var(--line); display: block; background: var(--sunk); }
+.strip img { aspect-ratio: 4 / 5; height: auto; }
+.strip video { aspect-ratio: 9 / 16; width: min(52vw, 200px); }
+.strip figcaption { display: flex; justify-content: space-between; align-items: center; gap: 6px; }
+.strip figcaption .btn { padding: 5px 9px; font-size: 12px; }
+.mini { font-size: 12.5px; color: var(--faint); }
+
+.script { display: grid; gap: 0; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+.script > div { display: grid; grid-template-columns: 64px 1fr; gap: 10px; padding: 10px 12px; border-top: 1px solid var(--line); }
+.script > div:first-child { border-top: 0; }
+.script time { font: 500 12px/1.6 var(--mono); color: var(--faint); font-variant-numeric: tabular-nums; }
+.script p[dir="rtl"] { font-size: 15.5px; line-height: 1.8; }
+.script .en { font-size: 13px; color: var(--faint); margin-top: 2px; }
+ol.shots { margin: 0; padding-inline-start: 20px; display: grid; gap: 6px; }
+
+.posted-row { display: flex; align-items: center; gap: 12px; padding: 12px; border-radius: 12px; background: var(--sunk); }
+.posted-row .tick { width: 30px; height: 30px; }
+
+ul.plain { margin: 0; padding-inline-start: 18px; display: grid; gap: 8px; }
+.grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; }
+.toast { position: fixed; left: 50%; bottom: calc(18px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%); background: var(--fg); color: var(--bg); padding: 10px 16px; border-radius: 99px; font-size: 13.5px; font-weight: 600; z-index: 5; max-width: calc(100% - 32px); }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; scroll-behavior: auto !important; } }
+</style>
+
+<div class="wrap">
+  <header class="head">
+    <span class="label">RSV Studio · Instagram + Facebook</span>
+    <h1>Launch plan</h1>
+    <p class="sub">15 posts from Wednesday 14 October to Tuesday 10 November, each at 8:30pm Cairo time. 12 are finished and ready to post: images, reels and captions. 3 are reels you film first, and each has its script.</p>
+    <div class="bar">
+      <div class="progress">
+        <span class="label" id="progress-label">0 of 15 posted</span>
+        <div class="track"><i id="progress-bar"></i></div>
+      </div>
+      <div class="seg" role="group" aria-label="Language of images and captions">
+        <button type="button" id="lang-ar" aria-pressed="true">العربي</button>
+        <button type="button" id="lang-en" aria-pressed="false">English</button>
+      </div>
+    </div>
+    <p class="save-note" id="save-note">Loading your ticks…</p>
+  </header>
+
+  <div id="next"></div>
+
+  <section aria-labelledby="setup-h">
+    <div class="sec-head">
+      <span class="label">Tonight, before the first post</span>
+      <h2 id="setup-h">Set up the accounts</h2>
+    </div>
+    <div class="panel" id="setup"></div>
+  </section>
+
+  <section aria-labelledby="cal-h">
+    <div class="sec-head">
+      <span class="label">The calendar</span>
+      <h2 id="cal-h">Four weeks of posts</h2>
+      <p class="muted">Post the Arabic version on Instagram and Facebook; your audience is Egyptian clinic and property-office owners. The English images and captions are there for LinkedIn or for English-speaking prospects. Tap a post to open it.</p>
+    </div>
+    <div id="weeks" style="display:grid;gap:28px"></div>
+  </section>
+
+  <section aria-labelledby="routine-h">
+    <div class="sec-head">
+      <span class="label">Every day</span>
+      <h2 id="routine-h">Routine and rules</h2>
+    </div>
+    <div class="grid2">
+      <div class="panel">
+        <h3>Daily, about 15 minutes</h3>
+        <ul class="plain">
+          <li><b>Reply to every comment and DM within the hour.</b> You sell fast replies, so your own inbox has to show it.</li>
+          <li><b>Add every inquiry to RSV Studio's own pipeline in the Desk</b>, with "Instagram" or "Facebook" as the source. You'll see which posts bring leads, the same way a client would.</li>
+          <li><b>On post days</b>, share the post to your story with a link sticker to WhatsApp.</li>
+          <li><b>On days with no post</b>, put up one story from the list below.</li>
+        </ul>
+      </div>
+      <div class="panel">
+        <h3>Never say</h3>
+        <ul class="plain">
+          <li>That it picks up WhatsApp or Instagram messages automatically. It doesn't: the team adds each inquiry.</li>
+          <li>Any price that isn't on the Desk. The prices in these images come from <code>offer.ts</code>: Starter EGP 1,500, Growth EGP 2,800, Scale EGP 4,500 a month; websites EGP 4,000 once plus EGP 400 a month.</li>
+          <li>A client name, quote or result that isn't real. Every chat, list and chart in these images carries an "Example" tag. Keep it that way.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="panel">
+      <h3>Stories for days with no post</h3>
+      <div id="stories" style="display:grid;gap:10px"></div>
+    </div>
+    <div class="panel">
+      <h3>Every Sunday: a 10-minute review</h3>
+      <p class="muted">For each post that week, look at four numbers in Instagram's insights: reach, saves, shares and profile visits. Then count the WhatsApp chats that came in. Do more of whatever started chats, and change the hook on whatever didn't. One demo call a week from social is a good first target; a booked demo is the number that matters.</p>
+    </div>
+  </section>
+</div>
+<div class="toast" id="toast" hidden></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<script>
+const WA = '447434630786';
+const WA_TEXT = { ar: 'أهلاً، شفت بوست RSV Studio وعايز أعرف أكتر عن لوحة المتابعة', en: "Hi, I saw RSV Studio's post and would like to know more about the lead dashboard" };
+const waLink = l => `https://wa.me/${WA}?text=${encodeURIComponent(WA_TEXT[l])}`;
+const TAGS = {
+  clinic: { ar: '#عيادات #عيادة_أسنان #أطباء_مصر #إدارة_العيادات #تسويق_طبي #القاهرة #الإسكندرية #RSVStudio', en: '#clinicmanagement #dentalclinic #egypt #cairo #leadmanagement #customerservice #RSVStudio' },
+  property: { ar: '#عقارات_مصر #مكاتب_عقارية #التجمع_الخامس #الشيخ_زايد #تسويق_عقاري #القاهرة_الجديدة #RSVStudio', en: '#realestateegypt #propertyagents #newcairo #sheikhzayed #leadmanagement #salesteam #RSVStudio' },
+  general: { ar: '#بيزنس_مصر #مشاريع_صغيرة #خدمة_العملاء #عيادات #عقارات_مصر #RSVStudio', en: '#smallbusinessegypt #customerservice #clinics #realestate #leadmanagement #RSVStudio' },
+  web: { ar: '#مواقع_الكترونية #تصميم_مواقع #بيزنس_مصر #عيادات #صالونات #RSVStudio', en: '#webdesign #smallbusinessegypt #clinics #salons #website #RSVStudio' },
+};
+const ENDS = {
+  ar: 'ابعتلنا على واتساب، اللينك في البايو.\nwa.me/' + WA,
+  en: 'Message us on WhatsApp, link in bio.\nwa.me/' + WA,
+};
+const STORY = { ar: 'شير البوست في الستوري وحط ستيكر لينك «ابعتلنا» على لينك الواتساب.', en: 'Share the post to your story and add a link sticker, "Message us", pointing to the WhatsApp link.' };
+
+const POSTS = [
+  { id: 'p01', date: '2026-10-14', week: 1, kind: 'single', deck: 'single-launch', slides: 1, audience: 'Both', tags: 'general',
+    title: 'Launch day: what RSV does',
+    ar: 'النهارده بنبدأ.\n\nRSV Studio بتجهّز وبتشغّل لوحة متابعة لعيادتك أو مكتبك العقاري:\n• فريقك بيسجّل كل استفسار في ثواني (واتساب، إنستجرام، مكالمة أو زيارة)\n• أي حد مستني رد بيظهرلك لوحده\n• وأول كل شهر بيوصلك تقرير عن أداء الفريق\n\nمفيش برنامج يتسطّب. لينك وباسورد، وإحنا بنعمل الباقي.\nعايز تشوفها على عيادة تجريبية؟',
+    en: "Today we launch.\n\nRSV Studio sets up and runs a lead dashboard for your clinic or property office:\n• Your team logs each inquiry in seconds (WhatsApp, Instagram, a call or a walk-in)\n• Anyone left waiting is flagged automatically\n• On the 1st of every month, a report shows how the team did\n\nNothing to install: a link and a password, and we do the rest.\nWant to see it on a demo clinic?",
+    note: 'Pin this post to the top of the profile.' },
+  { id: 'p02', date: '2026-10-15', week: 1, kind: 'carousel', deck: 'reply-problem', slides: 6, audience: 'Clinics', tags: 'clinic',
+    title: '4 places a clinic loses inquiries',
+    ar: 'مش محتاج إعلانات أكتر. محتاج ترد أسرع.\n\n4 أماكن بيضيع فيها استفسار المريض في أغلب العيادات:\n1. «بكام؟» الساعة 11 بالليل\n2. «أنا افتكرتك رديت»\n3. «هفكر» اللي محدش تابعها\n4. إعلان بتدفع فيه ومش عارف جاب مين\n\nاسحب للآخر، واحفظ البوست وابعته لمسؤول الاستقبال عندك.',
+    en: "You don't need more ads. You need faster replies.\n\n4 places patient inquiries go missing in most clinics:\n1. The 11pm \"how much?\"\n2. \"I thought you replied.\"\n3. The \"I'll think about it\" nobody followed up\n4. An ad you pay for without knowing who it brought\n\nSwipe to the end, then save this and send it to whoever runs your front desk." },
+  { id: 'p03', date: '2026-10-17', week: 1, kind: 'film', audience: 'Both', tags: 'general', length: '35 s',
+    title: 'Reel: Eyad introduces RSV (film it)',
+    ar: 'لو عندك عيادة أو مكتب عقاري، فيه غالباً حد سألك امبارح ولسه مستني رد.\n\nأنا إياد، ودي RSV Studio. بنجهّز لوحة متابعة تخلّي كل استفسار له رد، وكل عميل له متابعة.\n\nعايز تشوفها على عيادة تجريبية في ربع ساعة؟',
+    en: "If you run a clinic or a property office, someone probably asked you something yesterday and is still waiting.\n\nI'm Eyad, and this is RSV Studio. We set up a lead dashboard so every inquiry gets an answer and every lead gets a follow-up.\n\nWant a 15-minute look at it on a demo clinic?",
+    script: [
+      ['0–3 s', 'لو عندك عيادة، فيه حد سألك امبارح ومحدش رد عليه.', 'If you run a clinic, someone asked you something yesterday and nobody replied.'],
+      ['3–10 s', 'أنا إياد، مؤسس RSV Studio. بنشتغل مع العيادات والمكاتب العقارية في مصر على حاجة واحدة: إن مفيش استفسار يضيع.', "I'm Eyad, founder of RSV Studio. We work with clinics and property offices in Egypt on one thing: no inquiry gets lost."],
+      ['10–24 s', 'بنجهّزلك لوحة متابعة. فريقك يسجّل كل استفسار في ثواني، واللوحة تنبّهك بأي حد مستني رد، وأول كل شهر يوصلك تقرير عن أداء الفريق.', 'We set up a lead dashboard. Your team logs each inquiry in seconds, it flags anyone waiting for a reply, and on the 1st of each month you get a report on how the team did.'],
+      ['24–35 s', 'مفيش حاجة تتسطّب: لينك وباسورد. ابعتلنا على واتساب، ونوريك ديمو على عيادة تجريبية في ربع ساعة.', 'Nothing to install: a link and a password. Message us on WhatsApp and we will show you a demo clinic in 15 minutes.'],
+    ],
+    shots: ['Phone upright, eye level, window light on your face, a quiet room.', 'Say it in your own words; the script is a guide. Two or three takes, keep the best.', 'Add captions in Instagram (the "Captions" sticker or auto-captions) because most people watch muted.', 'Cover image: a still of you mid-sentence, with "مين بيرد على عملائك؟" written on it.', 'Or send me the raw clip and I will cut it here with captions and the RSV end card.'] },
+  { id: 'p04', date: '2026-10-18', week: 1, kind: 'carousel', deck: 'what-you-get', slides: 7, audience: 'Both', tags: 'general',
+    title: 'What you get on day one',
+    ar: 'إيه اللي بتاخده من RSV Studio من أول يوم؟\n\n1. لوحة متفصّلة على شغلك: مراحل العيادة أو المكتب العقاري جاهزة\n2. تسجيل كل استفسار في ثواني، من أي مكان\n3. تنبيه بأي حد مستني رد\n4. راصد، المساعد اللي بيقولك تكلّم مين الأول وبيكتبلك الرسالة\n5. تقرير شهري عن أداء الفريق\n\nوالأسعار في آخر سلايد.',
+    en: "What do you get from RSV Studio on day one?\n\n1. A dashboard shaped around your work, with your clinic or property stages ready\n2. Every inquiry logged in seconds, from any channel\n3. A flag on anyone waiting for a reply\n4. Rasid, the assistant that says who to call first and drafts the message\n5. A monthly report on how the team did\n\nPrices on the last slide.",
+    note: 'Pin this as the second post on the profile.' },
+  { id: 'p05', date: '2026-10-19', week: 1, kind: 'reel', reel: 'reel-reply-problem', audience: 'Clinics', tags: 'clinic', length: '22 s',
+    title: 'Reel: the 4 places, as a slideshow',
+    ar: 'الإعلان بيجيب الاستفسار. الرد هو اللي بيجيب الحجز.\n\n4 أماكن بيضيع فيها المريض، في 20 ثانية. احفظ الريل وابعته لفريقك.',
+    en: "Ads bring the inquiry. The reply brings the booking.\n\n4 places patients slip away, in 20 seconds. Save it and send it to your team.",
+    note: 'The reel is silent on purpose. Add a trending track at low volume when you post it in Instagram, and use slide 1 as the cover.' },
+  { id: 'p06', date: '2026-10-20', week: 1, kind: 'carousel', deck: 'property-cold-leads', slides: 6, audience: 'Property', tags: 'property',
+    title: 'For property offices: 4 moments a buyer slips away',
+    ar: 'العميل مبردش. محدش كلّمه تاني.\n\n4 لحظات المشتري بيضيع فيها من المكاتب العقارية:\n1. رسايل الإعلان اللي اترد عليها متأخر\n2. المعاينة اللي محدش تابع بعدها\n3. «هشوف البيت وأرد عليك»\n4. عميل بتاع الكل، ومحدش ماسكه\n\nاسحب للآخر وابعته لمدير المبيعات عندك.',
+    en: "The lead didn't go cold. Nobody called back.\n\n4 moments a buyer slips away from a property office:\n1. Ad messages answered too late\n2. The viewing nobody followed up\n3. \"Let me discuss it at home\"\n4. A lead that belongs to everyone, so nobody owns it\n\nSwipe to the end and send it to your sales manager." },
+  { id: 'p07', date: '2026-10-22', week: 2, kind: 'single', deck: 'single-think-about-it', slides: 1, audience: 'Both', tags: 'general',
+    title: '"I\'ll think about it" isn\'t a no',
+    ar: '«هفكر» مش معناها لأ.\n\nغالباً بتبقى آخر رسالة في الشات، ومحدش بيرجعلها. رسالة لطيفة بعد كام يوم فيها ميعاد واضح، زي «عندنا ميعاد الخميس الساعة 5، نحجزهولك؟»، بترجّع ناس كتير كانوا مستنيين حد يفكّرهم.\n\nلوحة RSV بتفكّرك إمتى تبعتها.',
+    en: "\"I'll think about it\" isn't a no.\n\nIt's usually the last message in the chat, and nobody goes back to it. A polite message a few days later with a clear time, like \"We have a slot Thursday at 5, shall we book it?\", brings back people who were waiting for a nudge.\n\nAn RSV dashboard reminds you when to send it." },
+  { id: 'p08', date: '2026-10-25', week: 2, kind: 'carousel', deck: 'clinic-rules', slides: 5, audience: 'Clinics', tags: 'clinic',
+    title: '3 follow-up rules every clinic needs',
+    ar: '3 قواعد متابعة كل عيادة محتاجاها:\n\n1. رد على أي استفسار جديد في خلال يومين\n2. اللي محضرش، كلّمه واحجزله في نفس اليوم\n3. اللي اتكلمت معاه ومحجزش، تابعه بعد أسبوع\n\nدي نفس القواعد اللي لوحة RSV بتراجعها بدالك كل يوم. احفظ البوست.',
+    en: "3 follow-up rules every clinic needs:\n\n1. Answer every new inquiry within 2 days\n2. Call a no-show and rebook them the same day\n3. Anyone you spoke to who hasn't booked gets a check-in after a week\n\nAn RSV dashboard checks these same rules for you every day. Save this." },
+  { id: 'p09', date: '2026-10-27', week: 2, kind: 'film', audience: 'Clinics', tags: 'clinic', length: '45 s',
+    title: 'Reel: a demo clinic, on screen (record it)',
+    ar: 'دي عيادة تجريبية على لوحة RSV. شوف بيحصل إيه لما مريض يسأل الساعة 11 بالليل، ومين يظهر الصبح في قايمة «مستني رد».\n\nعايز نوريك نفس اللوحة بأسماء خدمات عيادتك؟',
+    en: "This is a demo clinic on an RSV dashboard. Watch what happens when a patient asks at 11pm, and who shows up in the morning's \"waiting\" list.\n\nWant to see the same board with your clinic's services?",
+    script: [
+      ['0–3 s', 'نص على الشاشة: «مريض سأل الساعة 11 بالليل. الصبح حصل إيه؟»', 'On-screen text: "A patient asked at 11pm. What happened in the morning?"'],
+      ['3–12 s', 'سجّل استفسار جديد في العيادة التجريبية: الاسم، الخدمة، المصدر واتساب. خلّيه يبان إنه بياخد ثواني.', 'Add a new inquiry on the demo clinic: name, service, source WhatsApp. Show it takes seconds.'],
+      ['12–22 s', 'افتح قايمة المتأخرين: اللي عدّى عليهم يومين من غير رد، واللي محضرش النهارده.', 'Open the overdue list: no reply after 2 days, and today\'s no-show.'],
+      ['22–34 s', 'اسأل راصد «نكلّم مين الأول النهارده؟» وسيب الإجابة تظهر.', 'Ask Rasid "Who should we call first today?" and let the answer appear.'],
+      ['34–45 s', 'افتح «اقرا تقرير حقيقي» واقفل على كارت: «كل استفسار له رد. ابعتلنا على واتساب.»', 'Open "Read a real report", then end on a card: "Every inquiry answered. Message us on WhatsApp."'],
+    ],
+    shots: ['Use the public demo clinic (/b/nile-smile on the RSV site), the same one sales sends prospects.', 'Record your phone screen with the built-in screen recorder, in portrait, with notifications off.', 'Keep each step short; cut the waiting in Instagram\'s editor or send the raw recording to me to cut here.', 'Every name on the demo is made up. Say "demo clinic" on screen so nobody takes it for a real client.'] },
+  { id: 'p10', date: '2026-10-29', week: 2, kind: 'carousel', deck: 'property-rules', slides: 5, audience: 'Property', tags: 'property',
+    title: '3 follow-up rules for property offices',
+    ar: '3 قواعد متابعة بتقفل وحدات أكتر:\n\n1. رد على أي استفسار جديد في خلال يومين\n2. بعد المعاينة، كلّم العميل في خلال 5 أيام\n3. متسيبش عرض في التفاوض أكتر من 6 أيام من غير رد\n\nدي نفس القواعد اللي لوحة RSV بتراجعها لمكتبك كل يوم.',
+    en: "3 follow-up rules that close more units:\n\n1. Answer every new inquiry within 2 days\n2. After a viewing, call within 5 days\n3. Never leave an offer in negotiation for more than 6 days without an answer\n\nAn RSV dashboard checks these same rules for your office every day." },
+  { id: 'p11', date: '2026-11-01', week: 3, kind: 'reel', reel: 'reel-what-you-get', audience: 'Both', tags: 'general', length: '26 s',
+    title: 'Reel: what you get, as a slideshow',
+    ar: 'لوحة متابعة لعيادتك أو مكتبك العقاري، بنجهّزها ونديرها بدالك. ده اللي بتاخده من أول يوم.',
+    en: 'A lead dashboard for your clinic or property office, set up and run for you. This is what you get on day one.',
+    note: 'Silent on purpose: add a trending track at low volume in Instagram. Slide 1 is the cover.' },
+  { id: 'p12', date: '2026-11-03', week: 3, kind: 'carousel', deck: 'website-offer', slides: 5, audience: 'Any business', tags: 'web',
+    title: '3 signs your website is costing you calls',
+    ar: 'الناس بتدور عليك قبل ما تتصل.\n\n3 علامات إن موقعك بيضيّع عليك مكالمات:\n1. مفيش موقع خالص\n2. الموقع بيبوظ على الموبايل\n3. مش عارفين يتصلوا أو يكلّموك واتساب بضغطة\n\nبنعمل موقع صفحة واحدة لعيادتك أو محلك أو مكتبك، والسعر في آخر سلايد.',
+    en: "People look you up before they call.\n\n3 signs your website is costing you calls:\n1. There's no website at all\n2. It breaks on a phone\n3. They can't call or WhatsApp you in one tap\n\nWe build one-page sites for clinics, shops and offices. The price is on the last slide." },
+  { id: 'p13', date: '2026-11-05', week: 3, kind: 'single', deck: 'single-ask-the-source', slides: 1, audience: 'Both', tags: 'general',
+    title: 'Ask every new client one question',
+    ar: 'اسأل كل عميل جديد سؤال واحد: «عرفتنا منين؟»\n\nسجّل الإجابة كل مرة. بعد شهر هتعرف أنهي إعلان بيجيبلك حجوزات، وأنهي واحد بتدفع فيه على الفاضي.\n\nتقرير باقة النمو في RSV بيعمل الحسبة دي بدالك.',
+    en: "Ask every new client one question: \"How did you hear about us?\"\n\nLog the answer every time. After a month you'll know which ad brings bookings and which one you're paying for nothing.\n\nRSV's Growth report does that maths for you." },
+  { id: 'p14', date: '2026-11-08', week: 4, kind: 'film', audience: 'Property', tags: 'property', length: '40 s',
+    title: 'Reel: a demo property office, on screen (record it)',
+    ar: 'مكتب عقاري تجريبي على لوحة RSV: مين عاين ومحدش كلّمه، ومين في التفاوض من أسبوع. كل ده بيظهرلك لوحده.\n\nعايز نوريك اللوحة بمراحل مكتبك؟',
+    en: "A demo property office on an RSV dashboard: who viewed and never got a call, and who's been negotiating for a week. It all shows up on its own.\n\nWant to see it with your office's stages?",
+    script: [
+      ['0–3 s', 'نص على الشاشة: «عاين من 6 أيام. حد كلّمه؟»', 'On-screen text: "Viewed 6 days ago. Did anyone call?"'],
+      ['3–14 s', 'اعرض لوحة المكتب التجريبي: جديد، معاينة، تفاوض، اتحجزت.', 'Show the demo office board: New, Viewing, Negotiating, Reserved.'],
+      ['14–26 s', 'افتح المتأخرين: معاينة عدّى عليها 5 أيام، وتفاوض عدّى عليه 6.', 'Open the overdue list: a viewing past 5 days and a negotiation past 6.'],
+      ['26–40 s', 'اسأل راصد يكتب رسالة متابعة للعميل، واقفل على كارت الواتساب.', 'Ask Rasid to draft a follow-up for the buyer, then end on the WhatsApp card.'],
+    ],
+    shots: ['Use the public demo office (/b/horizon-dev on the RSV site).', 'Portrait screen recording, notifications off; trim in Instagram or send it to me to cut.', 'Say "demo office" on screen: every name on it is made up.'] },
+  { id: 'p15', date: '2026-11-10', week: 4, kind: 'single', deck: 'single-plans', slides: 1, audience: 'Both', tags: 'general',
+    title: 'The three plans and prices',
+    ar: '3 باقات، ومفيش حاجة تتسطّب:\n\n• البداية، 1,500 ج.م شهرياً: إيه اللي عندي دلوقتي؟\n• النمو، 2,800 ج.م شهرياً: كان أداؤنا إزاي الشهر ده؟\n• التوسّع، 4,500 ج.م شهرياً: كل فرد في الفريق بيعمل إيه؟\n\nكل باقة فيها التجهيز، التنبيهات، والمساعد راصد.',
+    en: "Three plans, nothing to install:\n\n• Starter, EGP 1,500/month: what's in my pipeline?\n• Growth, EGP 2,800/month: how did we do this month?\n• Scale, EGP 4,500/month: how is each person on my team doing?\n\nEvery plan includes the setup, the flags and Rasid, the assistant.",
+    note: 'Pin this as the third post on the profile.' },
+];
+
+const SETUP = [
+  { id: 's1', title: 'Turn Instagram into a business account named RSV Studio', body: 'Settings → Account type and tools → Switch to professional account → Business. Category: Business service. Pick a handle you can keep, such as @rsv.studio.' },
+  { id: 's2', title: 'Create the Facebook page and link it to Instagram', body: 'Then use Meta Business Suite, the free app, to post to both at once and to schedule the ready posts ahead.' },
+  { id: 's3', title: 'Profile picture', body: 'The RSV mark on indigo, square, from the brand files.', asset: 'profile-picture.png' },
+  { id: 's4', title: 'Bio and link', bio: true },
+  { id: 's5', title: 'Schedule the 12 ready posts tonight', body: 'In Meta Business Suite → Planner, schedule each ready post at 8:30pm Cairo time on its date, for Instagram and Facebook together. Then only the 3 filmed reels are left to do by hand.' },
+  { id: 's6', title: 'Two highlights', body: 'After the launch week, save stories into two highlights: «الباقات» (Plans) and «إزاي بتشتغل» (How it works).' },
+];
+const BIO = {
+  ar: 'لوحة متابعة لعيادتك أو مكتبك العقاري، بنجهّزها ونديرها بدالك.\nكل استفسار له رد. وكل عميل له متابعة.\nديمو على واتساب ⬇',
+  en: 'Lead dashboards for clinics & property offices in Egypt, set up and run for you.\nEvery inquiry answered. Every lead followed up.\nDemo on WhatsApp ⬇',
+};
+const STORIES = [
+  { ar: 'استطلاع: «بتردوا على واتساب العيادة في خلال قد إيه؟» ساعة / نفس اليوم / تاني يوم', en: 'Poll: "How fast does your clinic answer WhatsApp?" Within an hour / Same day / Next day' },
+  { ar: 'سؤال: «إيه أكتر سؤال بيتكرر على واتساب عندك؟»', en: 'Question box: "What do people ask you most on WhatsApp?"' },
+  { ar: 'استطلاع: «بتعرف كل عميل جه منين؟» أيوه / تقريباً / لأ', en: 'Poll: "Do you know where each client came from?" Yes / Roughly / No' },
+  { ar: 'سلايد واحد من كاروسيل الأسبوع مع ستيكر «شوف البوست»', en: 'One slide from this week\'s carousel with a "See post" sticker' },
+  { ar: 'اختبار: «المريض اللي محضرش، تكلّمه إمتى؟» نفس اليوم ✓ / بعد أسبوع', en: 'Quiz: "When do you call a no-show?" Same day ✓ / A week later' },
+  { ar: 'كواليس: لقطة من شاشة العيادة التجريبية مع «ده اللي بنجهّزه لعيادتك»', en: 'Behind the scenes: a shot of the demo clinic screen, "This is what we set up for your clinic"' },
+];
+
+// ---------- state ----------
+let lang = 'ar';
+try { lang = localStorage.getItem('rsv-launch-lang') || 'ar'; } catch {}
+const done = { posts: {}, setup: {} };
+let db = null, downloads = null, storeMode = 'loading';
+const LOCAL_KEY = 'rsv-launch-ticks';
+function loadLocal() { try { Object.assign(done, JSON.parse(localStorage.getItem(LOCAL_KEY) || '{}')); } catch {} }
+function saveLocal() { try { localStorage.setItem(LOCAL_KEY, JSON.stringify(done)); } catch {} }
+
+const $ = s => document.querySelector(s);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+const ICON = {
+  check: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>',
+  copy: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>',
+  save: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg>',
+};
+const DAYS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+const parse = d => { const [y, m, dd] = d.split('-').map(Number); return new Date(y, m - 1, dd); };
+const todayStr = () => { const n = new Date(); return `${n.getFullYear()}-${String(n.getMonth() + 1).padStart(2, '0')}-${String(n.getDate()).padStart(2, '0')}`; };
+function when(d) {
+  const diff = Math.round((parse(d) - parse(todayStr())) / 864e5);
+  if (diff === 0) return 'Today';
+  if (diff === 1) return 'Tomorrow';
+  if (diff === -1) return 'Yesterday';
+  const x = parse(d); return `${DAYS[x.getDay()]} ${x.getDate()} ${MONTHS[x.getMonth()]}`;
+}
+const KIND = { single: 'Single image', carousel: 'Carousel', reel: 'Reel', film: 'Reel to film' };
+const fullCaption = (p, l) => `${p[l]}\n\n${ENDS[l]}\n\n${TAGS[p.tags][l]}`;
+
+function toast(msg) { const t = $('#toast'); t.textContent = msg; t.hidden = false; clearTimeout(toast.t); toast.t = setTimeout(() => t.hidden = true, 2200); }
+
+// ---------- render ----------
+function copyBlock(text, l, id) {
+  return `<div class="copy" id="${id}" dir="${l === 'ar' ? 'rtl' : 'ltr'}" lang="${l}">${esc(text)}</div>`;
+}
+function slideFiles(p, l) { return Array.from({ length: p.slides }, (_, i) => `a/${p.deck}/${l}/${String(i + 1).padStart(2, '0')}.png`); }
+
+function postBody(p) {
+  const l = lang, parts = [];
+  if (p.deck) {
+    const files = slideFiles(p, l);
+    parts.push(`<div class="block"><div class="row" style="justify-content:space-between"><span class="label">${p.slides > 1 ? `${p.slides} slides, in order` : 'The image'} · ${l === 'ar' ? 'Arabic' : 'English'}</span>
+      ${p.slides > 1 ? `<button class="btn" data-zip="${p.id}" data-name="rsv-${p.deck}-${l}.zip">${ICON.save}Save all (.zip)</button>` : ''}</div>
+      <div class="strip">${files.map((f, i) => `<figure><img src="${f}" alt="Slide ${i + 1}" loading="lazy" width="1080" height="1350">
+        <figcaption><span class="mini">${String(i + 1).padStart(2, '0')}</span><button class="btn" data-save="${f}" data-name="rsv-${p.deck}-${l}-${String(i + 1).padStart(2, '0')}.png">${ICON.save}Save</button></figcaption></figure>`).join('')}</div>
+      <p class="mini">1080 × 1350, Instagram's 4:5 portrait. On a phone, Save opens the share sheet: choose "Save Image" to put it in Photos.</p></div>`);
+  }
+  if (p.reel) {
+    const f = `a/${p.reel}-${l}.mp4`;
+    parts.push(`<div class="block"><span class="label">The reel · ${p.length} · 9:16 · ${l === 'ar' ? 'Arabic' : 'English'}</span>
+      <div class="strip"><figure style="width:auto"><video src="${f}" controls playsinline muted preload="metadata"></video>
+      <figcaption><span class="mini">MP4</span><button class="btn" data-save="${f}" data-name="rsv-${p.reel}-${l}.mp4">${ICON.save}Save</button></figcaption></figure></div></div>`);
+  }
+  if (p.script) {
+    parts.push(`<div class="block"><span class="label">Script · about ${p.length}</span>
+      <div class="script">${p.script.map(([t, ar, en]) => `<div><time>${t}</time><div><p dir="rtl" lang="ar">${esc(ar)}</p><p class="en">${esc(en)}</p></div></div>`).join('')}</div></div>
+      <div class="block"><span class="label">How to film it</span><ol class="shots">${p.shots.map(s => `<li>${esc(s)}</li>`).join('')}</ol></div>`);
+  }
+  if (p.note) parts.push(`<p class="muted"><b>Note:</b> ${esc(p.note)}</p>`);
+  const cid = `cap-${p.id}`;
+  parts.push(`<div class="block"><div class="row" style="justify-content:space-between"><span class="label">Caption · ${l === 'ar' ? 'Arabic' : 'English'}</span>
+    <button class="btn primary" data-copy="${cid}">${ICON.copy}Copy caption</button></div>${copyBlock(fullCaption(p, l), l, cid)}</div>`);
+  parts.push(`<div class="block"><span class="label">Story the same evening</span><p ${l === 'ar' ? 'dir="rtl" lang="ar"' : ''}>${esc(STORY[l])}</p>
+    <div class="row"><button class="btn" data-copy-text="${esc(waLink(l))}">${ICON.copy}Copy WhatsApp link for the sticker</button></div></div>`);
+  const on = !!done.posts[p.id];
+  parts.push(`<div class="posted-row"><button class="tick" type="button" data-tick="posts" data-id="${p.id}" aria-pressed="${on}" aria-label="Mark as posted">${ICON.check}</button>
+    <div><b>${on ? 'Posted' : 'Mark as posted'}</b><div class="mini">${on && done.posts[p.id].at ? 'Ticked ' + new Date(done.posts[p.id].at).toLocaleString([], { dateStyle: 'medium', timeStyle: 'short' }) : 'Tick it once it\'s live on Instagram and Facebook.'}</div></div></div>`);
+  return parts.join('');
+}
+
+function postCard(p, open) {
+  const d = parse(p.date), on = !!done.posts[p.id];
+  const ready = p.kind !== 'film';
+  return `<details class="post${on ? ' done' : ''}" id="${p.id}" ${open ? 'open' : ''}>
+    <summary><div class="date"><span>${DAYS[d.getDay()]}</span><b>${d.getDate()}</b><span>${MONTHS[d.getMonth()]}</span></div>
+      <div class="sum"><b>${esc(p.title)}</b><div class="chips"><span class="chip">${KIND[p.kind]}</span><span class="chip">${esc(p.audience)}</span>
+      ${on ? '<span class="chip posted">Posted</span>' : ready ? '<span class="chip ready">Ready</span>' : '<span class="chip film">Film first</span>'}</div></div>
+      <span class="mini">8:30pm</span></summary>
+    <div class="body">${postBody(p)}</div></details>`;
+}
+
+const WEEKS = { 1: ['Week 1', 'Launch week', '14–20 Oct'], 2: ['Week 2', 'Follow-up rules', '22–29 Oct'], 3: ['Week 3', 'Websites and sources', '1–5 Nov'], 4: ['Week 4', 'Demo and prices', '8–10 Nov'] };
+
+function nextPost() { return POSTS.find(p => !done.posts[p.id]); }
+
+function render() {
+  const openIds = new Set([...document.querySelectorAll('details.post[open]')].map(d => d.id));
+  const first = !document.querySelector('details.post');
+  const nxt = nextPost();
+  if (first && nxt) openIds.add(nxt.id);
+
+  const count = POSTS.filter(p => done.posts[p.id]).length;
+  $('#progress-label').textContent = `${count} of ${POSTS.length} posted`;
+  $('#progress-bar').style.width = `${(count / POSTS.length) * 100}%`;
+  $('#lang-ar').setAttribute('aria-pressed', lang === 'ar');
+  $('#lang-en').setAttribute('aria-pressed', lang === 'en');
+  $('#save-note').textContent = storeMode === 'db' ? 'Your ticks are saved with this page, on every device you open it on.'
+    : storeMode === 'local' ? 'Your ticks are saved in this browser only.' : 'Loading your ticks…';
+
+  $('#next').innerHTML = nxt ? `<div class="next"><span class="label">Next up · ${when(nxt.date)}, 8:30pm Cairo</span>
+      <h2>${esc(nxt.title)}</h2><p>${KIND[nxt.kind]} for ${esc(nxt.audience.toLowerCase())}. ${nxt.kind === 'film' ? 'Film it from the script first.' : 'Images and caption are ready.'}</p>
+      <a class="btn" href="#${nxt.id}" data-jump="${nxt.id}">Open it</a></div>`
+    : `<div class="next"><span class="label">All done</span><h2>All 15 posts are live.</h2><p>Run the Sunday review and plan the next month from what started WhatsApp chats.</p></div>`;
+
+  $('#setup').innerHTML = SETUP.map(s => {
+    const on = !!done.setup[s.id];
+    let extra = s.body ? `<p class="muted">${esc(s.body)}</p>` : '';
+    if (s.asset) extra += `<div class="row"><img src="a/${s.asset}" alt="RSV profile picture" width="64" height="64" style="border-radius:50%;width:64px;height:64px">
+      <button class="btn" data-save="a/${s.asset}" data-name="rsv-profile-picture.png">${ICON.save}Save picture</button></div>`;
+    if (s.bio) extra += `<p class="muted">Instagram bio (150 characters at most). Put the WhatsApp link in the profile's link field; it opens a chat with a first message already written.</p>
+      ${copyBlock(BIO[lang], lang, 'bio')}<div class="row"><button class="btn" data-copy="bio">${ICON.copy}Copy bio</button>
+      <button class="btn" data-copy-text="${esc(waLink(lang))}">${ICON.copy}Copy WhatsApp link</button></div>`;
+    return `<div class="check${on ? ' done' : ''}"><button class="tick" type="button" data-tick="setup" data-id="${s.id}" aria-pressed="${on}" aria-label="Done: ${esc(s.title)}">${ICON.check}</button>
+      <div class="what"><b>${esc(s.title)}</b>${extra}</div></div>`;
+  }).join('');
+
+  $('#weeks').innerHTML = Object.entries(WEEKS).map(([w, [a, b, c]]) => {
+    const ps = POSTS.filter(p => p.week === +w);
+    return `<div class="week"><div class="week-head"><h3>${a} · ${b}</h3><span class="mini">${c} · ${ps.filter(p => done.posts[p.id]).length}/${ps.length} posted</span></div>
+      ${ps.map(p => postCard(p, openIds.has(p.id))).join('')}</div>`;
+  }).join('');
+
+  $('#stories').innerHTML = STORIES.map(s => `<div><p dir="rtl" lang="ar">${esc(s.ar)}</p><p class="mini">${esc(s.en)}</p></div>`).join('');
+}
+
+// ---------- actions ----------
+async function setTick(kind, id, on) {
+  const rec = on ? { at: new Date().toISOString() } : null;
+  if (on) done[kind][id] = rec; else delete done[kind][id];
+  render();
+  if (storeMode === 'db') {
+    try {
+      const ref = db.collection(kind === 'posts' ? 'posted' : 'setup').doc(id);
+      if (on) await ref.set({ done: true, at: rec.at }); else await ref.delete();
+    } catch (e) { toast('Could not save that tick. Try again in a moment.'); }
+  } else saveLocal();
+}
+
+async function copyText(text, btn) {
+  try { await navigator.clipboard.writeText(text); flash(btn, 'Copied'); }
+  catch { toast('Copy was blocked here. Press and hold the text to copy it.'); }
+}
+function flash(btn, label) {
+  if (!btn) return; const html = btn.innerHTML; btn.dataset.state = 'ok'; btn.innerHTML = ICON.check + label;
+  setTimeout(() => { btn.innerHTML = html; delete btn.dataset.state; }, 1600);
+}
+
+async function saveFile(path, name, btn) {
+  if (!downloads) { toast('Saving files isn\'t available in this view. Open the page in the Claude app or claude.ai.'); return; }
+  try {
+    btn && (btn.disabled = true);
+    const res = await fetch(path); if (!res.ok) throw new Error('fetch');
+    await downloads.save({ filename: name, data: await res.blob() });
+    flash(btn, 'Saved');
+  } catch (e) {
+    if (e && e.code === 'declined') return;
+    toast(e && e.code === 'rate_limited' ? 'One save at a time: finish the open one first.' : 'That file didn\'t save. Try again.');
+  } finally { btn && (btn.disabled = false); }
+}
+
+async function saveZip(id, name, btn) {
+  if (!downloads || !window.JSZip) { toast('Saving files isn\'t available in this view. Save the slides one by one.'); return; }
+  const p = POSTS.find(x => x.id === id);
+  try {
+    btn.disabled = true;
+    const zip = new JSZip();
+    for (const f of slideFiles(p, lang)) { const r = await fetch(f); if (!r.ok) throw new Error('fetch'); zip.file(f.split('/').pop(), await r.blob()); }
+    await downloads.save({ filename: name, data: await zip.generateAsync({ type: 'blob' }) });
+    flash(btn, 'Saved');
+  } catch (e) {
+    if (e && e.code === 'declined') return;
+    toast(e && e.code === 'rate_limited' ? 'One save at a time: finish the open one first.' : 'That file didn\'t save. Try again.');
+  } finally { btn.disabled = false; }
+}
+
+document.addEventListener('click', e => {
+  const t = e.target.closest('button, a'); if (!t) return;
+  if (t.dataset.tick) { const on = t.getAttribute('aria-pressed') !== 'true'; setTick(t.dataset.tick, t.dataset.id, on); return; }
+  if (t.dataset.copy) { copyText($('#' + t.dataset.copy).textContent, t); return; }
+  if (t.dataset.copyText) { copyText(t.dataset.copyText, t); return; }
+  if (t.dataset.zip) { saveZip(t.dataset.zip, t.dataset.name, t); return; }
+  if (t.dataset.save) { saveFile(t.dataset.save, t.dataset.name, t); return; }
+  if (t.dataset.jump) { e.preventDefault(); const d = document.getElementById(t.dataset.jump); d.open = true; d.scrollIntoView({ behavior: 'smooth', block: 'start' }); return; }
+  if (t.id === 'lang-ar' || t.id === 'lang-en') { lang = t.id.slice(5); try { localStorage.setItem('rsv-launch-lang', lang); } catch {} render(); }
+});
+
+// ---------- boot ----------
+render();
+(async () => {
+  const use = window.claude?.use;
+  const [dbNs, dl] = use ? await Promise.all([use('db').catch(() => null), use('downloads').catch(() => null)]) : [null, null];
+  downloads = dl;
+  if (!dbNs) { storeMode = 'local'; loadLocal(); render(); return; }
+  db = dbNs; storeMode = 'db';
+  const watch = (col, kind) => db.collection(col).onSnapshot(snap => {
+    done[kind] = {};
+    snap.docs.forEach(d => { const v = d.data(); if (v && v.done) done[kind][d.id] = { at: v.at }; });
+    render();
+  }, () => { storeMode = 'local'; loadLocal(); render(); });
+  watch('posted', 'posts');
+  watch('setup', 'setup');
+})();
+setTimeout(() => { if (storeMode === 'loading') { storeMode = 'local'; loadLocal(); render(); } }, 10500);
+</script>
