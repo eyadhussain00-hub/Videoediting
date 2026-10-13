@@ -4,12 +4,17 @@ The captions are white Impact-style words with a soft shadow, centred on the che
 (y ~ 900-1010 of 1080x1920). Per frame: mask near-white, low-saturation pixels in that
 band, dilate to take the shadow, then fill. Fill is LaMa (big-lama,
 CPU) on a crop around the band. Writes cache/clean.mp4 (video only) and cache/masks/ for QA.
-Usage: python3 scripts/clean_captions.py cache/raw.mp4 cache/clean.mp4 [--limit N]
+Usage: python3 scripts/clean_captions.py cache/raw.mp4 cache/clean.mp4 [--limit N] [--range A B] [--threads N]
+--range renders frames A..B-1 only (for running chunks in parallel; join them with ffmpeg concat).
 """
 import sys, subprocess, numpy as np, cv2
 
 src, dst = sys.argv[1], sys.argv[2]
 limit = int(sys.argv[sys.argv.index("--limit") + 1]) if "--limit" in sys.argv else None
+A, B = (int(sys.argv[sys.argv.index("--range") + 1]), int(sys.argv[sys.argv.index("--range") + 2])) if "--range" in sys.argv else (0, 10**9)
+if "--threads" in sys.argv:
+    import torch
+    torch.set_num_threads(int(sys.argv[sys.argv.index("--threads") + 1]))
 W, H = 1080, 1920
 Y0, Y1, X0, X1 = 870, 1050, 140, 940  # search band
 
@@ -49,8 +54,11 @@ i = 0
 sample = None
 while True:
     ok, f = cap.read()
-    if not ok or (limit and i >= limit):
+    if not ok or (limit and i >= limit) or i >= B:
         break
+    if i < A:
+        i += 1
+        continue
     m = text_mask(f)
     if i == 36:
         sample = m
@@ -63,7 +71,7 @@ while True:
         soft = cv2.GaussianBlur(mc.astype(np.float32) / 255, (0, 0), 2.5)[..., None]
         g[CY0:CY1, CX0:CX1] = (res * soft + f[CY0:CY1, CX0:CX1] * (1 - soft)).astype(np.uint8)
         f = g
-    if i % 50 == 0:
+    if i % 25 == 0:
         print("frame", i, flush=True)
     out.stdin.write(f.tobytes())
     i += 1
