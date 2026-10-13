@@ -1,0 +1,10 @@
+{
+  "assets": [
+    { "path": "cache/raw.mp4", "source": "https://www.instagram.com/reel/DcHh55Rz8TG/", "license": "client footage (provided by the user for editing)", "use": "final" },
+    { "path": "public/clean.mp4", "source": "cache/raw.mp4 → scripts/clean_captions.py (burned-in captions removed with LaMa)", "license": "derived", "use": "final" },
+    { "path": "public/halftone.mp4", "source": "cache/raw.mp4 → scripts/halftone.py (rembg u2net_human_seg + dot screen)", "license": "derived", "use": "final" },
+    { "path": "public/mix.wav", "source": "scripts/audio.py (voice from the reel; music and SFX synthesized in code)", "license": "original", "use": "final" },
+    { "path": "public/fonts/", "source": "Google Fonts", "license": "SIL OFL 1.1 (see public/fonts/LICENSES.md)", "use": "final" },
+    { "path": "(reference)", "source": "https://www.instagram.com/reel/DeY3eWhElMO/ (Web Lab, 5 Claude video skills)", "license": "reference-only: style studied, nothing copied", "use": "reference-only" }
+  ]
+}
