@@ -1,0 +1,248 @@
+{
+  "about": "The property template's real overdue rules (handbook: New after 2 days, Viewing after 5 days, Negotiating after 6 days).",
+  "slides": [
+    {
+      "type": "cover",
+      "kicker": {
+        "en": "For property offices",
+        "ar": "لأصحاب المكاتب العقارية"
+      },
+      "title": {
+        "en": "3 follow-up rules **that close more units.**",
+        "ar": "3 قواعد متابعة **بتقفل وحدات أكتر.**"
+      },
+      "body": {
+        "en": "The same 3 rules an RSV dashboard checks for you every day.",
+        "ar": "نفس القواعد اللي لوحة RSV بتراجعها بدالك كل يوم."
+      }
+    },
+    {
+      "type": "item",
+      "tag": {
+        "en": "New inquiry",
+        "ar": "استفسار جديد"
+      },
+      "title": {
+        "en": "Reply within 2 days.",
+        "ar": "رد في خلال يومين."
+      },
+      "body": {
+        "en": "A buyer asks three offices at once. The first useful reply usually gets the viewing.",
+        "ar": "المشتري بيسأل 3 مكاتب في نفس الوقت. وأول رد مفيد غالباً بياخد المعاينة."
+      },
+      "visual": {
+        "kind": "chat",
+        "initials": {
+          "en": "H",
+          "ar": "ه"
+        },
+        "name": {
+          "en": "Hany",
+          "ar": "هاني"
+        },
+        "status": {
+          "en": "From Instagram",
+          "ar": "من إنستجرام"
+        },
+        "messages": [
+          {
+            "from": "them",
+            "time": "23:05",
+            "text": {
+              "en": "Any villas in October under 10 million?",
+              "ar": "فيه فيلات في أكتوبر أقل من 10 مليون؟"
+            }
+          },
+          {
+            "from": "us",
+            "time": "10:20",
+            "text": {
+              "en": "Morning Hany, we have two. Can I send photos and book a viewing for Saturday?",
+              "ar": "صباح الخير يا هاني، عندنا اتنين. أبعتلك صور ونحجز معاينة السبت؟"
+            }
+          }
+        ]
+      },
+      "chips": [
+        {
+          "label": {
+            "en": "Flag",
+            "ar": "تنبيه"
+          },
+          "value": {
+            "en": "After 2 days",
+            "ar": "بعد يومين"
+          }
+        },
+        {
+          "label": {
+            "en": "Fix",
+            "ar": "الحل"
+          },
+          "value": {
+            "en": "A morning list",
+            "ar": "قايمة الصبح"
+          }
+        }
+      ]
+    },
+    {
+      "type": "item",
+      "tag": {
+        "en": "After a viewing",
+        "ar": "بعد المعاينة"
+      },
+      "title": {
+        "en": "Call within 5 days.",
+        "ar": "كلّمه في خلال 5 أيام."
+      },
+      "body": {
+        "en": "Ask what they thought while the unit is still fresh in their mind.",
+        "ar": "اسأله رأيه والوحدة لسه في دماغه."
+      },
+      "visual": {
+        "kind": "board",
+        "rows": [
+          {
+            "name": {
+              "en": "Omar · 3-bed, New Cairo",
+              "ar": "عمر · 3 أوض، التجمع"
+            },
+            "detail": {
+              "en": "Viewed 6 days ago",
+              "ar": "عاين من 6 أيام"
+            },
+            "badge": {
+              "en": "Call today",
+              "ar": "كلّمه النهارده"
+            },
+            "state": "overdue"
+          },
+          {
+            "name": {
+              "en": "Dina · Duplex, Rehab",
+              "ar": "دينا · دوبلكس، الرحاب"
+            },
+            "detail": {
+              "en": "Viewed 2 days ago",
+              "ar": "عاينت من يومين"
+            },
+            "badge": {
+              "en": "On track",
+              "ar": "تمام"
+            },
+            "state": "ok"
+          }
+        ]
+      },
+      "chips": [
+        {
+          "label": {
+            "en": "Flag",
+            "ar": "تنبيه"
+          },
+          "value": {
+            "en": "After 5 days",
+            "ar": "بعد 5 أيام"
+          }
+        },
+        {
+          "label": {
+            "en": "Fix",
+            "ar": "الحل"
+          },
+          "value": {
+            "en": "One call",
+            "ar": "مكالمة واحدة"
+          }
+        }
+      ]
+    },
+    {
+      "type": "item",
+      "tag": {
+        "en": "Negotiating",
+        "ar": "التفاوض"
+      },
+      "title": {
+        "en": "Don't let an offer sit 6 days.",
+        "ar": "متسيبش عرض 6 أيام."
+      },
+      "body": {
+        "en": "Silence in a negotiation reads as no interest. Send the owner's answer, or a date for one.",
+        "ar": "السكوت في التفاوض معناه إنك مش مهتم. ابعت رد المالك، أو ميعاد للرد."
+      },
+      "visual": {
+        "kind": "chat",
+        "initials": {
+          "en": "N",
+          "ar": "ن"
+        },
+        "name": {
+          "en": "Nour",
+          "ar": "نور"
+        },
+        "status": {
+          "en": "Offer on a studio",
+          "ar": "عرض على ستوديو"
+        },
+        "messages": [
+          {
+            "from": "us",
+            "time": "13:00",
+            "text": {
+              "en": "Hi Nour, the owner will answer your offer by Wednesday. I'll message you as soon as he does.",
+              "ar": "أهلاً يا نور، المالك هيرد على عرضك لحد الأربع. أول ما يرد هبعتلك."
+            }
+          },
+          {
+            "from": "them",
+            "time": "13:12",
+            "text": {
+              "en": "Great, thanks for the update",
+              "ar": "تمام، شكراً إنك عرّفتني"
+            }
+          }
+        ]
+      },
+      "chips": [
+        {
+          "label": {
+            "en": "Flag",
+            "ar": "تنبيه"
+          },
+          "value": {
+            "en": "After 6 days",
+            "ar": "بعد 6 أيام"
+          }
+        },
+        {
+          "label": {
+            "en": "Fix",
+            "ar": "الحل"
+          },
+          "value": {
+            "en": "A date to answer",
+            "ar": "ميعاد للرد"
+          }
+        }
+      ]
+    },
+    {
+      "type": "cta",
+      "title": {
+        "en": "We check these **for you.**",
+        "ar": "إحنا بنجهّز ده **بدالك.**"
+      },
+      "body": "{{tagline}}",
+      "plans": true,
+      "button": {
+        "label": {
+          "en": "Message us on WhatsApp",
+          "ar": "ابعتلنا على واتساب"
+        },
+        "value": "{{whatsapp}}"
+      }
+    }
+  ]
+}

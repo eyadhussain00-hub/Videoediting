@@ -1,0 +1,12 @@
+{
+  "assets": [
+    { "path": "cache/source.mp4", "source": "https://www.instagram.com/reel/DWkbY-YkQ2a/", "author": "Jeff Davenport (@hijeffdav)",
+      "license": "third-party content: client/spec use only, not for publishing without the creator's permission", "use": "final (re-edit)" },
+    { "path": "assets/footage/clean.mp4", "derived_from": "cache/source.mp4", "how": "scripts/decaption.py (burned captions removed)" },
+    { "path": "assets/footage/fg.webm", "derived_from": "assets/footage/clean.mp4", "how": "scripts/matte.py (RobustVideoMatting mobilenetv3, GPL-3.0 model, local)" },
+    { "path": "cache/stems/htdemucs/ref/{vocals,no_vocals}.wav", "derived_from": "cache/source.mp4", "how": "Demucs htdemucs two-stem split" },
+    { "path": "assets/fonts/InstrumentSerif-*.ttf", "source": "https://github.com/google/fonts/tree/main/ofl/instrumentserif", "license": "SIL OFL 1.1", "use": "final" },
+    { "path": "assets/fonts/Inter.ttf", "source": "https://github.com/google/fonts/tree/main/ofl/inter", "license": "SIL OFL 1.1", "use": "final" },
+    { "path": "SFX (all)", "source": "synthesised in scripts/sound.py", "license": "own work", "use": "final" }
+  ]
+}

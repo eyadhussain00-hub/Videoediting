@@ -1,0 +1,29 @@
+{
+  "assets": [
+    {
+      "path": "assets/footage/ref_DbNFGUCO-jJ.mp4",
+      "source": "https://www.instagram.com/reel/DbNFGUCO-jJ/",
+      "author": "Cole DaSilva (@coleluisdasilva)",
+      "license": "third-party content: portfolio / pitch use, or client use with the owner's permission",
+      "use": "final (source footage + voice)"
+    },
+    {
+      "path": "fonts: Inter Tight, Instrument Serif Italic, JetBrains Mono, Anton",
+      "source": "Google Fonts via @remotion/google-fonts",
+      "license": "SIL OFL 1.1",
+      "use": "final"
+    },
+    {
+      "path": "public/mix.wav (music bed + all SFX)",
+      "source": "synthesised by scripts/mix.py",
+      "license": "original work",
+      "use": "final"
+    },
+    {
+      "path": "models: rembg u2net_human_seg (~/.rembg), faster-whisper small.en",
+      "source": "github.com/danielgatis/rembg, huggingface Systran",
+      "license": "MIT / MIT",
+      "use": "tooling"
+    }
+  ]
+}

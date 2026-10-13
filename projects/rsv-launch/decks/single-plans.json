@@ -1,0 +1,21 @@
+{
+  "about": "Single image: the three plans and prices from offer.ts.",
+  "slides": [
+    {
+      "type": "cta",
+      "title": {
+        "en": "Pick your **plan.**",
+        "ar": "اختار **باقتك.**"
+      },
+      "body": "{{tagline}}",
+      "plans": true,
+      "button": {
+        "label": {
+          "en": "Message us on WhatsApp",
+          "ar": "ابعتلنا على واتساب"
+        },
+        "value": "{{whatsapp}}"
+      }
+    }
+  ]
+}

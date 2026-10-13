@@ -1,0 +1,43 @@
+{
+  "_note": "Single source of timing for scene (src/scene.js) and audio (scripts/audio.py). Seconds. 120 BPM, 1 bar = 2 s.",
+  "duration": 22,
+  "fps": 30,
+  "bpm": 120,
+  "width": 1080,
+  "height": 1920,
+  "houseDrop": 3.5,
+  "rainStart": 6.0,
+  "rainEnd": 12.5,
+  "rainExp": 2.2,
+  "downtown": 10.0,
+  "beach": 12.0,
+  "nightFrom": 13.6,
+  "nightTo": 14.6,
+  "fireworks": [14.5, 15.0, 15.5, 16.0, 16.25, 16.75, 17.25, 18.0, 18.6, 19.3, 20.2],
+  "title": 18.0,
+  "cta": 19.0,
+  "captions": [
+    { "from": 0.2,  "to": 2.4,  "lines": ["This town is", "*EMPTY.*"] },
+    { "from": 2.5,  "to": 3.9,  "lines": ["Join the game…"] },
+    { "from": 3.9,  "to": 5.9,  "lines": ["…get a", "*HOUSE.*"] },
+    { "from": 6.0,  "to": 9.9,  "lines": ["Every player", "gets *ONE.*"] },
+    { "from": 10.0, "to": 13.9, "lines": ["The town keeps", "*GROWING.*"] },
+    { "from": 14.0, "to": 17.8, "lines": ["Your plot.", "*FOREVER.*"] }
+  ],
+  "chips": [
+    { "from": 10.0, "to": 11.85, "label": "NEW DISTRICT UNLOCKED", "name": "DOWNTOWN" },
+    { "from": 12.0, "to": 13.6,  "label": "NEW DISTRICT UNLOCKED", "name": "THE BEACH" }
+  ],
+  "feed": [
+    { "t": 6.3,  "user": "@mia_builds" },
+    { "t": 6.9,  "user": "@zaidplays" },
+    { "t": 7.4,  "user": "@kofi_2011" },
+    { "t": 7.8,  "user": "@lunaa.x" },
+    { "t": 8.15, "user": "@builder_ty" },
+    { "t": 8.45, "user": "@nori.exe" },
+    { "t": 8.7,  "user": "@samwise77" },
+    { "t": 8.92, "user": "@pixel_jun" },
+    { "t": 9.12, "user": "@hana.blox" }
+  ],
+  "feedEnd": 9.9
+}
