@@ -26,12 +26,13 @@
       "n": 7,
       "board": "if you are a business leader that wants to feed family",
       "mic": "Mic 2",
-      "status": "edited",
-      "version": "v14",
-      "export": "CEOwills - Business leader feeding your family - v12.mp4",
+      "status": "exported",
+      "version": "v15",
+      "export": "CEOwills - Business leader feeding your family - v15.mp4",
       "job": "jobs/business-leader-feed-family.edit.json",
-      "final_pass": "5 Oct: Sofian's 30 Sep notes (captions below his chin, gradient from y 1300, one title size, no blurred fill over his head, director's 'go' gone, ExamQA-fast cuts) + Eyad 4 Oct: voice only, no nasheed. check/qa ALL PASS + stutters; replaced in place in Export (same link); no Telegram preview (Eyad) | 5 Oct later: Eyad 'without the ctas' → no iMessage cards (and no ping); replaced in place again | 7 Oct: Adnan's end card + nasheed rotation (the-sins), still no iMessage cards; QA + stutters pass; replaced in place | 10 Oct: Sofian's 9 Oct notes — no top text, end CTA banner (first Adnan's PNG; Eyad: 'nah not the png use the banner' → the iPhone banner, text written per video, v14); check/qa ALL PASS + stutters; Telegram previews sent. NOT yet replaced in Export: Make isn't connected (export field = the file still there)",
-      "nasheed": null
+      "final_pass": "5 Oct: Sofian's 30 Sep notes (captions below his chin, gradient from y 1300, one title size, no blurred fill over his head, director's 'go' gone, ExamQA-fast cuts) + Eyad 4 Oct: voice only, no nasheed. check/qa ALL PASS + stutters; replaced in place in Export (same link); no Telegram preview (Eyad) | 5 Oct later: Eyad 'without the ctas' → no iMessage cards (and no ping); replaced in place again | 7 Oct: Adnan's end card + nasheed rotation (the-sins), still no iMessage cards; QA + stutters pass; replaced in place | 10 Oct: Sofian's 9 Oct notes — no top text, end CTA banner (first Adnan's PNG; Eyad: 'nah not the png use the banner' → the iPhone banner, text written per video, v14); check/qa ALL PASS + stutters; Telegram previews sent. NOT yet replaced in Export: Make isn't connected (export field = the file still there) | 13 Oct: Adnan ('no top text, no imessage cta, no background music') — no nasheed, no end banner, no cards, v15; check/qa ALL PASS + stutters; replaced in place in Export over the 11 Oct 'voice only' file (same link)",
+      "nasheed": null,
+      "export_id": "1X6AiWzBvSkq5VHsz8CV9XDTmYKSw_Oxc"
     },
     {
       "n": 9,
