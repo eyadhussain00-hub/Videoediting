@@ -1,0 +1,11 @@
+{
+  "project": "premium-reel-DeSBf",
+  "source": "https://www.instagram.com/reel/DeSBf-Dt_yV/",
+  "format": { "width": 1080, "height": 1920, "fps": 24, "duration_s": 91.375 },
+  "assets": {
+    "footage": "source reel (re-downloadable with yt-dlp; not committed)",
+    "fonts": "public/fonts (OFL: Inter Tight, Instrument Serif, JetBrains Mono)",
+    "music_sfx": "synthesized in scripts/audio.py (no third-party licences)",
+    "models": ["faster-whisper small.en", "big-lama (simple-lama-inpainting)", "rembg u2net_human_seg", "demucs htdemucs"]
+  }
+}
