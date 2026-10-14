@@ -1,0 +1,5 @@
+# generated media (rebuild with the scripts; footage lives on Instagram/Drive)
+public/*.mp4
+public/*.wav
+out/
+public/fg.webm
