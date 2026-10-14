@@ -1,0 +1,2704 @@
+From d27a6091725f976ee0a0755bdc2079c107b6ef7a Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Thu, 1 Oct 2026 17:39:11 +0000
+Subject: [PATCH 3/5] =?UTF-8?q?CEOwills:=20Sofian's=201=20Oct=20notes,=20s?=
+ =?UTF-8?q?econd=20pass=20video=20by=20video=20=E2=80=94=20tighter=20pause?=
+ =?UTF-8?q?s,=20captions=20on=20time,=20#14=20exposure,=20#16=20title?=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+- pauses.py: voiced sound only protects a word when it reaches word level (word_voiced) — the breathed-out hum
+  between phrases is a pause now; lone clicks/smacks/in-breaths at a piece's edge are dropped, judged by the sound of
+  the next/previous word; the first piece is tightened too (#12 opened on 0.3 s of air before "If")
+- render.py: a word that starts in its shot is no longer moved to the next shot as a zero-length caption
+  ("circumvented" vanished in #2; 7 of 9 videos showed a word late); per-job "tone" (exposure + highlight shoulder)
+- #14: exposure/whites down a little (Sofian 18:36) — face highlights 240 → 218, no clipping
+- #16: title "Nothing written down? / Here's why you need to / be safe than sorry" (Eyad), hook_question allowed
+- #10: caption typo "has a implication" → "has an implication"
+- jobs re-cut, tracker versions: #2 v9, #6 v12, #7 v12, #9 v9, #10 v8, #12 v8, #14 v7, #16 v8, #17 v15
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_011udnMWfLa6iF13BP2WLqvC
+---
+ tools/ceowills/HISTORY.md                     |  42 +++
+ tools/ceowills/PRESET.md                      |  13 +-
+ tools/ceowills/check.py                       |  33 ++-
+ tools/ceowills/cta_history.json               |  22 +-
+ .../business-leader-feed-family.edit.json     | 143 +++++----
+ .../jobs/business-owner-juggling.edit.json    |  43 ++-
+ .../jobs/business-owners-deep-dark.edit.json  |  89 ++++--
+ .../business-partners-succession.edit.json    | 105 +++++--
+ tools/ceowills/jobs/ceowills-bridge.edit.json |  51 ++--
+ .../culture-leaving-daughters-out.edit.json   | 191 ++++++++----
+ tools/ceowills/jobs/family-drawer.edit.json   |  93 ++++--
+ tools/ceowills/jobs/hmrc-40-percent.edit.json |  74 +++--
+ tools/ceowills/jobs/rafa-nadal.edit.json      |  89 ++++--
+ tools/ceowills/layout.json                    |  32 +-
+ tools/ceowills/pauses.py                      | 276 ++++++++++++++++--
+ tools/ceowills/qa.py                          |   2 +-
+ tools/ceowills/render.py                      | 109 +++++--
+ tools/ceowills/tracker.json                   |  54 ++--
+ 18 files changed, 1095 insertions(+), 366 deletions(-)
+
+diff --git a/tools/ceowills/HISTORY.md b/tools/ceowills/HISTORY.md
+index d57c0b4..0bc3c00 100644
+--- a/tools/ceowills/HISTORY.md
++++ b/tools/ceowills/HISTORY.md
+@@ -293,3 +293,45 @@ talking about; it helps choose the right CTA. Good CTAs help make more money for
+   "40%" is full height); this batch: #2, #6, #12, #14 serif, the rest sans.
+ - **#14 v5 peaked at −1.1 dBTP** (QA limit −1.5): the last limiters sat 1.3 dB under the target and AAC overshoots up
+   to ~1.7 dB on loud, bright speech ("…your succession planning") → `audio.limit_margin_db` 2.0.
++
++## Sofian, 1 Oct 15:48 → all 9 re-cut, checked one at a time
++- **"Put the captions a bit higher below his chin so it's easier to see"** → baseline 1450 → 1370; the shift per shot
++  is capped so his beard stays 60 px above the top caption line (one shift per shot, so a smooth join never moves him).
++- **"The top header text is too high — in Instagram, TikTok and YouTube Shorts some of the words will cover it"** →
++  title cap top ≈ 251, under `safe.y0` 210 (qa.py checks it), 56/58 px so three lines end ≈ 445; `frame.shift_y` up to
++  280 so his head clears it.
++- **"Please improve the pauses"** — measured on the 1 Oct renders: 3–16 pauses ≥ 0.2 s per video, up to 0.8 s. Causes,
++  each fixed: breaths counted as speech (a breath is 16+ dB down, unvoiced and weak at 3.5–11 kHz; a hissy in-breath
++  only when no word within 0.3 s has an s/z/x/f/sh/ch at that edge — the first tries cut the S of #14's "So" and part of
++  #10's "deep"); cut points had to land in a 0.03 s window with frames every 0.04 s, so a quarter of the pauses were
++  silently skipped; "quietest frame" picks left 0.04 s cuts that were then dropped; a 5 ms click marked the end of a
++  take; each take was judged against its own level instead of the whole video's; both edges of a join kept their own
++  padding (→ `tighten_edges`). Pauses inside a take became smooth joins instead of flash cuts. After: 0–2 pauses ≥ 0.2 s
++  per video, none ≥ 0.35 s (check.py fails them).
++- **"At the end it's not trimmed properly"**: every video held 0.8–1.5 s of silence after his last word (earlier holds
++  kept on purpose for the CTA) → ends `tail_hold_s` 0.35 after the last word; check.py fails a tail > 0.6 s.
++- Every render now also gets a word-integrity check (Whisper on the finished video vs the captions), because the new
++  pause cutter works inside Whisper's word spans.
++- **Second pass on the same notes, one video at a time** (what the first pass still let through):
++  - A soft word lost to the cutter: #6's second "the" and the "b" of #16's "bad" → voiced sound (80–400 Hz) is never
++    pause. But a breathed-out hum 20+ dB under his voice is voiced too, and #2 kept 0.38 s of it in "so when … they" →
++    `word_voiced()`: voiced counts as a word only when its run reaches `voiced_peak_db` (16) of his speech or touches
++    such a frame (a soft "the" peaks 6 dB down). check.py's `removed_voice` uses the same test and fails a removed gap
++    with word-level voice in it; gaps between original takes that earlier edits removed on purpose go in `removed_ok`.
++  - #12 opened on a lip smack and 0.3 s of air before "If", and joins kept a hissy in-breath before "So" → the first
++    piece is tightened like the others, and a lone unvoiced sound at a piece's edge (≤ 0.25 s, air between it and the
++    speech) is dropped — only next to a word that starts/ends on a vowel or soft consonant, judged by sound ("hate"
++    ends on its T: the first try cut the T release 0.15 s after #7's "hate").
++  - No dissolves at smooth joins (they ghosted); the zoom changes only at a cut once the shot has run 0.8 s.
++  - `render.py --plan` checks the layout (title vs his head per shot) in seconds before a full render.
++- **Eyad, 1 Oct (#16 title)**: "Nothing written down? / Here's why you need to / be safe than sorry" — his own wording,
++  question mark kept on purpose (`hook_question: true` lets check.py pass it for that job only).
++- **Captions shown late at tightened joins (found on #2 v9, 1 Oct)**: a word that starts in its shot but whose (loose)
++  Whisper end falls in a removed gap ≤ 0.25 s before the next cut-in was moved to the next shot as a zero-length word
++  ("circumvented" vanished; in 7 of 9 videos a "the"/"that" showed up with the next chunk). The early-drift rule now
++  only applies to a word wholly in the gap. hmrc v11 and bff v7 went out with it → v12/v8.
++- **Sofian, 1 Oct 18:36 on #14**: "put the white or exposure down just a little bit so on his face there isn't a really
++  bright overexposed white light" → the ceiling light clipped 5–7 % of his face (other videos ~0 %, face p95 206–232).
++  New per-job `tone` (render.py `tone_vf`: exposure in EV, then a shoulder from `knee` that lands full white on `white`,
++  slope 1 at the knee so the mid tones don't move): #14 gets −0.1 EV, knee 0.65, white 0.9 → face p95 ≈ 218, no
++  clipping, mid tones −5 %.
+diff --git a/tools/ceowills/PRESET.md b/tools/ceowills/PRESET.md
+index 7785600..50d14d2 100644
+--- a/tools/ceowills/PRESET.md
++++ b/tools/ceowills/PRESET.md
+@@ -63,9 +63,10 @@
+    When the director asks for a different take between tries, use the last one he asked for. **The video starts on his
+    first sound, never on the director's "go"** (Sofian, 30 Sep): Whisper can't hear the difference (#14: it merged the
+    director's "go" and Adnan's "so" into one word), `offmic.py` can, and `check.py` fails on it. **Trim like ExamQA**:
+-   pauses down to 0.1 s, 0.06 s of air before a line, 0.12 s after — **but never a shot under 0.8 s inside one take**
+-   (Eyad, 1 Oct: a 0.44 s shot left by cutting a tiny pause "looks like a weird visual stutter"; the pause stays
+-   instead, and check.py fails it) — `pauses.py` (new jobs) or `pauses.py --edit` (re-tighten a job;
++   every pause ≥ 0.15 s (silence **and breaths**) down to 0.08 s; a pause cut inside one take is a **smooth join**
++   (same zoom, drift carries on, 3-frame dissolve) so it never reads as a flash cut (Eyad, 1 Oct); zoom changes only at
++   real cuts between takes. **The video ends ~0.35 s after his last word** (Sofian, 1 Oct: "at the end it's not
++   trimmed properly"). check.py fails a pause ≥ 0.35 s, a lead-in > 0.2 s, a tail > 0.6 s — `pauses.py` (new jobs) or `pauses.py --edit` (re-tighten a job;
+    also moves the first cut past the director and remaps card times). The end CTA stays on screen ≥ 1.8 s: keep the
+    silent hold after "below"; if something off his mic is in it, `"mute_after"` silences his mic there instead.
+ 5. **Frame 1 carries the title and the logo.**
+@@ -85,14 +86,14 @@
+ 
+ | Element | Now |
+ |---|---|
+-| Captions | **Last line on baseline 1450, extra lines stack upward** — under his beard, just above the logo (Sofian, 30 Sep). Inter Tight 700, 72 px, white, strong 3-pass drop shadow. ALL-CAPS and numbers → Playfair 800 white with a red underline that draws in (honorifics SWT/SAW/PBUH stay plain). **Never the Pinyon script.** 1–3 words per chunk, broken on phrases; each word appears as he says it; the chunk is laid out once so nothing shifts |
+-| Title (hook) | Top of frame over a soft black scrim: **every line the same face and size** (Sofian, 30 Sep). **No question marks** (Eyad, 1 Oct; check.py fails them). Face per video, switched up across the account: `"hook_font": "sans"` (Inter Tight 700, 64 px) or `"serif"` (the end CTA's Playfair 800, 66 px, lining figures) — the serif is for titles only, never captions (Eyad, 1 Oct). `*marked*` words look like the rest, `_MARKED_` keeps a red underline. ≤ 22 characters a line. Fades at `hook_until` (end of the first sentence, before the first card at 25 s) |
++| Captions | **Last line on baseline 1370, extra lines stack upward** — right under his chin (Sofian, 1 Oct: "a bit higher, below his chin, so it's easier to see"); each shot's headroom keeps his beard 60 px above the top line. Inter Tight 700, 72 px, white, strong 3-pass drop shadow. ALL-CAPS and numbers → Playfair 800 white with a red underline that draws in (honorifics SWT/SAW/PBUH stay plain). **Never the Pinyon script.** 1–3 words per chunk, broken on phrases; each word appears as he says it; the chunk is laid out once so nothing shifts |
++| Title (hook) | **Under the platform bar**: cap top ≈ 251 (y 210 is where Instagram/TikTok/Shorts put their own top text — Sofian, 1 Oct), over a soft black scrim: **every line the same face and size** (Sofian, 30 Sep), 56 px sans / 58 px serif. **No question marks** (Eyad, 1 Oct; check.py fails them) — unless the title is Eyad's own wording with one (`"hook_question": true`, #16). Face per video, switched up across the account: `"hook_font": "sans"` (Inter Tight 700, 64 px) or `"serif"` (the end CTA's Playfair 800, 66 px, lining figures) — the serif is for titles only, never captions (Eyad, 1 Oct). `*marked*` words look like the rest, `_MARKED_` keeps a red underline. ≤ 22 characters a line. Fades at `hook_until` (end of the first sentence, before the first card at 25 s) |
+ | Logo | Red `CEOwills` (Arimo 700, `#EB1519`, 392 px wide, baseline 1600), centred on its ink, every frame, over a black bottom gradient **from y 1300 down** (the layer doubled) — behind the captions and logo only, like ExamQA (Sofian, 30 Sep: "the gradient is so high"; it used to start at 1000, across his chest) |
+ | Frame | **Zoomed 1.08× and moved down up to 190 px** (Sofian, 30 Sep) so there's room above his head. Per cut, render.py tracks his head and fills the space with **only the wall above his hair**, stretched (no blurred copy of the frame — that put a ghost head above him and blurred his hair). A cut where he leans to the top of the shot gets less shift, or none; a cut where he leans in gets less so his beard stays above the captions (`frame` in layout.json, `shifts` in boxes.json) |
+ | iMessage cards | **Real-size iPhone banners** (Sofian/Eyad, 30 Sep: "so small it looks unrealistic"): 1000 px wide at y 100, Adnan's contact photo (his face from the video) with the Messages badge, "Adnan · now", frosted glass, ceowills.com in red, drawn by render.py (`notify.style: ios`). Slide down, 6 s each, first at 25 s then every 30 s, never over the end CTA, none in reels under 30 s, notification sound on each. **Text written for what he's saying at that moment, different in every video** — see below |
+ | End CTA | From "Comment" to the end, 1.12× size, the keyword in the job's spelling with the red underline. Two keywords (#10) is fine when he says two |
+ | Motion | Alternating 1.00/1.08 punch-ins at cuts, slow 3 % drift, one in-shot punch-in where he says the CTA |
+-| Grade | Sofian's Premiere look: **safe** 33³ LUT (`luts/sofian-juggling-safe.cube`) + measured vignette (`grade_fit`). The raw fitted LUT made grey/red blotches on bright skin (#14, a red cheek in #2) — 30 Sep: its difference from the curves is now smoothed and capped. Look at his face in close, bright shots on every contact sheet. New numbers from him go in layout.json, never hand-tuned filters |
++| Grade | Sofian's Premiere look: **safe** 33³ LUT (`luts/sofian-juggling-safe.cube`) + measured vignette (`grade_fit`). The raw fitted LUT made grey/red blotches on bright skin (#14, a red cheek in #2) — 30 Sep: its difference from the curves is now smoothed and capped. Look at his face in close, bright shots on every contact sheet. New numbers from him go in layout.json, never hand-tuned filters. One take too hot on his face (a light clipping it): `"tone": {"exposure": -0.1, "knee": 0.65, "white": 0.9}` in that job — exposure in EV and a highlight shoulder after the LUT; face highlights should land ≈ 205–230 like the other videos, nothing ≥ 240 (#14, Sofian 1 Oct) |
+ | Audio | Lav through `voice_chain()` (hum notches, RNNoise, clarity EQ, de-esser, compressor), master **−15 LUFS**. Nasheed **the-sins (muffled)** unless told otherwise, clearly hearable ≈ 11 dB under him, gentle duck, 0.4 s in / 0.8 s out. `"nasheed": {"at": <source s>}` brings it in later with voice only before (#14: after he says "pause") |
+ | Length | Keep the whole message: 15–120 s |
+ 
+diff --git a/tools/ceowills/check.py b/tools/ceowills/check.py
+index 1487f21..68bba22 100644
+--- a/tools/ceowills/check.py
++++ b/tools/ceowills/check.py
+@@ -45,11 +45,17 @@ def main():
+         except Exception: fail(f"raw video won't open (incomplete download?): {E['video']}")
+     for i, c in enumerate(E.get("cuts", [])):
+         if c["out"] <= c["in"]: fail(f"cut {i}: out {c['out']} ≤ in {c['in']}")
+-        elif c["out"] - c["in"] < L["cuts"]["min_clip_s"]:
+-            # a short shot that only removed a small pause inside one take reads as a stutter (#2 v7 at 1:25, 1 Oct)
+-            near = ([c["in"] - E["cuts"][i - 1]["out"]] if i else []) + ([E["cuts"][i + 1]["in"] - c["out"]] if i + 1 < len(E["cuts"]) else [])
+-            gap = min([g for g in near if g >= 0], default=9)   # a negative gap = re-ordered words, on purpose
+-            (fail if 0 <= gap <= 0.35 else warn)(f"cut {i} is only {c['out'] - c['in']:.2f} s" + (f" and {gap:.2f} s from its neighbour — merge it (a jump cut for a tiny pause looks like a stutter)" if 0 <= gap <= 0.35 else " — a flash cut? fine only if it's a whole word or line on purpose"))
++    # shots (a smooth join continues the shot): a short real shot next to a tiny pause reads as a flash cut (1 Oct)
++    cuts = E.get("cuts", []); sh = []
++    for i, c in enumerate(cuts):
++        if not sh or c.get("join") != "smooth": sh.append([i])
++        else: sh[-1].append(i)
++    for g in sh:
++        d = sum(cuts[i]["out"] - cuts[i]["in"] for i in g)
++        if d >= L["cuts"].get("min_shot_s", 0.8): continue
++        near = ([cuts[g[0]]["in"] - cuts[g[0] - 1]["out"]] if g[0] else []) + ([cuts[g[-1] + 1]["in"] - cuts[g[-1]]["out"]] if g[-1] + 1 < len(cuts) else [])
++        gap = min([x for x in near if x >= 0], default=9)   # a negative gap = re-ordered words, on purpose
++        (fail if gap <= 0.35 else warn)(f"shot at cut {g[0]} is only {d:.2f} s" + (f" and {gap:.2f} s from its neighbour — make that join smooth" if gap <= 0.35 else " — a flash cut? fine only if it's a whole word or line on purpose"))
+     segs, dur, to_out = render.timeline(E.get("cuts", []), fps)
+     if not segs: fail("no cuts")
+     lo, hi = L["length"]["target_s"]
+@@ -79,7 +85,20 @@ def main():
+                 warn(f"something off his mic at {s0:.2f}–{s1:.2f} s in the last cut (ends {c1['out']}) — listen: the director's 'good'? end before it")
+     if nas and nas.get("at") is not None and to_out(nas["at"]) is None: fail(f"nasheed.at {nas['at']} is not inside a kept cut")
+     if E.get("mute_after") is not None and to_out(E["mute_after"]) is None: fail(f"mute_after {E['mute_after']} is not inside a kept cut")
+-    if cta and cta_t is not None and dur - cta_t < 1.8: fail(f"the end CTA is on screen for only {dur - cta_t:.1f} s — hold the last shot (≥ 1.8 s)")
++    if cta and cta_t is not None and dur - cta_t < 1.0: fail(f"the end CTA is on screen for only {dur - cta_t:.1f} s (≥ 1.0 s: the words plus the end hold)")
++
++    # ---- pauses as the viewer hears them (Sofian 1 Oct: "improve the pauses", "at the end it's not trimmed properly")
++    if segs and E.get("audio") and P("audio").exists():
++        import pauses as PZ
++        lead, tail, long_ = PZ.audit(E, base, L["cuts"])
++        keep = E.get("keep_pauses", [])
++        long_ = [(t, d) for t, d in long_ if not any(abs(t - k) < 0.5 for k in keep)]
++        if lead > 0.2: fail(f"{lead:.2f} s of silence before his first word (≤ 0.2)")
++        if tail > L["cuts"].get("tail_max_s", 0.6): fail(f"{tail:.2f} s of silence after his last word — trim the end (≤ {L['cuts'].get('tail_max_s', 0.6)} s)")
++        rv = [(t, d) for t, d in PZ.removed_voice(E, base, L["cuts"]) if not any(abs(t - k) < 0.5 for k in E.get("removed_ok", []))]
++        if rv: fail("voiced sound removed with a pause (a clipped word?) at source " + ", ".join(f"{t:.2f}s ({d:.2f})" for t, d in rv[:10])
++                    + " — listen; if it's a removed false start or stutter on purpose, list it in removed_ok (source s)")
++        if long_: fail("pauses ≥ 0.35 s (out time, length): " + ", ".join(f"{t:.2f}s {d:.2f}" for t, d in long_[:10]) + " — cut them, or list them in keep_pauses (source s) with the reason")
+ 
+     # ---- title
+     hook = E.get("hook")
+@@ -88,7 +107,7 @@ def main():
+         for line in hook:
+             plain = re.sub(r"[*_]", "", line)
+             if len(plain) > 22: warn(f"title line '{plain}' is {len(plain)} characters (≤ 22 keeps it big)")
+-            if "?" in plain: fail(f"title line '{plain}' has a question mark — titles have none (Eyad, 1 Oct)")
++            if "?" in plain and not E.get("hook_question"): fail(f"title line '{plain}' has a question mark — titles have none (Eyad, 1 Oct)")
+         if E.get("hook_font", "sans") not in ("sans", "serif"): fail(f"hook_font '{E['hook_font']}' — use sans or serif")
+         hu = E.get("hook_until")
+         hu_out = to_out(hu) if hu is not None else dur
+diff --git a/tools/ceowills/cta_history.json b/tools/ceowills/cta_history.json
+index 610f1c5..f507621 100644
+--- a/tools/ceowills/cta_history.json
++++ b/tools/ceowills/cta_history.json
+@@ -1,6 +1,17 @@
+ {
+  "_comment": "iMessage CTA cards used per video, oldest first (render.py writes this on every final render; plan_ctas penalises cards used in the last few videos).",
+  "videos": {
++  "CEOwills bridges your company and your will": [
++   "say:hey-brother-own-1m-in-property-let-s-sit-down-an"
++  ],
++  "Business owner juggling": [],
++  "Business leader feeding your family": [
++   "say:hey-boss-you-built-this-company-to-feed-your-fam",
++   "say:hey-friend-pass-on-your-success-not-a-tax-bill-s"
++  ],
++  "Families should find it in the drawer": [
++   "say:hey-friend-could-your-family-find-everything-in-"
++  ],
+   "Culture leaving daughters out": [
+    "say:hey-brother-your-daughters-shouldn-t-be-left-wit",
+    "say:hey-friend-want-a-will-that-includes-your-whole-",
+@@ -13,20 +24,9 @@
+    "say:hey-partner-who-gets-your-shares-and-when-agree-",
+    "say:hey-friend-3-hours-with-your-partners-today-save"
+   ],
+-  "Families should find it in the drawer": [
+-   "say:hey-friend-could-your-family-find-everything-in-"
+-  ],
+   "Plan like Rafa Nadal": [],
+   "Business owners: deep, dark IHT conversation": [
+    "say:hey-ceo-let-s-have-that-deep-dark-conversation-a"
+-  ],
+-  "CEOwills bridges your company and your will": [
+-   "say:hey-brother-own-1m-in-property-let-s-sit-down-an"
+-  ],
+-  "Business owner juggling": [],
+-  "Business leader feeding your family": [
+-   "say:hey-boss-you-built-this-company-to-feed-your-fam",
+-   "say:hey-friend-pass-on-your-success-not-a-tax-bill-s"
+   ]
+  }
+ }
+diff --git a/tools/ceowills/jobs/business-leader-feed-family.edit.json b/tools/ceowills/jobs/business-leader-feed-family.edit.json
+index 0cabfd2..90e15fb 100644
+--- a/tools/ceowills/jobs/business-leader-feed-family.edit.json
++++ b/tools/ceowills/jobs/business-leader-feed-family.edit.json
+@@ -1,5 +1,5 @@
+ {
+- "_source": "Raw 'if you are a business leader that wants to feed family.MP4' (client Drive id 1b_1RMw3LYFEWSqygIWl4yJGeXgDzzchQ); mic = 'hmr took 8.5bn in inheritance tax.wav' (Mic 2) @ 1081.8074 s. One clean take (slate 'three, two, one… ready Mike? go, testing' cut); pauses by pauses.py over 7.10–99.84, last cut held to 101.0 (silent) so the CTA reads. Words: 'CEO'+'Wills' → 'CEOwills', '40'+'%' → '40%' (jobs/business-leader-feed-family.words.json → words/leader.fixed.json; src/leader.MP4 and mic/leader.mic.wav are symlinks to the full-name files). Nasheed the-sins (muffled; Eyad asked for it on v3, was bika-moulhimi). v5 (Eyad): 'setting off and' cut (keep 'putting off'), the doubled 'blueprint, blueprint' cut to one, 0.6 s pause after 'wills and' tightened; words re-timed from a verbatim pass. iMessage cards picked by topic (Eyad 29 Sep: switch them up, match what he's saying): legacy-decades, got-you-thinking. v10 (30 Sep): re-tightened; the breath between '…than you need to.' and 'To make sure…' kept (63.88–70.04 one cut) so it doesn't read as a 'to, to' stutter (stutters.py --ok 51.28 in v10, 51.84 in v11: 'than you need to, to make sure…' is a purpose clause, not a repeat); card 2 moved to 45 s ('here at CEOwills… business owners like you succeed. You aren't paying more taxes') — at 51.6 he leans up and the card reached his hair. 1 Oct (Eyad): no shot under 0.8 s inside one take (the 0.44 s flash cut at 1:25 in #2), air after lines 0.12 s, title without a question mark, title font sans.",
++ "_source": "Raw 'if you are a business leader that wants to feed family.MP4' (client Drive id 1b_1RMw3LYFEWSqygIWl4yJGeXgDzzchQ); mic = 'hmr took 8.5bn in inheritance tax.wav' (Mic 2) @ 1081.8074 s. One clean take (slate 'three, two, one… ready Mike? go, testing' cut); pauses by pauses.py over 7.10–99.84, last cut held to 101.0 (silent) so the CTA reads. Words: 'CEO'+'Wills' → 'CEOwills', '40'+'%' → '40%' (jobs/business-leader-feed-family.words.json → words/leader.fixed.json; src/leader.MP4 and mic/leader.mic.wav are symlinks to the full-name files). Nasheed the-sins (muffled; Eyad asked for it on v3, was bika-moulhimi). v5 (Eyad): 'setting off and' cut (keep 'putting off'), the doubled 'blueprint, blueprint' cut to one, 0.6 s pause after 'wills and' tightened; words re-timed from a verbatim pass. iMessage cards picked by topic (Eyad 29 Sep: switch them up, match what he's saying): legacy-decades, got-you-thinking. v10 (30 Sep): re-tightened; the breath between '…than you need to.' and 'To make sure…' kept (63.88–70.04 one cut) so it doesn't read as a 'to, to' stutter (stutters.py --ok 51.28 in v10, 51.84 in v11: 'than you need to, to make sure…' is a purpose clause, not a repeat); card 2 moved to 45 s ('here at CEOwills… business owners like you succeed. You aren't paying more taxes') — at 51.6 he leans up and the card reached his hair. 1 Oct (Eyad): no shot under 0.8 s inside one take (the 0.44 s flash cut at 1:25 in #2), air after lines 0.12 s, title without a question mark, title font sans. 1 Oct (Sofian, 15:48): pauses ≥ 0.15 s cut to 0.08 s with smooth joins inside a take, end 0.35 s after the last word, captions higher, title under the platform bar.",
+  "name": "Business leader feeding your family",
+  "video": "src/leader.MP4",
+  "rotate": "ccw",
+@@ -8,106 +8,140 @@
+  "cuts": [
+   {
+    "in": 7.2,
+-   "out": 8.2
++   "out": 8.36
+   },
+   {
+    "in": 8.44,
+-   "out": 9.72,
++   "out": 10.88,
+    "punch": true
+   },
+   {
+-   "in": 9.84,
+-   "out": 10.88
++   "in": 11.12,
++   "out": 12.28
+   },
+   {
+-   "in": 11.12,
+-   "out": 12.28,
++   "in": 12.6,
++   "out": 13.84,
+    "punch": true
+   },
+   {
+-   "in": 12.6,
++   "in": 14.08,
+    "out": 15.24
+   },
+   {
+    "in": 15.56,
+-   "out": 20.6,
++   "out": 20.64,
+    "punch": true
+   },
+   {
+    "in": 20.76,
+-   "out": 26.08
++   "out": 21.68
+   },
+   {
+-   "in": 26.4,
+-   "out": 27.4,
++   "in": 21.8,
++   "out": 22.96,
+    "punch": true
+   },
+   {
+-   "in": 27.52,
+-   "out": 28.39
++   "in": 23.12,
++   "out": 26.08
+   },
+   {
+-   "in": 29.27,
+-   "out": 30.32,
++   "in": 26.44,
++   "out": 28.39,
+    "punch": true
+   },
++  {
++   "in": 29.28,
++   "out": 30.0
++  },
+   {
+    "in": 30.56,
+-   "out": 31.88
++   "out": 31.84,
++   "join": "smooth"
+   },
+   {
+    "in": 32.94,
+-   "out": 35.28,
++   "out": 33.76,
+    "punch": true
+   },
++  {
++   "in": 33.84,
++   "out": 35.28
++  },
+   {
+    "in": 35.6,
++   "out": 36.2,
++   "punch": true
++  },
++  {
++   "in": 36.4,
++   "out": 37.76,
++   "join": "smooth",
++   "punch": true
++  },
++  {
++   "in": 38.04,
+    "out": 38.42
+   },
+   {
+    "in": 38.96,
+-   "out": 42.64,
++   "out": 40.36,
++   "join": "smooth"
++  },
++  {
++   "in": 40.48,
++   "out": 42.56,
+    "punch": true
+   },
+   {
+    "in": 42.84,
+-   "out": 45.48
++   "out": 44.16
+   },
+   {
+-   "in": 45.96,
+-   "out": 49.16,
++   "in": 44.4,
++   "out": 45.52,
+    "punch": true
+   },
++  {
++   "in": 45.96,
++   "out": 49.2
++  },
+   {
+    "in": 49.4,
+-   "out": 51.64
++   "out": 51.56,
++   "punch": true
+   },
+   {
+    "in": 51.76,
+-   "out": 52.92,
+-   "punch": true
++   "out": 52.76
+   },
+   {
+-   "in": 53.04,
+-   "out": 57.12
++   "in": 53.16,
++   "out": 57.12,
++   "punch": true
+   },
+   {
+    "in": 57.48,
++   "out": 58.84
++  },
++  {
++   "in": 58.96,
+    "out": 60.6,
+    "punch": true
+   },
+   {
+-   "in": 60.92,
+-   "out": 63.56
++   "in": 60.72,
++   "out": 63.6
+   },
+   {
+-   "in": 63.88,
+-   "out": 70.04,
++   "in": 63.84,
++   "out": 70.08,
+    "punch": true
+   },
+   {
+    "in": 70.24,
+-   "out": 71.88,
++   "out": 71.84,
+    "punch": true
+   },
+   {
+@@ -116,15 +150,20 @@
+   },
+   {
+    "in": 73.92,
+-   "out": 75.48,
++   "out": 75.52,
+    "punch": true
+   },
+   {
+    "in": 75.8,
+-   "out": 77.88
++   "out": 76.2
+   },
+   {
+-   "in": 78.48,
++   "in": 76.48,
++   "out": 77.88,
++   "join": "smooth"
++  },
++  {
++   "in": 78.6,
+    "out": 80.12,
+    "punch": true
+   },
+@@ -133,7 +172,7 @@
+    "out": 81.48
+   },
+   {
+-   "in": 81.84,
++   "in": 82.16,
+    "out": 85.72,
+    "punch": true
+   },
+@@ -143,12 +182,12 @@
+   },
+   {
+    "in": 88.96,
+-   "out": 89.92,
++   "out": 89.88,
+    "punch": true
+   },
+   {
+-   "in": 90.04,
+-   "out": 91.84
++   "in": 90.24,
++   "out": 91.8
+   },
+   {
+    "in": 91.96,
+@@ -156,21 +195,21 @@
+    "punch": true
+   },
+   {
+-   "in": 93.96,
+-   "out": 96.8
++   "in": 94.0,
++   "out": 95.08
+   },
+   {
+-   "in": 97.12,
+-   "out": 98.28,
++   "in": 95.28,
++   "out": 96.8,
+    "punch": true
+   },
+   {
+-   "in": 98.36,
+-   "out": 99.88
++   "in": 97.12,
++   "out": 98.24
+   },
+   {
+-   "in": 100.16,
+-   "out": 101.0,
++   "in": 98.4,
++   "out": 100.24,
+    "punch": true
+   }
+  ],
+@@ -340,12 +379,16 @@
+  "ctas": [
+   {
+    "text": "hey boss, you built this company to feed your family. Don't put off their blueprint any longer: ceowills.com",
+-   "at_out": 23.6
++   "at_out": 23.06
+   },
+   {
+    "text": "hey friend, pass on your success, not a tax bill. See what you'd really owe at ceowills.com",
+-   "at_out": 45.52
++   "at_out": 43.68
+   }
+  ],
+- "hook_font": "sans"
++ "hook_font": "sans",
++ "removed_ok": [
++  28.39,
++  75.52
++ ]
+ }
+\ No newline at end of file
+diff --git a/tools/ceowills/jobs/business-owner-juggling.edit.json b/tools/ceowills/jobs/business-owner-juggling.edit.json
+index f0c21c8..a9ba3eb 100644
+--- a/tools/ceowills/jobs/business-owner-juggling.edit.json
++++ b/tools/ceowills/jobs/business-owner-juggling.edit.json
+@@ -1,5 +1,5 @@
+ {
+- "_source": "Raw 'business owner juggling.MP4' (client Drive id 1fYYZPsmOpmYUJhfRW1hzLY-HH0AjKMxg); mic = 'wills work 60 seconds, verbal agreement sofa.wav' @ 1303.101 s v10 (29 Sep): re-rendered in the current house style (was v9, exported by another session in the old script/serif look). 1 Oct (Eyad): no shot under 0.8 s inside one take (the 0.44 s flash cut at 1:25 in #2), air after lines 0.12 s, title without a question mark, title font sans.",
++ "_source": "Raw 'business owner juggling.MP4' (client Drive id 1fYYZPsmOpmYUJhfRW1hzLY-HH0AjKMxg); mic = 'wills work 60 seconds, verbal agreement sofa.wav' @ 1303.101 s v10 (29 Sep): re-rendered in the current house style (was v9, exported by another session in the old script/serif look). 1 Oct (Eyad): no shot under 0.8 s inside one take (the 0.44 s flash cut at 1:25 in #2), air after lines 0.12 s, title without a question mark, title font sans. 1 Oct (Sofian, 15:48): pauses ≥ 0.15 s cut to 0.08 s with smooth joins inside a take, end 0.35 s after the last word, captions higher, title under the platform bar.",
+  "name": "Business owner juggling",
+  "video": "src/juggling.mp4",
+  "rotate": "ccw",
+@@ -7,26 +7,51 @@
+  "words": "words/juggling.mic.json",
+  "cuts": [
+   {
+-   "in": 1.84,
+-   "out": 5.7
++   "in": 1.88,
++   "out": 3.08
+   },
+   {
+-   "in": 6.2,
+-   "out": 7.08,
++   "in": 3.2,
++   "out": 3.84,
++   "punch": true
++  },
++  {
++   "in": 3.92,
++   "out": 5.7,
++   "join": "smooth",
+    "punch": true
+   },
+   {
+-   "in": 7.2,
+-   "out": 9.44
++   "in": 6.2,
++   "out": 6.8
++  },
++  {
++   "in": 6.92,
++   "out": 9.4,
++   "join": "smooth"
+   },
+   {
+    "in": 9.52,
++   "out": 11.24,
++   "punch": true
++  },
++  {
++   "in": 11.44,
++   "out": 12.68
++  },
++  {
++   "in": 12.88,
+    "out": 14.96,
+    "punch": true
+   },
+   {
+-   "in": 15.12,
+-   "out": 19.4
++   "in": 15.08,
++   "out": 17.16
++  },
++  {
++   "in": 17.28,
++   "out": 19.28,
++   "punch": true
+   }
+  ],
+  "punch_at": [
+diff --git a/tools/ceowills/jobs/business-owners-deep-dark.edit.json b/tools/ceowills/jobs/business-owners-deep-dark.edit.json
+index 2f7be55..740eb10 100644
+--- a/tools/ceowills/jobs/business-owners-deep-dark.edit.json
++++ b/tools/ceowills/jobs/business-owners-deep-dark.edit.json
+@@ -1,5 +1,5 @@
+ {
+- "_source": "Raw 'businessowners comment calculator and more.MP4' (client Drive id 1iiz9rd8HYKbin8s9jsjEhxS4NqhXfHkr); mic = 'standing under vines deep dark conversation.wav' (Mic 3) @ 787.4582 s. One take 3.7–41.0; the false start 'Comment more if you want a…' (41.6–43.4) cut, the full two-keyword CTA re-said at 47.9–57.3 kept ('Comment MORE if you would like a free blueprint… comment calculator below' — the director kept both keywords). 'more' in the CTA set in caps so it gets the serif + underline; end CTA = 'comment CALCULATOR below'. Verbatim stutter pass: none. Last cut held to 58.5 (silent). Nasheed the-sins. iMessage cards picked by topic (Eyad 29 Sep: switch them up, match what he's saying): assume-family-inherit. 1 Oct (Eyad): no shot under 0.8 s inside one take (the 0.44 s flash cut at 1:25 in #2), air after lines 0.12 s, title without a question mark, title font sans. The lone 'So,' (28.36–28.8, a 0.44 s shot between breaths) is cut: '…how your IHT works. CEOwills helps you…'; removed from the words file.",
++ "_source": "Raw 'businessowners comment calculator and more.MP4' (client Drive id 1iiz9rd8HYKbin8s9jsjEhxS4NqhXfHkr); mic = 'standing under vines deep dark conversation.wav' (Mic 3) @ 787.4582 s. One take 3.7–41.0; the false start 'Comment more if you want a…' (41.6–43.4) cut, the full two-keyword CTA re-said at 47.9–57.3 kept ('Comment MORE if you would like a free blueprint… comment calculator below' — the director kept both keywords). 'more' in the CTA set in caps so it gets the serif + underline; end CTA = 'comment CALCULATOR below'. Verbatim stutter pass: none. Last cut held to 58.5 (silent). Nasheed the-sins. iMessage cards picked by topic (Eyad 29 Sep: switch them up, match what he's saying): assume-family-inherit. 1 Oct (Eyad): no shot under 0.8 s inside one take (the 0.44 s flash cut at 1:25 in #2), air after lines 0.12 s, title without a question mark, title font sans. The lone 'So,' (28.36–28.8, a 0.44 s shot between breaths) is cut: '…how your IHT works. CEOwills helps you…'; removed from the words file. 1 Oct (Sofian, 15:48): pauses ≥ 0.15 s cut to 0.08 s with smooth joins inside a take, end 0.35 s after the last word, captions higher, title under the platform bar.",
+  "name": "Business owners: deep, dark IHT conversation",
+  "video": "src/biz.MP4",
+  "rotate": "ccw",
+@@ -7,17 +7,17 @@
+  "words": "words/biz.fixed.json",
+  "cuts": [
+   {
+-   "in": 3.72,
++   "in": 3.8,
+    "out": 5.12
+   },
+   {
+-   "in": 5.24,
+-   "out": 7.28,
++   "in": 5.28,
++   "out": 7.04,
+    "punch": true
+   },
+   {
+    "in": 7.4,
+-   "out": 8.6
++   "out": 8.56
+   },
+   {
+    "in": 8.72,
+@@ -25,62 +25,99 @@
+    "punch": true
+   },
+   {
+-   "in": 10.64,
+-   "out": 12.04
++   "in": 10.68,
++   "out": 11.44
++  },
++  {
++   "in": 11.6,
++   "out": 12.0,
++   "join": "smooth"
+   },
+   {
+    "in": 12.24,
+-   "out": 14.8,
++   "out": 14.2,
+    "punch": true
+   },
+   {
+-   "in": 15.24,
+-   "out": 18.92
++   "in": 15.32,
++   "out": 18.12
++  },
++  {
++   "in": 18.24,
++   "out": 18.96,
++   "punch": true
+   },
+   {
+    "in": 19.04,
+    "out": 20.08,
++   "join": "smooth",
+    "punch": true
+   },
+   {
+-   "in": 20.28,
++   "in": 20.44,
+    "out": 21.56
+   },
+   {
+    "in": 21.76,
+-   "out": 24.56,
++   "out": 23.56,
+    "punch": true
+   },
+   {
+-   "in": 24.76,
+-   "out": 27.76
++   "in": 23.84,
++   "out": 24.6
++  },
++  {
++   "in": 24.84,
++   "out": 27.44,
++   "join": "smooth"
+   },
+   {
+    "in": 29.0,
+-   "out": 33.64,
++   "out": 31.28,
+    "punch": true
+   },
++  {
++   "in": 31.4,
++   "out": 33.6
++  },
+   {
+    "in": 33.8,
+-   "out": 35.44
++   "out": 34.16,
++   "punch": true
++  },
++  {
++   "in": 34.24,
++   "out": 35.44,
++   "join": "smooth",
++   "punch": true
+   },
+   {
+    "in": 35.68,
+-   "out": 38.92,
++   "out": 36.72
++  },
++  {
++   "in": 36.96,
++   "out": 37.96,
+    "punch": true
+   },
++  {
++   "in": 38.04,
++   "out": 38.92
++  },
+   {
+    "in": 39.32,
+-   "out": 39.88
++   "out": 39.88,
++   "punch": true
+   },
+   {
+    "in": 40.28,
+-   "out": 40.92,
++   "out": 40.88,
++   "join": "smooth",
+    "punch": true
+   },
+   {
+-   "in": 47.92,
+-   "out": 52.92
++   "in": 48.36,
++   "out": 52.72
+   },
+   {
+    "in": 53.08,
+@@ -88,12 +125,12 @@
+    "punch": true
+   },
+   {
+-   "in": 54.16,
++   "in": 54.2,
+    "out": 55.8
+   },
+   {
+-   "in": 56.12,
+-   "out": 58.5,
++   "in": 56.16,
++   "out": 57.76,
+    "punch": true
+   }
+  ],
+@@ -138,7 +175,7 @@
+   "Because what you do,",
+   "every business",
+   "decision you make",
+-  "has a implication",
++  "has an implication",
+   "on how",
+   "your IHT works.",
+   "CEOwills",
+@@ -166,7 +203,7 @@
+  "ctas": [
+   {
+    "text": "hey CEO, let's have that deep dark conversation about IHT before HMRC has it for you: ceowills.com",
+-   "at_out": 23.8
++   "at_out": 21.6
+   }
+  ],
+  "hook_font": "sans"
+diff --git a/tools/ceowills/jobs/business-partners-succession.edit.json b/tools/ceowills/jobs/business-partners-succession.edit.json
+index e9596d5..947d5c6 100644
+--- a/tools/ceowills/jobs/business-partners-succession.edit.json
++++ b/tools/ceowills/jobs/business-partners-succession.edit.json
+@@ -1,5 +1,5 @@
+ {
+- "_source": "Raw 'bestfriend close partnership.MP4' (client Drive id 1cEBAF75TqRD4Vu11-vdaj0_qFa3U9eQ6); mic = 'standing under vines deep dark conversation.wav' (Mic 3) @ 1065.4986 s. One take 6.6–80.2. Stutter cut (verbatim pass): 'What are the criteria that you need to make sure to, what are the criteria that your success-,' (29.1–36.6) → keeps the third, complete 'What are the criteria that your beneficiaries…'; those words are deleted from words/bff.fixed.json. 'we sit down with you and your partners, we sit down and we discuss' left as spoken (no clean gap). CTA 'comment PARTNERSHIP now'. Last cut held to 81.3 (silent). Nasheed the-sins. iMessage cards picked by topic (Eyad 29 Sep: switch them up, match what he's saying): clarity, legacy-decades. v5 (30 Sep): re-tightened; the director's voice before 7.16 is off the start; cards moved to 18 s ('how quickly… the criteria… to grab those shares') and 41.5 s (into 'spend three hours with your partners'; it ends before the cut at 47.6 s where he stands tall) — he leans up to the top of the shot at 22–33 s and 44–50 s, where the real-size card reached his hair (cardfit). 1 Oct (Eyad): no shot under 0.8 s inside one take (the 0.44 s flash cut at 1:25 in #2), air after lines 0.12 s, title without a question mark, title font serif.",
++ "_source": "Raw 'bestfriend close partnership.MP4' (client Drive id 1cEBAF75TqRD4Vu11-vdaj0_qFa3U9eQ6); mic = 'standing under vines deep dark conversation.wav' (Mic 3) @ 1065.4986 s. One take 6.6–80.2. Stutter cut (verbatim pass): 'What are the criteria that you need to make sure to, what are the criteria that your success-,' (29.1–36.6) → keeps the third, complete 'What are the criteria that your beneficiaries…'; those words are deleted from words/bff.fixed.json. 'we sit down with you and your partners, we sit down and we discuss' left as spoken (no clean gap). CTA 'comment PARTNERSHIP now'. Last cut held to 81.3 (silent). Nasheed the-sins. iMessage cards picked by topic (Eyad 29 Sep: switch them up, match what he's saying): clarity, legacy-decades. v5 (30 Sep): re-tightened; the director's voice before 7.16 is off the start; cards moved to 18 s ('how quickly… the criteria… to grab those shares') and 41.5 s (into 'spend three hours with your partners'; it ends before the cut at 47.6 s where he stands tall) — he leans up to the top of the shot at 22–33 s and 44–50 s, where the real-size card reached his hair (cardfit). 1 Oct (Eyad): no shot under 0.8 s inside one take (the 0.44 s flash cut at 1:25 in #2), air after lines 0.12 s, title without a question mark, title font serif. 1 Oct (Sofian, 15:48): pauses ≥ 0.15 s cut to 0.08 s with smooth joins inside a take, end 0.35 s after the last word, captions higher, title under the platform bar.",
+  "name": "Business partners: agree your succession",
+  "video": "src/bff.MP4",
+  "rotate": "ccw",
+@@ -7,12 +7,12 @@
+  "words": "words/bff.fixed.json",
+  "cuts": [
+   {
+-   "in": 7.16,
+-   "out": 8.6
++   "in": 7.4,
++   "out": 8.64
+   },
+   {
+    "in": 8.76,
+-   "out": 9.88,
++   "out": 9.92,
+    "punch": true
+   },
+   {
+@@ -21,12 +21,17 @@
+   },
+   {
+    "in": 13.2,
+-   "out": 17.72,
++   "out": 16.72,
+    "punch": true
+   },
+   {
+-   "in": 17.88,
+-   "out": 19.32
++   "in": 17.0,
++   "out": 17.68
++  },
++  {
++   "in": 17.84,
++   "out": 19.32,
++   "join": "smooth"
+   },
+   {
+    "in": 20.48,
+@@ -35,10 +40,16 @@
+   },
+   {
+    "in": 21.48,
+-   "out": 22.72
++   "out": 22.76,
++   "join": "smooth",
++   "punch": true
+   },
+   {
+    "in": 23.0,
++   "out": 26.0
++  },
++  {
++   "in": 26.2,
+    "out": 27.32,
+    "punch": true
+   },
+@@ -48,62 +59,97 @@
+   },
+   {
+    "in": 36.68,
++   "out": 37.96,
++   "punch": true
++  },
++  {
++   "in": 38.16,
++   "out": 40.28
++  },
++  {
++   "in": 40.48,
+    "out": 41.2,
+    "punch": true
+   },
+   {
+-   "in": 41.36,
+-   "out": 43.32
++   "in": 41.56,
++   "out": 43.36,
++   "join": "smooth",
++   "punch": true
+   },
+   {
+-   "in": 43.4,
+-   "out": 51.48,
++   "in": 43.64,
++   "out": 45.28
++  },
++  {
++   "in": 45.44,
++   "out": 51.56,
+    "punch": true
+   },
+   {
+-   "in": 51.68,
++   "in": 51.64,
+    "out": 53.48
+   },
+   {
+    "in": 53.72,
+-   "out": 57.16,
++   "out": 56.2,
+    "punch": true
+   },
++  {
++   "in": 56.28,
++   "out": 57.12
++  },
+   {
+    "in": 57.28,
+-   "out": 58.2
++   "out": 58.16,
++   "punch": true
+   },
+   {
+    "in": 58.32,
+-   "out": 59.56,
+-   "punch": true
++   "out": 59.56
+   },
+   {
+    "in": 59.76,
+-   "out": 66.2
++   "out": 64.84,
++   "punch": true
++  },
++  {
++   "in": 64.96,
++   "out": 65.68
+   },
+   {
+    "in": 66.44,
+-   "out": 72.68,
+-   "punch": true
++   "out": 72.48,
++   "join": "smooth"
+   },
+   {
+    "in": 72.8,
+-   "out": 73.64
++   "out": 73.6,
++   "punch": true
+   },
+   {
+    "in": 73.72,
+-   "out": 76.84,
++   "out": 75.08,
++   "join": "smooth",
+    "punch": true
+   },
++  {
++   "in": 75.32,
++   "out": 76.88
++  },
+   {
+    "in": 77.04,
+-   "out": 78.2
++   "out": 78.2,
++   "punch": true
+   },
+   {
+    "in": 78.4,
+-   "out": 81.3,
+-   "punch": true
++   "out": 79.2
++  },
++  {
++   "in": 79.32,
++   "out": 80.64,
++   "join": "smooth"
+   }
+  ],
+  "punch_at": [],
+@@ -206,12 +252,15 @@
+  "ctas": [
+   {
+    "text": "hey partner, who gets your shares, and when? Agree it with your business partner now. We'll help at ceowills.com",
+-   "at_out": 18.04
++   "at_out": 17.44
+   },
+   {
+    "text": "hey friend, 3 hours with your partners today saves your families years of fights. Book in at ceowills.com",
+-   "at_out": 41.58
++   "at_out": 39.98
+   }
+  ],
+- "hook_font": "serif"
++ "hook_font": "serif",
++ "removed_ok": [
++  53.48
++ ]
+ }
+\ No newline at end of file
+diff --git a/tools/ceowills/jobs/ceowills-bridge.edit.json b/tools/ceowills/jobs/ceowills-bridge.edit.json
+index ebcdd24..d5de406 100644
+--- a/tools/ceowills/jobs/ceowills-bridge.edit.json
++++ b/tools/ceowills/jobs/ceowills-bridge.edit.json
+@@ -1,5 +1,5 @@
+ {
+- "_source": "Raw 'ceowills bridges companies and wills between each other.MP4' (client Drive id 1tXLSZLLaZ9W6exLc5uleaNPqUZjEVnSZ); mic = 'standing under vines deep dark conversation.wav' (Mic 3) @ 714.1779 s. One complete take 1.9–42.8 ('…don't waste any more money'); the clip ends on 'I'm going to try that again' (cut) — the next thing filmed is a different script (#10), so there is no retake. He says no comment CTA in this take → no end CTA (captions verbatim); the one iMessage card at 25 s carries the ask. 'CEO'+'Wills' merged (jobs/ceowills-bridge.words.json → words/bridge.fixed.json; src/bridge.MP4, mic/bridge.mic.wav = symlinks). Nasheed the-sins (muffled). v2 (Eyad): the 'One of the, one of the' stutter cut (starts on the second), and 'one-plus, one-million' re-ordered by cuts into '1 million plus' (render.py sorts kept words by output time). iMessage cards picked by topic (Eyad 29 Sep: switch them up, match what he's saying): business-properties-wealth. 1 Oct (Eyad): no shot under 0.8 s inside one take (the 0.44 s flash cut at 1:25 in #2), air after lines 0.12 s, title without a question mark, title font sans.",
++ "_source": "Raw 'ceowills bridges companies and wills between each other.MP4' (client Drive id 1tXLSZLLaZ9W6exLc5uleaNPqUZjEVnSZ); mic = 'standing under vines deep dark conversation.wav' (Mic 3) @ 714.1779 s. One complete take 1.9–42.8 ('…don't waste any more money'); the clip ends on 'I'm going to try that again' (cut) — the next thing filmed is a different script (#10), so there is no retake. He says no comment CTA in this take → no end CTA (captions verbatim); the one iMessage card at 25 s carries the ask. 'CEO'+'Wills' merged (jobs/ceowills-bridge.words.json → words/bridge.fixed.json; src/bridge.MP4, mic/bridge.mic.wav = symlinks). Nasheed the-sins (muffled). v2 (Eyad): the 'One of the, one of the' stutter cut (starts on the second), and 'one-plus, one-million' re-ordered by cuts into '1 million plus' (render.py sorts kept words by output time). iMessage cards picked by topic (Eyad 29 Sep: switch them up, match what he's saying): business-properties-wealth. 1 Oct (Eyad): no shot under 0.8 s inside one take (the 0.44 s flash cut at 1:25 in #2), air after lines 0.12 s, title without a question mark, title font sans. 1 Oct (Sofian, 15:48): pauses ≥ 0.15 s cut to 0.08 s with smooth joins inside a take, end 0.35 s after the last word, captions higher, title under the platform bar.",
+  "name": "CEOwills bridges your company and your will",
+  "video": "src/bridge.MP4",
+  "rotate": "ccw",
+@@ -11,13 +11,13 @@
+    "out": 6.8
+   },
+   {
+-   "in": 7.04,
+-   "out": 8.32,
++   "in": 7.0,
++   "out": 8.28,
+    "punch": true
+   },
+   {
+    "in": 8.44,
+-   "out": 13.96
++   "out": 13.52
+   },
+   {
+    "in": 14.12,
+@@ -25,7 +25,7 @@
+    "punch": true
+   },
+   {
+-   "in": 18.44,
++   "in": 18.4,
+    "out": 19.58
+   },
+   {
+@@ -35,34 +35,40 @@
+   },
+   {
+    "in": 19.95,
+-   "out": 20.32
++   "out": 20.32,
++   "join": "smooth",
++   "punch": true
+   },
+   {
+-   "in": 22.04,
+-   "out": 24.24,
+-   "punch": true
++   "in": 22.08,
++   "out": 24.24
+   },
+   {
+    "in": 24.4,
+-   "out": 25.36
++   "out": 25.4,
++   "punch": true
+   },
+   {
+-   "in": 25.6,
+-   "out": 27.08,
+-   "punch": true
++   "in": 25.68,
++   "out": 27.08
+   },
+   {
+-   "in": 27.68,
+-   "out": 32.28
++   "in": 27.72,
++   "out": 31.92,
++   "punch": true
+   },
+   {
+    "in": 32.36,
+-   "out": 37.68,
++   "out": 34.8
++  },
++  {
++   "in": 34.88,
++   "out": 37.72,
+    "punch": true
+   },
+   {
+    "in": 37.96,
+-   "out": 39.04
++   "out": 39.08
+   },
+   {
+    "in": 39.16,
+@@ -70,8 +76,8 @@
+    "punch": true
+   },
+   {
+-   "in": 41.48,
+-   "out": 43.6
++   "in": 41.56,
++   "out": 43.2
+   }
+  ],
+  "punch_at": [],
+@@ -129,8 +135,11 @@
+  "ctas": [
+   {
+    "text": "hey brother, own £1M+ in property? Let's sit down and restructure it so your family has a clear blueprint: ceowills.com",
+-   "at_out": 23.96
++   "at_out": 23.08
+   }
+  ],
+- "hook_font": "sans"
++ "hook_font": "sans",
++ "removed_ok": [
++  19.58
++ ]
+ }
+\ No newline at end of file
+diff --git a/tools/ceowills/jobs/culture-leaving-daughters-out.edit.json b/tools/ceowills/jobs/culture-leaving-daughters-out.edit.json
+index 8dcf72b..d687e8e 100644
+--- a/tools/ceowills/jobs/culture-leaving-daughters-out.edit.json
++++ b/tools/ceowills/jobs/culture-leaving-daughters-out.edit.json
+@@ -1,5 +1,5 @@
+ {
+- "_source": "Raw 'culture leaving daughters out.MP4' (client Drive id 1J2x_GyyWkQzhRuuHwwT1Xq1XVXQiDTb6); mic = 'beginning uncles brothers sisters and PENSIONS.wav' (Mic 1) @ 100.3331 s. Structure follows Sofian's edit of the same raw: first pitch ('Here's how we solve it… in the Quran') and 'You see' dropped, repeated 'distributing it' cut, pauses cut in silence only (sk-media pauses.py v2, edge word-guard). Corrected transcript: jobs/culture-leaving-daughters-out.words.json → copy to $W/words/culture.fixed.json. Nasheed hona-marro from SoundCloud (nasheeds.json). v1 = 99.12 s, QA ALL PASS. v3 (29 Sep): current house style (sans title, no script, gradient ×2, centred logo, iPhone chime, 600 px cards), nasheed the-sins, cards by topic: islamic-uk-law (Allah/Quran), see-for-your-family (daughters), clarity at 85 s (check.py: no inheritance talk around 85 s). v7 (30 Sep): re-tightened; cards 1/2 moved to 27 s ('…not been left anything behind? Big issue. Allah… a blueprint') and 55 s ('we can help… the entire family is included') — at 24/53 s the real-size card grazed his hair. The camera-only sound at 135.5 s (checked: his hand tapping the stone desk; the lav is quiet) is not in the audio: the end hold runs to 138.4 (CTA readable 2.2 s) with his mic muted from 137.06 (mute_after) — his hand knocks on the desk three times after 'below'. 1 Oct (Eyad): no shot under 0.8 s inside one take (the 0.44 s flash cut at 1:25 in #2), air after lines 0.12 s, title without a question mark, title font serif.",
++ "_source": "Raw 'culture leaving daughters out.MP4' (client Drive id 1J2x_GyyWkQzhRuuHwwT1Xq1XVXQiDTb6); mic = 'beginning uncles brothers sisters and PENSIONS.wav' (Mic 1) @ 100.3331 s. Structure follows Sofian's edit of the same raw: first pitch ('Here's how we solve it… in the Quran') and 'You see' dropped, repeated 'distributing it' cut, pauses cut in silence only (sk-media pauses.py v2, edge word-guard). Corrected transcript: jobs/culture-leaving-daughters-out.words.json → copy to $W/words/culture.fixed.json. Nasheed hona-marro from SoundCloud (nasheeds.json). v1 = 99.12 s, QA ALL PASS. v3 (29 Sep): current house style (sans title, no script, gradient ×2, centred logo, iPhone chime, 600 px cards), nasheed the-sins, cards by topic: islamic-uk-law (Allah/Quran), see-for-your-family (daughters), clarity at 85 s (check.py: no inheritance talk around 85 s). v7 (30 Sep): re-tightened; cards 1/2 moved to 27 s ('…not been left anything behind? Big issue. Allah… a blueprint') and 55 s ('we can help… the entire family is included') — at 24/53 s the real-size card grazed his hair. The camera-only sound at 135.5 s (checked: his hand tapping the stone desk; the lav is quiet) is not in the audio: the end hold runs to 138.4 (CTA readable 2.2 s) with his mic muted from 137.06 (mute_after) — his hand knocks on the desk three times after 'below'. 1 Oct (Eyad): no shot under 0.8 s inside one take (the 0.44 s flash cut at 1:25 in #2), air after lines 0.12 s, title without a question mark, title font serif. 1 Oct (Sofian, 15:48): pauses ≥ 0.15 s cut to 0.08 s with smooth joins inside a take, end 0.35 s after the last word, captions higher, title under the platform bar. Hand fix 1 Oct: the cut after 'passed on.' ends at 95.52 — the in-breath before 'More importantly' peaked right at the voice threshold and was kept.",
+  "name": "Culture leaving daughters out",
+  "video": "src/culture leaving daughters out.MP4",
+  "rotate": "ccw",
+@@ -8,28 +8,37 @@
+  "cuts": [
+   {
+    "in": 3.16,
+-   "out": 7.72
++   "out": 4.36
+   },
+   {
+-   "in": 8.2,
+-   "out": 9.84,
++   "in": 4.44,
++   "out": 7.72,
+    "punch": true
+   },
++  {
++   "in": 8.24,
++   "out": 9.8
++  },
+   {
+    "in": 9.96,
+-   "out": 12.28
++   "out": 11.76,
++   "punch": true
+   },
+   {
+    "in": 12.8,
+-   "out": 15.44,
+-   "punch": true
++   "out": 15.44
+   },
+   {
+    "in": 15.64,
+-   "out": 18.24
++   "out": 18.24,
++   "punch": true
++  },
++  {
++   "in": 18.44,
++   "out": 19.32
+   },
+   {
+-   "in": 18.4,
++   "in": 19.4,
+    "out": 22.36,
+    "punch": true
+   },
+@@ -39,61 +48,103 @@
+   },
+   {
+    "in": 25.12,
+-   "out": 26.96,
++   "out": 25.68,
++   "punch": true
++  },
++  {
++   "in": 25.92,
++   "out": 26.92,
++   "join": "smooth",
+    "punch": true
+   },
+   {
+    "in": 27.32,
+-   "out": 29.16
++   "out": 28.52
++  },
++  {
++   "in": 28.76,
++   "out": 29.12,
++   "punch": true
+   },
+   {
+-   "in": 29.32,
+-   "out": 31.68,
++   "in": 29.4,
++   "out": 30.16,
++   "join": "smooth",
+    "punch": true
+   },
++  {
++   "in": 30.28,
++   "out": 31.68
++  },
+   {
+    "in": 32.2,
+-   "out": 32.92
++   "out": 32.92,
++   "punch": true
+   },
+   {
+    "in": 50.6,
+-   "out": 53.44,
++   "out": 51.96,
++   "join": "smooth",
+    "punch": true
+   },
++  {
++   "in": 52.2,
++   "out": 53.4
++  },
+   {
+    "in": 53.56,
+-   "out": 58.68
++   "out": 59.04,
++   "punch": true
++  },
++  {
++   "in": 59.12,
++   "out": 60.84
+   },
+   {
+-   "in": 58.76,
+-   "out": 60.84,
++   "in": 61.04,
++   "out": 63.6,
+    "punch": true
+   },
+   {
+-   "in": 61.0,
+-   "out": 63.56
++   "in": 63.92,
++   "out": 64.92
+   },
+   {
+-   "in": 63.88,
+-   "out": 69.2,
++   "in": 65.0,
++   "out": 67.32,
+    "punch": true
+   },
++  {
++   "in": 67.44,
++   "out": 69.2
++  },
+   {
+    "in": 69.52,
+-   "out": 73.0
++   "out": 69.84,
++   "punch": true
+   },
+   {
+-   "in": 73.2,
+-   "out": 75.0,
++   "in": 69.92,
++   "out": 73.04,
++   "join": "smooth",
+    "punch": true
+   },
++  {
++   "in": 73.12,
++   "out": 75.0
++  },
+   {
+    "in": 76.2,
+-   "out": 79.64
++   "out": 79.64,
++   "punch": true
+   },
+   {
+    "in": 80.4,
+-   "out": 82.96,
++   "out": 81.72
++  },
++  {
++   "in": 81.8,
++   "out": 82.8,
+    "punch": true
+   },
+   {
+@@ -102,25 +153,40 @@
+   },
+   {
+    "in": 86.24,
++   "out": 87.48,
++   "punch": true
++  },
++  {
++   "in": 87.88,
++   "out": 90.24
++  },
++  {
++   "in": 90.48,
+    "out": 92.36,
+    "punch": true
+   },
+   {
+    "in": 92.8,
+-   "out": 95.48
++   "out": 95.52
+   },
+   {
+-   "in": 95.72,
++   "in": 96.08,
+    "out": 97.12,
+    "punch": true
+   },
+   {
+    "in": 97.48,
+-   "out": 100.6
++   "out": 99.76
++  },
++  {
++   "in": 100.0,
++   "out": 100.6,
++   "punch": true
+   },
+   {
+-   "in": 101.08,
+-   "out": 103.16,
++   "in": 101.16,
++   "out": 103.0,
++   "join": "smooth",
+    "punch": true
+   },
+   {
+@@ -129,48 +195,69 @@
+   },
+   {
+    "in": 104.52,
+-   "out": 107.72,
++   "out": 107.68,
+    "punch": true
+   },
+   {
+-   "in": 108.24,
+-   "out": 109.52
++   "in": 108.36,
++   "out": 108.92
++  },
++  {
++   "in": 109.0,
++   "out": 109.52,
++   "join": "smooth"
+   },
+   {
+-   "in": 109.88,
++   "in": 109.92,
+    "out": 110.64,
+    "punch": true
+   },
+   {
+    "in": 111.16,
+-   "out": 112.48
++   "out": 112.44,
++   "join": "smooth",
++   "punch": true
+   },
+   {
+    "in": 113.28,
+-   "out": 114.72,
+-   "punch": true
++   "out": 114.68
+   },
+   {
+    "in": 115.2,
+-   "out": 117.76
++   "out": 117.84,
++   "punch": true
+   },
+   {
+-   "in": 126.56,
+-   "out": 128.6,
++   "in": 126.64,
++   "out": 126.96
++  },
++  {
++   "in": 127.08,
++   "out": 128.56,
++   "join": "smooth"
++  },
++  {
++   "in": 128.88,
++   "out": 130.8,
+    "punch": true
+   },
+   {
+-   "in": 128.76,
+-   "out": 133.84
++   "in": 130.88,
++   "out": 131.52
++  },
++  {
++   "in": 131.68,
++   "out": 133.84,
++   "join": "smooth"
+   },
+   {
+-   "in": 134.28,
++   "in": 134.32,
+    "out": 135.76,
+    "punch": true
+   },
+   {
+    "in": 136.0,
+-   "out": 138.4
++   "out": 137.44
+   }
+  ],
+  "punch_at": [
+@@ -375,17 +462,21 @@
+  "ctas": [
+   {
+    "text": "hey brother, your daughters shouldn't be left with nothing. Let's make sure your will gives them their share: ceowills.com",
+-   "at_out": 27.2
++   "at_out": 25.64
+   },
+   {
+    "text": "hey friend, want a will that includes your whole family, done the Islamic way? We'll guide you through it at ceowills.com",
+-   "at_out": 55.2
++   "at_out": 53.08
+   },
+   {
+    "text": "uncles, brothers, fathers... let's get it sorted before it's too late. Book your clarity call at ceowills.com",
+-   "at_out": 82.72
++   "at_out": 79.2
+   }
+  ],
+  "mute_after": 137.06,
+- "hook_font": "serif"
++ "hook_font": "serif",
++ "removed_ok": [
++  31.68,
++  85.72
++ ]
+ }
+\ No newline at end of file
+diff --git a/tools/ceowills/jobs/family-drawer.edit.json b/tools/ceowills/jobs/family-drawer.edit.json
+index 70facae..25bc4d2 100644
+--- a/tools/ceowills/jobs/family-drawer.edit.json
++++ b/tools/ceowills/jobs/family-drawer.edit.json
+@@ -1,5 +1,5 @@
+ {
+- "_source": "Raw 'family access to all docs with steps - awkward family member writing things down, its not pain of not knowing its possibly creating turmoil.MP4' (client Drive id 1T7Z3ENDhcG9bPwN4i4iYjHc_w4GlBLcS); mic = 'wills work 60 seconds, verbal agreement sofa.wav' (Mic 4) @ 913.4985 s. One clean take 1.1–54.7 (verbatim pass: no stutters; 'the absence of not knowing' is what he says). 'CEO'+'wills' merged (words/fam.fixed.json). No spoken CTA → --no-cta; the iMessage card carries the ask. Last cut held to 56.4 (silent). Nasheed the-sins. iMessage cards picked by topic (Eyad 29 Sep: switch them up, match what he's saying): see-for-your-family. 30 Sep (v5): re-tightened (pauses.py --edit), card moved to 34 s — he leans in at 22–29 s and the real-size card reached his hair; at 34 s he says 'you need a will… it gives clarity… here at CEOwills' (cardfit: hair ≥ 407, card ends 378). 1 Oct (Eyad): no shot under 0.8 s inside one take (the 0.44 s flash cut at 1:25 in #2), air after lines 0.12 s, title without a question mark, title font sans.",
++ "_source": "Raw 'family access to all docs with steps - awkward family member writing things down, its not pain of not knowing its possibly creating turmoil.MP4' (client Drive id 1T7Z3ENDhcG9bPwN4i4iYjHc_w4GlBLcS); mic = 'wills work 60 seconds, verbal agreement sofa.wav' (Mic 4) @ 913.4985 s. One clean take 1.1–54.7 (verbatim pass: no stutters; 'the absence of not knowing' is what he says). 'CEO'+'wills' merged (words/fam.fixed.json). No spoken CTA → --no-cta; the iMessage card carries the ask. Last cut held to 56.4 (silent). Nasheed the-sins. iMessage cards picked by topic (Eyad 29 Sep: switch them up, match what he's saying): see-for-your-family. 30 Sep (v5): re-tightened (pauses.py --edit), card moved to 34 s — he leans in at 22–29 s and the real-size card reached his hair; at 34 s he says 'you need a will… it gives clarity… here at CEOwills' (cardfit: hair ≥ 407, card ends 378). 1 Oct (Eyad): no shot under 0.8 s inside one take (the 0.44 s flash cut at 1:25 in #2), air after lines 0.12 s, title without a question mark, title font sans. 1 Oct (Sofian, 15:48): pauses ≥ 0.15 s cut to 0.08 s with smooth joins inside a take, end 0.35 s after the last word, captions higher, title under the platform bar. 1 Oct (Eyad): title is his wording, question mark kept on purpose: 'Nothing written down? Here's why you need to be safe than sorry'.",
+  "name": "Families should find it in the drawer",
+  "video": "src/fam.MP4",
+  "rotate": "ccw",
+@@ -8,20 +8,26 @@
+  "cuts": [
+   {
+    "in": 1.32,
+-   "out": 8.8
++   "out": 4.2
+   },
+   {
+-   "in": 9.4,
+-   "out": 11.32,
++   "in": 4.48,
++   "out": 8.8,
+    "punch": true
+   },
+   {
+-   "in": 11.6,
+-   "out": 12.44
++   "in": 9.4,
++   "out": 11.32
++  },
++  {
++   "in": 11.64,
++   "out": 12.32,
++   "punch": true
+   },
+   {
+    "in": 13.04,
+-   "out": 16.84,
++   "out": 16.76,
++   "join": "smooth",
+    "punch": true
+   },
+   {
+@@ -35,7 +41,7 @@
+   },
+   {
+    "in": 20.96,
+-   "out": 22.28
++   "out": 22.16
+   },
+   {
+    "in": 22.4,
+@@ -43,16 +49,16 @@
+    "punch": true
+   },
+   {
+-   "in": 23.92,
+-   "out": 25.2
++   "in": 23.96,
++   "out": 25.16
+   },
+   {
+    "in": 25.32,
+-   "out": 27.76,
++   "out": 27.56,
+    "punch": true
+   },
+   {
+-   "in": 27.88,
++   "in": 27.84,
+    "out": 28.92
+   },
+   {
+@@ -66,7 +72,13 @@
+   },
+   {
+    "in": 31.92,
+-   "out": 33.56,
++   "out": 32.72,
++   "punch": true
++  },
++  {
++   "in": 33.04,
++   "out": 33.52,
++   "join": "smooth",
+    "punch": true
+   },
+   {
+@@ -74,12 +86,12 @@
+    "out": 35.16
+   },
+   {
+-   "in": 35.52,
+-   "out": 37.24,
++   "in": 35.56,
++   "out": 37.08,
+    "punch": true
+   },
+   {
+-   "in": 37.4,
++   "in": 37.44,
+    "out": 38.36
+   },
+   {
+@@ -88,12 +100,18 @@
+    "punch": true
+   },
+   {
+-   "in": 40.56,
+-   "out": 42.96
++   "in": 40.6,
++   "out": 42.16
++  },
++  {
++   "in": 42.48,
++   "out": 42.92,
++   "punch": true
+   },
+   {
+-   "in": 43.28,
++   "in": 43.32,
+    "out": 44.28,
++   "join": "smooth",
+    "punch": true
+   },
+   {
+@@ -101,20 +119,40 @@
+    "out": 45.4
+   },
+   {
+-   "in": 45.96,
+-   "out": 49.56,
++   "in": 46.0,
++   "out": 46.76,
++   "join": "smooth"
++  },
++  {
++   "in": 46.88,
++   "out": 47.96,
++   "punch": true
++  },
++  {
++   "in": 48.04,
++   "out": 48.96
++  },
++  {
++   "in": 49.08,
++   "out": 49.48,
+    "punch": true
+   },
+   {
+    "in": 49.64,
+-   "out": 56.4
++   "out": 52.36,
++   "join": "smooth",
++   "punch": true
++  },
++  {
++   "in": 52.44,
++   "out": 55.28
+   }
+  ],
+  "punch_at": [],
+  "hook": [
+-  "Nothing written down",
+-  "Get it *written down*",
+-  "before you *go*"
++  "Nothing written down?",
++  "Here's why you need to",
++  "be _safe_ than *sorry*"
+  ],
+  "hook_until": 8.76,
+  "keywords": [],
+@@ -179,8 +217,9 @@
+  "ctas": [
+   {
+    "text": "hey friend, could your family find everything in one drawer? Let's get it written down at ceowills.com",
+-   "at_out": 34.44
++   "at_out": 32.92
+   }
+  ],
+- "hook_font": "sans"
++ "hook_font": "sans",
++ "hook_question": true
+ }
+\ No newline at end of file
+diff --git a/tools/ceowills/jobs/hmrc-40-percent.edit.json b/tools/ceowills/jobs/hmrc-40-percent.edit.json
+index 6b25d24..d70581f 100644
+--- a/tools/ceowills/jobs/hmrc-40-percent.edit.json
++++ b/tools/ceowills/jobs/hmrc-40-percent.edit.json
+@@ -1,5 +1,5 @@
+ {
+- "_source": "Raw 'hmrc can take up to 40% for IHT where will your family learn how to do.MP4' (client Drive id 1M1FpmsV6gNyknTlodY6HEOxtcFRYEUdL); mic = 'hmr took 8.5bn in inheritance tax.wav' (Mic 2) @ 890.1657 s. Kept: 'So many of my clients…the generation after', then the second (clean) 'Where are they going to get the liquidity…not HMRC' (the first try said 'the fines' and restarts), then the second CTA take 'comment calculator below' (the director asks for the calculator between the takes). Pauses cut by pauses.py; last cut held to the end of the raw so the CTA reads. Words: '40' + '%' merged into '40%' (words/hmrc40.fixed.json). Nasheed the-sins (warning). v5: latest house style (no script, The Sins, gradient) + the doubled 'work with, with yourselves' cut to one 'with' (verbatim stutter pass). v6: sans title, doubled gradient, centred logo, iPhone chime; his hair reaches y≈325 at the card time, so this job's card is 540 px (ends ≈311). 1 Oct (Eyad): no shot under 0.8 s inside one take (the 0.44 s flash cut at 1:25 in #2), air after lines 0.12 s, title without a question mark, title font serif.",
++ "_source": "Raw 'hmrc can take up to 40% for IHT where will your family learn how to do.MP4' (client Drive id 1M1FpmsV6gNyknTlodY6HEOxtcFRYEUdL); mic = 'hmr took 8.5bn in inheritance tax.wav' (Mic 2) @ 890.1657 s. Kept: 'So many of my clients…the generation after', then the second (clean) 'Where are they going to get the liquidity…not HMRC' (the first try said 'the fines' and restarts), then the second CTA take 'comment calculator below' (the director asks for the calculator between the takes). Pauses cut by pauses.py; last cut held to the end of the raw so the CTA reads. Words: '40' + '%' merged into '40%' (words/hmrc40.fixed.json). Nasheed the-sins (warning). v5: latest house style (no script, The Sins, gradient) + the doubled 'work with, with yourselves' cut to one 'with' (verbatim stutter pass). v6: sans title, doubled gradient, centred logo, iPhone chime; his hair reaches y≈325 at the card time, so this job's card is 540 px (ends ≈311). 1 Oct (Eyad): no shot under 0.8 s inside one take (the 0.44 s flash cut at 1:25 in #2), air after lines 0.12 s, title without a question mark, title font serif. 1 Oct (Sofian, 15:48): pauses ≥ 0.15 s cut to 0.08 s with smooth joins inside a take, end 0.35 s after the last word, captions higher, title under the platform bar.",
+  "name": "HMRC can take up to 40%",
+  "video": "src/hmrc40.MP4",
+  "rotate": "ccw",
+@@ -8,15 +8,24 @@
+  "cuts": [
+   {
+    "in": 3.2,
+-   "out": 10.08
++   "out": 8.8
++  },
++  {
++   "in": 8.88,
++   "out": 10.08,
++   "punch": true
+   },
+   {
+    "in": 10.48,
++   "out": 12.76
++  },
++  {
++   "in": 13.08,
+    "out": 16.72,
+    "punch": true
+   },
+   {
+-   "in": 17.16,
++   "in": 17.2,
+    "out": 19.88
+   },
+   {
+@@ -25,21 +34,27 @@
+    "punch": true
+   },
+   {
+-   "in": 22.48,
+-   "out": 24.68
++   "in": 22.56,
++   "out": 24.72
+   },
+   {
+    "in": 24.8,
+-   "out": 28.04,
++   "out": 27.8,
+    "punch": true
+   },
+   {
+-   "in": 28.24,
+-   "out": 32.24
++   "in": 28.2,
++   "out": 31.36
++  },
++  {
++   "in": 31.52,
++   "out": 32.24,
++   "punch": true
+   },
+   {
+-   "in": 33.08,
++   "in": 33.12,
+    "out": 36.84,
++   "join": "smooth",
+    "punch": true
+   },
+   {
+@@ -47,7 +62,7 @@
+    "out": 38.1
+   },
+   {
+-   "in": 43.84,
++   "in": 43.8,
+    "out": 45.72,
+    "punch": true
+   },
+@@ -65,40 +80,50 @@
+    "out": 51.9
+   },
+   {
+-   "in": 52.64,
++   "in": 52.62,
+    "out": 53.56,
+    "punch": true
+   },
+   {
+    "in": 53.68,
+-   "out": 57.28
++   "out": 54.48
+   },
+   {
+-   "in": 57.4,
+-   "out": 58.68,
++   "in": 54.6,
++   "out": 57.28,
++   "join": "smooth"
++  },
++  {
++   "in": 57.36,
++   "out": 58.72,
+    "punch": true
+   },
+   {
+-   "in": 58.92,
++   "in": 59.0,
+    "out": 59.84
+   },
+   {
+-   "in": 60.04,
+-   "out": 64.4,
++   "in": 60.0,
++   "out": 62.2,
+    "punch": true
+   },
++  {
++   "in": 62.56,
++   "out": 64.4
++  },
+   {
+    "in": 64.64,
+-   "out": 65.75
++   "out": 65.75,
++   "punch": true
+   },
+   {
+    "in": 90.32,
+-   "out": 94.84,
+-   "punch": true
++   "out": 94.72
+   },
+   {
+    "in": 94.96,
+-   "out": 97.84
++   "out": 96.88,
++   "punch": true
+   }
+  ],
+  "punch_at": [
+@@ -232,8 +257,11 @@
+  "ctas": [
+   {
+    "text": "hey CEO, HMRC could take 40% of everything you've built. Let's make sure it goes to your family instead: ceowills.com",
+-   "at_out": 19.76
++   "at_out": 19.24
+   }
+  ],
+- "hook_font": "serif"
++ "hook_font": "serif",
++ "removed_ok": [
++  51.9
++ ]
+ }
+\ No newline at end of file
+diff --git a/tools/ceowills/jobs/rafa-nadal.edit.json b/tools/ceowills/jobs/rafa-nadal.edit.json
+index 75a8000..b93e83a 100644
+--- a/tools/ceowills/jobs/rafa-nadal.edit.json
++++ b/tools/ceowills/jobs/rafa-nadal.edit.json
+@@ -1,5 +1,5 @@
+ {
+- "_source": "Raw 'rafael nadal blooper.MP4' (client Drive id 15b-t5GzmStWLBP4EQC8t76rIpPUgHsow); mic = 'wills work 60 seconds, verbal agreement sofa.wav' (Mic 4) @ 549.4178 s. One clean take 5.0–36.2 (verbatim pass: no stutters). 'you won/wouldn't Wimbledon' confirmed as 'you'll win Wimbledon' by a prompted re-transcription (words/nadal.fixed.json). No spoken CTA and 30.8 s long → no end CTA, no iMessage card (a 25 s card + 6 s hold doesn't fit). Last cut held to 37.6 (silent). Nasheed the-sins. 30 Sep (Sofian): the nasheed comes in after he says 'pause' (nasheed.at 19.1) — voice only before that; the director's 'go' (4.8–5.42, off-mic) is no longer at the start. v4: title now two lines ('Plan with' dropped) — in the first cut he leans up to the top of the shot (no headroom possible, shift 0) and the third line reached his hair at 3–5 s. At 1.1–1.5 s he lunges at the lens with the plant (face fills the frame, motion blur): the caption sits on the plant/hand there — accepted with qa.py --ok-heads 1.1,1.4. 1 Oct (Eyad): no shot under 0.8 s inside one take (the 0.44 s flash cut at 1:25 in #2), air after lines 0.12 s, title without a question mark, title font serif.",
++ "_source": "Raw 'rafael nadal blooper.MP4' (client Drive id 15b-t5GzmStWLBP4EQC8t76rIpPUgHsow); mic = 'wills work 60 seconds, verbal agreement sofa.wav' (Mic 4) @ 549.4178 s. One clean take 5.0–36.2 (verbatim pass: no stutters). 'you won/wouldn't Wimbledon' confirmed as 'you'll win Wimbledon' by a prompted re-transcription (words/nadal.fixed.json). No spoken CTA and 30.8 s long → no end CTA, no iMessage card (a 25 s card + 6 s hold doesn't fit). Last cut held to 37.6 (silent). Nasheed the-sins. 30 Sep (Sofian): the nasheed comes in after he says 'pause' (nasheed.at 19.1) — voice only before that; the director's 'go' (4.8–5.42, off-mic) is no longer at the start. v4: title now two lines ('Plan with' dropped) — in the first cut he leans up to the top of the shot (no headroom possible, shift 0) and the third line reached his hair at 3–5 s. At 1.1–1.5 s he lunges at the lens with the plant (face fills the frame, motion blur): the caption sits on the plant/hand there — accepted with qa.py --ok-heads 1.1,1.4. 1 Oct (Eyad): no shot under 0.8 s inside one take (the 0.44 s flash cut at 1:25 in #2), air after lines 0.12 s, title without a question mark, title font serif. 1 Oct (Sofian, 15:48): pauses ≥ 0.15 s cut to 0.08 s with smooth joins inside a take, end 0.35 s after the last word, captions higher, title under the platform bar. Title until 8.2 s source (2.7 s on screen): from 2.9 s he leans up to the top of the shot for the plant, where any title would sit on his head. 1 Oct 18:36 (Sofian): exposure/whites down a little — the light on his face clipped → tone −0.1 EV, highlight shoulder from 0.65 to 0.9.",
+  "name": "Plan like Rafa Nadal",
+  "video": "src/nadal.MP4",
+  "rotate": "ccw",
+@@ -7,44 +7,92 @@
+  "words": "words/nadal.fixed.json",
+  "cuts": [
+   {
+-   "in": 5.52,
+-   "out": 11.8
++   "in": 5.6,
++   "out": 8.88
+   },
+   {
+-   "in": 12.12,
+-   "out": 14.0,
++   "in": 9.16,
++   "out": 10.0,
+    "punch": true
+   },
+   {
+-   "in": 14.08,
+-   "out": 16.48
++   "in": 10.12,
++   "out": 10.92
++  },
++  {
++   "in": 11.0,
++   "out": 11.8,
++   "punch": true
++  },
++  {
++   "in": 12.12,
++   "out": 13.72
+   },
+   {
+-   "in": 16.8,
+-   "out": 17.88,
++   "in": 14.12,
++   "out": 16.48,
+    "punch": true
+   },
++  {
++   "in": 16.84,
++   "out": 17.76
++  },
+   {
+    "in": 18.64,
+-   "out": 19.2
++   "out": 19.2,
++   "punch": true
++  },
++  {
++   "in": 19.64,
++   "out": 21.88,
++   "join": "smooth",
++   "punch": true
++  },
++  {
++   "in": 22.08,
++   "out": 23.88
+   },
+   {
+-   "in": 19.6,
++   "in": 24.12,
+    "out": 24.56,
+    "punch": true
+   },
+   {
+    "in": 24.8,
+-   "out": 29.92
++   "out": 25.88,
++   "join": "smooth",
++   "punch": true
++  },
++  {
++   "in": 25.96,
++   "out": 28.32
++  },
++  {
++   "in": 28.44,
++   "out": 29.96,
++   "punch": true
++  },
++  {
++   "in": 30.44,
++   "out": 31.76
++  },
++  {
++   "in": 32.0,
++   "out": 33.12,
++   "punch": true
++  },
++  {
++   "in": 33.4,
++   "out": 34.24
+   },
+   {
+-   "in": 30.36,
+-   "out": 34.4,
++   "in": 34.56,
++   "out": 35.6,
+    "punch": true
+   },
+   {
+-   "in": 34.6,
+-   "out": 37.6
++   "in": 35.68,
++   "out": 36.6
+   }
+  ],
+  "punch_at": [],
+@@ -52,7 +100,7 @@
+   "Why the fake plant",
+   "Nadal-level *precision*"
+  ],
+- "hook_until": 10.3,
++ "hook_until": 8.2,
+  "keywords": [],
+  "cta": null,
+  "nasheed": {
+@@ -93,5 +141,10 @@
+   "you'll win Wimbledon",
+   "just like he did"
+  ],
+- "hook_font": "serif"
++ "hook_font": "serif",
++ "tone": {
++  "exposure": -0.1,
++  "knee": 0.65,
++  "white": 0.9
++ }
+ }
+\ No newline at end of file
+diff --git a/tools/ceowills/layout.json b/tools/ceowills/layout.json
+index b81f20b..0ab67cd 100644
+--- a/tools/ceowills/layout.json
++++ b/tools/ceowills/layout.json
+@@ -20,6 +20,8 @@
+   },
+   "motion": {
+     "drift": 0.03,
++    "smooth_frames": 0,
++    "_smooth": "1 Oct: the zoom changes at a cut once the shot has run cuts.min_shot_s; a cut that comes sooner is a smooth join (\"join\": \"smooth\"): same zoom, the drift carries on. smooth_frames 0: a dissolve left a double image of his face when his pose changed (#16 v7 draft).",
+     "punch": 1.08,
+     "zoom_center": [
+       0.5,
+@@ -47,21 +49,36 @@
+     "edge_search_s": 0.12,
+     "_30sep_note": "Sofian 30 Sep: 'you can hear me say go at the start of videos' and 'the trimming isn't fast like ExamQA videos' → tighter everywhere: air before a line 0.1 → 0.06 s, after 0.12 s (the quietest frame within edge_search_s after that, was 0.25), pauses ≥ 0.2 s (was 0.3) cut down to 0.1 s (was 0.2). Re-tighten an existing job with pauses.py --edit. This replaces the 26 Sep 'keep a ≤0.5 s breath after a key line' rule.",
+     "max_kept_pause_s": 0.25,
+-    "min_clip_s": 0.8,
++    "min_clip_s": 0.3,
++    "min_shot_s": 0.8,
++    "tail_hold_s": 0.35,
++    "_1oct_pauses": "Sofian 1 Oct: 'please improve the pauses' and 'at the end it's not trimmed properly' (0.8–1.5 s of silence after his last word in every video) → pauses ≥ 0.15 s down to 0.08 s, breaths included (deep_quiet_hf_db 8); a take may be split into pieces as short as min_clip_s because the joins are smooth (no zoom change, dissolve); a real shot shorter than min_shot_s next to a silent ≤ merge_gap_s join becomes a smooth join; the video ends tail_hold_s after his last word. check.py fails a pause ≥ 0.35 s, a lead-in > 0.2 s or a tail > 0.6 s.",
+     "merge_gap_s": 0.35,
+     "_min_clip_1oct": "Eyad 1 Oct on #2 v7 at 1:25: 'a weird visual stutter… and a gap' — tightening cut a 0.12 s pause after a soft 'If', leaving a 0.44 s shot with its own punch-in. Inside one take a shot is never shorter than 0.8 s now (pauses.py folds it into its neighbour, keeping that small pause); air after a line back to 0.12 s (the 'd' of 'sorted' was clipped).",
+     "_pauses": "values for pauses.py (tested on 'culture leaving daughters out'): cut silences ≥ min_pause_s down to keep_pause_s; ASR words longer than guard_long_s swallowed a pause, so only guard_edge_s at each end is protected",
+-    "min_pause_s": 0.2,
+-    "keep_pause_s": 0.1,
++    "min_pause_s": 0.15,
++    "keep_pause_s": 0.08,
+     "quiet_db": 10,
+     "deep_quiet_db": 22,
++    "deep_quiet_hf_db": 8,
++    "breath_db": 16,
++    "breath_hf_db": 12,
++    "voice_db": 18,
++    "voiced_db": 22,
++    "voiced_peak_db": 16,
++    "edge_after_s": 0.1,
++    "edge_before_s": 0.05,
++    "edge_blip_s": 0.25,
++    "edge_blip_gap_s": 0.1,
++    "edge_blip_gap_end_s": 0.15,
++    "pause_edge_s": 0.04,
+     "hf_band_hz": [3500, 11000],
+     "guard_long_s": 0.5,
+     "guard_edge_s": 0.2
+   },
+   "length": {
+     "target_s": [
+-      15,
++      12,
+       120
+     ],
+     "_note": "Adnan's takes run 20 s–2.5 min; keep the whole message, cut repeats/false starts and pauses (Sofian's cuts: 69–82 s). Was 15–45 before 'culture leaving daughters out' (99 s)."
+@@ -101,7 +118,8 @@
+     }
+   },
+   "caption": {
+-    "baseline_y": 1450,
++    "baseline_y": 1370,
++    "_1oct_note": "Sofian 1 Oct: 'put the captions a bit higher below his chin so it's easier to see' → baseline 1450 → 1370; each shot's headroom keeps his beard beard_gap above the top caption line, so they sit right under his chin.",
+     "anchor": "bottom",
+     "beard_gap": 60,
+     "_30sep_note": "Sofian 30 Sep: \"for all videos make sure captions are never on his chin, they have to be below\". With the frame moved down 190 px his beard reached y ~1190-1370, where the captions sat (baseline 1235). Now the last caption line sits on 1450 and extra lines stack upward; render.py limits each cut's frame shift so his beard stays beard_gap px above the top caption line, and qa.py checks it on real frames (heads.py).",
+@@ -149,7 +167,7 @@
+     "serif_as": {"style": "sans", "px": 72, "_note": "27 Sep, Eyad: no serif in the title, it reads clearer in sans"},
+     "script_as": {"style": "sans", "px": 72, "_note": "27 Sep, Eyad: no script font — *marked* title words are set in a bigger sans instead"},
+     "style": "type",
+-    "uniform": {"top": 156, "px": 64, "serif_px": 66, "line_gap": 82, "_note": "30 Sep, Sofian: 'the question mark and text are different size' (small tracked-caps question over 56/72 px mixed lines) → every title line the same Inter Tight 700 at one size; *marked* words no longer change size, _MARKED_ keeps the red underline. top = first baseline (cap top ≈ 108, ≥ edge_margin)."},
++    "uniform": {"top": 271, "px": 54, "serif_px": 56, "line_gap": 66, "_1oct": "Sofian 1 Oct: 'the top header text is too high — in Instagram, TikTok and YouTube Shorts some of the words will cover it' → cap top ≈ 231, under the platform bar (safe.y0 210); 54/56 px so three lines end ≈ 416, two ≈ 350. A shot that has the title and no room for his head runs at zoom 1.0 instead of frame.zoom (render.py headroom).", "_note": "30 Sep, Sofian: 'the question mark and text are different size' (small tracked-caps question over 56/72 px mixed lines) → every title line the same Inter Tight 700 at one size; *marked* words no longer change size, _MARKED_ keeps the red underline. top = first baseline (cap top ≈ 108, ≥ edge_margin)."},
+     "bar": {"_note": "27 Sep, Sofian/Adnan on #6 v1: 'make the top text clearer so it's easy to read, maybe white text on a red background' (like the ExamQA title bars). One solid CEOwills-red bar per line, white bold caps, no scrim; top = top edge of the first bar (qa checks it against edge_margin). style \"type\" = the old scrim + script/serif title.",
+             "top": 110, "color": "#EB1519", "px": 66, "eyebrow_px": 38, "pad_x": 30, "pad_y": 20, "gap": 12, "max_w": 960, "tracking": 1, "shadow": [8, 110]}
+   },
+@@ -169,7 +187,7 @@
+   "frame": {
+     "_note": "30 Sep, Sofian: 'zoom into Adnan's face a little bit and then move the canvas down, so now he has much more space above his head and you can add the same call to action at the same size'. The shot is zoomed by `zoom` and moved down by up to `shift_y` px.",
+     "_fill_30sep": "Later on 30 Sep, Sofian circled his head in red: 'it gets worse in the videos too'. The fill above the shot used to be the whole frame zoomed 1.35x and blurred, faded in over 170 px: a ghost of his head sat above him and the top of his real hair was blurred whenever it came within ~360 px of the top (most cuts; in #14 he leans to the plant and his head top was replaced by blur). Now render.py headroom(): per cut, his hair is tracked (heads.py); only the `strip` rows above his hair (minus hair_margin) are stretched up to fill the space (at most max_stretch times, light fill_blur, blended back over seam_px), the shift never exceeds what that strip allows or what keeps his beard above the captions, and a cut where his head reaches the top of the shot (strip < min_strip) is shown as filmed (shift 0). qa.py checks it on real frames.",
+-    "on": true, "zoom": 1.08, "shift_y": 190, "hair_margin": 60, "max_stretch": 4, "min_strip": 24, "min_shift": 20,
++    "on": true, "zoom": 1.08, "shift_y": 280, "hair_margin": 60, "max_stretch": 4, "min_strip": 24, "min_shift": 20,
+     "fill_blur": 2.5, "seam_px": 24, "track_fps": 8, "_margins": "hair_margin / caption.beard_gap 60 px: the per-cut estimate (raw shot) ran 20–50 px short of what qa.py measures on the finished frames (#10, 30 Sep)"
+   },
+   "offmic": {"_note": "30 Sep (Sofian: 'you can hear me say go at the start of videos'): offmic.py flags a voice that is loud on the camera mic but db quieter on the lav than Adnan's own camera/lav balance (the director). his_db / cam_db = how far under the loudest 3 % counts as Adnan talking / someone talking; min_s = shortest voice flagged.", "db": 15, "his_db": 8, "cam_db": 12, "tail_db": 10, "min_s": 0.12},
+diff --git a/tools/ceowills/pauses.py b/tools/ceowills/pauses.py
+index 8ede022..d47424b 100755
+--- a/tools/ceowills/pauses.py
++++ b/tools/ceowills/pauses.py
+@@ -14,7 +14,7 @@ so only guard_edge_s at each end of those words is protected. Block edges snap t
+ Whisper's word times — Whisper stretches first words back into the silence before them.
+ Prints JSON cuts [{"in","out","punch"}] (every other cut punched in, to hide the jump cuts) and a summary on stderr.
+ Numbers: layout.json → cuts (min_pause_s, keep_pause_s, quiet_db, hf_band_hz, min_clip_s, guard_long_s, guard_edge_s)."""
+-import argparse, json, subprocess, sys
++import argparse, json, re, subprocess, sys
+ from pathlib import Path
+ import numpy as np
+ 
+@@ -31,6 +31,65 @@ def band_db(x, lo=None, hi=None):
+     return 10 * np.log10(spec[:, sel].sum(1) + 1e-12)
+ 
+ 
++def audit(E, base, C, quiet_db=22):
++    """What the viewer hears: silence before his first word, after his last, and every mid pause ≥ 0.35 s
++    (out time, length) in the kept lav audio — joins included. Used by check.py."""
++    fps = video_fps(base / E["video"]); SR_ = 16000; h = int(0.01 * SR_)
++    x = np.frombuffer(subprocess.run(["ffmpeg", "-v", "error", "-i", str(base / E["audio"]), "-ac", "1", "-ar", str(SR_), "-f", "f32le", "-"],
++                                     capture_output=True, check=True).stdout, np.float32)
++    def lv(a, b):
++        y = x[int(a * SR_):int(b * SR_)]; m = len(y) // h
++        return 10 * np.log10((y[:m * h].reshape(m, h) ** 2).mean(1) + 1e-12) if m else np.zeros(0)
++    if E.get("mute_after") is not None:   # the muted end is silent in the render
++        x = x.copy(); x[int(E["mute_after"] * SR_):] = 0
++    parts, t, times = [], 0.0, []
++    for c in E["cuts"]:
++        e = lv(c["in"], c["out"]); parts.append(e); times.append(t + np.arange(len(e)) * 0.01); t += round((c["out"] - c["in"]) * fps) / fps
++    e = np.concatenate(parts); tt = np.concatenate(times); q = e < np.percentile(e, 90) - quiet_db
++    runs, k = [], 0
++    while k < len(q):
++        if q[k]:
++            j = k
++            while j < len(q) and q[j]: j += 1
++            runs.append((tt[k], (j - k) * 0.01)); k = j
++        else: k += 1
++    lead = runs[0][1] if runs and runs[0][0] < 0.02 else 0.0
++    tail = runs[-1][1] if runs and runs[-1][0] + runs[-1][1] >= t - 0.05 else 0.0
++    mid = [(round(a, 2), round(d, 2)) for a, d in runs if a > 0.02 and a + d < t - 0.05 and d >= 0.35]
++    return lead, tail, mid
++
++
++def word_voiced(low, rl, C):
++    """Voiced frames that belong to a word: voiced (80–400 Hz within voiced_db of his speech) and part of a run that reaches
++    voiced_peak_db of it, or within 30 ms of such a frame (a word's fade-out flickers round the threshold). A soft "the"
++    peaks 6 dB under his speech (#6); the hum he breathes out between phrases stays 20+ dB under it and is a pause
++    (#2 "so when … they" kept 0.38 s of it, 1 Oct)."""
++    v = low > rl - C.get("voiced_db", 22); strong = low > rl - C.get("voiced_peak_db", 16)
++    near = np.convolve(strong.astype(float), np.ones(13), "same") > 0   # ±30 ms at 5 ms frames
++    out = np.zeros_like(v); idx = np.flatnonzero(v)
++    if len(idx):
++        for r in np.split(idx, np.flatnonzero(np.diff(idx) > 3) + 1):   # bridge 5–10 ms flickers
++            if strong[r[0]:r[-1] + 1].any(): out[r[0]:r[-1] + 1] = v[r[0]:r[-1] + 1]
++    return out | (v & near)
++
++
++def removed_voice(E, base, C, max_gap=1.0):
++    """Voiced sound inside the pauses an edit removes (gaps < max_gap between consecutive cuts): a clipped soft word
++    ("the", the "b" of "bad") shows up here (1 Oct, #6/#16). → [(source s, voiced length s)]"""
++    x = np.frombuffer(subprocess.run(["ffmpeg", "-v", "error", "-i", str(base / E["audio"]), "-ac", "1", "-ar", str(SR), "-f", "f32le", "-"],
++                                     capture_output=True, check=True).stdout, np.float32).astype(np.float64)
++    low, full = band_db(x, 80, 400), band_db(x)
++    cuts = E["cuts"]
++    sel = np.concatenate([np.arange(int(c["in"] / HOP), min(int(c["out"] / HOP), len(low) - 1)) for c in cuts])
++    rl, rf = np.percentile(low[sel], 90), np.percentile(full[sel], 90)
++    wv = word_voiced(low, rl, C); out = []
++    for a, b in zip(cuts, cuts[1:]):
++        if not (0 < b["in"] - a["out"] < max_gap): continue
++        seg = wv[int(a["out"] / HOP):int(b["in"] / HOP)] & (full[int(a["out"] / HOP):int(b["in"] / HOP)] > rf - 26)
++        if seg.sum() * HOP >= 0.04: out.append((round(a["out"], 2), round(seg.sum() * HOP, 2)))
++    return out
++
++
+ def video_fps(video):
+     if not video: return 25.0
+     r = subprocess.run(["ffprobe", "-v", "error", "-select_streams", "v:0", "-show_entries", "stream=r_frame_rate", "-of", "csv=p=0",
+@@ -74,11 +133,19 @@ def retighten(a, C):
+         if s1 > blocks[0][0] - 0.1 and s0 < blocks[0][0] + 1.5: blocks[0][0] = max(blocks[0][0], s1 + 0.02)
+         if s0 < blocks[-1][1] + 0.1 and s1 > blocks[-1][1] - 1.5: blocks[-1][1] = min(blocks[-1][1], s0 - 0.02)
+     cuts, removed = cut_blocks(base / E["audio"], base / E["words"], blocks, fps, C)
+-    # the silent hold at the end stays (the CTA must stay readable); if something off his mic is in it, his mic is muted
+-    # from there instead of cutting the hold short (#2 v7 first render: the CTA was up for 0.9 s)
++    # the end: tail_hold_s after his last word (Sofian 1 Oct: "at the end it's not trimmed properly" — the old silent
++    # holds ran 0.8–1.5 s); if something off his mic falls in that, his mic is muted from there
+     if blocks[-1][1] < hold - 0.05: E["mute_after"] = round(blocks[-1][1], 2)
+-    cuts[-1]["out"] = round(max(cuts[-1]["out"], hold), 2)
++    else: E.pop("mute_after", None)
++    # tail_hold_s after his last word: from the word itself (when the end was pulled in before an off-mic sound, the mic
++    # is muted there and the picture still holds the usual time — #2's CTA)
++    last_w = max((w["end"] for w in json.loads((base / E["words"]).read_text(encoding="utf-8")) if w["end"] <= cuts[-1]["out"] + 0.05), default=cuts[-1]["out"])
++    end = max(cuts[-1]["out"] + max(0.0, C.get("tail_hold_s", 0.35) - C.get("pad_after_s", 0.12)), last_w + C.get("tail_hold_s", 0.35))
++    cuts[-1]["out"] = round(min(hold, max(cuts[-1]["out"], np.ceil(end * fps) / fps)), 2)
++    if E.get("mute_after") is not None and E["mute_after"] >= cuts[-1]["out"] - 0.02: E.pop("mute_after")
++    cuts = tighten_edges(cuts, base / E["audio"], fps, C, json.loads((base / E["words"]).read_text(encoding="utf-8")))
+     cuts = merge_short(cuts, base / E["audio"], C)
++    cuts = assign_zoom(cuts, C)
+     new, new_d = timeline(cuts)
+     def remap(t_out):
+         src = next((i + (t_out - t0) for i, o, t0 in old if t0 <= t_out <= t0 + (o - i) + 1e-6), None)
+@@ -104,44 +171,171 @@ def retighten(a, C):
+           f"first cut in {old[0][0]:.2f} → {cuts[0]['in']:.2f}; cards " + ", ".join(str(c.get("at_out")) for c in (E.get("ctas") or []) if isinstance(c, dict)))
+ 
+ 
++def breath_mask(full, hf, low, REF, words, i0, i1, C):
++    """Frames i0:i1 that are breath (pause), not speech. 1 Oct (Sofian: "improve the pauses"): anything breath_db under his
++    speech in the full band, unvoiced (no 80–400 Hz voice energy: a soft voiced syllable keeps it) and not a fricative (an
++    "s"/"sh"/"f" is quiet overall but strong at 3.5–11 kHz: #14's "So" lost its S in a first try). A hissy in-breath is
++    strong up there too: it counts as breath when the words either side have no s/z/x/f/sh/ch/th at that edge (#9)."""
++    seg_f, seg_h, seg_l = full[i0:i1], hf[i0:i1], low[i0:i1]; bd = C.get("breath_db", 99)
++    breath = (seg_f < REF["f"] - bd) & (seg_l < REF["l"] - bd - 4) & (seg_h < REF["h"] - C.get("breath_hf_db", 12))
++    hiss = (seg_f < REF["f"] - bd) & (seg_l < REF["l"] - bd - 8) & ~breath
++    k_ = 0
++    while k_ < len(hiss):
++        if hiss[k_]:
++            j_ = k_
++            while j_ < len(hiss) and hiss[j_]: j_ += 1
++            a_ = (i0 + k_) * HOP
++            if (j_ - k_) * HOP >= 0.12:
++                b_ = (i0 + j_) * HOP; cl = lambda w: re.sub(r"[^a-z]", "", w["word"].lower())
++                ends_f = lambda t: t[-1:] in tuple("sxzf") or t.endswith(("sh", "ch", "ce", "se", "ze"))
++                starts_f = lambda t: t[:1] in tuple("szfx") or t.startswith(("sh", "ch", "ce", "ci", "cy"))
++                # Whisper's word times are loose (#14 put "so" 0.1 s before the real S, the word's start 0.8 s early): any
++                # word reaching within 0.3 s of the hiss, either edge of it
++                fric = any(w["start"] <= b_ + 0.3 and w["end"] >= a_ - 0.3 and (ends_f(cl(w)) or starts_f(cl(w))) for w in words)
++                if not fric: breath[k_:j_] = True
++            k_ = j_
++        else: k_ += 1
++    return breath
++
++
++def tighten_edges(cuts, audio, fps, C, words=()):
++    """Every piece ends edge_after_s after his last sound and starts edge_before_s before his first (1 Oct: the padding on
++    both sides of a join added up to 0.4 s of air, #10 "not you." → "Comment MORE"). A sound = within voice_db of his
++    speech level, or a fricative (strong at 3.5–11 kHz). The last cut keeps its end (the end hold is set separately)."""
++    x = np.frombuffer(subprocess.run(["ffmpeg", "-v", "error", "-i", str(audio), "-ac", "1", "-ar", str(SR), "-f", "f32le", "-"],
++                                     capture_output=True, check=True).stdout, np.float32).astype(np.float64)
++    full, hf, low = band_db(x), band_db(x, *C["hf_band_hz"]), band_db(x, 80, 400)
++    sel = np.concatenate([np.arange(int(c["in"] / HOP), min(int(c["out"] / HOP), len(full) - 1)) for c in cuts])
++    REF = {"f": np.percentile(full[sel], 90), "h": np.percentile(hf[sel], 90), "l": np.percentile(low[sel], 90)}
++    # voice: loud enough, or a fricative, or voiced at all (a soft unstressed "the"/"a" is quiet but voiced: #6's
++    # "the liquidity, the funds" lost its second "the" without this, 1 Oct)
++    voice = ((full > REF["f"] - C.get("voice_db", 20)) | (hf > REF["h"] - C.get("breath_hf_db", 12))
++             | word_voiced(low, REF["l"], C)) & ~breath_mask(full, hf, low, REF, words, 0, len(full), C)
++    ea, eb = C.get("edge_after_s", 0.1), C.get("edge_before_s", 0.05)
++    out = [dict(c) for c in cuts]
++    voiced = low > REF["l"] - C.get("voiced_db", 22)
++    bl, gs, ge = C.get("edge_blip_s", 0.12), C.get("edge_blip_gap_s", 0.15), C.get("edge_blip_gap_end_s", 0.2)
++    for i, c in enumerate(out):
++        i0, i1 = int(c["in"] / HOP), int(c["out"] / HOP); v = np.flatnonzero(voice[i0:i1])
++        if not len(v): continue
++        # a lone unvoiced click/smack/sniff at an edge, cut off from the speech by air, isn't a word: the piece starts
++        # (ends) at the speech (1 Oct, #12 opened on 0.3 s of a lip smack and air before "If")
++        runs = np.split(v, np.flatnonzero(np.diff(v) > 3) + 1)   # 5–10 ms flickers don't split a sound
++        cl = lambda w: re.sub(r"[^a-z]", "", w["word"].lower())
++        def lone(r, nxt, gap, edge):   # unvoiced, short, air between it and the speech, and no consonant-led word there
++            if (r[-1] - r[0] + 1) * HOP > bl or (abs(nxt - (r[0] if edge == "end" else r[-1])) - 1) * HOP < gap or voiced[i0 + r].sum() * HOP >= 0.03: return False   # a click has a few voiced frames, a soft word more
++            a_, b_ = (i0 + min(r[0], nxt)) * HOP, (i0 + max(r[-1], nxt)) * HOP
++            # only next to a word that starts (ends) on a vowel or a soft consonant: a T/K/S/F/H/Th edge has its own short
++            # burst or hiss apart from the vowel ("Start", "hate," — 1 Oct, the T of #7's "hate" sits 0.15 s after the vowel)
++            soft = tuple("aeiouywlmnr")
++            if edge == "start":
++                # the word he starts with: the first one not over before the blip (Whisper may put it a little early)
++                w = min((w for w in words if w["end"] > a_ - 0.05 and w["start"] <= b_ + 0.3 and cl(w)), key=lambda w: w["start"], default=None)
++                return w is not None and cl(w)[:1] in soft
++            fin = lambda t: t[:-1] if len(t) > 2 and t.endswith("e") else t   # "hate" ends on its T, "time" on its M
++            # the word he ends on: the last one begun before the blip ends
++            w = max((w for w in words if w["start"] < b_ + 0.05 and w["end"] >= a_ - 0.3 and cl(w)), key=lambda w: w["start"], default=None)
++            return w is not None and fin(cl(w))[-1:] in soft
++        while len(runs) > 1 and lone(runs[0], runs[1][0], gs, "start"): runs = runs[1:]
++        while len(runs) > 1 and i + 1 < len(out) and lone(runs[-1], runs[-2][-1], ge, "end"): runs = runs[:-1]
++        first, last = (i0 + runs[0][0]) * HOP, (i0 + runs[-1][-1] + 1) * HOP
++        if i + 1 < len(out):
++            new_out = np.ceil((last + ea) * fps) / fps
++            if new_out < c["out"] - 0.03: c["out"] = round(new_out, 2)
++        if True:   # the first piece too: the video opens on his first sound, not on air before it
++            new_in = np.floor((first - eb) * fps) / fps
++            if new_in > c["in"] + 0.03: c["in"] = round(new_in, 2)
++    return [c for c in out if c["out"] - c["in"] > 0.05]
++
++
++def assign_zoom(cuts, C):
++    """Zoom pattern on the final cuts: the zoom changes at a cut once the shot has run min_shot_s; sooner, the cut keeps the
++    zoom ("join": "smooth", the drift carries on). A last shot shorter than min_shot_s keeps the previous zoom too."""
++    out, z, run = [], False, 0.0
++    for i, c in enumerate(cuts):
++        c = {k: v for k, v in c.items() if k not in ("join", "punch")}
++        if i:
++            if run >= C.get("min_shot_s", 0.8): z = not z; run = 0.0
++            else: c["join"] = "smooth"
++        run += c["out"] - c["in"]
++        if z: c["punch"] = True
++        out.append(c)
++    if len(out) > 1:   # the last shot: if it's short, it keeps the zoom before it
++        k = max(i for i, c in enumerate(out) if i == 0 or c.get("join") != "smooth")
++        if k and sum(c["out"] - c["in"] for c in out[k:]) < C.get("min_shot_s", 0.8):
++            for c in out[k:]:
++                c["join"] = "smooth"; c.pop("punch", None)
++                if out[k - 1].get("punch"): c["punch"] = True
++    return out
++
++
+ def merge_short(cuts, audio, C):
+-    """A shot shorter than min_clip_s next to a ≤ merge_gap_s join reads as a stutter (#2 v7 at 1:25, Eyad 1 Oct) → join it
+-    to that neighbour, putting the small pause back — only when the join is silent on the lav (so a word the edit
+-    removed there can never come back). Re-ordered cuts (negative gap) are left alone. Punch-ins re-alternate."""
++    """A real shot shorter than min_shot_s next to a ≤ merge_gap_s join reads as a flash cut (#2 v7 at 1:25, Eyad 1 Oct)
++    → that join becomes smooth (same zoom, dissolve), keeping the pause cut — only when the join is silent on the lav,
++    so it's a pause and not a word the edit removed. Re-ordered cuts (negative gap) stay real cuts. Then zoom
++    alternates per shot (a smooth piece takes its shot's zoom)."""
+     x = np.frombuffer(subprocess.run(["ffmpeg", "-v", "error", "-i", str(audio), "-ac", "1", "-ar", "16000", "-f", "f32le", "-"],
+                                      capture_output=True, check=True).stdout, np.float32)
+     lvl = lambda a, b: 10 * np.log10(np.mean(x[int(a * 16000):max(int(b * 16000), int(a * 16000) + 1)] ** 2) + 1e-12)
+     speech = np.percentile([lvl(c["in"], c["out"]) for c in cuts], 50)
+-    cuts = [dict(c) for c in cuts]; changed = True
++    cuts = [dict(c) for c in cuts]
++    def shots():
++        out, cur = [], []
++        for i, c in enumerate(cuts):
++            if cur and c.get("join") != "smooth": out.append(cur); cur = []
++            cur.append(i)
++        return out + [cur]
++    changed = True
+     while changed:
+         changed = False
+-        for i, c in enumerate(cuts):
+-            if c["out"] - c["in"] >= C["min_clip_s"]: continue
+-            opts = []
+-            if i and 0 <= c["in"] - cuts[i - 1]["out"] <= C.get("merge_gap_s", 0.35): opts.append((c["in"] - cuts[i - 1]["out"], i - 1))
+-            if i + 1 < len(cuts) and 0 <= cuts[i + 1]["in"] - c["out"] <= C.get("merge_gap_s", 0.35): opts.append((cuts[i + 1]["in"] - c["out"], i))
++        for sh in shots():
++            d = sum(cuts[i]["out"] - cuts[i]["in"] for i in sh)
++            if d >= C.get("min_shot_s", 0.8): continue
++            a, b = sh[0], sh[-1]; opts = []
++            if a and 0 <= cuts[a]["in"] - cuts[a - 1]["out"] <= C.get("merge_gap_s", 0.35): opts.append((cuts[a]["in"] - cuts[a - 1]["out"], a))
++            if b + 1 < len(cuts) and 0 <= cuts[b + 1]["in"] - cuts[b]["out"] <= C.get("merge_gap_s", 0.35): opts.append((cuts[b + 1]["in"] - cuts[b]["out"], b + 1))
+             for gap, j in sorted(opts):
+-                if lvl(cuts[j]["out"], cuts[j + 1]["in"]) < speech - 18:   # the join is a pause, not a removed word
+-                    cuts[j]["out"] = cuts[j + 1]["out"]; del cuts[j + 1]; changed = True; break
++                if lvl(cuts[j - 1]["out"], cuts[j]["in"]) < speech - 18:   # the join is a pause, not a removed word
++                    cuts[j]["join"] = "smooth"; changed = True; break
+             if changed: break
++    p = False
+     for i, c in enumerate(cuts):
++        if i and c.get("join") != "smooth": p = not p
+         c.pop("punch", None)
+-        if i % 2: c["punch"] = True
++        if p: c["punch"] = True
+     return cuts
+ 
+ 
+ def cut_blocks(audio, words_path, blocks, fps, C):
+     x = np.frombuffer(subprocess.run(["ffmpeg", "-v", "error", "-i", str(audio), "-ac", "1", "-ar", str(SR), "-f", "f32le", "-"],
+                                      capture_output=True, check=True).stdout, np.float32).astype(np.float64)
+-    full, hf = band_db(x), band_db(x, *C["hf_band_hz"])
++    full, hf, low = band_db(x), band_db(x, *C["hf_band_hz"]), band_db(x, 80, 400)
+     words = json.loads(Path(words_path).read_text(encoding="utf-8"))
+     edge, long_ = C.get("guard_edge_s", 0.2), C.get("guard_long_s", 0.5)
+-    pieces_all, removed = [], 0.0
++    # his speech level over every kept block (1 Oct: a quiet block judged against itself kept the low tail after "wills."
++    # in #2 as "voice"; the viewer hears it against the whole video)
++    sel = np.concatenate([np.arange(int(a / HOP), min(int(b / HOP), len(full) - 1)) for a, b in blocks])
++    REF = {"f": np.percentile(full[sel], 90), "h": np.percentile(hf[sel], 90), "l": np.percentile(low[sel], 90)}
++    pieces_all, removed = [], 0.0; WV = word_voiced(low, REF["l"], C)
+     for t0, t1 in blocks:
+         i0, i1 = int(t0 / HOP), min(int(t1 / HOP), len(full) - 1)
+         seg_f, seg_h = full[i0:i1], hf[i0:i1]
+-        quiet = (seg_f < np.percentile(seg_f, 90) - C["quiet_db"]) & (seg_h < np.percentile(seg_h, 90) - C["quiet_db"])
+-        loud = np.flatnonzero(~quiet)
++        quiet = (seg_f < REF["f"] - C["quiet_db"]) & (seg_h < REF["h"] - C["quiet_db"])
++        # 1 Oct (Sofian: "improve the pauses"): breaths are pauses too — anything breath_db under his speech in the full band
++        # (a breath sits 18–28 dB down; word-final s/x/sh only 10–15 dB down) counts as pause, and the take starts/ends on
++        # his voice, not on an in-breath
++        seg_l = low[i0:i1]
++        breath = breath_mask(full, hf, low, REF, words, i0, i1, C)
++        voiced = WV[i0:i1]   # a soft "the"/"a" is quiet but voiced (#6, 1 Oct)
++        lm = ~(quiet | breath) | (voiced & ~breath); k_ = 0   # speech edges ignore clicks: loud runs shorter than 30 ms (#2: a 5 ms tick at 12.155 s held 0.5 s)
++        while k_ < len(lm):
++            if lm[k_]:
++                j_ = k_
++                while j_ < len(lm) and lm[j_]: j_ += 1
++                if j_ - k_ < 6: lm[k_:j_] = False
++                k_ = j_
++            else: k_ += 1
++        loud = np.flatnonzero(lm)
+         if not len(loud):
+             continue
+         guard = quiet.copy()
+@@ -156,14 +350,19 @@ def cut_blocks(audio, words_path, blocks, fps, C):
+         # 30 Sep ("the trimming isn't fast like ExamQA"): Whisper stretches words over his pauses, so the word guard kept
+         # 5–8 s of real silence per video. Audio this far under his speech in both bands is a pause, whatever Whisper says.
+         dq = C.get("deep_quiet_db")
+-        if dq: guard |= (seg_f < np.percentile(seg_f, 90) - dq) & (seg_h < np.percentile(seg_h, 90) - C.get("deep_quiet_hf_db", dq))
++        extra = breath.copy()
++        if dq: guard |= (seg_f < REF["f"] - dq) & (seg_h < REF["h"] - C.get("deep_quiet_hf_db", dq)) & ~voiced   # true silence: always a pause
++        guard |= extra   # an unvoiced breath ≥ min_pause_s isn't inside a word, even when Whisper's span says so (#16 "and", #6 "for")
++        guard &= ~voiced   # a word's voiced fade-out is never pause (#16: the cut fell 0.04 s into the tail of "turmoil")
+         energy = seg_f + seg_h
+ 
+-        def boundary(lo, hi, mask):
+-            """Quietest frame boundary in [lo, hi] that lies in silence."""
+-            c = [k / fps for k in range(int(np.ceil(lo * fps)), int(np.floor(hi * fps)) + 1)]
+-            c = [t for t in c if 0 <= int(t / HOP) - i0 < len(mask) and mask[int(t / HOP) - i0]]
+-            return min(c, key=lambda t: energy[int(t / HOP) - i0]) if c else None
++        def boundary(lo, hi, mask, pick="quietest"):
++            """Frame boundary in [lo, hi] that lies in silence: the quietest, or the first / last one (inside a pause the cut
++            goes in as early and comes out as late as the margins allow — 'quietest' left 0.04 s cuts that were skipped, 1 Oct)."""
++            c = [k / fps for k in range(int(np.ceil(lo * fps - 1e-6)), int(np.floor(hi * fps + 1e-6)) + 1)]
++            c = [t for t in c if 0 <= int(round(t / HOP)) - i0 < len(mask) and mask[int(round(t / HOP)) - i0]]
++            if not c: return None
++            return c[0] if pick == "first" else c[-1] if pick == "last" else min(c, key=lambda t: energy[int(round(t / HOP)) - i0])
+ 
+         first, last = (i0 + loud[0]) * HOP, (i0 + loud[-1] + 1) * HOP        # real speech edges (energy)
+         # at least pad_before/pad_after of air, so soft onsets and final consonants survive ("sorted" has a quiet "d"
+@@ -175,11 +374,14 @@ def cut_blocks(audio, words_path, blocks, fps, C):
+         while k < n:
+             if guard[k]:
+                 j = k
+-                while j < n and guard[j]: j += 1
++                while j < n and (guard[j] or (j + 2 < n and guard[j + 1:j + 3].any() and guard[j - 1])): j += 1   # bridge ≤ 10 ms blips
+                 p0, p1 = (i0 + k) * HOP, (i0 + j) * HOP
+                 if p1 - p0 >= C["min_pause_s"] and p0 > s and p1 < e:
+-                    half = C["keep_pause_s"] / 2
+-                    cin, cout = boundary(p0 + 0.02, p0 + half + 0.03, guard), boundary(p1 - half - 0.03, p1 - 0.02, guard)
++                    half = C["keep_pause_s"] / 2; m = C.get("pause_edge_s", 0.04)   # keep m at each edge (decaying consonants, soft onsets)
++                    # each window spans more than one video frame (it was 0.03 s wide: with frames every 0.04 s a quarter of
++                    # the pauses found no cut point and were silently kept — 1 Oct)
++                    fw = 1.0 / fps + 0.01
++                    cin, cout = boundary(p0 + m, p0 + max(m, half) + fw, guard, "first"), boundary(p1 - max(m, half) - fw, p1 - m, guard, "last")
+                     if cin and cout and cout - cin > 0.05:
+                         pieces.append((cur, cin)); removed += cout - cin; cur = cout
+                 k = j
+@@ -187,13 +389,25 @@ def cut_blocks(audio, words_path, blocks, fps, C):
+                 k += 1
+         pieces.append((cur, e))
+         merged = []
++        has_voice = lambda a_, b_: (full[int(a_ / HOP):int(b_ / HOP)] > REF["f"] - C.get("voice_db", 18)).any()
++        pieces = [p for p in pieces if p[1] - p[0] >= C["min_clip_s"] or has_voice(*p)]   # a sliver of breath noise alone: drop it (#2 at 63.7 s)
+         for p in pieces:          # fold micro-clips back into their neighbour
+             if merged and (p[1] - p[0] < C["min_clip_s"] or merged[-1][1] - merged[-1][0] < C["min_clip_s"]):
+                 removed -= p[0] - merged[-1][1]; merged[-1] = (merged[-1][0], p[1])
+             else:
+                 merged.append(p)
+-        pieces_all += merged
+-    cuts = [{"in": round(p, 2), "out": round(q, 2), **({"punch": True} if i % 2 else {})} for i, (p, q) in enumerate(pieces_all)]
++        pieces_all += [(p, q, k > 0) for k, (p, q) in enumerate(merged)]
++    # zoom changes at a cut once the shot has run min_shot_s (ExamQA-style punch-ins hide the jump); a cut that comes sooner
++    # keeps the zoom and the drift carries on ("join": "smooth") — a short shot between two zoom changes is the flash cut
++    # Eyad called a stutter (1 Oct); a dissolve instead left a double image of his face
++    cuts, z, run = [], False, 0.0
++    for i, (p, q, _) in enumerate(pieces_all):
++        smooth = False
++        if i:
++            if run >= C.get("min_shot_s", 0.8): z = not z; run = 0.0
++            else: smooth = True
++        run += q - p
++        cuts.append({"in": round(p, 2), "out": round(q, 2), **({"join": "smooth"} if smooth else {}), **({"punch": True} if z else {})})
+     return cuts, removed
+ 
+ 
+diff --git a/tools/ceowills/qa.py b/tools/ceowills/qa.py
+index 1e03f2f..0df55ab 100755
+--- a/tools/ceowills/qa.py
++++ b/tools/ceowills/qa.py
+@@ -112,7 +112,7 @@ def main():
+         U = L["hook"].get("uniform")
+         htop = (L["hook"]["bar"]["top"] if L["hook"].get("style") == "bar" else U["top"] - round(U["px"] * 0.73) if U
+                 else L["hook"]["top"] - L["hook"]["eyebrow_px"])
+-        check("layout: hook clear of the top edge", htop >= em, f"hook top {htop}, margin ≥ {em}")
++        check("layout: title under the platform bar (Instagram/TikTok/Shorts)", htop >= S["y0"], f"title cap top {htop}, platform bar ends {S['y0']}")
+         check("layout: iMessage CTA clear of the top edge", L["notify"]["y"] >= em, f"card top {L['notify']['y']}")
+         cap_top = L["logo"]["baseline_y"] - round(L["logo"]["px"] * 0.72)   # the logo's cap height
+         check("layout: captions above the logo", L["caption"]["baseline_y"] + 40 < cap_top, f"caption baseline {L['caption']['baseline_y']}, logo cap top {cap_top}")
+diff --git a/tools/ceowills/render.py b/tools/ceowills/render.py
+index dae2e73..5f0344d 100755
+--- a/tools/ceowills/render.py
++++ b/tools/ceowills/render.py
+@@ -73,6 +73,20 @@ def lumetri_vf(g):
+     return vf
+ 
+ 
++def tone_vf(T):
++    """Per-video exposure trim after the grade (edit.json "tone": {"exposure": EV, "knee": 0-1, "white": 0-1}): everything
++    × 2^EV, and above the knee a soft shoulder that lands full white on `white`. 1 Oct, Sofian on #14: "put the white or
++    exposure down just a little bit so on his face there isn't a really bright overexposed white light" — the ceiling
++    light clipped 5–7 % of his face (others: ~0 %); −0.1 EV, knee 0.65, white 0.9 → face p95 ≈ 218 like the rest, mid tones −5 %."""
++    ev, k, w = T.get("exposure", 0.0), T.get("knee", 1.0), T.get("white", 1.0); top = 2 ** ev
++    U = top - k; b = max(0.0, min((k + U - w) / U ** 2, 1 / (2 * U))) if U > 0 else 0.0   # shoulder: slope 1 at the knee
++    def f(x):
++        y = x * top
++        if y <= k or U <= 0: return min(y, 1.0)
++        u = y - k; return k + u - b * u * u
++    return "curves=all='" + " ".join(f"{i / 16:.4f}/{f(i / 16):.4f}" for i in range(17)) + "'"
++
++
+ def fit_vf(GF):
+     """Grade fitted to a reference frame: a 3D LUT (.cube) if present, else per-channel curves + saturation.
+     The vignette is applied separately as a mask (vignette_mask) so text isn't darkened.
+@@ -544,6 +558,15 @@ def timeline(cuts, fps):
+     for c in cuts:
+         n = int(round((c["out"] - c["in"]) * fps)); segs.append({**c, "t0": t_acc, "n": n}); t_acc += n / fps
+     dur = sum(s["n"] for s in segs) / fps
++    # shots: a cut with "join": "smooth" continues the previous shot (a pause taken out inside one take, 1 Oct): same
++    # zoom, the drift carries on, and a short dissolve hides the jump — a real cut changes the zoom
++    shot = -1
++    for i, sg in enumerate(segs):
++        if not (i and sg.get("join") == "smooth"): shot += 1
++        sg["shot"] = shot
++    for sg in segs:
++        mem = [x for x in segs if x["shot"] == sg["shot"]]
++        sg["shot_t0"], sg["shot_d"] = mem[0]["t0"], sum(x["n"] for x in mem) / fps
+ 
+     def to_out(t):
+         for s in segs:
+@@ -557,13 +580,18 @@ def caption_words(words, segs, to_out, cta_t):
+     kept = []
+     for w in words:
+         o0, o1 = to_out(w["start"]), to_out(w["end"])
+-        if o1 is None:  # Whisper drifts early at the head of a take: a word ending ≤0.25 s before a cut-in is really inside it
++        if o0 is None and o1 is None:  # Whisper drifts early at the head of a take: a word ending ≤0.25 s before a cut-in is really
++            # inside it (only a word wholly in the gap: #2's "circumvented" started in its shot and was moved to the next one, 1 Oct)
+             seg = next((sg for sg in segs if 0 <= sg["in"] - w["end"] <= 0.25), None)
+             if seg: o0 = o1 = seg["t0"]
+         if o0 is None and o1 is not None:  # word stretched back across the cut-in → start it at the cut
+             seg = next(sg for sg in segs if sg["in"] <= w["end"] <= sg["out"] + 1e-6); o0 = seg["t0"]
+         if o0 is not None and o1 is None:  # Whisper stretched its end into a pause that's cut → it ends with its shot
+             seg = next(sg for sg in segs if sg["in"] - 1e-6 <= w["start"] <= sg["out"] + 1e-6); o1 = seg["t0"] + (seg["out"] - seg["in"])
++        if o0 is None and o1 is None:      # both ends in cut pauses but the word overlaps kept audio (1 Oct, #10 "deep": Whisper's
++            ov = [sg for sg in segs if sg["in"] < w["end"] and w["start"] < sg["out"]]   # span crossed two pause cuts)
++            if ov:
++                o0 = ov[0]["t0"] + max(0.0, w["start"] - ov[0]["in"]); o1 = ov[-1]["t0"] + min(ov[-1]["out"], w["end"]) - ov[-1]["in"]
+         if o0 is None and o1 is None:      # placed wholly inside a cut pause (≤ 1.2 s between two kept shots): the job's
+             for a_, b_ in zip(segs, segs[1:]):   # words file only holds words he says in the edit → show it at the next shot
+                 if a_["out"] - 0.05 <= w["start"] and w["end"] <= b_["in"] + 0.05 and b_["in"] - a_["out"] <= 1.2:
+@@ -576,7 +604,7 @@ def caption_words(words, segs, to_out, cta_t):
+ 
+ 
+ # ---------------------------------------------------------------- headroom above his head (frame shift, per cut)
+-def headroom(E, video, rot, segs, FR, cta_t, cap_tops, fps):
++def headroom(E, video, rot, segs, FR, cta_t, cap_tops, fps, title=None):
+     """How far each cut's shot moves down (shift) and how many of its top rows (strip) are stretched to fill the space.
+     30 Sep, Sofian (red circle round his head, "it gets worse in the videos too"): the old fill — the whole frame zoomed
+     and blurred, faded in over 170 px — put a ghost of his head above him and blurred the top of his real hair whenever
+@@ -585,29 +613,48 @@ def headroom(E, video, rot, segs, FR, cta_t, cap_tops, fps):
+     His head is tracked on the raw shot (heads.py, YuNet) and mapped through the cut's largest zoom."""
+     import heads
+     W, H = L["canvas"]["w"], L["canvas"]["h"]; M = L["motion"]; zcy = M["zoom_center"][1]; C = L["caption"]
+-    pa = E.get("punch_at", []); out = []
+-    for s in segs:
+-        z0 = (M["punch"] if s.get("punch") else 1.0) * FR["zoom"]
+-        zs = [z0, z0 * (1 + M["drift"])] + ([z0 * M["punch"], z0 * M["punch"] * (1 + M["drift"])] if any(s["in"] < p < s["out"] for p in pa) else [])
++    pa = E.get("punch_at", []); raw = {}
++    for s in segs:   # his head (raw shot) over every piece of the shot (one shift per shot: a smooth join must not move him)
+         tr = heads.track(video, s["in"], s["out"], rot, fps=FR.get("track_fps", 4))
++        d = raw.setdefault(s["shot"], {"tr": [], "t1": 0, "punch_at": False})
++        d["tr"] += [(s["t0"] + t - s["in"], h, b) for t, h, b in tr]; d["t1"] = max(d["t1"], s["t0"] + s["n"] / fps); d.setdefault("t0", s["t0"])
++        d["punch_at"] |= any(s["in"] < p < s["out"] for p in pa)
++        d.setdefault("punch", segs[[x["shot"] for x in segs].index(s["shot"])].get("punch"))
++
++    def fit(d, zoom, until=None, punch=None):   # → (shift, strip, hair, beard, hair while the title is up) at this zoom
++        z0 = (M["punch"] if (d["punch"] if punch is None else punch) else 1.0) * zoom
++        zs = [z0, z0 * (1 + M["drift"])] + ([z0 * M["punch"], z0 * M["punch"] * (1 + M["drift"])] if d["punch_at"] else [])
+         mp = lambda y: [z * (y - H * zcy) + H * zcy for z in zs]
+-        hair = min((v for _, h, _ in tr for v in mp(h)), default=None); beard = max((v for _, _, b in tr for v in mp(b)), default=None)
+-        t1 = s["t0"] + s["n"] / fps
+-        cap = min(cap_tops["cta"] if cta_t is not None and t1 > cta_t else cap_tops["run"], cap_tops["run"])
+-        if hair is None: shift, strip = 0, 0   # no face found in this cut (he turned away?) → the shot as filmed
+-        else:
+-            strip = int(hair - FR.get("hair_margin", 30))
+-            shift = min(FR["shift_y"], strip * (FR.get("max_stretch", 4) - 1), int(cap - C.get("beard_gap", 16) - beard))
+-            if strip < FR.get("min_strip", 24) or shift < FR.get("min_shift", 20): shift, strip = 0, 0
+-            shift -= shift % 2
+-        out.append({"in": s["in"], "t0": round(s["t0"], 3), "shift": int(shift), "strip": int(strip),
+-                    "hair": None if hair is None else round(hair), "beard": None if beard is None else round(beard)})
+-    return out
++        hair = min((v for _, h, _ in d["tr"] for v in mp(h)), default=None); beard = max((v for _, _, b in d["tr"] for v in mp(b)), default=None)
++        th = min((v for t, h, _ in d["tr"] if until is not None and t < until for v in mp(h)), default=hair)
++        if hair is None: return 0, 0, None, None, None   # no face found in this shot (he turned away?) → the shot as filmed
++        cap = min(cap_tops["cta"] if cta_t is not None and d["t1"] > cta_t else cap_tops["run"], cap_tops["run"])
++        strip = int(hair - FR.get("hair_margin", 30))
++        shift = min(FR["shift_y"], strip * (FR.get("max_stretch", 4) - 1), int(cap - C.get("beard_gap", 16) - beard))
++        if strip < FR.get("min_strip", 24) or shift < FR.get("min_shift", 20): shift, strip = 0, 0
++        return shift - shift % 2, strip, hair, beard, th
++
++    per_shot = {}
++    for k, d in raw.items():
++        until = title["until"] if title else None
++        zoom = FR["zoom"]; shift, strip, hair, beard, th = fit(d, zoom, until)
++        need = title["bottom"] + L["qa"].get("head_tol_px", 12) if title and d["t0"] < title["until"] else 0
++        punch = bool(d["punch"])
++        if need and th is not None and th + shift < need:   # the title doesn't clear his head (while it's up): try unzoomed,
++            for z_, p_ in ((1.0, punch), (1.0, False)):     # then without the punch-in too
++                alt = fit(d, z_, until, p_)
++                if alt[4] is not None and alt[4] + alt[0] > th + shift: zoom, punch, (shift, strip, hair, beard, th) = z_, p_, alt
++                if th + shift >= need: break
++        per_shot[k] = {"zoom": zoom, "punch": punch, "shift": int(shift), "strip": int(strip), "hair": hair, "beard": beard,
++                       **({"title_short_px": int(need - th - shift)} if need and th is not None and th + shift < need else {})}
++    return [{"in": s["in"], "t0": round(s["t0"], 3), "shot": s["shot"],
++             **{k: (round(v) if isinstance(v, float) else v) for k, v in per_shot[s["shot"]].items()}} for s in segs]
+ 
+ 
+ # ---------------------------------------------------------------- main
+ def main():
+     ap = argparse.ArgumentParser(); ap.add_argument("edit"); ap.add_argument("--draft", action="store_true"); ap.add_argument("--out")
++    ap.add_argument("--plan", action="store_true", help="layout + per-shot headroom only → boxes.json, no render (seconds)")
+     a = ap.parse_args()
+     E_path = Path(a.edit).resolve(); base = E_path.parent; E = json.loads(E_path.read_text(encoding="utf-8"))
+     if E.get("notify"): L["notify"].update(E["notify"])   # per-job card override, e.g. {"width": 540} when he stands tall
+@@ -631,7 +678,7 @@ def main():
+         nxt = chunks[i + 1][0]["start"] if i + 1 < len(chunks) else (cta_t if cta_t else dur)
+         en = min(nxt, ch[-1]["end"] + C["tail_ms"] / 1000)
+         en = max(en, min(nxt, st + C["min_ms"] / 1000))
+-        for sg in segs[1:]:  # never let a caption bleed across a cut into the next shot
++        for sg in [x for x in segs[1:] if x.get("join") != "smooth"]:  # never let a caption bleed across a cut into the next shot
+             if ch[-1]["end"] <= sg["t0"] + 0.02 < en: en = sg["t0"]
+         spans.append((st, en, ch))
+     (out.parent / "captions.txt").write_text("\n".join(f"{s:6.2f}-{e:6.2f}  " + " ".join(display_word(w['word']) for w in ch) for s, e, ch in spans)
+@@ -671,8 +718,8 @@ def main():
+     if ctas: print("ctas: " + ", ".join(f"{k} @ {t:.1f}s" for k, t in ctas))
+     boxes["cards"] = [{"key": k, "in": t0, "out": t0 + L["notify"]["hold_s"], "top": L["notify"]["y"],
+                        "bottom": L["notify"]["y"] + card_height(k, W)} for k, t0 in ctas]
+-    if not a.draft: log_ctas(E.get("name", E_path.stem), [k for k, _ in ctas])
+-    build_audio(E, base, segs, dur, aud, sfx=[t for _, t in ctas])
++    if not (a.draft or a.plan): log_ctas(E.get("name", E_path.stem), [k for k, _ in ctas])
++    if not a.plan: build_audio(E, base, segs, dur, aud, sfx=[t for _, t in ctas])
+ 
+     # ---- video
+     rot = {"ccw": "transpose=2,", "cw": "transpose=1,", None: "", "": ""}[E.get("rotate")]
+@@ -685,7 +732,15 @@ def main():
+     GFm = E.get("grade_fit") or L.get("grade_fit"); vmask = vignette_mask(GFm, W, H) if GFm else None
+     M = L["motion"]; zcx, zcy = M["zoom_center"]; punch_at = E.get("punch_at", [])
+     FR = {**L.get("frame", {}), **E.get("frame", {})}; FR = FR if FR.get("on") else None
+-    if FR: boxes["shifts"] = headroom(E, P("video"), rot, segs, FR, cta_t, cap_tops, fps)
++    if FR: boxes["shifts"] = headroom(E, P("video"), rot, segs, FR, cta_t, cap_tops, fps,
++                                      {"bottom": boxes["title_ink"]["bottom"], "until": boxes["title_ink"]["until"]} if boxes.get("title_ink") else None)
++    if a.plan:
++        enc.kill(); enc.wait()
++        (out.parent / "boxes.json").write_text(json.dumps(boxes, indent=1, default=list), encoding="utf-8")
++        short = [x for x in boxes.get("shifts", []) if x.get("title_short_px")]
++        print(f"plan: title ends {boxes.get('title_ink', {}).get('bottom')} until {boxes.get('title_ink', {}).get('until', 0):.1f}s; "
++              + ("title over his hair in shots " + ", ".join(f"{x['t0']:.1f}s (−{x['title_short_px']}px, zoom {x['zoom']})" for x in short) if short else "title clears his head in every shot"))
++        return
+     cache = {}; card_cache = {}; glass_cache = {}; cache_chunk = [None]
+     import cv2
+ 
+@@ -710,15 +765,18 @@ def main():
+         return (gain * vmask if vmask is not None else gain), add
+     ST = {True: static(True), False: static(False)} if hook is not None else {False: static(False)}
+     fi = 0
++    prev_video = None; K = L["motion"].get("smooth_frames", 3)
+     for s in segs:
+         seg_d = s["n"] / fps
+-        base_z = M["punch"] if s.get("punch") else 1.0
++        base_z = M["punch"] if (boxes["shifts"][segs.index(s)].get("punch") if FR else segs[[x["shot"] for x in segs].index(s["shot"])].get("punch")) else 1.0
+         # zoom expression (ffmpeg per-frame): drift across the cut + step punch-ins inside it
+         tog = M["punch"] if base_z == 1.0 else 1 / M["punch"]  # an in-shot punch toggles: in on a wide cut, back out on a punched one
+         steps = "".join(f"*if(gte(t,{p - s['in']:.3f}),{tog:.5f},1)" for p in punch_at if s["in"] < p < s["out"])
+-        Z = f"({base_z}*{FR['zoom'] if FR else 1}*(1+{M['drift']}*t/{seg_d:.3f}){steps})"
++        fz = boxes["shifts"][segs.index(s)].get("zoom", FR["zoom"]) if FR else 1
++        Z = f"({base_z}*{fz}*(1+{M['drift']}*(t+{s['t0'] - s['shot_t0']:.3f})/{s['shot_d']:.3f}){steps})"
+         GF = E.get("grade_fit") or L.get("grade_fit")
+         grade = fit_vf(GF) if GF else lumetri_vf(E["lumetri"]) if E.get("lumetri") else lumetri_vf(L["lumetri"]) if L.get("lumetri") else L["grade"]
++        if E.get("tone"): grade += ",format=rgb24," + tone_vf(E["tone"])
+         vf = (f"{rot}{grade},scale={W}:{H}:force_original_aspect_ratio=increase,crop={W}:{H},"
+               f"scale=w='trunc({W}*{Z}/2)*2':h='trunc({H}*{Z}/2)*2':eval=frame:flags=lanczos,"
+               f"crop={W}:{H}:x='(iw-{W})*{zcx}':y='(ih-{H})*{zcy}',format=rgb24")
+@@ -741,6 +799,9 @@ def main():
+                 m = np.linspace(0, 1, k, dtype=np.float32)[:, None, None]; r0 = S + A - k
+                 frame[r0:S + A] = frame[r0:S + A] * (1 - m) + fill[r0:S + A] * m
+             else: frame = fg.astype(np.float32)
++            if s.get("join") == "smooth" and prev_video is not None and got < K:   # dissolve over the pause that was taken out
++                w = (got + 1) / (K + 1); frame = frame * w + prev_video * (1 - w)
++            if got == s["n"] - 1: prev_video = frame.copy()
+             t = fi / fps
+             ha = 0.0 if hook is None else 1.0 if hook_until is None else min(1.0, max(0.0, (hook_until - t) / 0.3))
+             if ha in (0.0, 1.0):   # steady state: vignette + title (or not) + gradient + logo in one pass
+diff --git a/tools/ceowills/tracker.json b/tools/ceowills/tracker.json
+index b9d5ee5..fb7d2b9 100644
+--- a/tools/ceowills/tracker.json
++++ b/tools/ceowills/tracker.json
+@@ -15,10 +15,10 @@
+       "board": "hmrc can take up to 40%",
+       "mic": "Mic 2",
+       "status": "edited",
+-      "version": "v10",
+-      "export": "CEOwills - HMRC can take up to 40% - v8.mp4 (in Export) → v10 to replace it in place",
++      "version": "v12",
++      "export": "CEOwills - HMRC can take up to 40% - v8.mp4 (in Export) → v12 to replace it in place",
+       "job": "jobs/hmrc-40-percent.edit.json",
+-      "final_pass": "1 Oct, Eyad's notes on #2 v7: no shot under 0.8 s inside a take (flash-cut stutters), no question mark in the title, title face switched up (serif on #2/#6/#12/#14), word endings 0.12 s; on top of 30 Sep (Sofian): captions under his beard, fill never on his hair, gradient from 1300, starts after the director's 'go', tight pauses. QA ALL PASS + stutters PASS; preview on Telegram. Not uploaded: no Make connector in this session.",
++      "final_pass": "1 Oct (Sofian 15:48 + 18:36, Eyad): captions higher under his chin (baseline 1370), title lower (under the platform bars), pauses and breaths trimmed tighter (voiced-word guard, edge clicks/in-breaths dropped), end 0.35 s after the last word; #14 exposure/whites down (tone), #16 title in Eyad's words. Previews sent to Telegram; export not in Drive yet (needs the Make connector).",
+       "exported_version": "v8"
+     },
+     {
+@@ -26,10 +26,10 @@
+       "board": "if you are a business leader that wants to feed family",
+       "mic": "Mic 2",
+       "status": "edited",
+-      "version": "v11",
+-      "export": "CEOwills - Business leader feeding your family - v9.mp4 (in Export) → v11 to replace it in place",
++      "version": "v12",
++      "export": "CEOwills - Business leader feeding your family - v9.mp4 (in Export) → v12 to replace it in place",
+       "job": "jobs/business-leader-feed-family.edit.json",
+-      "final_pass": "1 Oct, Eyad's notes on #2 v7: no shot under 0.8 s inside a take (flash-cut stutters), no question mark in the title, title face switched up (serif on #2/#6/#12/#14), word endings 0.12 s; on top of 30 Sep (Sofian): captions under his beard, fill never on his hair, gradient from 1300, starts after the director's 'go', tight pauses. QA ALL PASS + stutters PASS; preview on Telegram. Not uploaded: no Make connector in this session.",
++      "final_pass": "1 Oct (Sofian 15:48 + 18:36, Eyad): captions higher under his chin (baseline 1370), title lower (under the platform bars), pauses and breaths trimmed tighter (voiced-word guard, edge clicks/in-breaths dropped), end 0.35 s after the last word; #14 exposure/whites down (tone), #16 title in Eyad's words. Previews sent to Telegram; export not in Drive yet (needs the Make connector).",
+       "exported_version": "v9"
+     },
+     {
+@@ -37,11 +37,11 @@
+       "board": "ceowills bridge",
+       "mic": "Mic 3",
+       "status": "edited",
+-      "version": "v8",
+-      "export": "CEOwills - CEOwills bridges your company and your will - v6.mp4 (in Export) → v8 to replace it in place",
++      "version": "v9",
++      "export": "CEOwills - CEOwills bridges your company and your will - v6.mp4 (in Export) → v9 to replace it in place",
+       "job": "jobs/ceowills-bridge.edit.json",
+       "note": "no spoken CTA in the take",
+-      "final_pass": "1 Oct, Eyad's notes on #2 v7: no shot under 0.8 s inside a take (flash-cut stutters), no question mark in the title, title face switched up (serif on #2/#6/#12/#14), word endings 0.12 s; on top of 30 Sep (Sofian): captions under his beard, fill never on his hair, gradient from 1300, starts after the director's 'go', tight pauses. QA ALL PASS + stutters PASS; preview on Telegram. Not uploaded: no Make connector in this session.",
++      "final_pass": "1 Oct (Sofian 15:48 + 18:36, Eyad): captions higher under his chin (baseline 1370), title lower (under the platform bars), pauses and breaths trimmed tighter (voiced-word guard, edge clicks/in-breaths dropped), end 0.35 s after the last word; #14 exposure/whites down (tone), #16 title in Eyad's words. Previews sent to Telegram; export not in Drive yet (needs the Make connector).",
+       "exported_version": "v6"
+     },
+     {
+@@ -49,11 +49,11 @@
+       "board": "business owners",
+       "mic": "Mic 3",
+       "status": "edited",
+-      "version": "v7",
+-      "export": "CEOwills - Business owners deep dark IHT conversation - v5.mp4 (in Export) → v7 to replace it in place",
++      "version": "v8",
++      "export": "CEOwills - Business owners deep dark IHT conversation - v5.mp4 (in Export) → v8 to replace it in place",
+       "job": "jobs/business-owners-deep-dark.edit.json",
+       "note": "two-keyword CTA (MORE + CALCULATOR) kept on purpose",
+-      "final_pass": "1 Oct, Eyad's notes on #2 v7: no shot under 0.8 s inside a take (flash-cut stutters), no question mark in the title, title face switched up (serif on #2/#6/#12/#14), word endings 0.12 s; on top of 30 Sep (Sofian): captions under his beard, fill never on his hair, gradient from 1300, starts after the director's 'go', tight pauses. QA ALL PASS + stutters PASS; preview on Telegram. Not uploaded: no Make connector in this session.",
++      "final_pass": "1 Oct (Sofian 15:48 + 18:36, Eyad): captions higher under his chin (baseline 1370), title lower (under the platform bars), pauses and breaths trimmed tighter (voiced-word guard, edge clicks/in-breaths dropped), end 0.35 s after the last word; #14 exposure/whites down (tone), #16 title in Eyad's words. Previews sent to Telegram; export not in Drive yet (needs the Make connector).",
+       "exported_version": "v5"
+     },
+     {
+@@ -61,10 +61,10 @@
+       "board": "bestfriends partnership",
+       "mic": "Mic 3",
+       "status": "edited",
+-      "version": "v6",
+-      "export": "CEOwills - Business partners agree your succession - v4.mp4 (in Export) → v6 to replace it in place",
++      "version": "v8",
++      "export": "CEOwills - Business partners agree your succession - v4.mp4 (in Export) → v8 to replace it in place",
+       "job": "jobs/business-partners-succession.edit.json",
+-      "final_pass": "1 Oct, Eyad's notes on #2 v7: no shot under 0.8 s inside a take (flash-cut stutters), no question mark in the title, title face switched up (serif on #2/#6/#12/#14), word endings 0.12 s; on top of 30 Sep (Sofian): captions under his beard, fill never on his hair, gradient from 1300, starts after the director's 'go', tight pauses. QA ALL PASS + stutters PASS; preview on Telegram. Not uploaded: no Make connector in this session.",
++      "final_pass": "1 Oct (Sofian 15:48 + 18:36, Eyad): captions higher under his chin (baseline 1370), title lower (under the platform bars), pauses and breaths trimmed tighter (voiced-word guard, edge clicks/in-breaths dropped), end 0.35 s after the last word; #14 exposure/whites down (tone), #16 title in Eyad's words. Previews sent to Telegram; export not in Drive yet (needs the Make connector).",
+       "exported_version": "v4"
+     },
+     {
+@@ -72,11 +72,11 @@
+       "board": "rafael nadal blooper",
+       "mic": "Mic 4",
+       "status": "edited",
+-      "version": "v5",
+-      "export": "CEOwills - Plan like Rafa Nadal - v3.mp4 (in Export) → v5 to replace it in place",
++      "version": "v7",
++      "export": "CEOwills - Plan like Rafa Nadal - v3.mp4 (in Export) → v7 to replace it in place",
+       "job": "jobs/rafa-nadal.edit.json",
+       "note": "31 s, no spoken CTA, no card",
+-      "final_pass": "1 Oct, Eyad's notes on #2 v7: no shot under 0.8 s inside a take (flash-cut stutters), no question mark in the title, title face switched up (serif on #2/#6/#12/#14), word endings 0.12 s; on top of 30 Sep (Sofian): captions under his beard, fill never on his hair, gradient from 1300, starts after the director's 'go', tight pauses. QA ALL PASS + stutters PASS; preview on Telegram. Not uploaded: no Make connector in this session.",
++      "final_pass": "1 Oct (Sofian 15:48 + 18:36, Eyad): captions higher under his chin (baseline 1370), title lower (under the platform bars), pauses and breaths trimmed tighter (voiced-word guard, edge clicks/in-breaths dropped), end 0.35 s after the last word; #14 exposure/whites down (tone), #16 title in Eyad's words. Previews sent to Telegram; export not in Drive yet (needs the Make connector).",
+       "exported_version": "v3"
+     },
+     {
+@@ -84,11 +84,11 @@
+       "board": "family should have access to your private information",
+       "mic": "Mic 4",
+       "status": "edited",
+-      "version": "v6",
+-      "export": "CEOwills - Families should find it in the drawer - v4.mp4 (in Export) → v6 to replace it in place",
++      "version": "v8",
++      "export": "CEOwills - Families should find it in the drawer - v4.mp4 (in Export) → v8 to replace it in place",
+       "job": "jobs/family-drawer.edit.json",
+       "note": "v1 also still in Export (Eyad declined binning it)",
+-      "final_pass": "1 Oct, Eyad's notes on #2 v7: no shot under 0.8 s inside a take (flash-cut stutters), no question mark in the title, title face switched up (serif on #2/#6/#12/#14), word endings 0.12 s; on top of 30 Sep (Sofian): captions under his beard, fill never on his hair, gradient from 1300, starts after the director's 'go', tight pauses. QA ALL PASS + stutters PASS; preview on Telegram. Not uploaded: no Make connector in this session.",
++      "final_pass": "1 Oct (Sofian 15:48 + 18:36, Eyad): captions higher under his chin (baseline 1370), title lower (under the platform bars), pauses and breaths trimmed tighter (voiced-word guard, edge clicks/in-breaths dropped), end 0.35 s after the last word; #14 exposure/whites down (tone), #16 title in Eyad's words. Previews sent to Telegram; export not in Drive yet (needs the Make connector).",
+       "exported_version": "v4"
+     },
+     {
+@@ -96,11 +96,11 @@
+       "board": "business owners juggling",
+       "mic": "Mic 4",
+       "status": "edited",
+-      "version": "v14",
+-      "export": "CEOwills - Business owner juggling - v12.mp4 (in Export) → v14 to replace it in place",
++      "version": "v15",
++      "export": "CEOwills - Business owner juggling - v12.mp4 (in Export) → v15 to replace it in place",
+       "job": "jobs/business-owner-juggling.edit.json",
+       "note": "v10 = current style (29 Sep); the old-style v9 from another session is still in Export",
+-      "final_pass": "1 Oct, Eyad's notes on #2 v7: no shot under 0.8 s inside a take (flash-cut stutters), no question mark in the title, title face switched up (serif on #2/#6/#12/#14), word endings 0.12 s; on top of 30 Sep (Sofian): captions under his beard, fill never on his hair, gradient from 1300, starts after the director's 'go', tight pauses. QA ALL PASS + stutters PASS; preview on Telegram. Not uploaded: no Make connector in this session.",
++      "final_pass": "1 Oct (Sofian 15:48 + 18:36, Eyad): captions higher under his chin (baseline 1370), title lower (under the platform bars), pauses and breaths trimmed tighter (voiced-word guard, edge clicks/in-breaths dropped), end 0.35 s after the last word; #14 exposure/whites down (tone), #16 title in Eyad's words. Previews sent to Telegram; export not in Drive yet (needs the Make connector).",
+       "exported_version": "v12"
+     },
+     {
+@@ -108,10 +108,10 @@
+       "board": "culture leaving daughters out",
+       "mic": "Mic 1",
+       "status": "edited",
+-      "version": "v8",
+-      "export": "CEOwills - Culture leaving daughters out - v6.mp4 (in Export) → v8 to replace it in place",
++      "version": "v9",
++      "export": "CEOwills - Culture leaving daughters out - v6.mp4 (in Export) → v9 to replace it in place",
+       "job": "jobs/culture-leaving-daughters-out.edit.json",
+-      "final_pass": "1 Oct, Eyad's notes on #2 v7: no shot under 0.8 s inside a take (flash-cut stutters), no question mark in the title, title face switched up (serif on #2/#6/#12/#14), word endings 0.12 s; on top of 30 Sep (Sofian): captions under his beard, fill never on his hair, gradient from 1300, starts after the director's 'go', tight pauses. QA ALL PASS + stutters PASS; preview on Telegram. Not uploaded: no Make connector in this session.",
++      "final_pass": "1 Oct (Sofian 15:48 + 18:36, Eyad): captions higher under his chin (baseline 1370), title lower (under the platform bars), pauses and breaths trimmed tighter (voiced-word guard, edge clicks/in-breaths dropped), end 0.35 s after the last word; #14 exposure/whites down (tone), #16 title in Eyad's words. Previews sent to Telegram; export not in Drive yet (needs the Make connector).",
+       "exported_version": "v6"
+     },
+     {
+-- 
+2.43.0
+

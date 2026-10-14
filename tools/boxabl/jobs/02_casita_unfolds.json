@@ -1,0 +1,24 @@
+{
+ "name": "02_casita_unfolds",
+ "title": "This House Showed Up Folded",
+ "version": 1,
+ "status": "delivered",
+ "sources": {"casita": "/1. Most Viewed YouTube/2024-05-14 - BOXABL Casita Tour.mp4", "unfold": "/zPR/1 Casita Unfold.mp4"},
+ "segments": [
+  {"v": "unfold", "vs": 0.0, "ve": 11.9, "a": "casita", "as": 7.0, "ae": 12.9, "bed": 0.5, "home": true},
+  {"v": "casita", "vs": 23.6, "ve": 31.5},
+  {"v": "casita", "vs": 39.3, "ve": 41.9},
+  {"v": "casita", "vs": 47.7, "ve": 53.2},
+  {"v": "casita", "vs": 188.0, "ve": 197.4},
+  {"v": "casita", "vs": 221.8, "ve": 228.6},
+  {"v": "casita", "vs": 299.9, "ve": 303.8}
+ ],
+ "overlays": [
+  {"s": 0, "e": 5.9, "text": "THIS HOUSE SHOWED UP\n*FOLDED*"},
+  {"s": 5.9, "e": 13.5, "text": "*BOXABL CASITA*\nFULL-SIZE EVERYTHING"},
+  {"s": 13.5, "e": 21.6, "text": "19 FT x 19 FT\n*NOT SO TINY*"},
+  {"s": 21.6, "e": 37.8, "text": "*BOXABL CASITA*\nKITCHEN TOUR"},
+  {"s": 37.8, "e": 41.8, "text": "SOLVING THE\n*HOUSING CRISIS*"}
+ ],
+ "post": {"short": "This whole house showed up folded 🤯 The BOXABL Casita unfolds on site, full-size kitchen, bathroom and bedroom inside. @boxabl #boxabl #casita #prefab #tinyhome", "x": "This whole house showed up folded 🤯 The BOXABL Casita unfolds on site with a full-size kitchen, bathroom and bedroom. [TRACKING URL]"}
+}

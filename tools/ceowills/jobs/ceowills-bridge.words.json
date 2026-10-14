@@ -1,0 +1,692 @@
+[
+{
+"word": "One",
+"start": 5.54,
+"end": 5.7,
+"p": 0.29
+},
+{
+"word": "of",
+"start": 5.7,
+"end": 5.82,
+"p": 0.98
+},
+{
+"word": "the",
+"start": 5.82,
+"end": 5.96,
+"p": 0.98
+},
+{
+"word": "reasons",
+"start": 5.96,
+"end": 6.24,
+"p": 0.82
+},
+{
+"word": "why",
+"start": 6.24,
+"end": 6.9,
+"p": 0.94
+},
+{
+"word": "CEOwills",
+"start": 6.9,
+"end": 8.06,
+"p": 0.94
+},
+{
+"word": "is",
+"start": 8.06,
+"end": 8.64,
+"p": 0.97
+},
+{
+"word": "here",
+"start": 8.64,
+"end": 9.04,
+"p": 0.99
+},
+{
+"word": "is",
+"start": 9.04,
+"end": 9.26,
+"p": 0.9
+},
+{
+"word": "to",
+"start": 9.26,
+"end": 9.48,
+"p": 0.99
+},
+{
+"word": "bridge",
+"start": 9.48,
+"end": 9.66,
+"p": 0.99
+},
+{
+"word": "the",
+"start": 9.66,
+"end": 9.92,
+"p": 0.99
+},
+{
+"word": "gap",
+"start": 9.92,
+"end": 10.04,
+"p": 1.0
+},
+{
+"word": "between",
+"start": 10.04,
+"end": 10.5,
+"p": 1.0
+},
+{
+"word": "your",
+"start": 10.5,
+"end": 11.06,
+"p": 0.97
+},
+{
+"word": "work",
+"start": 11.06,
+"end": 11.46,
+"p": 0.99
+},
+{
+"word": "as",
+"start": 11.46,
+"end": 11.82,
+"p": 0.97
+},
+{
+"word": "the",
+"start": 11.82,
+"end": 12.14,
+"p": 0.96
+},
+{
+"word": "CEO",
+"start": 12.14,
+"end": 12.58,
+"p": 0.99
+},
+{
+"word": "of",
+"start": 12.58,
+"end": 12.8,
+"p": 0.98
+},
+{
+"word": "your",
+"start": 12.8,
+"end": 12.96,
+"p": 0.96
+},
+{
+"word": "company",
+"start": 12.96,
+"end": 13.38,
+"p": 0.99
+},
+{
+"word": "and",
+"start": 13.38,
+"end": 14.48,
+"p": 0.87
+},
+{
+"word": "the",
+"start": 14.48,
+"end": 14.8,
+"p": 0.79
+},
+{
+"word": "Wills.",
+"start": 14.8,
+"end": 15.02,
+"p": 0.97
+},
+{
+"word": "It",
+"start": 15.44,
+"end": 15.54,
+"p": 0.97
+},
+{
+"word": "literally",
+"start": 15.54,
+"end": 15.9,
+"p": 0.99
+},
+{
+"word": "does",
+"start": 15.9,
+"end": 16.24,
+"p": 0.99
+},
+{
+"word": "what",
+"start": 16.24,
+"end": 16.48,
+"p": 0.99
+},
+{
+"word": "it",
+"start": 16.48,
+"end": 16.62,
+"p": 0.98
+},
+{
+"word": "says",
+"start": 16.62,
+"end": 16.86,
+"p": 0.99
+},
+{
+"word": "on",
+"start": 16.86,
+"end": 17.16,
+"p": 0.99
+},
+{
+"word": "the",
+"start": 17.16,
+"end": 17.34,
+"p": 0.99
+},
+{
+"word": "tin.",
+"start": 17.34,
+"end": 17.46,
+"p": 0.85
+},
+{
+"word": "If",
+"start": 18.38,
+"end": 18.6,
+"p": 0.99
+},
+{
+"word": "you",
+"start": 18.6,
+"end": 18.72,
+"p": 1.0
+},
+{
+"word": "are",
+"start": 18.72,
+"end": 18.82,
+"p": 0.4
+},
+{
+"word": "a",
+"start": 18.82,
+"end": 19.36,
+"p": 0.76
+},
+{
+"word": "successful",
+"start": 19.36,
+"end": 19.38,
+"p": 1.0
+},
+{
+"word": "plus",
+"start": 19.98,
+"end": 20.3,
+"p": 0.21
+},
+{
+"word": "1",
+"start": 20.5,
+"end": 20.76,
+"p": 0.44
+},
+{
+"word": "million",
+"start": 20.76,
+"end": 21.2,
+"p": 0.94
+},
+{
+"word": "owner",
+"start": 22.12,
+"end": 22.42,
+"p": 0.95
+},
+{
+"word": "in",
+"start": 22.42,
+"end": 22.74,
+"p": 0.94
+},
+{
+"word": "terms",
+"start": 22.74,
+"end": 22.94,
+"p": 0.99
+},
+{
+"word": "of",
+"start": 22.94,
+"end": 23.14,
+"p": 1.0
+},
+{
+"word": "real",
+"start": 23.14,
+"end": 23.26,
+"p": 0.96
+},
+{
+"word": "estate",
+"start": 23.26,
+"end": 23.5,
+"p": 0.98
+},
+{
+"word": "assets",
+"start": 23.5,
+"end": 24.12,
+"p": 0.97
+},
+{
+"word": "a",
+"start": 24.12,
+"end": 24.62,
+"p": 0.13
+},
+{
+"word": "portfolio",
+"start": 24.62,
+"end": 25.14,
+"p": 0.98
+},
+{
+"word": "you",
+"start": 25.14,
+"end": 25.88,
+"p": 0.48
+},
+{
+"word": "definitely",
+"start": 25.88,
+"end": 26.34,
+"p": 0.87
+},
+{
+"word": "need",
+"start": 26.34,
+"end": 26.68,
+"p": 0.99
+},
+{
+"word": "a",
+"start": 26.68,
+"end": 26.82,
+"p": 0.71
+},
+{
+"word": "will.",
+"start": 26.82,
+"end": 26.98,
+"p": 0.96
+},
+{
+"word": "Not",
+"start": 27.88,
+"end": 27.94,
+"p": 0.96
+},
+{
+"word": "because",
+"start": 27.94,
+"end": 28.32,
+"p": 1.0
+},
+{
+"word": "the",
+"start": 28.32,
+"end": 28.6,
+"p": 0.98
+},
+{
+"word": "tax",
+"start": 28.6,
+"end": 28.8,
+"p": 0.97
+},
+{
+"word": "man",
+"start": 28.8,
+"end": 29.0,
+"p": 0.7
+},
+{
+"word": "is",
+"start": 29.0,
+"end": 29.12,
+"p": 0.37
+},
+{
+"word": "running",
+"start": 29.12,
+"end": 29.28,
+"p": 0.99
+},
+{
+"word": "after",
+"start": 29.28,
+"end": 29.58,
+"p": 0.72
+},
+{
+"word": "you",
+"start": 29.58,
+"end": 29.76,
+"p": 0.94
+},
+{
+"word": "but",
+"start": 29.76,
+"end": 30.04,
+"p": 0.14
+},
+{
+"word": "because",
+"start": 30.04,
+"end": 30.18,
+"p": 0.91
+},
+{
+"word": "you",
+"start": 30.18,
+"end": 30.5,
+"p": 0.99
+},
+{
+"word": "need",
+"start": 30.5,
+"end": 30.68,
+"p": 1.0
+},
+{
+"word": "to",
+"start": 30.68,
+"end": 30.86,
+"p": 1.0
+},
+{
+"word": "sit",
+"start": 30.86,
+"end": 31.02,
+"p": 0.99
+},
+{
+"word": "down",
+"start": 31.02,
+"end": 31.34,
+"p": 1.0
+},
+{
+"word": "and",
+"start": 31.34,
+"end": 31.56,
+"p": 0.99
+},
+{
+"word": "figure",
+"start": 31.56,
+"end": 31.74,
+"p": 0.99
+},
+{
+"word": "out",
+"start": 31.74,
+"end": 32.08,
+"p": 0.99
+},
+{
+"word": "what",
+"start": 32.08,
+"end": 32.54,
+"p": 0.99
+},
+{
+"word": "you",
+"start": 32.54,
+"end": 32.7,
+"p": 0.99
+},
+{
+"word": "can",
+"start": 32.7,
+"end": 32.88,
+"p": 1.0
+},
+{
+"word": "restructure",
+"start": 32.88,
+"end": 33.46,
+"p": 0.98
+},
+{
+"word": "so",
+"start": 33.46,
+"end": 33.74,
+"p": 0.93
+},
+{
+"word": "that",
+"start": 33.74,
+"end": 33.9,
+"p": 0.96
+},
+{
+"word": "the",
+"start": 33.9,
+"end": 34.12,
+"p": 0.98
+},
+{
+"word": "family",
+"start": 34.12,
+"end": 34.52,
+"p": 1.0
+},
+{
+"word": "that",
+"start": 34.52,
+"end": 35.04,
+"p": 0.89
+},
+{
+"word": "you",
+"start": 35.04,
+"end": 35.26,
+"p": 1.0
+},
+{
+"word": "leave",
+"start": 35.26,
+"end": 35.62,
+"p": 0.99
+},
+{
+"word": "all",
+"start": 35.62,
+"end": 35.84,
+"p": 0.98
+},
+{
+"word": "your",
+"start": 35.84,
+"end": 36.0,
+"p": 0.84
+},
+{
+"word": "wealth",
+"start": 36.0,
+"end": 36.22,
+"p": 1.0
+},
+{
+"word": "to,",
+"start": 36.22,
+"end": 36.46,
+"p": 0.94
+},
+{
+"word": "all",
+"start": 36.6,
+"end": 36.72,
+"p": 0.95
+},
+{
+"word": "of",
+"start": 36.72,
+"end": 36.86,
+"p": 0.93
+},
+{
+"word": "your",
+"start": 36.86,
+"end": 37.02,
+"p": 0.99
+},
+{
+"word": "success",
+"start": 37.02,
+"end": 37.32,
+"p": 0.99
+},
+{
+"word": "to,",
+"start": 37.32,
+"end": 37.68,
+"p": 0.97
+},
+{
+"word": "have",
+"start": 38.06,
+"end": 38.16,
+"p": 0.96
+},
+{
+"word": "a",
+"start": 38.16,
+"end": 38.36,
+"p": 1.0
+},
+{
+"word": "blueprint",
+"start": 38.36,
+"end": 38.72,
+"p": 0.99
+},
+{
+"word": "to",
+"start": 38.72,
+"end": 39.34,
+"p": 0.99
+},
+{
+"word": "follow",
+"start": 39.34,
+"end": 39.68,
+"p": 0.99
+},
+{
+"word": "to",
+"start": 39.68,
+"end": 40.06,
+"p": 0.9
+},
+{
+"word": "make",
+"start": 40.06,
+"end": 40.24,
+"p": 1.0
+},
+{
+"word": "sure",
+"start": 40.24,
+"end": 40.54,
+"p": 1.0
+},
+{
+"word": "they",
+"start": 41.3,
+"end": 41.74,
+"p": 0.94
+},
+{
+"word": "don't",
+"start": 41.74,
+"end": 41.96,
+"p": 1.0
+},
+{
+"word": "waste",
+"start": 41.96,
+"end": 42.16,
+"p": 1.0
+},
+{
+"word": "any",
+"start": 42.16,
+"end": 42.44,
+"p": 0.81
+},
+{
+"word": "more",
+"start": 42.44,
+"end": 42.56,
+"p": 1.0
+},
+{
+"word": "money.",
+"start": 42.56,
+"end": 42.84,
+"p": 1.0
+},
+{
+"word": "I'm",
+"start": 43.94,
+"end": 44.08,
+"p": 0.96
+},
+{
+"word": "going",
+"start": 44.08,
+"end": 44.16,
+"p": 0.57
+},
+{
+"word": "to",
+"start": 44.16,
+"end": 44.22,
+"p": 0.99
+},
+{
+"word": "try",
+"start": 44.22,
+"end": 44.34,
+"p": 1.0
+},
+{
+"word": "that",
+"start": 44.34,
+"end": 44.48,
+"p": 0.99
+},
+{
+"word": "again.",
+"start": 44.48,
+"end": 44.8,
+"p": 0.99
+}
+]

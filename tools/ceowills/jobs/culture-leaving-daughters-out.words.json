@@ -1,0 +1,2078 @@
+[
+{
+"word": "My",
+"start": 3.2,
+"end": 3.28,
+"p": 0.19
+},
+{
+"word": "brothers,",
+"start": 3.28,
+"end": 3.6,
+"p": 0.89
+},
+{
+"word": "one",
+"start": 3.84,
+"end": 3.96,
+"p": 0.93
+},
+{
+"word": "of",
+"start": 3.96,
+"end": 4.16,
+"p": 0.99
+},
+{
+"word": "the",
+"start": 4.16,
+"end": 4.48,
+"p": 0.98
+},
+{
+"word": "biggest",
+"start": 4.48,
+"end": 4.86,
+"p": 0.99
+},
+{
+"word": "fitnas",
+"start": 4.86,
+"end": 5.32,
+"p": 0.68
+},
+{
+"word": "that",
+"start": 5.32,
+"end": 5.66,
+"p": 0.79
+},
+{
+"word": "I",
+"start": 5.66,
+"end": 5.8,
+"p": 0.96
+},
+{
+"word": "see",
+"start": 5.8,
+"end": 6.12,
+"p": 0.99
+},
+{
+"word": "in",
+"start": 6.12,
+"end": 6.32,
+"p": 0.97
+},
+{
+"word": "my",
+"start": 6.32,
+"end": 6.56,
+"p": 0.95
+},
+{
+"word": "practice",
+"start": 6.56,
+"end": 6.9,
+"p": 0.99
+},
+{
+"word": "is",
+"start": 6.9,
+"end": 7.28,
+"p": 0.94
+},
+{
+"word": "when",
+"start": 7.28,
+"end": 7.66,
+"p": 0.97
+},
+{
+"word": "parents",
+"start": 7.66,
+"end": 8.72,
+"p": 0.95
+},
+{
+"word": "leave",
+"start": 8.72,
+"end": 9.2,
+"p": 0.98
+},
+{
+"word": "out",
+"start": 9.2,
+"end": 9.68,
+"p": 0.97
+},
+{
+"word": "their",
+"start": 9.68,
+"end": 10.22,
+"p": 0.98
+},
+{
+"word": "daughters",
+"start": 10.22,
+"end": 10.54,
+"p": 0.97
+},
+{
+"word": "within",
+"start": 10.54,
+"end": 11.08,
+"p": 0.97
+},
+{
+"word": "their",
+"start": 11.08,
+"end": 11.34,
+"p": 0.99
+},
+{
+"word": "wills.",
+"start": 11.34,
+"end": 11.56,
+"p": 0.94
+},
+{
+"word": "Why",
+"start": 12.9,
+"end": 13.02,
+"p": 0.95
+},
+{
+"word": "is",
+"start": 13.02,
+"end": 13.16,
+"p": 0.99
+},
+{
+"word": "that",
+"start": 13.16,
+"end": 13.28,
+"p": 0.96
+},
+{
+"word": "a",
+"start": 13.28,
+"end": 13.42,
+"p": 0.98
+},
+{
+"word": "big",
+"start": 13.42,
+"end": 13.62,
+"p": 0.99
+},
+{
+"word": "musiba?",
+"start": 13.62,
+"end": 13.82,
+"p": 0.12
+},
+{
+"word": "Why",
+"start": 14.06,
+"end": 14.3,
+"p": 0.86
+},
+{
+"word": "is",
+"start": 14.3,
+"end": 14.42,
+"p": 0.99
+},
+{
+"word": "that",
+"start": 14.42,
+"end": 14.56,
+"p": 0.95
+},
+{
+"word": "a",
+"start": 14.56,
+"end": 14.74,
+"p": 0.99
+},
+{
+"word": "big",
+"start": 14.74,
+"end": 14.84,
+"p": 0.99
+},
+{
+"word": "tragedy?",
+"start": 14.84,
+"end": 15.32,
+"p": 0.99
+},
+{
+"word": "It's",
+"start": 15.74,
+"end": 15.84,
+"p": 0.86
+},
+{
+"word": "because",
+"start": 15.84,
+"end": 16.12,
+"p": 1.0
+},
+{
+"word": "Allah",
+"start": 16.12,
+"end": 16.42,
+"p": 0.97
+},
+{
+"word": "actually",
+"start": 16.42,
+"end": 16.84,
+"p": 0.93
+},
+{
+"word": "instructed",
+"start": 16.84,
+"end": 17.3,
+"p": 0.98
+},
+{
+"word": "us",
+"start": 17.3,
+"end": 17.54,
+"p": 0.99
+},
+{
+"word": "in",
+"start": 17.54,
+"end": 17.66,
+"p": 0.97
+},
+{
+"word": "the",
+"start": 17.66,
+"end": 17.76,
+"p": 0.98
+},
+{
+"word": "Quran",
+"start": 17.76,
+"end": 18.02,
+"p": 0.76
+},
+{
+"word": "to",
+"start": 18.02,
+"end": 18.64,
+"p": 0.96
+},
+{
+"word": "leave",
+"start": 18.64,
+"end": 18.82,
+"p": 0.98
+},
+{
+"word": "wealth",
+"start": 18.82,
+"end": 19.18,
+"p": 0.99
+},
+{
+"word": "to",
+"start": 19.18,
+"end": 19.56,
+"p": 0.99
+},
+{
+"word": "our",
+"start": 19.56,
+"end": 19.76,
+"p": 0.99
+},
+{
+"word": "nuclear",
+"start": 19.76,
+"end": 20.12,
+"p": 0.99
+},
+{
+"word": "family.",
+"start": 20.12,
+"end": 20.48,
+"p": 0.97
+},
+{
+"word": "That",
+"start": 20.58,
+"end": 20.74,
+"p": 0.97
+},
+{
+"word": "includes",
+"start": 20.74,
+"end": 21.2,
+"p": 0.99
+},
+{
+"word": "your",
+"start": 21.2,
+"end": 21.4,
+"p": 0.97
+},
+{
+"word": "daughters.",
+"start": 21.4,
+"end": 21.72,
+"p": 0.99
+},
+{
+"word": "How",
+"start": 22.6,
+"end": 22.74,
+"p": 0.99
+},
+{
+"word": "often",
+"start": 22.74,
+"end": 23.04,
+"p": 1.0
+},
+{
+"word": "have",
+"start": 23.04,
+"end": 23.22,
+"p": 0.99
+},
+{
+"word": "I",
+"start": 23.22,
+"end": 23.34,
+"p": 0.99
+},
+{
+"word": "seen",
+"start": 23.34,
+"end": 23.58,
+"p": 0.99
+},
+{
+"word": "daughters",
+"start": 23.58,
+"end": 23.98,
+"p": 0.98
+},
+{
+"word": "cry",
+"start": 23.98,
+"end": 24.48,
+"p": 0.99
+},
+{
+"word": "over",
+"start": 24.48,
+"end": 25.4,
+"p": 0.98
+},
+{
+"word": "the",
+"start": 25.4,
+"end": 25.88,
+"p": 0.99
+},
+{
+"word": "death",
+"start": 25.88,
+"end": 26.16,
+"p": 0.99
+},
+{
+"word": "of",
+"start": 26.16,
+"end": 26.36,
+"p": 1.0
+},
+{
+"word": "their",
+"start": 26.36,
+"end": 26.54,
+"p": 0.99
+},
+{
+"word": "parents",
+"start": 26.54,
+"end": 26.82,
+"p": 0.35
+},
+{
+"word": "but",
+"start": 26.82,
+"end": 27.62,
+"p": 0.4
+},
+{
+"word": "even",
+"start": 27.62,
+"end": 27.88,
+"p": 0.97
+},
+{
+"word": "more",
+"start": 27.88,
+"end": 28.12,
+"p": 0.99
+},
+{
+"word": "so",
+"start": 28.12,
+"end": 28.4,
+"p": 0.11
+},
+{
+"word": "when",
+"start": 28.4,
+"end": 28.96,
+"p": 0.58
+},
+{
+"word": "they",
+"start": 28.96,
+"end": 29.58,
+"p": 0.98
+},
+{
+"word": "know",
+"start": 29.58,
+"end": 29.78,
+"p": 0.96
+},
+{
+"word": "they've",
+"start": 29.78,
+"end": 30.18,
+"p": 0.82
+},
+{
+"word": "not",
+"start": 30.18,
+"end": 30.48,
+"p": 0.99
+},
+{
+"word": "been",
+"start": 30.48,
+"end": 30.66,
+"p": 0.95
+},
+{
+"word": "left",
+"start": 30.66,
+"end": 30.84,
+"p": 0.99
+},
+{
+"word": "anything",
+"start": 30.84,
+"end": 31.2,
+"p": 0.93
+},
+{
+"word": "behind?",
+"start": 31.2,
+"end": 31.66,
+"p": 1.0
+},
+{
+"word": "Big",
+"start": 32.32,
+"end": 32.4,
+"p": 0.45
+},
+{
+"word": "issue.",
+"start": 32.4,
+"end": 32.72,
+"p": 0.91
+},
+{
+"word": "Here's",
+"start": 33.88,
+"end": 34.14,
+"p": 0.96
+},
+{
+"word": "how",
+"start": 34.14,
+"end": 34.26,
+"p": 1.0
+},
+{
+"word": "we",
+"start": 34.26,
+"end": 34.44,
+"p": 0.99
+},
+{
+"word": "solve",
+"start": 34.44,
+"end": 34.64,
+"p": 0.99
+},
+{
+"word": "it",
+"start": 34.64,
+"end": 34.82,
+"p": 0.98
+},
+{
+"word": "at",
+"start": 34.82,
+"end": 35.04,
+"p": 0.96
+},
+{
+"word": "CEOwills.",
+"start": 35.04,
+"end": 35.56,
+"p": 0.42
+},
+{
+"word": "We",
+"start": 36.18,
+"end": 36.28,
+"p": 0.96
+},
+{
+"word": "make",
+"start": 36.28,
+"end": 36.5,
+"p": 0.99
+},
+{
+"word": "sure",
+"start": 36.5,
+"end": 36.68,
+"p": 1.0
+},
+{
+"word": "that",
+"start": 36.68,
+"end": 36.88,
+"p": 0.89
+},
+{
+"word": "you",
+"start": 36.88,
+"end": 37.08,
+"p": 0.99
+},
+{
+"word": "have",
+"start": 37.08,
+"end": 37.42,
+"p": 1.0
+},
+{
+"word": "a",
+"start": 37.42,
+"end": 37.78,
+"p": 0.99
+},
+{
+"word": "conversation",
+"start": 37.78,
+"end": 38.24,
+"p": 1.0
+},
+{
+"word": "with",
+"start": 38.24,
+"end": 38.5,
+"p": 1.0
+},
+{
+"word": "the",
+"start": 38.5,
+"end": 38.7,
+"p": 0.98
+},
+{
+"word": "family,",
+"start": 38.7,
+"end": 39.04,
+"p": 0.87
+},
+{
+"word": "the",
+"start": 39.26,
+"end": 39.46,
+"p": 0.98
+},
+{
+"word": "nuclear",
+"start": 39.46,
+"end": 39.78,
+"p": 0.98
+},
+{
+"word": "family,",
+"start": 39.78,
+"end": 40.24,
+"p": 1.0
+},
+{
+"word": "to",
+"start": 40.24,
+"end": 40.86,
+"p": 0.99
+},
+{
+"word": "ensure",
+"start": 40.86,
+"end": 41.12,
+"p": 0.99
+},
+{
+"word": "that",
+"start": 41.12,
+"end": 41.4,
+"p": 0.98
+},
+{
+"word": "everyone",
+"start": 41.4,
+"end": 41.72,
+"p": 0.99
+},
+{
+"word": "is",
+"start": 41.72,
+"end": 42.12,
+"p": 0.99
+},
+{
+"word": "involved.",
+"start": 42.12,
+"end": 42.6,
+"p": 1.0
+},
+{
+"word": "Making",
+"start": 43.24,
+"end": 43.42,
+"p": 0.97
+},
+{
+"word": "sure",
+"start": 43.42,
+"end": 43.64,
+"p": 1.0
+},
+{
+"word": "that",
+"start": 43.64,
+"end": 43.8,
+"p": 0.96
+},
+{
+"word": "everyone",
+"start": 43.8,
+"end": 44.06,
+"p": 0.99
+},
+{
+"word": "has",
+"start": 44.06,
+"end": 44.38,
+"p": 1.0
+},
+{
+"word": "their",
+"start": 44.38,
+"end": 44.56,
+"p": 0.88
+},
+{
+"word": "haqq,",
+"start": 44.56,
+"end": 44.86,
+"p": 0.62
+},
+{
+"word": "everyone",
+"start": 45.24,
+"end": 45.48,
+"p": 0.94
+},
+{
+"word": "has",
+"start": 45.48,
+"end": 45.82,
+"p": 0.99
+},
+{
+"word": "all",
+"start": 45.82,
+"end": 46.18,
+"p": 0.99
+},
+{
+"word": "of",
+"start": 46.18,
+"end": 46.32,
+"p": 0.9
+},
+{
+"word": "the",
+"start": 46.32,
+"end": 46.72,
+"p": 0.98
+},
+{
+"word": "correct",
+"start": 46.72,
+"end": 47.2,
+"p": 0.99
+},
+{
+"word": "procedures",
+"start": 47.2,
+"end": 47.72,
+"p": 0.99
+},
+{
+"word": "that",
+"start": 47.72,
+"end": 47.96,
+"p": 0.96
+},
+{
+"word": "are",
+"start": 47.96,
+"end": 48.12,
+"p": 0.97
+},
+{
+"word": "prescribed",
+"start": 48.12,
+"end": 48.62,
+"p": 0.97
+},
+{
+"word": "for",
+"start": 48.62,
+"end": 48.92,
+"p": 0.97
+},
+{
+"word": "us",
+"start": 48.92,
+"end": 49.06,
+"p": 1.0
+},
+{
+"word": "in",
+"start": 49.06,
+"end": 49.18,
+"p": 0.98
+},
+{
+"word": "the",
+"start": 49.18,
+"end": 49.3,
+"p": 0.98
+},
+{
+"word": "Quran.",
+"start": 49.3,
+"end": 49.52,
+"p": 0.69
+},
+{
+"word": "You",
+"start": 49.98,
+"end": 50.0,
+"p": 0.96
+},
+{
+"word": "see,",
+"start": 50.0,
+"end": 50.3,
+"p": 1.0
+},
+{
+"word": "Allah",
+"start": 50.66,
+"end": 50.86,
+"p": 0.98
+},
+{
+"word": "subhanahu",
+"start": 50.86,
+"end": 51.10666666666667,
+"p": 0.7
+},
+{
+"word": "wa",
+"start": 51.10666666666667,
+"end": 51.35333333333333,
+"p": 0.7
+},
+{
+"word": "ta'ala",
+"start": 51.35333333333333,
+"end": 51.6,
+"p": 0.7
+},
+{
+"word": "in",
+"start": 51.6,
+"end": 51.9,
+"p": 0.71
+},
+{
+"word": "his",
+"start": 51.9,
+"end": 52.36,
+"p": 0.65
+},
+{
+"word": "infinite",
+"start": 52.36,
+"end": 52.74,
+"p": 0.98
+},
+{
+"word": "wisdom",
+"start": 52.74,
+"end": 53.16,
+"p": 0.99
+},
+{
+"word": "has",
+"start": 53.16,
+"end": 53.78,
+"p": 0.78
+},
+{
+"word": "already",
+"start": 53.78,
+"end": 54.16,
+"p": 0.99
+},
+{
+"word": "given",
+"start": 54.16,
+"end": 54.58,
+"p": 1.0
+},
+{
+"word": "us",
+"start": 54.58,
+"end": 54.84,
+"p": 0.99
+},
+{
+"word": "a",
+"start": 54.84,
+"end": 55.18,
+"p": 0.99
+},
+{
+"word": "blueprint",
+"start": 55.18,
+"end": 55.56,
+"p": 0.98
+},
+{
+"word": "as",
+"start": 55.56,
+"end": 55.88,
+"p": 0.98
+},
+{
+"word": "to",
+"start": 55.88,
+"end": 56.12,
+"p": 1.0
+},
+{
+"word": "how",
+"start": 56.12,
+"end": 56.38,
+"p": 0.99
+},
+{
+"word": "and",
+"start": 56.38,
+"end": 56.64,
+"p": 0.56
+},
+{
+"word": "why",
+"start": 56.64,
+"end": 56.96,
+"p": 0.97
+},
+{
+"word": "we",
+"start": 56.96,
+"end": 57.16,
+"p": 0.98
+},
+{
+"word": "should",
+"start": 57.16,
+"end": 57.38,
+"p": 0.99
+},
+{
+"word": "leave",
+"start": 57.38,
+"end": 57.76,
+"p": 0.99
+},
+{
+"word": "wealth",
+"start": 57.76,
+"end": 58.12,
+"p": 0.99
+},
+{
+"word": "behind,",
+"start": 58.12,
+"end": 58.6,
+"p": 1.0
+},
+{
+"word": "who",
+"start": 59.1,
+"end": 59.36,
+"p": 0.98
+},
+{
+"word": "it",
+"start": 59.36,
+"end": 59.64,
+"p": 0.99
+},
+{
+"word": "actually",
+"start": 59.64,
+"end": 60.08,
+"p": 0.97
+},
+{
+"word": "assists,",
+"start": 60.08,
+"end": 60.66,
+"p": 0.99
+},
+{
+"word": "what",
+"start": 61.2,
+"end": 61.36,
+"p": 0.98
+},
+{
+"word": "societal",
+"start": 61.36,
+"end": 62.0,
+"p": 1.0
+},
+{
+"word": "ills",
+"start": 62.0,
+"end": 62.46,
+"p": 0.99
+},
+{
+"word": "will",
+"start": 62.46,
+"end": 62.74,
+"p": 0.98
+},
+{
+"word": "be",
+"start": 62.74,
+"end": 62.92,
+"p": 1.0
+},
+{
+"word": "prevented,",
+"start": 62.92,
+"end": 63.42,
+"p": 0.98
+},
+{
+"word": "circumvented,",
+"start": 64.02,
+"end": 64.94,
+"p": 0.99
+},
+{
+"word": "avoided",
+"start": 65.06,
+"end": 65.54,
+"p": 0.98
+},
+{
+"word": "entirely",
+"start": 65.54,
+"end": 66.18,
+"p": 0.98
+},
+{
+"word": "if",
+"start": 66.18,
+"end": 66.8,
+"p": 0.78
+},
+{
+"word": "you",
+"start": 66.8,
+"end": 66.96,
+"p": 0.95
+},
+{
+"word": "have",
+"start": 66.96,
+"end": 67.32,
+"p": 0.98
+},
+{
+"word": "regard",
+"start": 67.32,
+"end": 67.8,
+"p": 0.43
+},
+{
+"word": "for",
+"start": 67.8,
+"end": 68.06,
+"p": 0.99
+},
+{
+"word": "all",
+"start": 68.06,
+"end": 68.32,
+"p": 0.97
+},
+{
+"word": "family",
+"start": 68.32,
+"end": 68.64,
+"p": 0.99
+},
+{
+"word": "members.",
+"start": 68.64,
+"end": 69.08,
+"p": 1.0
+},
+{
+"word": "That",
+"start": 69.88,
+"end": 70.1,
+"p": 0.97
+},
+{
+"word": "means",
+"start": 70.1,
+"end": 70.5,
+"p": 1.0
+},
+{
+"word": "you're",
+"start": 70.5,
+"end": 70.88,
+"p": 0.8
+},
+{
+"word": "not",
+"start": 70.88,
+"end": 70.98,
+"p": 1.0
+},
+{
+"word": "squandering",
+"start": 70.98,
+"end": 71.52,
+"p": 0.98
+},
+{
+"word": "your",
+"start": 71.52,
+"end": 71.78,
+"p": 0.99
+},
+{
+"word": "wealth",
+"start": 71.78,
+"end": 72.0,
+"p": 0.99
+},
+{
+"word": "on",
+"start": 72.0,
+"end": 72.2,
+"p": 0.56
+},
+{
+"word": "just",
+"start": 72.2,
+"end": 72.4,
+"p": 0.56
+},
+{
+"word": "the",
+"start": 72.4,
+"end": 72.64,
+"p": 0.92
+},
+{
+"word": "sons,",
+"start": 72.64,
+"end": 72.94,
+"p": 0.99
+},
+{
+"word": "you're",
+"start": 73.22,
+"end": 73.54,
+"p": 0.97
+},
+{
+"word": "sharing",
+"start": 73.54,
+"end": 73.82,
+"p": 0.98
+},
+{
+"word": "it",
+"start": 73.82,
+"end": 74.02,
+"p": 0.93
+},
+{
+"word": "and",
+"start": 74.02,
+"end": 74.14,
+"p": 0.95
+},
+{
+"word": "distributing",
+"start": 74.14,
+"end": 74.6,
+"p": 0.99
+},
+{
+"word": "it,",
+"start": 74.6,
+"end": 74.94,
+"p": 0.99
+},
+{
+"word": "distributing",
+"start": 75.38,
+"end": 75.84,
+"p": 0.95
+},
+{
+"word": "it",
+"start": 75.84,
+"end": 76.22,
+"p": 0.98
+},
+{
+"word": "in",
+"start": 76.22,
+"end": 76.4,
+"p": 0.99
+},
+{
+"word": "such",
+"start": 76.4,
+"end": 76.56,
+"p": 0.97
+},
+{
+"word": "a",
+"start": 76.56,
+"end": 76.74,
+"p": 0.99
+},
+{
+"word": "way",
+"start": 76.74,
+"end": 76.84,
+"p": 1.0
+},
+{
+"word": "that",
+"start": 76.84,
+"end": 77.02,
+"p": 0.99
+},
+{
+"word": "it",
+"start": 77.02,
+"end": 77.12,
+"p": 0.09
+},
+{
+"word": "pleases",
+"start": 77.12,
+"end": 77.36,
+"p": 1.0
+},
+{
+"word": "not",
+"start": 77.36,
+"end": 77.6,
+"p": 0.97
+},
+{
+"word": "only",
+"start": 77.6,
+"end": 77.84,
+"p": 1.0
+},
+{
+"word": "Allah",
+"start": 77.84,
+"end": 78.08,
+"p": 0.96
+},
+{
+"word": "but",
+"start": 78.08,
+"end": 78.32,
+"p": 0.87
+},
+{
+"word": "also",
+"start": 78.32,
+"end": 78.68,
+"p": 0.97
+},
+{
+"word": "all",
+"start": 78.68,
+"end": 78.94,
+"p": 0.98
+},
+{
+"word": "of",
+"start": 78.94,
+"end": 79.06,
+"p": 0.92
+},
+{
+"word": "your",
+"start": 79.06,
+"end": 79.22,
+"p": 0.99
+},
+{
+"word": "family.",
+"start": 79.22,
+"end": 79.56,
+"p": 1.0
+},
+{
+"word": "Here",
+"start": 80.76,
+"end": 80.92,
+"p": 0.98
+},
+{
+"word": "at",
+"start": 80.92,
+"end": 81.06,
+"p": 0.99
+},
+{
+"word": "CEOwills",
+"start": 81.06,
+"end": 81.52,
+"p": 0.56
+},
+{
+"word": "we",
+"start": 81.52,
+"end": 81.96,
+"p": 0.73
+},
+{
+"word": "can",
+"start": 81.96,
+"end": 82.12,
+"p": 0.99
+},
+{
+"word": "help",
+"start": 82.12,
+"end": 82.3,
+"p": 1.0
+},
+{
+"word": "you",
+"start": 82.3,
+"end": 82.48,
+"p": 0.97
+},
+{
+"word": "with",
+"start": 82.48,
+"end": 82.62,
+"p": 0.99
+},
+{
+"word": "that,",
+"start": 82.62,
+"end": 82.92,
+"p": 1.0
+},
+{
+"word": "we'll",
+"start": 83.2,
+"end": 83.36,
+"p": 0.95
+},
+{
+"word": "make",
+"start": 83.36,
+"end": 83.5,
+"p": 1.0
+},
+{
+"word": "sure",
+"start": 83.5,
+"end": 83.7,
+"p": 1.0
+},
+{
+"word": "that",
+"start": 83.7,
+"end": 83.92,
+"p": 0.78
+},
+{
+"word": "you",
+"start": 83.92,
+"end": 84.08,
+"p": 1.0
+},
+{
+"word": "have",
+"start": 84.08,
+"end": 84.36,
+"p": 0.99
+},
+{
+"word": "the",
+"start": 84.36,
+"end": 84.58,
+"p": 0.73
+},
+{
+"word": "correct",
+"start": 84.58,
+"end": 84.98,
+"p": 0.77
+},
+{
+"word": "guidance,",
+"start": 84.98,
+"end": 85.5,
+"p": 0.99
+},
+{
+"word": "the",
+"start": 86.3,
+"end": 86.42,
+"p": 0.97
+},
+{
+"word": "right",
+"start": 86.42,
+"end": 86.68,
+"p": 0.99
+},
+{
+"word": "framework,",
+"start": 86.68,
+"end": 87.28,
+"p": 0.98
+},
+{
+"word": "and",
+"start": 87.54,
+"end": 88.26,
+"p": 0.92
+},
+{
+"word": "the",
+"start": 88.26,
+"end": 88.5,
+"p": 0.96
+},
+{
+"word": "entire",
+"start": 88.5,
+"end": 88.86,
+"p": 0.98
+},
+{
+"word": "family",
+"start": 88.86,
+"end": 89.34,
+"p": 0.99
+},
+{
+"word": "is",
+"start": 89.34,
+"end": 89.56,
+"p": 0.97
+},
+{
+"word": "included",
+"start": 89.56,
+"end": 90.08,
+"p": 1.0
+},
+{
+"word": "to",
+"start": 90.08,
+"end": 90.62,
+"p": 0.75
+},
+{
+"word": "make",
+"start": 90.62,
+"end": 90.78,
+"p": 0.99
+},
+{
+"word": "sure",
+"start": 90.78,
+"end": 91.0,
+"p": 1.0
+},
+{
+"word": "that",
+"start": 91.0,
+"end": 91.22,
+"p": 0.72
+},
+{
+"word": "there",
+"start": 91.22,
+"end": 91.38,
+"p": 0.99
+},
+{
+"word": "are",
+"start": 91.38,
+"end": 91.56,
+"p": 0.98
+},
+{
+"word": "no",
+"start": 91.56,
+"end": 91.76,
+"p": 0.99
+},
+{
+"word": "qualms,",
+"start": 91.76,
+"end": 92.22,
+"p": 0.51
+},
+{
+"word": "no",
+"start": 93.0,
+"end": 93.12,
+"p": 0.98
+},
+{
+"word": "litigation,",
+"start": 93.12,
+"end": 93.68,
+"p": 0.97
+},
+{
+"word": "no",
+"start": 93.86,
+"end": 94.0,
+"p": 0.96
+},
+{
+"word": "fights",
+"start": 94.0,
+"end": 94.4,
+"p": 0.63
+},
+{
+"word": "after",
+"start": 94.4,
+"end": 94.76,
+"p": 0.94
+},
+{
+"word": "you",
+"start": 94.76,
+"end": 94.92,
+"p": 0.97
+},
+{
+"word": "passed",
+"start": 94.92,
+"end": 95.18,
+"p": 0.71
+},
+{
+"word": "on.",
+"start": 95.18,
+"end": 95.5,
+"p": 0.97
+},
+{
+"word": "More",
+"start": 96.18,
+"end": 96.36,
+"p": 0.98
+},
+{
+"word": "importantly,",
+"start": 96.36,
+"end": 96.94,
+"p": 1.0
+},
+{
+"word": "how",
+"start": 97.54,
+"end": 97.74,
+"p": 0.98
+},
+{
+"word": "will",
+"start": 97.74,
+"end": 97.9,
+"p": 0.98
+},
+{
+"word": "you",
+"start": 97.9,
+"end": 98.06,
+"p": 1.0
+},
+{
+"word": "answer",
+"start": 98.06,
+"end": 98.34,
+"p": 1.0
+},
+{
+"word": "to",
+"start": 98.34,
+"end": 98.54,
+"p": 0.97
+},
+{
+"word": "Allah",
+"start": 98.54,
+"end": 98.78,
+"p": 0.97
+},
+{
+"word": "subhanahu",
+"start": 98.78,
+"end": 99.00666666666666,
+"p": 0.6
+},
+{
+"word": "wa",
+"start": 99.00666666666666,
+"end": 99.23333333333333,
+"p": 0.6
+},
+{
+"word": "ta'ala",
+"start": 99.23333333333333,
+"end": 99.46,
+"p": 0.6
+},
+{
+"word": "when",
+"start": 99.46,
+"end": 100.36,
+"p": 0.91
+},
+{
+"word": "it",
+"start": 100.36,
+"end": 101.34,
+"p": 0.85
+},
+{
+"word": "is",
+"start": 101.34,
+"end": 101.54,
+"p": 0.97
+},
+{
+"word": "time",
+"start": 101.54,
+"end": 101.8,
+"p": 0.98
+},
+{
+"word": "to",
+"start": 101.8,
+"end": 102.04,
+"p": 0.99
+},
+{
+"word": "stand",
+"start": 102.04,
+"end": 102.28,
+"p": 1.0
+},
+{
+"word": "in",
+"start": 102.28,
+"end": 102.5,
+"p": 0.98
+},
+{
+"word": "front",
+"start": 102.5,
+"end": 102.6,
+"p": 0.99
+},
+{
+"word": "of",
+"start": 102.6,
+"end": 102.84,
+"p": 0.99
+},
+{
+"word": "him",
+"start": 102.84,
+"end": 103.04,
+"p": 0.65
+},
+{
+"word": "but",
+"start": 103.04,
+"end": 103.58,
+"p": 0.56
+},
+{
+"word": "your",
+"start": 103.58,
+"end": 103.84,
+"p": 0.97
+},
+{
+"word": "daughter,",
+"start": 103.84,
+"end": 104.24,
+"p": 0.9
+},
+{
+"word": "your",
+"start": 104.64,
+"end": 104.8,
+"p": 0.96
+},
+{
+"word": "women",
+"start": 104.8,
+"end": 105.06,
+"p": 0.97
+},
+{
+"word": "folk",
+"start": 105.06,
+"end": 105.36,
+"p": 0.69
+},
+{
+"word": "are",
+"start": 105.36,
+"end": 105.64,
+"p": 0.86
+},
+{
+"word": "crying",
+"start": 105.64,
+"end": 105.98,
+"p": 0.99
+},
+{
+"word": "out",
+"start": 105.98,
+"end": 106.3,
+"p": 0.99
+},
+{
+"word": "they",
+"start": 106.3,
+"end": 106.54,
+"p": 0.59
+},
+{
+"word": "did",
+"start": 106.54,
+"end": 106.72,
+"p": 0.98
+},
+{
+"word": "not",
+"start": 106.72,
+"end": 106.94,
+"p": 0.99
+},
+{
+"word": "get",
+"start": 106.94,
+"end": 107.16,
+"p": 1.0
+},
+{
+"word": "their",
+"start": 107.16,
+"end": 107.38,
+"p": 0.98
+},
+{
+"word": "haqq?",
+"start": 107.38,
+"end": 107.7,
+"p": 0.5
+},
+{
+"word": "Uncles,",
+"start": 108.32,
+"end": 108.8,
+"p": 0.59
+},
+{
+"word": "brothers,",
+"start": 109.1,
+"end": 109.3,
+"p": 0.82
+},
+{
+"word": "fathers,",
+"start": 110.1,
+"end": 110.4,
+"p": 0.97
+},
+{
+"word": "I'm",
+"start": 111.32,
+"end": 111.44,
+"p": 0.86
+},
+{
+"word": "talking",
+"start": 111.44,
+"end": 111.68,
+"p": 1.0
+},
+{
+"word": "to",
+"start": 111.68,
+"end": 111.9,
+"p": 1.0
+},
+{
+"word": "all",
+"start": 111.9,
+"end": 112.04,
+"p": 0.98
+},
+{
+"word": "of",
+"start": 112.04,
+"end": 112.18,
+"p": 1.0
+},
+{
+"word": "you,",
+"start": 112.18,
+"end": 112.4,
+"p": 1.0
+},
+{
+"word": "we",
+"start": 112.96,
+"end": 113.5,
+"p": 0.92
+},
+{
+"word": "can't",
+"start": 113.5,
+"end": 113.78,
+"p": 0.99
+},
+{
+"word": "make",
+"start": 113.78,
+"end": 113.92,
+"p": 1.0
+},
+{
+"word": "that",
+"start": 113.92,
+"end": 114.12,
+"p": 0.99
+},
+{
+"word": "mistake,",
+"start": 114.12,
+"end": 114.58,
+"p": 1.0
+},
+{
+"word": "at",
+"start": 115.3,
+"end": 115.46,
+"p": 0.93
+},
+{
+"word": "CEOwills",
+"start": 115.46,
+"end": 116.04,
+"p": 0.05
+},
+{
+"word": "we'll",
+"start": 116.04,
+"end": 116.5,
+"p": 0.79
+},
+{
+"word": "help",
+"start": 116.5,
+"end": 116.68,
+"p": 0.99
+},
+{
+"word": "you",
+"start": 116.68,
+"end": 116.82,
+"p": 0.97
+},
+{
+"word": "get",
+"start": 116.82,
+"end": 116.96,
+"p": 0.99
+},
+{
+"word": "that",
+"start": 116.96,
+"end": 117.12,
+"p": 0.97
+},
+{
+"word": "sorted.",
+"start": 117.12,
+"end": 117.94,
+"p": 1.0
+},
+{
+"word": "If",
+"start": 126.46,
+"end": 126.94,
+"p": 0.8
+},
+{
+"word": "you",
+"start": 126.94,
+"end": 127.42,
+"p": 1.0
+},
+{
+"word": "are",
+"start": 127.42,
+"end": 127.56,
+"p": 0.95
+},
+{
+"word": "someone's",
+"start": 127.56,
+"end": 128.06,
+"p": 0.98
+},
+{
+"word": "daughter",
+"start": 128.06,
+"end": 128.34,
+"p": 0.99
+},
+{
+"word": "and",
+"start": 128.34,
+"end": 129.06,
+"p": 0.79
+},
+{
+"word": "you",
+"start": 129.06,
+"end": 129.26,
+"p": 0.98
+},
+{
+"word": "would",
+"start": 129.26,
+"end": 129.42,
+"p": 0.96
+},
+{
+"word": "like",
+"start": 129.42,
+"end": 129.58,
+"p": 1.0
+},
+{
+"word": "to",
+"start": 129.58,
+"end": 129.78,
+"p": 1.0
+},
+{
+"word": "know",
+"start": 129.78,
+"end": 130.1,
+"p": 1.0
+},
+{
+"word": "what",
+"start": 130.1,
+"end": 130.54,
+"p": 0.97
+},
+{
+"word": "haqq",
+"start": 130.54,
+"end": 130.86,
+"p": 0.32
+},
+{
+"word": "and",
+"start": 130.86,
+"end": 131.1,
+"p": 0.77
+},
+{
+"word": "what",
+"start": 131.1,
+"end": 131.38,
+"p": 0.99
+},
+{
+"word": "you",
+"start": 131.38,
+"end": 131.92,
+"p": 0.99
+},
+{
+"word": "are",
+"start": 131.92,
+"end": 132.08,
+"p": 0.39
+},
+{
+"word": "preserved",
+"start": 132.08,
+"end": 132.54,
+"p": 0.96
+},
+{
+"word": "and",
+"start": 132.54,
+"end": 132.78,
+"p": 0.91
+},
+{
+"word": "what",
+"start": 132.78,
+"end": 132.92,
+"p": 0.96
+},
+{
+"word": "you",
+"start": 132.92,
+"end": 133.1,
+"p": 0.97
+},
+{
+"word": "are",
+"start": 133.1,
+"end": 133.32,
+"p": 0.67
+},
+{
+"word": "given",
+"start": 133.32,
+"end": 133.62,
+"p": 0.93
+},
+{
+"word": "by",
+"start": 133.62,
+"end": 134.58,
+"p": 0.91
+},
+{
+"word": "Allah",
+"start": 134.58,
+"end": 134.88,
+"p": 0.99
+},
+{
+"word": "subhanahu",
+"start": 134.88,
+"end": 135.10666666666665,
+"p": 0.78
+},
+{
+"word": "wa",
+"start": 135.10666666666665,
+"end": 135.33333333333334,
+"p": 0.78
+},
+{
+"word": "ta'ala,",
+"start": 135.33333333333334,
+"end": 135.56,
+"p": 0.78
+},
+{
+"word": "Comment",
+"start": 136.18,
+"end": 136.32,
+"p": 0.88
+},
+{
+"word": "DAUGHTERS",
+"start": 136.32,
+"end": 136.78,
+"p": 0.61
+},
+{
+"word": "below.",
+"start": 136.78,
+"end": 137.08,
+"p": 0.86
+}
+]

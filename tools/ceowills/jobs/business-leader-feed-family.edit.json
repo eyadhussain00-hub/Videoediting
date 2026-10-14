@@ -1,0 +1,396 @@
+{
+ "_source": "Raw 'if you are a business leader that wants to feed family.MP4' (client Drive id 1b_1RMw3LYFEWSqygIWl4yJGeXgDzzchQ); mic = 'hmr took 8.5bn in inheritance tax.wav' (Mic 2) @ 1081.8074 s. One clean take (slate 'three, two, one… ready Mike? go, testing' cut); pauses by pauses.py over 7.10–99.84, last cut held to 101.0 (silent) so the CTA reads. Words: 'CEO'+'Wills' → 'CEOwills', '40'+'%' → '40%' (jobs/business-leader-feed-family.words.json → words/leader.fixed.json; src/leader.MP4 and mic/leader.mic.wav are symlinks to the full-name files). Nasheed the-sins (muffled; Eyad asked for it on v3, was bika-moulhimi). v5 (Eyad): 'setting off and' cut (keep 'putting off'), the doubled 'blueprint, blueprint' cut to one, 0.6 s pause after 'wills and' tightened; words re-timed from a verbatim pass. iMessage cards picked by topic (Eyad 29 Sep: switch them up, match what he's saying): legacy-decades, got-you-thinking. v10 (30 Sep): re-tightened; the breath between '…than you need to.' and 'To make sure…' kept (63.88–70.04 one cut) so it doesn't read as a 'to, to' stutter (stutters.py --ok 51.28 in v10, 51.84 in v11: 'than you need to, to make sure…' is a purpose clause, not a repeat); card 2 moved to 45 s ('here at CEOwills… business owners like you succeed. You aren't paying more taxes') — at 51.6 he leans up and the card reached his hair. 1 Oct (Eyad): no shot under 0.8 s inside one take (the 0.44 s flash cut at 1:25 in #2), air after lines 0.12 s, title without a question mark, title font sans. 1 Oct (Sofian, 15:48): pauses ≥ 0.15 s cut to 0.08 s with smooth joins inside a take, end 0.35 s after the last word, captions higher, title under the platform bar. 2 Oct (Eyad): no title text on the video.",
+ "name": "Business leader feeding your family",
+ "video": "src/leader.MP4",
+ "rotate": "ccw",
+ "audio": "mic/leader.mic.wav",
+ "words": "words/leader.fixed.json",
+ "cuts": [
+  {
+   "in": 7.2,
+   "out": 8.36
+  },
+  {
+   "in": 8.44,
+   "out": 10.88,
+   "punch": true
+  },
+  {
+   "in": 11.12,
+   "out": 12.28
+  },
+  {
+   "in": 12.6,
+   "out": 13.84,
+   "punch": true
+  },
+  {
+   "in": 14.08,
+   "out": 15.24
+  },
+  {
+   "in": 15.56,
+   "out": 20.64,
+   "punch": true
+  },
+  {
+   "in": 20.76,
+   "out": 21.68
+  },
+  {
+   "in": 21.8,
+   "out": 22.96,
+   "punch": true
+  },
+  {
+   "in": 23.12,
+   "out": 26.08
+  },
+  {
+   "in": 26.44,
+   "out": 28.39,
+   "punch": true
+  },
+  {
+   "in": 29.28,
+   "out": 30.0
+  },
+  {
+   "in": 30.56,
+   "out": 31.84,
+   "join": "smooth"
+  },
+  {
+   "in": 32.94,
+   "out": 33.76,
+   "punch": true
+  },
+  {
+   "in": 33.84,
+   "out": 35.28
+  },
+  {
+   "in": 35.6,
+   "out": 36.2,
+   "punch": true
+  },
+  {
+   "in": 36.4,
+   "out": 37.76,
+   "join": "smooth",
+   "punch": true
+  },
+  {
+   "in": 38.04,
+   "out": 38.42
+  },
+  {
+   "in": 38.96,
+   "out": 40.36,
+   "join": "smooth"
+  },
+  {
+   "in": 40.48,
+   "out": 42.56,
+   "punch": true
+  },
+  {
+   "in": 42.84,
+   "out": 44.16
+  },
+  {
+   "in": 44.4,
+   "out": 45.52,
+   "punch": true
+  },
+  {
+   "in": 45.96,
+   "out": 49.2
+  },
+  {
+   "in": 49.4,
+   "out": 51.56,
+   "punch": true
+  },
+  {
+   "in": 51.76,
+   "out": 52.76
+  },
+  {
+   "in": 53.16,
+   "out": 57.12,
+   "punch": true
+  },
+  {
+   "in": 57.48,
+   "out": 58.84
+  },
+  {
+   "in": 58.96,
+   "out": 60.6,
+   "punch": true
+  },
+  {
+   "in": 60.72,
+   "out": 63.6
+  },
+  {
+   "in": 63.84,
+   "out": 70.08,
+   "punch": true
+  },
+  {
+   "in": 70.24,
+   "out": 71.84,
+   "punch": true
+  },
+  {
+   "in": 72.12,
+   "out": 73.56
+  },
+  {
+   "in": 73.92,
+   "out": 75.52,
+   "punch": true
+  },
+  {
+   "in": 75.8,
+   "out": 76.2
+  },
+  {
+   "in": 76.48,
+   "out": 77.88,
+   "join": "smooth"
+  },
+  {
+   "in": 78.6,
+   "out": 80.12,
+   "punch": true
+  },
+  {
+   "in": 80.36,
+   "out": 81.48
+  },
+  {
+   "in": 82.16,
+   "out": 85.72,
+   "punch": true
+  },
+  {
+   "in": 86.16,
+   "out": 88.32
+  },
+  {
+   "in": 88.96,
+   "out": 89.88,
+   "punch": true
+  },
+  {
+   "in": 90.24,
+   "out": 91.8
+  },
+  {
+   "in": 91.96,
+   "out": 93.76,
+   "punch": true
+  },
+  {
+   "in": 94.0,
+   "out": 95.08
+  },
+  {
+   "in": 95.28,
+   "out": 96.8,
+   "punch": true
+  },
+  {
+   "in": 97.12,
+   "out": 98.24
+  },
+  {
+   "in": 98.4,
+   "out": 100.24,
+   "punch": true
+  }
+ ],
+ "punch_at": [
+  98.5
+ ],
+ "keywords": [
+  "owner",
+  "business",
+  "company",
+  "life",
+  "sweat",
+  "tears",
+  "energy",
+  "feed",
+  "family",
+  "provide",
+  "looked",
+  "ask",
+  "creation",
+  "blueprint",
+  "trusts",
+  "wills",
+  "assets",
+  "solid",
+  "follow",
+  "skeptical",
+  "taxes",
+  "sure",
+  "opportunity",
+  "educate",
+  "education's",
+  "succeed",
+  "wealth",
+  "success",
+  "hate",
+  "stand",
+  "effort",
+  "worry",
+  "result",
+  "gone",
+  "understand",
+  "assist",
+  "bulletproof"
+ ],
+ "cta": {
+  "at": 98.56,
+  "keyword": "BLUEPRINT",
+  "script": [
+   "below"
+  ],
+  "underline": [
+   "BLUEPRINT"
+  ]
+ },
+ "nasheed": {
+  "file": "nasheed/the-sins.mp3",
+  "start": 0
+ },
+ "chunks": [
+  "If you are",
+  "an owner managed",
+  "business,",
+  "a CEO",
+  "or a business leader,",
+  "and you're running",
+  "a company,",
+  "and you thought",
+  "to yourself,",
+  "I put all",
+  "my life",
+  "and my sweat",
+  "and my tears",
+  "and energy",
+  "into this project,",
+  "into this company,",
+  "so that I could",
+  "feed my family,",
+  "provide for them",
+  "and make sure",
+  "that they were",
+  "well looked after.",
+  "Well let me",
+  "ask you this,",
+  "why have you",
+  "been putting off",
+  "the creation",
+  "of a blueprint",
+  "financial wealth plan,",
+  "not just trusts,",
+  "wills,",
+  "and passing on",
+  "assets,",
+  "but creating",
+  "a solid blueprint",
+  "for your family",
+  "to follow",
+  "once you've",
+  "passed on?",
+  "Is it because",
+  "you're skeptical",
+  "about how much",
+  "you might pay",
+  "in taxes?",
+  "Is it because",
+  "you're not sure",
+  "what you",
+  "need to do?",
+  "Or is it because",
+  "you haven't given",
+  "yourself the",
+  "opportunity",
+  "to educate",
+  "yourself?",
+  "Education's",
+  "a big part",
+  "of what I do",
+  "here at CEOwills,",
+  "is to make sure",
+  "that business owners",
+  "like you",
+  "succeed.",
+  "You aren't paying",
+  "more taxes",
+  "than you need to,",
+  "to make sure",
+  "you actually get",
+  "the opportunity",
+  "to pass all",
+  "this wealth on,",
+  "to pass all",
+  "this success on.",
+  "Because there's",
+  "one thing I hate,",
+  "one thing",
+  "that I can't stand,",
+  "is when a",
+  "business owner",
+  "like yourself",
+  "puts all that",
+  "time and effort",
+  "into the business,",
+  "but you don't",
+  "worry about",
+  "what you have",
+  "to pay",
+  "as a result",
+  "of your success.",
+  "That 40%",
+  "gone to HMRC,",
+  "I can't stand it.",
+  "Now, if you",
+  "want to understand",
+  "how we help you",
+  "here at CEOwills,",
+  "how we assist you",
+  "in making sure",
+  "your blueprint",
+  "is bulletproof,"
+ ],
+ "ctas": [
+  {
+   "text": "hey boss, you built this company to feed your family. Don't put off their blueprint any longer: ceowills.com",
+   "at_out": 23.06
+  },
+  {
+   "text": "hey friend, pass on your success, not a tax bill. See what you'd really owe at ceowills.com",
+   "at_out": 43.68
+  }
+ ],
+ "removed_ok": [
+  28.39,
+  75.52
+ ],
+ "_title_removed_2oct": {
+  "hook": [
+   "CEOs & business owners",
+   "*Where's your*",
+   "family _BLUEPRINT_"
+  ],
+  "hook_until": 15.24,
+  "hook_font": "sans"
+ }
+}

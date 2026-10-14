@@ -1,0 +1,27 @@
+{
+ "name": "08_baby_box",
+ "title": "The $20K Baby Box",
+ "version": 1,
+ "angle": "price / new product (Baby Box)",
+ "sources": {"babybox": "/BOXABL MEDIA ASSETS/PRODUCT CATEGORIES/BABY BOX/VIDEO/NEW $19,999 BOXABL.mp4"},
+ "_why": "Paolo's Baby Box walkthrough (Boxabl's own asset). Left out: 1:00-1:25 financing / monthly payments / credit (financial promise), the 'Las Vegas hangover' aside.",
+ "segments": [
+  {"v": "babybox", "vs": 4.0, "ve": 11.15, "home": true},
+  {"v": "babybox", "vs": 11.2, "ve": 17.3},
+  {"v": "babybox", "vs": 88.8, "ve": 93.3},
+  {"v": "babybox", "vs": 100.4, "ve": 103.0},
+  {"v": "babybox", "vs": 105.7, "ve": 109.2},
+  {"v": "babybox", "vs": 274.7, "ve": 279.2},
+  {"v": "babybox", "vs": 86.0, "ve": 97.0, "a": "babybox", "as": 382.6, "ae": 387.3, "home": true}
+ ],
+ "overlays": [
+  {"s": 0, "e": 7.15, "text": "THE *$20K* BOXABL\nBABY BOX"},
+  {"s": 7.15, "e": 13.25, "text": "KITCHEN, BATH\nAND *BED* INSIDE"},
+  {"s": 13.25, "e": 17.75, "text": "*NO TOOLS*\nTO UNPACK IT"},
+  {"s": 17.75, "e": 23.85, "text": "BIGGER ON\nTHE *INSIDE*"},
+  {"s": 23.85, "e": 28.35, "text": "A *ONE-SECOND*\nBED"},
+  {"s": 28.35, "e": 33.05, "text": "THE *BOXABL*\nBABY BOX"}
+ ],
+ "post": {"short": "A real home for about $20K that unpacks in an hour 🏠 Meet the BOXABL Baby Box. @boxabl #boxabl #babybox #tinyhome #prefab",
+          "x": "A real home for about $20K that unpacks in an hour 🏠 Meet the BOXABL Baby Box. [TRACKING URL]"}
+}

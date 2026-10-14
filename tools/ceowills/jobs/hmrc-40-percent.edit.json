@@ -1,0 +1,269 @@
+{
+ "_source": "Raw 'hmrc can take up to 40% for IHT where will your family learn how to do.MP4' (client Drive id 1M1FpmsV6gNyknTlodY6HEOxtcFRYEUdL); mic = 'hmr took 8.5bn in inheritance tax.wav' (Mic 2) @ 890.1657 s. Kept: 'So many of my clients…the generation after', then the second (clean) 'Where are they going to get the liquidity…not HMRC' (the first try said 'the fines' and restarts), then the second CTA take 'comment calculator below' (the director asks for the calculator between the takes). Pauses cut by pauses.py; last cut held to the end of the raw so the CTA reads. Words: '40' + '%' merged into '40%' (words/hmrc40.fixed.json). Nasheed the-sins (warning). v5: latest house style (no script, The Sins, gradient) + the doubled 'work with, with yourselves' cut to one 'with' (verbatim stutter pass). v6: sans title, doubled gradient, centred logo, iPhone chime; his hair reaches y≈325 at the card time, so this job's card is 540 px (ends ≈311). 1 Oct (Eyad): no shot under 0.8 s inside one take (the 0.44 s flash cut at 1:25 in #2), air after lines 0.12 s, title without a question mark, title font serif. 1 Oct (Sofian, 15:48): pauses ≥ 0.15 s cut to 0.08 s with smooth joins inside a take, end 0.35 s after the last word, captions higher, title under the platform bar. 2 Oct (Eyad): no title text on the video.",
+ "name": "HMRC can take up to 40%",
+ "video": "src/hmrc40.MP4",
+ "rotate": "ccw",
+ "audio": "mic/hmrc40.mic.wav",
+ "words": "words/hmrc40.fixed.json",
+ "cuts": [
+  {
+   "in": 3.2,
+   "out": 8.8
+  },
+  {
+   "in": 8.88,
+   "out": 10.08,
+   "punch": true
+  },
+  {
+   "in": 10.48,
+   "out": 12.76
+  },
+  {
+   "in": 13.08,
+   "out": 16.72,
+   "punch": true
+  },
+  {
+   "in": 17.2,
+   "out": 19.88
+  },
+  {
+   "in": 20.32,
+   "out": 22.04,
+   "punch": true
+  },
+  {
+   "in": 22.56,
+   "out": 24.72
+  },
+  {
+   "in": 24.8,
+   "out": 27.8,
+   "punch": true
+  },
+  {
+   "in": 28.2,
+   "out": 31.36
+  },
+  {
+   "in": 31.52,
+   "out": 32.24,
+   "punch": true
+  },
+  {
+   "in": 33.12,
+   "out": 36.84,
+   "join": "smooth",
+   "punch": true
+  },
+  {
+   "in": 37.0,
+   "out": 38.1
+  },
+  {
+   "in": 43.8,
+   "out": 45.72,
+   "punch": true
+  },
+  {
+   "in": 45.92,
+   "out": 48.0
+  },
+  {
+   "in": 48.32,
+   "out": 49.92,
+   "punch": true
+  },
+  {
+   "in": 50.28,
+   "out": 51.9
+  },
+  {
+   "in": 52.62,
+   "out": 53.56,
+   "punch": true
+  },
+  {
+   "in": 53.68,
+   "out": 54.48
+  },
+  {
+   "in": 54.6,
+   "out": 57.28,
+   "join": "smooth"
+  },
+  {
+   "in": 57.36,
+   "out": 58.72,
+   "punch": true
+  },
+  {
+   "in": 59.0,
+   "out": 59.84
+  },
+  {
+   "in": 60.0,
+   "out": 62.2,
+   "punch": true
+  },
+  {
+   "in": 62.56,
+   "out": 64.4
+  },
+  {
+   "in": 64.64,
+   "out": 65.75,
+   "punch": true
+  },
+  {
+   "in": 90.32,
+   "out": 94.72
+  },
+  {
+   "in": 94.96,
+   "out": 96.88,
+   "punch": true
+  }
+ ],
+ "punch_at": [
+  95.0
+ ],
+ "keywords": [
+  "clients",
+  "idea",
+  "traps",
+  "wealth",
+  "issues",
+  "relentless",
+  "collected",
+  "inheritance",
+  "careful",
+  "success",
+  "category",
+  "taking",
+  "everything",
+  "built",
+  "lifetime",
+  "suffer",
+  "generation",
+  "liquidity",
+  "funds",
+  "pay",
+  "carefully",
+  "yourselves",
+  "family",
+  "business",
+  "sure",
+  "worked",
+  "hard",
+  "hands",
+  "potentially",
+  "paying"
+ ],
+ "cta": {
+  "at": 95.08,
+  "keyword": "CALCULATOR",
+  "script": [
+   "below"
+  ],
+  "underline": [
+   "CALCULATOR"
+  ]
+ },
+ "nasheed": {
+  "file": "nasheed/the-sins.mp3",
+  "start": 0
+ },
+ "chunks": [
+  "So many",
+  "of my clients",
+  "have no idea",
+  "of what sort",
+  "of tax traps",
+  "they fall into",
+  "when they make",
+  "their wealth.",
+  "And one of",
+  "the issues",
+  "that I see",
+  "is that HMRC",
+  "are relentless.",
+  "They've collected",
+  "eight and a half",
+  "billion",
+  "in the year 2024",
+  "to 2025",
+  "in just",
+  "inheritance taxes.",
+  "If you're",
+  "not careful,",
+  "I think you will,",
+  "as part of",
+  "your success,",
+  "fall into",
+  "that category",
+  "where HMRC",
+  "will end up",
+  "taking 40%",
+  "of everything",
+  "you've built",
+  "in your lifetime.",
+  "And the issue",
+  "with that is",
+  "it's not you",
+  "that's going",
+  "to suffer,",
+  "it's the",
+  "generation after.",
+  "Where are they",
+  "going to get",
+  "the liquidity,",
+  "the funds",
+  "to pay off HMRC",
+  "and the IHT",
+  "that's due?",
+  "That's something",
+  "we carefully",
+  "work with",
+  "yourselves,",
+  "with you",
+  "as a CEO",
+  "of not just",
+  "your family,",
+  "but your business",
+  "also,",
+  "to make sure",
+  "that everything",
+  "you worked",
+  "so hard for",
+  "actually falls",
+  "into the",
+  "right hands,",
+  "not HMRC.",
+  "Now, if you",
+  "want to know",
+  "what you",
+  "potentially",
+  "could be paying",
+  "HMRC,"
+ ],
+ "ctas": [
+  {
+   "text": "hey CEO, HMRC could take 40% of everything you've built. Let's make sure it goes to your family instead: ceowills.com",
+   "at_out": 19.24
+  }
+ ],
+ "removed_ok": [
+  51.9
+ ],
+ "_title_removed_2oct": {
+  "hook": [
+   "UK business owners",
+   "_HMRC_ *could take*",
+   "_40%_ of your *legacy*"
+  ],
+  "hook_until": 10.08,
+  "hook_font": "serif"
+ }
+}

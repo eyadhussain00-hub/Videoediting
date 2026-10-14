@@ -1,0 +1,484 @@
+{
+ "_source": "Raw 'culture leaving daughters out.MP4' (client Drive id 1J2x_GyyWkQzhRuuHwwT1Xq1XVXQiDTb6); mic = 'beginning uncles brothers sisters and PENSIONS.wav' (Mic 1) @ 100.3331 s. Structure follows Sofian's edit of the same raw: first pitch ('Here's how we solve it… in the Quran') and 'You see' dropped, repeated 'distributing it' cut, pauses cut in silence only (sk-media pauses.py v2, edge word-guard). Corrected transcript: jobs/culture-leaving-daughters-out.words.json → copy to $W/words/culture.fixed.json. Nasheed hona-marro from SoundCloud (nasheeds.json). v1 = 99.12 s, QA ALL PASS. v3 (29 Sep): current house style (sans title, no script, gradient ×2, centred logo, iPhone chime, 600 px cards), nasheed the-sins, cards by topic: islamic-uk-law (Allah/Quran), see-for-your-family (daughters), clarity at 85 s (check.py: no inheritance talk around 85 s). v7 (30 Sep): re-tightened; cards 1/2 moved to 27 s ('…not been left anything behind? Big issue. Allah… a blueprint') and 55 s ('we can help… the entire family is included') — at 24/53 s the real-size card grazed his hair. The camera-only sound at 135.5 s (checked: his hand tapping the stone desk; the lav is quiet) is not in the audio: the end hold runs to 138.4 (CTA readable 2.2 s) with his mic muted from 137.06 (mute_after) — his hand knocks on the desk three times after 'below'. 1 Oct (Eyad): no shot under 0.8 s inside one take (the 0.44 s flash cut at 1:25 in #2), air after lines 0.12 s, title without a question mark, title font serif. 1 Oct (Sofian, 15:48): pauses ≥ 0.15 s cut to 0.08 s with smooth joins inside a take, end 0.35 s after the last word, captions higher, title under the platform bar. Hand fix 1 Oct: the cut after 'passed on.' ends at 95.52 — the in-breath before 'More importantly' peaked right at the voice threshold and was kept. 2 Oct (Eyad): no title text on the video.",
+ "name": "Culture leaving daughters out",
+ "video": "src/culture leaving daughters out.MP4",
+ "rotate": "ccw",
+ "audio": "mic/culture leaving daughters out.mic.wav",
+ "words": "words/culture.fixed.json",
+ "cuts": [
+  {
+   "in": 3.16,
+   "out": 4.36
+  },
+  {
+   "in": 4.44,
+   "out": 7.72,
+   "punch": true
+  },
+  {
+   "in": 8.24,
+   "out": 9.8
+  },
+  {
+   "in": 9.96,
+   "out": 11.76,
+   "punch": true
+  },
+  {
+   "in": 12.8,
+   "out": 15.44
+  },
+  {
+   "in": 15.64,
+   "out": 18.24,
+   "punch": true
+  },
+  {
+   "in": 18.44,
+   "out": 19.32
+  },
+  {
+   "in": 19.4,
+   "out": 22.36,
+   "punch": true
+  },
+  {
+   "in": 22.56,
+   "out": 24.68
+  },
+  {
+   "in": 25.12,
+   "out": 25.68,
+   "punch": true
+  },
+  {
+   "in": 25.92,
+   "out": 26.92,
+   "join": "smooth",
+   "punch": true
+  },
+  {
+   "in": 27.32,
+   "out": 28.52
+  },
+  {
+   "in": 28.76,
+   "out": 29.12,
+   "punch": true
+  },
+  {
+   "in": 29.4,
+   "out": 30.16,
+   "join": "smooth",
+   "punch": true
+  },
+  {
+   "in": 30.28,
+   "out": 31.68
+  },
+  {
+   "in": 32.2,
+   "out": 32.92,
+   "punch": true
+  },
+  {
+   "in": 50.6,
+   "out": 51.96,
+   "join": "smooth",
+   "punch": true
+  },
+  {
+   "in": 52.2,
+   "out": 53.4
+  },
+  {
+   "in": 53.56,
+   "out": 59.04,
+   "punch": true
+  },
+  {
+   "in": 59.12,
+   "out": 60.84
+  },
+  {
+   "in": 61.04,
+   "out": 63.6,
+   "punch": true
+  },
+  {
+   "in": 63.92,
+   "out": 64.92
+  },
+  {
+   "in": 65.0,
+   "out": 67.32,
+   "punch": true
+  },
+  {
+   "in": 67.44,
+   "out": 69.2
+  },
+  {
+   "in": 69.52,
+   "out": 69.84,
+   "punch": true
+  },
+  {
+   "in": 69.92,
+   "out": 73.04,
+   "join": "smooth",
+   "punch": true
+  },
+  {
+   "in": 73.12,
+   "out": 75.0
+  },
+  {
+   "in": 76.2,
+   "out": 79.64,
+   "punch": true
+  },
+  {
+   "in": 80.4,
+   "out": 81.72
+  },
+  {
+   "in": 81.8,
+   "out": 82.8,
+   "punch": true
+  },
+  {
+   "in": 83.16,
+   "out": 85.72
+  },
+  {
+   "in": 86.24,
+   "out": 87.48,
+   "punch": true
+  },
+  {
+   "in": 87.88,
+   "out": 90.24
+  },
+  {
+   "in": 90.48,
+   "out": 92.36,
+   "punch": true
+  },
+  {
+   "in": 92.8,
+   "out": 95.52
+  },
+  {
+   "in": 96.08,
+   "out": 97.12,
+   "punch": true
+  },
+  {
+   "in": 97.48,
+   "out": 99.76
+  },
+  {
+   "in": 100.0,
+   "out": 100.6,
+   "punch": true
+  },
+  {
+   "in": 101.16,
+   "out": 103.0,
+   "join": "smooth",
+   "punch": true
+  },
+  {
+   "in": 103.32,
+   "out": 104.36
+  },
+  {
+   "in": 104.52,
+   "out": 107.68,
+   "punch": true
+  },
+  {
+   "in": 108.36,
+   "out": 108.92
+  },
+  {
+   "in": 109.0,
+   "out": 109.52,
+   "join": "smooth"
+  },
+  {
+   "in": 109.92,
+   "out": 110.64,
+   "punch": true
+  },
+  {
+   "in": 111.16,
+   "out": 112.44,
+   "join": "smooth",
+   "punch": true
+  },
+  {
+   "in": 113.28,
+   "out": 114.68
+  },
+  {
+   "in": 115.2,
+   "out": 117.84,
+   "punch": true
+  },
+  {
+   "in": 126.64,
+   "out": 126.96
+  },
+  {
+   "in": 127.08,
+   "out": 128.56,
+   "join": "smooth"
+  },
+  {
+   "in": 128.88,
+   "out": 130.8,
+   "punch": true
+  },
+  {
+   "in": 130.88,
+   "out": 131.52
+  },
+  {
+   "in": 131.68,
+   "out": 133.84,
+   "join": "smooth"
+  },
+  {
+   "in": 134.32,
+   "out": 135.76,
+   "punch": true
+  },
+  {
+   "in": 136.0,
+   "out": 137.44
+  }
+ ],
+ "punch_at": [
+  136.1
+ ],
+ "keywords": [
+  "fitnas",
+  "practice",
+  "parents",
+  "daughters",
+  "wills",
+  "musiba",
+  "tragedy",
+  "allah",
+  "quran",
+  "wealth",
+  "family",
+  "cry",
+  "death",
+  "behind",
+  "issue",
+  "wisdom",
+  "blueprint",
+  "assists",
+  "prevented",
+  "circumvented",
+  "avoided",
+  "regard",
+  "squandering",
+  "sons",
+  "sharing",
+  "distributing",
+  "pleases",
+  "help",
+  "guidance",
+  "framework",
+  "qualms",
+  "litigation",
+  "fights",
+  "importantly",
+  "answer",
+  "stand",
+  "daughter",
+  "crying",
+  "haqq",
+  "uncles",
+  "brothers",
+  "fathers",
+  "mistake",
+  "sorted",
+  "know",
+  "preserved",
+  "given"
+ ],
+ "cta": {
+  "at": 136.18,
+  "keyword": "DAUGHTERS",
+  "script": [
+   "below"
+  ],
+  "underline": [
+   "DAUGHTERS"
+  ]
+ },
+ "nasheed": {
+  "file": "nasheed/the-sins.mp3",
+  "start": 0
+ },
+ "chunks": [
+  "My brothers,",
+  "one of the",
+  "biggest fitnas",
+  "that I see",
+  "in my practice",
+  "is when parents",
+  "leave out",
+  "their daughters",
+  "within their wills.",
+  "Why is that",
+  "a big musiba?",
+  "Why is that",
+  "a big tragedy?",
+  "It's because",
+  "Allah actually",
+  "instructed us",
+  "in the Quran",
+  "to leave wealth",
+  "to our nuclear",
+  "family.",
+  "That includes",
+  "your daughters.",
+  "How often",
+  "have I seen",
+  "daughters cry",
+  "over the death",
+  "of their parents",
+  "but even",
+  "more so",
+  "when they know",
+  "they've not been",
+  "left anything",
+  "behind?",
+  "Big issue.",
+  "Allah subhanahu wa ta'ala",
+  "in his infinite",
+  "wisdom",
+  "has already",
+  "given us",
+  "a blueprint",
+  "as to how",
+  "and why",
+  "we should leave",
+  "wealth behind,",
+  "who it",
+  "actually assists,",
+  "what societal",
+  "ills will be",
+  "prevented,",
+  "circumvented,",
+  "avoided entirely",
+  "if you have",
+  "regard",
+  "for all",
+  "family members.",
+  "That means",
+  "you're not",
+  "squandering",
+  "your wealth",
+  "on just",
+  "the sons,",
+  "you're sharing it",
+  "and distributing it,",
+  "in such a way",
+  "that it pleases",
+  "not only Allah",
+  "but also",
+  "all of your",
+  "family.",
+  "Here at",
+  "CEOwills",
+  "we can help",
+  "you with that,",
+  "we'll make sure",
+  "that you have",
+  "the correct",
+  "guidance,",
+  "the right",
+  "framework,",
+  "and the entire",
+  "family",
+  "is included",
+  "to make sure",
+  "that there are",
+  "no qualms,",
+  "no litigation,",
+  "no fights",
+  "after you",
+  "passed on.",
+  "More importantly,",
+  "how will you",
+  "answer",
+  "to Allah",
+  "subhanahu wa ta'ala",
+  "when it is",
+  "time to stand",
+  "in front of him",
+  "but your",
+  "daughter,",
+  "your women folk",
+  "are crying out",
+  "they did not",
+  "get their",
+  "haqq?",
+  "Uncles,",
+  "brothers,",
+  "fathers,",
+  "I'm talking",
+  "to all of you,",
+  "we can't make",
+  "that mistake,",
+  "at CEOwills",
+  "we'll help you",
+  "get that sorted.",
+  "If you are",
+  "someone's daughter",
+  "and you would",
+  "like to know",
+  "what haqq",
+  "and what",
+  "you are preserved",
+  "and what",
+  "you are given",
+  "by Allah",
+  "subhanahu wa ta'ala,"
+ ],
+ "ctas": [
+  {
+   "text": "hey brother, your daughters shouldn't be left with nothing. Let's make sure your will gives them their share: ceowills.com",
+   "at_out": 25.64
+  },
+  {
+   "text": "hey friend, want a will that includes your whole family, done the Islamic way? We'll guide you through it at ceowills.com",
+   "at_out": 53.08
+  },
+  {
+   "text": "uncles, brothers, fathers... let's get it sorted before it's too late. Book your clarity call at ceowills.com",
+   "at_out": 79.2
+  }
+ ],
+ "mute_after": 137.06,
+ "removed_ok": [
+  31.68,
+  85.72
+ ],
+ "_title_removed_2oct": {
+  "hook": [
+   "Muslim parents",
+   "*Don't leave out*",
+   "your _DAUGHTERS_"
+  ],
+  "hook_until": 11.6,
+  "hook_font": "serif"
+ }
+}

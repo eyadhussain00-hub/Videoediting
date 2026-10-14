@@ -1,0 +1,22 @@
+{
+ "name": "07_six_cars_on_the_roof",
+ "title": "Six Cars on the Roof",
+ "version": 1,
+ "angle": "strength test",
+ "sources": {"cardrop": "/3. BOXABL YouTube/Boxabl Car Stack and Drop Strength Tests_.mov"},
+ "_why": "Kept: the stack + the 40-cars estimate + the roof-load number. Left out: 0:45-1:40 rental-counter skit (Enterprise branding), 1:52 and 2:14 swearing, 3:18-3:26 'investors might be mad', 4:30+ the 50 ft drop (it breaks the roof — not positive).",
+ "segments": [
+  {"v": "cardrop", "vs": 250.0, "ve": 262.0, "a": "cardrop", "as": 104.8, "ae": 111.55, "home": true},
+  {"v": "cardrop", "vs": 0.0, "ve": 7.6},
+  {"v": "cardrop", "vs": 150.0, "ve": 160.75, "home": true},
+  {"v": "cardrop", "vs": 296.0, "ve": 312.0, "a": "cardrop", "as": 243.5, "ae": 251.65}
+ ],
+ "overlays": [
+  {"s": 0, "e": 6.75, "text": "WE STACKED CARS\nON A *BOXABL*"},
+  {"s": 6.75, "e": 14.35, "text": "HOW STRONG IS A\n*BOXABL CASITA*?"},
+  {"s": 14.35, "e": 25.1, "text": "IT COULD HOLD\n*ABOUT 40 CARS*"},
+  {"s": 25.1, "e": 33.25, "text": "*160,000 LBS*\nON THE ROOF"}
+ ],
+ "post": {"short": "We stacked cars on the roof of a BOXABL Casita 🚗🏠 Built in a factory and made to handle it. @boxabl #boxabl #casita #strengthtest #prefab",
+          "x": "We stacked cars on the roof of a BOXABL Casita 🚗🏠 [TRACKING URL]"}
+}

@@ -1,0 +1,32 @@
+{
+ "_comment": "iMessage CTA cards used per video, oldest first (render.py writes this on every final render; plan_ctas penalises cards used in the last few videos).",
+ "videos": {
+  "Business owner juggling": [],
+  "Plan like Rafa Nadal": [],
+  "CEOwills bridges your company and your will": [
+   "say:hey-brother-own-1m-in-property-let-s-sit-down-an"
+  ],
+  "Business owners: deep, dark IHT conversation": [
+   "say:hey-ceo-let-s-have-that-deep-dark-conversation-a"
+  ],
+  "Families should find it in the drawer": [
+   "say:hey-friend-could-your-family-find-everything-in-"
+  ],
+  "HMRC can take up to 40%": [
+   "say:hey-ceo-hmrc-could-take-40-of-everything-you-ve-"
+  ],
+  "Business partners: agree your succession": [
+   "say:hey-partner-who-gets-your-shares-and-when-agree-",
+   "say:hey-friend-3-hours-with-your-partners-today-save"
+  ],
+  "Business leader feeding your family": [
+   "say:hey-boss-you-built-this-company-to-feed-your-fam",
+   "say:hey-friend-pass-on-your-success-not-a-tax-bill-s"
+  ],
+  "Culture leaving daughters out": [
+   "say:hey-brother-your-daughters-shouldn-t-be-left-wit",
+   "say:hey-friend-want-a-will-that-includes-your-whole-",
+   "say:uncles-brothers-fathers-let-s-get-it-sorted-befo"
+  ]
+ }
+}

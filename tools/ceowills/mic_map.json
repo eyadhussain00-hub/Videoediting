@@ -1,0 +1,36 @@
+{
+  "_comment": "Which lav-mic part holds each camera clip, and where. t0_s = time in the mic part that lines up with the camera's first frame (measured: 3 probes at 4 kHz, then 7 probes at 48 kHz; within ~1 ms, no drift inside a clip). match_mic.py --map reads this and skips the search. client_id = Adnan's original (download these; they don't use our Drive quota), copy_id = our copy in RSV Video/Adnan (one raw + one mic part at a time — the video being edited and its mic part; copy_id is null for everything else). Add new shoots as new entries in 'shoots'.",
+  "shoots": {
+    "2026-09-22": {
+      "camera": "Sony, 1920x1080 25 fps, recorded sideways (rotate ccw), camera audio pcm_s16be 48 kHz",
+      "mic": "lav 'MIC 3', 48 kHz 32-bit float mono, back-to-back 30-min parts (contiguous, sample-exact). Very quiet: about -40 LUFS, peaks near -14 dBFS",
+      "clock_offset_s": 2710,
+      "clock_note": "mic clock = camera clock + ~45 min 10 s (±1 s; camera timestamps are whole seconds)",
+      "mic_parts": {
+        "Mic 1": {"file": "beginning uncles brothers sisters and PENSIONS.wav", "starts": "16:10:18", "dur_s": 1800.045, "client_id": "11m4gDZ-Am-gVz0oW3sged7yGy1VLpHqz", "copy_id": null},
+        "Mic 2": {"file": "hmr took 8.5bn in inheritance tax.wav", "starts": "16:40:18", "dur_s": 1800.045, "client_id": "1Iap13eWMPZxUfw62ln1GgoVdlfhHnDq0", "copy_id": null},
+        "Mic 3": {"file": "standing under vines deep dark conversation.wav", "starts": "17:10:18", "dur_s": 1800.05, "client_id": "1VjAUrAuRkIWx_Dy1y86q3T3yvdQp993K", "copy_id": "1WZcCiw49JH5GRP-eG5-0suo_vL87OVVl"},
+        "Mic 4": {"file": "wills work 60 seconds, verbal agreement sofa.wav", "starts": "17:40:19", "dur_s": 1800.045, "client_id": "12ykxgsb3XCMN-OfHLyctZ0gkQcbUFnFz", "copy_id": null}
+      },
+      "videos": [
+        {"n": 1, "file": "21years old parelegal.MP4", "filmed": "15:21:59", "dur_s": 163.68, "mic": null, "t0_s": null, "client_id": "1iuhYq1XFUUKgsUKM-j2qDn3-YV7kb_N7", "copy_id": null, "note": "filmed before Mic 1 starts; the mic part recorded before it (~15:40 mic clock) was never uploaded — ask Adnan"},
+        {"n": 2, "file": "culture leaving daughters out.MP4", "filmed": "15:26:49", "dur_s": 138.72, "mic": "Mic 1", "t0_s": 100.3331, "client_id": "1J2x_GyyWkQzhRuuHwwT1Xq1XVXQiDTb6", "copy_id": null, "note": "the first full video in Mic 1 (take 1:42–3:57 in the mic part); Sofian's edit of it is in Reference edits"},
+        {"n": 3, "file": "GROB.MP4", "filmed": "15:31:56", "dur_s": 98.88, "mic": "Mic 1", "t0_s": 407.8531, "client_id": "1f_HE_pLuCP2AOGYTK3X2byltCYjSZKIr", "copy_id": null},
+        {"n": 4, "file": "Last year hmrc collected billions.MP4", "filmed": "15:37:45", "dur_s": 103.68, "mic": "Mic 1", "t0_s": 757.4354, "client_id": "1SvZO-b2ebq9Zj2-wjABCfMeC6BtxtQWX", "copy_id": null},
+        {"n": 5, "file": "pensions get twice tax from pension and iht.MP4", "filmed": "15:49:51", "dur_s": 123.36, "mic": "Mic 1", "t0_s": 1482.8773, "client_id": "1j1cv9lnnIGTTWtiRRA0-_NK7x54YW4j2", "copy_id": null},
+        {"n": 6, "file": "hmrc can take up to 40% for IHT where will your family learn how to do.MP4", "filmed": "16:09:58", "dur_s": 97.92, "mic": "Mic 2", "t0_s": 890.1657, "client_id": "1M1FpmsV6gNyknTlodY6HEOxtcFRYEUdL", "copy_id": null},
+        {"n": 7, "file": "if you are a business leader that wants to feed family.MP4", "filmed": "16:13:10", "dur_s": 101.76, "mic": "Mic 2", "t0_s": 1081.8074, "client_id": "1b_1RMw3LYFEWSqygIWl4yJGeXgDzzchQ", "copy_id": null},
+        {"n": 8, "file": "walk and talk documentay style sol & par.MP4", "filmed": "16:15:27", "dur_s": 73.44, "mic": "Mic 2", "t0_s": 1218.4466, "client_id": "1MgDy4adSQtjVFN3S0afpUHpr6Cb15SbE", "copy_id": null, "note": "walking shot: camera distance changes, lav vs camera varies ~2 ms (inaudible)"},
+        {"n": 9, "file": "ceowills bridges companies and wills between each other.MP4", "filmed": "16:37:02", "dur_s": 46.56, "mic": "Mic 3", "t0_s": 714.1779, "client_id": "1tXLSZLLaZ9W6exLc5uleaNPqUZjEVnSZ", "copy_id": null},
+        {"n": 10, "file": "businessowners comment calculator and more.MP4", "filmed": "16:38:15", "dur_s": 59.52, "mic": "Mic 3", "t0_s": 787.4582, "client_id": "1iiz9rd8HYKbin8s9jsjEhxS4NqhXfHkr", "copy_id": "12J9NqHXQ0WDhhiewIdlYb3ioxZct8ti1"},
+        {"n": 11, "file": "how should you pass assets as a business owner.MP4", "filmed": "16:40:49", "dur_s": 83.04, "mic": "Mic 3", "t0_s": 941.0587, "client_id": "1SGM93pp7Lnp9LILjJFvddxn0uq-66QzD", "copy_id": null},
+        {"n": 12, "file": "bestfriend close partnership.MP4", "filmed": "16:42:53", "dur_s": 81.6, "mic": "Mic 3", "t0_s": 1065.4986, "client_id": "1cEBAF75TqRD4Vu11-vdaj0_qFa3U9eQ6", "copy_id": null},
+        {"n": 13, "file": "kids worried about parents estates.MP4", "filmed": "16:45:40", "dur_s": 84.96, "mic": "Mic 3", "t0_s": 1232.3794, "client_id": "1UbDViDKQkPa4CLIHF4gtauS11Ye5cQwB", "copy_id": null},
+        {"n": 14, "file": "rafael nadal blooper.MP4", "filmed": "17:04:18", "dur_s": 40.32, "mic": "Mic 4", "t0_s": 549.4178, "client_id": "15b-t5GzmStWLBP4EQC8t76rIpPUgHsow", "copy_id": null},
+        {"n": 15, "file": "prophet and debts.MP4", "filmed": "17:08:27", "dur_s": 72.48, "mic": "Mic 4", "t0_s": 799.0583, "client_id": "14WVyMUk03PKAgAg9Af_WRMeCP1_L230J", "copy_id": null},
+        {"n": 16, "file": "family access to all docs with steps - awkward family member writing things down, its not pain of not knowing its possibly creating turmoil.MP4", "filmed": "17:10:22", "dur_s": 56.64, "mic": "Mic 4", "t0_s": 913.4985, "client_id": "1T7Z3ENDhcG9bPwN4i4iYjHc_w4GlBLcS", "copy_id": null},
+        {"n": 17, "file": "business owner juggling.MP4", "filmed": "17:16:51", "dur_s": 21.12, "mic": "Mic 4", "t0_s": 1303.1006, "client_id": "1fYYZPsmOpmYUJhfRW1hzLY-HH0AjKMxg", "copy_id": null, "note": "edited in session 1 (v1–v9)"}
+      ]
+    }
+  }
+}

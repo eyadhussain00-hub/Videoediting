@@ -1,0 +1,686 @@
+From 228f248b2610a82ffa8c922ea84286828b3c3379 Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Fri, 2 Oct 2026 23:00:02 +0000
+Subject: [PATCH 5/5] CEOwills: no title text on any video (Eyad, 2 Oct)
+
+- layout.json hook.required false; every job's title kept under _title_removed_2oct
+- check.py only demands a title when required; qa.py checks an untitled render drew no title layer
+- tracker: #17 v16, #14 v8, #9 v11, #10 v10, #16 v10, #6 v14, #12 v10, #7 v14, #2 v11
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_011udnMWfLa6iF13BP2WLqvC
+---
+ .claude/skills/ceowills-reel/SKILL.md         |  2 +-
+ tools/ceowills/HISTORY.md                     |  5 ++
+ tools/ceowills/PRESET.md                      |  3 +-
+ tools/ceowills/check.py                       |  3 +-
+ tools/ceowills/cta_history.json               | 26 ++++-----
+ .../business-leader-feed-family.edit.json     | 20 +++----
+ .../jobs/business-owner-juggling.edit.json    | 16 +++---
+ .../jobs/business-owners-deep-dark.edit.json  | 18 ++++---
+ .../business-partners-succession.edit.json    | 20 +++----
+ tools/ceowills/jobs/ceowills-bridge.edit.json | 18 ++++---
+ .../culture-leaving-daughters-out.edit.json   | 20 +++----
+ tools/ceowills/jobs/family-drawer.edit.json   | 20 +++----
+ tools/ceowills/jobs/hmrc-40-percent.edit.json | 20 +++----
+ tools/ceowills/jobs/rafa-nadal.edit.json      | 16 +++---
+ tools/ceowills/layout.json                    |  2 +
+ tools/ceowills/qa.py                          |  8 ++-
+ tools/ceowills/tracker.json                   | 54 +++++++++----------
+ 17 files changed, 151 insertions(+), 120 deletions(-)
+
+diff --git a/.claude/skills/ceowills-reel/SKILL.md b/.claude/skills/ceowills-reel/SKILL.md
+index ff19fe6..fc58bd7 100644
+--- a/.claude/skills/ceowills-reel/SKILL.md
++++ b/.claude/skills/ceowills-reel/SKILL.md
+@@ -1,6 +1,6 @@
+ ---
+ name: ceowills-reel
+-description: Edit CEOwills (Adnan) short-form reels end to end — pick the videos from the tracker, fetch the raw and its lav-mic part, sync, transcribe, cut, render the CEOwills house style (sans + red-underlined serif captions, sans title, red logo over a black gradient, topic-matched iMessage cards, voice-only nasheed), QA and deliver. Use when Eyad says "CEOwills", "Adnan", "new video for Adnan", names a CEOwills raw file, or asks to set up a new video-editing client the same way.
++description: Edit CEOwills (Adnan) short-form reels end to end — pick the videos from the tracker, fetch the raw and its lav-mic part, sync, transcribe, cut, render the CEOwills house style (sans + red-underlined serif captions, no title (Eyad, 2 Oct), red logo over a black gradient, topic-matched iMessage cards, voice-only nasheed), QA and deliver. Use when Eyad says "CEOwills", "Adnan", "new video for Adnan", names a CEOwills raw file, or asks to set up a new video-editing client the same way.
+ ---
+ 
+ # CEOwills reels
+diff --git a/tools/ceowills/HISTORY.md b/tools/ceowills/HISTORY.md
+index 7aee7a0..4562df9 100644
+--- a/tools/ceowills/HISTORY.md
++++ b/tools/ceowills/HISTORY.md
+@@ -337,3 +337,8 @@ talking about; it helps choose the right CTA. Good CTAs help make more money for
+   clipping, mid tones −5 %.
+ - **Eyad, 2 Oct: "use this icon"** (SK Media chat, Adnan's black-and-white headshot) → the iMessage card's contact photo is
+   `assets/adnan-avatar.png` (layout.json `notify.avatar`) in every video, instead of a frame cut from that video.
++- **Eyad, 2 Oct: "remove all headers title text"** → no title on any video. layout.json `hook.required: false`, every job's
++  title moved to `_title_removed_2oct` (kept for reference); check.py no longer demands a title, qa.py checks frame 1 has
++  *no* title when the job has none. Without a title, every shot gets its normal zoom/punch back.
++  qa.py's first try at "no title on frame 1" counted bright pixels in the title band and failed #6 (a yellow plant) and
++  #2 (a white orchid, a lit shelf) — for an untitled job it now trusts the render's own record (boxes.title height 0).
+diff --git a/tools/ceowills/PRESET.md b/tools/ceowills/PRESET.md
+index 50d14d2..eb0d986 100644
+--- a/tools/ceowills/PRESET.md
++++ b/tools/ceowills/PRESET.md
+@@ -87,7 +87,8 @@
+ | Element | Now |
+ |---|---|
+ | Captions | **Last line on baseline 1370, extra lines stack upward** — right under his chin (Sofian, 1 Oct: "a bit higher, below his chin, so it's easier to see"); each shot's headroom keeps his beard 60 px above the top line. Inter Tight 700, 72 px, white, strong 3-pass drop shadow. ALL-CAPS and numbers → Playfair 800 white with a red underline that draws in (honorifics SWT/SAW/PBUH stay plain). **Never the Pinyon script.** 1–3 words per chunk, broken on phrases; each word appears as he says it; the chunk is laid out once so nothing shifts |
+-| Title (hook) | **Under the platform bar**: cap top ≈ 251 (y 210 is where Instagram/TikTok/Shorts put their own top text — Sofian, 1 Oct), over a soft black scrim: **every line the same face and size** (Sofian, 30 Sep), 56 px sans / 58 px serif. **No question marks** (Eyad, 1 Oct; check.py fails them) — unless the title is Eyad's own wording with one (`"hook_question": true`, #16). Face per video, switched up across the account: `"hook_font": "sans"` (Inter Tight 700, 64 px) or `"serif"` (the end CTA's Playfair 800, 66 px, lining figures) — the serif is for titles only, never captions (Eyad, 1 Oct). `*marked*` words look like the rest, `_MARKED_` keeps a red underline. ≤ 22 characters a line. Fades at `hook_until` (end of the first sentence, before the first card at 25 s) |
++| Title (hook) | **None — Eyad, 2 Oct: "remove all headers title text"** (`hook.required: false`). If one comes back, the rules below apply. |
++| Title (hook), when used | **Under the platform bar**: cap top ≈ 251 (y 210 is where Instagram/TikTok/Shorts put their own top text — Sofian, 1 Oct), over a soft black scrim: **every line the same face and size** (Sofian, 30 Sep), 56 px sans / 58 px serif. **No question marks** (Eyad, 1 Oct; check.py fails them) — unless the title is Eyad's own wording with one (`"hook_question": true`, #16). Face per video, switched up across the account: `"hook_font": "sans"` (Inter Tight 700, 64 px) or `"serif"` (the end CTA's Playfair 800, 66 px, lining figures) — the serif is for titles only, never captions (Eyad, 1 Oct). `*marked*` words look like the rest, `_MARKED_` keeps a red underline. ≤ 22 characters a line. Fades at `hook_until` (end of the first sentence, before the first card at 25 s) |
+ | Logo | Red `CEOwills` (Arimo 700, `#EB1519`, 392 px wide, baseline 1600), centred on its ink, every frame, over a black bottom gradient **from y 1300 down** (the layer doubled) — behind the captions and logo only, like ExamQA (Sofian, 30 Sep: "the gradient is so high"; it used to start at 1000, across his chest) |
+ | Frame | **Zoomed 1.08× and moved down up to 190 px** (Sofian, 30 Sep) so there's room above his head. Per cut, render.py tracks his head and fills the space with **only the wall above his hair**, stretched (no blurred copy of the frame — that put a ghost head above him and blurred his hair). A cut where he leans to the top of the shot gets less shift, or none; a cut where he leans in gets less so his beard stays above the captions (`frame` in layout.json, `shifts` in boxes.json) |
+ | iMessage cards | **Real-size iPhone banners** (Sofian/Eyad, 30 Sep: "so small it looks unrealistic"): 1000 px wide at y 100, Adnan's contact photo (his face from the video) with the Messages badge, "Adnan · now", frosted glass, ceowills.com in red, drawn by render.py (`notify.style: ios`). Slide down, 6 s each, first at 25 s then every 30 s, never over the end CTA, none in reels under 30 s, notification sound on each. **Text written for what he's saying at that moment, different in every video** — see below |
+diff --git a/tools/ceowills/check.py b/tools/ceowills/check.py
+index 68bba22..1bb6479 100644
+--- a/tools/ceowills/check.py
++++ b/tools/ceowills/check.py
+@@ -102,7 +102,8 @@ def main():
+ 
+     # ---- title
+     hook = E.get("hook")
+-    if not hook: fail("no title (\"hook\") — frame 1 must carry the title")
++    if not hook:   # Eyad, 2 Oct: "remove all headers title text" — layout.json hook.required false
++        if L["hook"].get("required", True): fail("no title (\"hook\") — frame 1 must carry the title")
+     else:
+         for line in hook:
+             plain = re.sub(r"[*_]", "", line)
+diff --git a/tools/ceowills/cta_history.json b/tools/ceowills/cta_history.json
+index a183172..59762f8 100644
+--- a/tools/ceowills/cta_history.json
++++ b/tools/ceowills/cta_history.json
+@@ -2,18 +2,16 @@
+  "_comment": "iMessage CTA cards used per video, oldest first (render.py writes this on every final render; plan_ctas penalises cards used in the last few videos).",
+  "videos": {
+   "Business owner juggling": [],
+-  "Business leader feeding your family": [
+-   "say:hey-boss-you-built-this-company-to-feed-your-fam",
+-   "say:hey-friend-pass-on-your-success-not-a-tax-bill-s"
++  "Plan like Rafa Nadal": [],
++  "CEOwills bridges your company and your will": [
++   "say:hey-brother-own-1m-in-property-let-s-sit-down-an"
++  ],
++  "Business owners: deep, dark IHT conversation": [
++   "say:hey-ceo-let-s-have-that-deep-dark-conversation-a"
+   ],
+   "Families should find it in the drawer": [
+    "say:hey-friend-could-your-family-find-everything-in-"
+   ],
+-  "Culture leaving daughters out": [
+-   "say:hey-brother-your-daughters-shouldn-t-be-left-wit",
+-   "say:hey-friend-want-a-will-that-includes-your-whole-",
+-   "say:uncles-brothers-fathers-let-s-get-it-sorted-befo"
+-  ],
+   "HMRC can take up to 40%": [
+    "say:hey-ceo-hmrc-could-take-40-of-everything-you-ve-"
+   ],
+@@ -21,12 +19,14 @@
+    "say:hey-partner-who-gets-your-shares-and-when-agree-",
+    "say:hey-friend-3-hours-with-your-partners-today-save"
+   ],
+-  "Plan like Rafa Nadal": [],
+-  "CEOwills bridges your company and your will": [
+-   "say:hey-brother-own-1m-in-property-let-s-sit-down-an"
++  "Business leader feeding your family": [
++   "say:hey-boss-you-built-this-company-to-feed-your-fam",
++   "say:hey-friend-pass-on-your-success-not-a-tax-bill-s"
+   ],
+-  "Business owners: deep, dark IHT conversation": [
+-   "say:hey-ceo-let-s-have-that-deep-dark-conversation-a"
++  "Culture leaving daughters out": [
++   "say:hey-brother-your-daughters-shouldn-t-be-left-wit",
++   "say:hey-friend-want-a-will-that-includes-your-whole-",
++   "say:uncles-brothers-fathers-let-s-get-it-sorted-befo"
+   ]
+  }
+ }
+diff --git a/tools/ceowills/jobs/business-leader-feed-family.edit.json b/tools/ceowills/jobs/business-leader-feed-family.edit.json
+index 90e15fb..d51372b 100644
+--- a/tools/ceowills/jobs/business-leader-feed-family.edit.json
++++ b/tools/ceowills/jobs/business-leader-feed-family.edit.json
+@@ -1,5 +1,5 @@
+ {
+- "_source": "Raw 'if you are a business leader that wants to feed family.MP4' (client Drive id 1b_1RMw3LYFEWSqygIWl4yJGeXgDzzchQ); mic = 'hmr took 8.5bn in inheritance tax.wav' (Mic 2) @ 1081.8074 s. One clean take (slate 'three, two, one… ready Mike? go, testing' cut); pauses by pauses.py over 7.10–99.84, last cut held to 101.0 (silent) so the CTA reads. Words: 'CEO'+'Wills' → 'CEOwills', '40'+'%' → '40%' (jobs/business-leader-feed-family.words.json → words/leader.fixed.json; src/leader.MP4 and mic/leader.mic.wav are symlinks to the full-name files). Nasheed the-sins (muffled; Eyad asked for it on v3, was bika-moulhimi). v5 (Eyad): 'setting off and' cut (keep 'putting off'), the doubled 'blueprint, blueprint' cut to one, 0.6 s pause after 'wills and' tightened; words re-timed from a verbatim pass. iMessage cards picked by topic (Eyad 29 Sep: switch them up, match what he's saying): legacy-decades, got-you-thinking. v10 (30 Sep): re-tightened; the breath between '…than you need to.' and 'To make sure…' kept (63.88–70.04 one cut) so it doesn't read as a 'to, to' stutter (stutters.py --ok 51.28 in v10, 51.84 in v11: 'than you need to, to make sure…' is a purpose clause, not a repeat); card 2 moved to 45 s ('here at CEOwills… business owners like you succeed. You aren't paying more taxes') — at 51.6 he leans up and the card reached his hair. 1 Oct (Eyad): no shot under 0.8 s inside one take (the 0.44 s flash cut at 1:25 in #2), air after lines 0.12 s, title without a question mark, title font sans. 1 Oct (Sofian, 15:48): pauses ≥ 0.15 s cut to 0.08 s with smooth joins inside a take, end 0.35 s after the last word, captions higher, title under the platform bar.",
++ "_source": "Raw 'if you are a business leader that wants to feed family.MP4' (client Drive id 1b_1RMw3LYFEWSqygIWl4yJGeXgDzzchQ); mic = 'hmr took 8.5bn in inheritance tax.wav' (Mic 2) @ 1081.8074 s. One clean take (slate 'three, two, one… ready Mike? go, testing' cut); pauses by pauses.py over 7.10–99.84, last cut held to 101.0 (silent) so the CTA reads. Words: 'CEO'+'Wills' → 'CEOwills', '40'+'%' → '40%' (jobs/business-leader-feed-family.words.json → words/leader.fixed.json; src/leader.MP4 and mic/leader.mic.wav are symlinks to the full-name files). Nasheed the-sins (muffled; Eyad asked for it on v3, was bika-moulhimi). v5 (Eyad): 'setting off and' cut (keep 'putting off'), the doubled 'blueprint, blueprint' cut to one, 0.6 s pause after 'wills and' tightened; words re-timed from a verbatim pass. iMessage cards picked by topic (Eyad 29 Sep: switch them up, match what he's saying): legacy-decades, got-you-thinking. v10 (30 Sep): re-tightened; the breath between '…than you need to.' and 'To make sure…' kept (63.88–70.04 one cut) so it doesn't read as a 'to, to' stutter (stutters.py --ok 51.28 in v10, 51.84 in v11: 'than you need to, to make sure…' is a purpose clause, not a repeat); card 2 moved to 45 s ('here at CEOwills… business owners like you succeed. You aren't paying more taxes') — at 51.6 he leans up and the card reached his hair. 1 Oct (Eyad): no shot under 0.8 s inside one take (the 0.44 s flash cut at 1:25 in #2), air after lines 0.12 s, title without a question mark, title font sans. 1 Oct (Sofian, 15:48): pauses ≥ 0.15 s cut to 0.08 s with smooth joins inside a take, end 0.35 s after the last word, captions higher, title under the platform bar. 2 Oct (Eyad): no title text on the video.",
+  "name": "Business leader feeding your family",
+  "video": "src/leader.MP4",
+  "rotate": "ccw",
+@@ -216,12 +216,6 @@
+  "punch_at": [
+   98.5
+  ],
+- "hook": [
+-  "CEOs & business owners",
+-  "*Where's your*",
+-  "family _BLUEPRINT_"
+- ],
+- "hook_until": 15.24,
+  "keywords": [
+   "owner",
+   "business",
+@@ -386,9 +380,17 @@
+    "at_out": 43.68
+   }
+  ],
+- "hook_font": "sans",
+  "removed_ok": [
+   28.39,
+   75.52
+- ]
++ ],
++ "_title_removed_2oct": {
++  "hook": [
++   "CEOs & business owners",
++   "*Where's your*",
++   "family _BLUEPRINT_"
++  ],
++  "hook_until": 15.24,
++  "hook_font": "sans"
++ }
+ }
+\ No newline at end of file
+diff --git a/tools/ceowills/jobs/business-owner-juggling.edit.json b/tools/ceowills/jobs/business-owner-juggling.edit.json
+index a9ba3eb..72d5e2b 100644
+--- a/tools/ceowills/jobs/business-owner-juggling.edit.json
++++ b/tools/ceowills/jobs/business-owner-juggling.edit.json
+@@ -1,5 +1,5 @@
+ {
+- "_source": "Raw 'business owner juggling.MP4' (client Drive id 1fYYZPsmOpmYUJhfRW1hzLY-HH0AjKMxg); mic = 'wills work 60 seconds, verbal agreement sofa.wav' @ 1303.101 s v10 (29 Sep): re-rendered in the current house style (was v9, exported by another session in the old script/serif look). 1 Oct (Eyad): no shot under 0.8 s inside one take (the 0.44 s flash cut at 1:25 in #2), air after lines 0.12 s, title without a question mark, title font sans. 1 Oct (Sofian, 15:48): pauses ≥ 0.15 s cut to 0.08 s with smooth joins inside a take, end 0.35 s after the last word, captions higher, title under the platform bar.",
++ "_source": "Raw 'business owner juggling.MP4' (client Drive id 1fYYZPsmOpmYUJhfRW1hzLY-HH0AjKMxg); mic = 'wills work 60 seconds, verbal agreement sofa.wav' @ 1303.101 s v10 (29 Sep): re-rendered in the current house style (was v9, exported by another session in the old script/serif look). 1 Oct (Eyad): no shot under 0.8 s inside one take (the 0.44 s flash cut at 1:25 in #2), air after lines 0.12 s, title without a question mark, title font sans. 1 Oct (Sofian, 15:48): pauses ≥ 0.15 s cut to 0.08 s with smooth joins inside a take, end 0.35 s after the last word, captions higher, title under the platform bar. 2 Oct (Eyad): no title text on the video.",
+  "name": "Business owner juggling",
+  "video": "src/juggling.mp4",
+  "rotate": "ccw",
+@@ -107,10 +107,12 @@
+   "more than",
+   "you need to."
+  ],
+- "hook": [
+-  "Muslim business owner",
+-  "*Don't overpay* _IHT_"
+- ],
+- "hook_until": 5.7,
+- "hook_font": "sans"
++ "_title_removed_2oct": {
++  "hook": [
++   "Muslim business owner",
++   "*Don't overpay* _IHT_"
++  ],
++  "hook_until": 5.7,
++  "hook_font": "sans"
++ }
+ }
+\ No newline at end of file
+diff --git a/tools/ceowills/jobs/business-owners-deep-dark.edit.json b/tools/ceowills/jobs/business-owners-deep-dark.edit.json
+index 740eb10..2378575 100644
+--- a/tools/ceowills/jobs/business-owners-deep-dark.edit.json
++++ b/tools/ceowills/jobs/business-owners-deep-dark.edit.json
+@@ -1,5 +1,5 @@
+ {
+- "_source": "Raw 'businessowners comment calculator and more.MP4' (client Drive id 1iiz9rd8HYKbin8s9jsjEhxS4NqhXfHkr); mic = 'standing under vines deep dark conversation.wav' (Mic 3) @ 787.4582 s. One take 3.7–41.0; the false start 'Comment more if you want a…' (41.6–43.4) cut, the full two-keyword CTA re-said at 47.9–57.3 kept ('Comment MORE if you would like a free blueprint… comment calculator below' — the director kept both keywords). 'more' in the CTA set in caps so it gets the serif + underline; end CTA = 'comment CALCULATOR below'. Verbatim stutter pass: none. Last cut held to 58.5 (silent). Nasheed the-sins. iMessage cards picked by topic (Eyad 29 Sep: switch them up, match what he's saying): assume-family-inherit. 1 Oct (Eyad): no shot under 0.8 s inside one take (the 0.44 s flash cut at 1:25 in #2), air after lines 0.12 s, title without a question mark, title font sans. The lone 'So,' (28.36–28.8, a 0.44 s shot between breaths) is cut: '…how your IHT works. CEOwills helps you…'; removed from the words file. 1 Oct (Sofian, 15:48): pauses ≥ 0.15 s cut to 0.08 s with smooth joins inside a take, end 0.35 s after the last word, captions higher, title under the platform bar.",
++ "_source": "Raw 'businessowners comment calculator and more.MP4' (client Drive id 1iiz9rd8HYKbin8s9jsjEhxS4NqhXfHkr); mic = 'standing under vines deep dark conversation.wav' (Mic 3) @ 787.4582 s. One take 3.7–41.0; the false start 'Comment more if you want a…' (41.6–43.4) cut, the full two-keyword CTA re-said at 47.9–57.3 kept ('Comment MORE if you would like a free blueprint… comment calculator below' — the director kept both keywords). 'more' in the CTA set in caps so it gets the serif + underline; end CTA = 'comment CALCULATOR below'. Verbatim stutter pass: none. Last cut held to 58.5 (silent). Nasheed the-sins. iMessage cards picked by topic (Eyad 29 Sep: switch them up, match what he's saying): assume-family-inherit. 1 Oct (Eyad): no shot under 0.8 s inside one take (the 0.44 s flash cut at 1:25 in #2), air after lines 0.12 s, title without a question mark, title font sans. The lone 'So,' (28.36–28.8, a 0.44 s shot between breaths) is cut: '…how your IHT works. CEOwills helps you…'; removed from the words file. 1 Oct (Sofian, 15:48): pauses ≥ 0.15 s cut to 0.08 s with smooth joins inside a take, end 0.35 s after the last word, captions higher, title under the platform bar. 2 Oct (Eyad): no title text on the video.",
+  "name": "Business owners: deep, dark IHT conversation",
+  "video": "src/biz.MP4",
+  "rotate": "ccw",
+@@ -135,12 +135,6 @@
+   }
+  ],
+  "punch_at": [],
+- "hook": [
+-  "Earning £1M+ a year",
+-  "Have a *deep, dark*",
+-  "_IHT_ conversation"
+- ],
+- "hook_until": 14.06,
+  "keywords": [],
+  "cta": {
+   "at": 55.66,
+@@ -206,5 +200,13 @@
+    "at_out": 21.6
+   }
+  ],
+- "hook_font": "sans"
++ "_title_removed_2oct": {
++  "hook": [
++   "Earning £1M+ a year",
++   "Have a *deep, dark*",
++   "_IHT_ conversation"
++  ],
++  "hook_until": 14.06,
++  "hook_font": "sans"
++ }
+ }
+\ No newline at end of file
+diff --git a/tools/ceowills/jobs/business-partners-succession.edit.json b/tools/ceowills/jobs/business-partners-succession.edit.json
+index 947d5c6..da0487e 100644
+--- a/tools/ceowills/jobs/business-partners-succession.edit.json
++++ b/tools/ceowills/jobs/business-partners-succession.edit.json
+@@ -1,5 +1,5 @@
+ {
+- "_source": "Raw 'bestfriend close partnership.MP4' (client Drive id 1cEBAF75TqRD4Vu11-vdaj0_qFa3U9eQ6); mic = 'standing under vines deep dark conversation.wav' (Mic 3) @ 1065.4986 s. One take 6.6–80.2. Stutter cut (verbatim pass): 'What are the criteria that you need to make sure to, what are the criteria that your success-,' (29.1–36.6) → keeps the third, complete 'What are the criteria that your beneficiaries…'; those words are deleted from words/bff.fixed.json. 'we sit down with you and your partners, we sit down and we discuss' left as spoken (no clean gap). CTA 'comment PARTNERSHIP now'. Last cut held to 81.3 (silent). Nasheed the-sins. iMessage cards picked by topic (Eyad 29 Sep: switch them up, match what he's saying): clarity, legacy-decades. v5 (30 Sep): re-tightened; the director's voice before 7.16 is off the start; cards moved to 18 s ('how quickly… the criteria… to grab those shares') and 41.5 s (into 'spend three hours with your partners'; it ends before the cut at 47.6 s where he stands tall) — he leans up to the top of the shot at 22–33 s and 44–50 s, where the real-size card reached his hair (cardfit). 1 Oct (Eyad): no shot under 0.8 s inside one take (the 0.44 s flash cut at 1:25 in #2), air after lines 0.12 s, title without a question mark, title font serif. 1 Oct (Sofian, 15:48): pauses ≥ 0.15 s cut to 0.08 s with smooth joins inside a take, end 0.35 s after the last word, captions higher, title under the platform bar.",
++ "_source": "Raw 'bestfriend close partnership.MP4' (client Drive id 1cEBAF75TqRD4Vu11-vdaj0_qFa3U9eQ6); mic = 'standing under vines deep dark conversation.wav' (Mic 3) @ 1065.4986 s. One take 6.6–80.2. Stutter cut (verbatim pass): 'What are the criteria that you need to make sure to, what are the criteria that your success-,' (29.1–36.6) → keeps the third, complete 'What are the criteria that your beneficiaries…'; those words are deleted from words/bff.fixed.json. 'we sit down with you and your partners, we sit down and we discuss' left as spoken (no clean gap). CTA 'comment PARTNERSHIP now'. Last cut held to 81.3 (silent). Nasheed the-sins. iMessage cards picked by topic (Eyad 29 Sep: switch them up, match what he's saying): clarity, legacy-decades. v5 (30 Sep): re-tightened; the director's voice before 7.16 is off the start; cards moved to 18 s ('how quickly… the criteria… to grab those shares') and 41.5 s (into 'spend three hours with your partners'; it ends before the cut at 47.6 s where he stands tall) — he leans up to the top of the shot at 22–33 s and 44–50 s, where the real-size card reached his hair (cardfit). 1 Oct (Eyad): no shot under 0.8 s inside one take (the 0.44 s flash cut at 1:25 in #2), air after lines 0.12 s, title without a question mark, title font serif. 1 Oct (Sofian, 15:48): pauses ≥ 0.15 s cut to 0.08 s with smooth joins inside a take, end 0.35 s after the last word, captions higher, title under the platform bar. 2 Oct (Eyad): no title text on the video.",
+  "name": "Business partners: agree your succession",
+  "video": "src/bff.MP4",
+  "rotate": "ccw",
+@@ -153,12 +153,6 @@
+   }
+  ],
+  "punch_at": [],
+- "hook": [
+-  "Business partners",
+-  "Have _THIS_ conversation",
+-  "before it's *too late*"
+- ],
+- "hook_until": 19.32,
+  "keywords": [],
+  "cta": {
+   "at": 78.9,
+@@ -259,8 +253,16 @@
+    "at_out": 39.98
+   }
+  ],
+- "hook_font": "serif",
+  "removed_ok": [
+   53.48
+- ]
++ ],
++ "_title_removed_2oct": {
++  "hook": [
++   "Business partners",
++   "Have _THIS_ conversation",
++   "before it's *too late*"
++  ],
++  "hook_until": 19.32,
++  "hook_font": "serif"
++ }
+ }
+\ No newline at end of file
+diff --git a/tools/ceowills/jobs/ceowills-bridge.edit.json b/tools/ceowills/jobs/ceowills-bridge.edit.json
+index d5de406..c7af174 100644
+--- a/tools/ceowills/jobs/ceowills-bridge.edit.json
++++ b/tools/ceowills/jobs/ceowills-bridge.edit.json
+@@ -1,5 +1,5 @@
+ {
+- "_source": "Raw 'ceowills bridges companies and wills between each other.MP4' (client Drive id 1tXLSZLLaZ9W6exLc5uleaNPqUZjEVnSZ); mic = 'standing under vines deep dark conversation.wav' (Mic 3) @ 714.1779 s. One complete take 1.9–42.8 ('…don't waste any more money'); the clip ends on 'I'm going to try that again' (cut) — the next thing filmed is a different script (#10), so there is no retake. He says no comment CTA in this take → no end CTA (captions verbatim); the one iMessage card at 25 s carries the ask. 'CEO'+'Wills' merged (jobs/ceowills-bridge.words.json → words/bridge.fixed.json; src/bridge.MP4, mic/bridge.mic.wav = symlinks). Nasheed the-sins (muffled). v2 (Eyad): the 'One of the, one of the' stutter cut (starts on the second), and 'one-plus, one-million' re-ordered by cuts into '1 million plus' (render.py sorts kept words by output time). iMessage cards picked by topic (Eyad 29 Sep: switch them up, match what he's saying): business-properties-wealth. 1 Oct (Eyad): no shot under 0.8 s inside one take (the 0.44 s flash cut at 1:25 in #2), air after lines 0.12 s, title without a question mark, title font sans. 1 Oct (Sofian, 15:48): pauses ≥ 0.15 s cut to 0.08 s with smooth joins inside a take, end 0.35 s after the last word, captions higher, title under the platform bar.",
++ "_source": "Raw 'ceowills bridges companies and wills between each other.MP4' (client Drive id 1tXLSZLLaZ9W6exLc5uleaNPqUZjEVnSZ); mic = 'standing under vines deep dark conversation.wav' (Mic 3) @ 714.1779 s. One complete take 1.9–42.8 ('…don't waste any more money'); the clip ends on 'I'm going to try that again' (cut) — the next thing filmed is a different script (#10), so there is no retake. He says no comment CTA in this take → no end CTA (captions verbatim); the one iMessage card at 25 s carries the ask. 'CEO'+'Wills' merged (jobs/ceowills-bridge.words.json → words/bridge.fixed.json; src/bridge.MP4, mic/bridge.mic.wav = symlinks). Nasheed the-sins (muffled). v2 (Eyad): the 'One of the, one of the' stutter cut (starts on the second), and 'one-plus, one-million' re-ordered by cuts into '1 million plus' (render.py sorts kept words by output time). iMessage cards picked by topic (Eyad 29 Sep: switch them up, match what he's saying): business-properties-wealth. 1 Oct (Eyad): no shot under 0.8 s inside one take (the 0.44 s flash cut at 1:25 in #2), air after lines 0.12 s, title without a question mark, title font sans. 1 Oct (Sofian, 15:48): pauses ≥ 0.15 s cut to 0.08 s with smooth joins inside a take, end 0.35 s after the last word, captions higher, title under the platform bar. 2 Oct (Eyad): no title text on the video.",
+  "name": "CEOwills bridges your company and your will",
+  "video": "src/bridge.MP4",
+  "rotate": "ccw",
+@@ -81,11 +81,6 @@
+   }
+  ],
+  "punch_at": [],
+- "hook": [
+-  "£1M+ business owners",
+-  "Bridge your _COMPANY_ & *will*"
+- ],
+- "hook_until": 12.8,
+  "keywords": [],
+  "cta": null,
+  "nasheed": {
+@@ -138,8 +133,15 @@
+    "at_out": 23.08
+   }
+  ],
+- "hook_font": "sans",
+  "removed_ok": [
+   19.58
+- ]
++ ],
++ "_title_removed_2oct": {
++  "hook": [
++   "£1M+ business owners",
++   "Bridge your _COMPANY_ & *will*"
++  ],
++  "hook_until": 12.8,
++  "hook_font": "sans"
++ }
+ }
+\ No newline at end of file
+diff --git a/tools/ceowills/jobs/culture-leaving-daughters-out.edit.json b/tools/ceowills/jobs/culture-leaving-daughters-out.edit.json
+index d687e8e..002679c 100644
+--- a/tools/ceowills/jobs/culture-leaving-daughters-out.edit.json
++++ b/tools/ceowills/jobs/culture-leaving-daughters-out.edit.json
+@@ -1,5 +1,5 @@
+ {
+- "_source": "Raw 'culture leaving daughters out.MP4' (client Drive id 1J2x_GyyWkQzhRuuHwwT1Xq1XVXQiDTb6); mic = 'beginning uncles brothers sisters and PENSIONS.wav' (Mic 1) @ 100.3331 s. Structure follows Sofian's edit of the same raw: first pitch ('Here's how we solve it… in the Quran') and 'You see' dropped, repeated 'distributing it' cut, pauses cut in silence only (sk-media pauses.py v2, edge word-guard). Corrected transcript: jobs/culture-leaving-daughters-out.words.json → copy to $W/words/culture.fixed.json. Nasheed hona-marro from SoundCloud (nasheeds.json). v1 = 99.12 s, QA ALL PASS. v3 (29 Sep): current house style (sans title, no script, gradient ×2, centred logo, iPhone chime, 600 px cards), nasheed the-sins, cards by topic: islamic-uk-law (Allah/Quran), see-for-your-family (daughters), clarity at 85 s (check.py: no inheritance talk around 85 s). v7 (30 Sep): re-tightened; cards 1/2 moved to 27 s ('…not been left anything behind? Big issue. Allah… a blueprint') and 55 s ('we can help… the entire family is included') — at 24/53 s the real-size card grazed his hair. The camera-only sound at 135.5 s (checked: his hand tapping the stone desk; the lav is quiet) is not in the audio: the end hold runs to 138.4 (CTA readable 2.2 s) with his mic muted from 137.06 (mute_after) — his hand knocks on the desk three times after 'below'. 1 Oct (Eyad): no shot under 0.8 s inside one take (the 0.44 s flash cut at 1:25 in #2), air after lines 0.12 s, title without a question mark, title font serif. 1 Oct (Sofian, 15:48): pauses ≥ 0.15 s cut to 0.08 s with smooth joins inside a take, end 0.35 s after the last word, captions higher, title under the platform bar. Hand fix 1 Oct: the cut after 'passed on.' ends at 95.52 — the in-breath before 'More importantly' peaked right at the voice threshold and was kept.",
++ "_source": "Raw 'culture leaving daughters out.MP4' (client Drive id 1J2x_GyyWkQzhRuuHwwT1Xq1XVXQiDTb6); mic = 'beginning uncles brothers sisters and PENSIONS.wav' (Mic 1) @ 100.3331 s. Structure follows Sofian's edit of the same raw: first pitch ('Here's how we solve it… in the Quran') and 'You see' dropped, repeated 'distributing it' cut, pauses cut in silence only (sk-media pauses.py v2, edge word-guard). Corrected transcript: jobs/culture-leaving-daughters-out.words.json → copy to $W/words/culture.fixed.json. Nasheed hona-marro from SoundCloud (nasheeds.json). v1 = 99.12 s, QA ALL PASS. v3 (29 Sep): current house style (sans title, no script, gradient ×2, centred logo, iPhone chime, 600 px cards), nasheed the-sins, cards by topic: islamic-uk-law (Allah/Quran), see-for-your-family (daughters), clarity at 85 s (check.py: no inheritance talk around 85 s). v7 (30 Sep): re-tightened; cards 1/2 moved to 27 s ('…not been left anything behind? Big issue. Allah… a blueprint') and 55 s ('we can help… the entire family is included') — at 24/53 s the real-size card grazed his hair. The camera-only sound at 135.5 s (checked: his hand tapping the stone desk; the lav is quiet) is not in the audio: the end hold runs to 138.4 (CTA readable 2.2 s) with his mic muted from 137.06 (mute_after) — his hand knocks on the desk three times after 'below'. 1 Oct (Eyad): no shot under 0.8 s inside one take (the 0.44 s flash cut at 1:25 in #2), air after lines 0.12 s, title without a question mark, title font serif. 1 Oct (Sofian, 15:48): pauses ≥ 0.15 s cut to 0.08 s with smooth joins inside a take, end 0.35 s after the last word, captions higher, title under the platform bar. Hand fix 1 Oct: the cut after 'passed on.' ends at 95.52 — the in-breath before 'More importantly' peaked right at the voice threshold and was kept. 2 Oct (Eyad): no title text on the video.",
+  "name": "Culture leaving daughters out",
+  "video": "src/culture leaving daughters out.MP4",
+  "rotate": "ccw",
+@@ -263,12 +263,6 @@
+  "punch_at": [
+   136.1
+  ],
+- "hook": [
+-  "Muslim parents",
+-  "*Don't leave out*",
+-  "your _DAUGHTERS_"
+- ],
+- "hook_until": 11.6,
+  "keywords": [
+   "fitnas",
+   "practice",
+@@ -474,9 +468,17 @@
+   }
+  ],
+  "mute_after": 137.06,
+- "hook_font": "serif",
+  "removed_ok": [
+   31.68,
+   85.72
+- ]
++ ],
++ "_title_removed_2oct": {
++  "hook": [
++   "Muslim parents",
++   "*Don't leave out*",
++   "your _DAUGHTERS_"
++  ],
++  "hook_until": 11.6,
++  "hook_font": "serif"
++ }
+ }
+\ No newline at end of file
+diff --git a/tools/ceowills/jobs/family-drawer.edit.json b/tools/ceowills/jobs/family-drawer.edit.json
+index 25bc4d2..6235db9 100644
+--- a/tools/ceowills/jobs/family-drawer.edit.json
++++ b/tools/ceowills/jobs/family-drawer.edit.json
+@@ -1,5 +1,5 @@
+ {
+- "_source": "Raw 'family access to all docs with steps - awkward family member writing things down, its not pain of not knowing its possibly creating turmoil.MP4' (client Drive id 1T7Z3ENDhcG9bPwN4i4iYjHc_w4GlBLcS); mic = 'wills work 60 seconds, verbal agreement sofa.wav' (Mic 4) @ 913.4985 s. One clean take 1.1–54.7 (verbatim pass: no stutters; 'the absence of not knowing' is what he says). 'CEO'+'wills' merged (words/fam.fixed.json). No spoken CTA → --no-cta; the iMessage card carries the ask. Last cut held to 56.4 (silent). Nasheed the-sins. iMessage cards picked by topic (Eyad 29 Sep: switch them up, match what he's saying): see-for-your-family. 30 Sep (v5): re-tightened (pauses.py --edit), card moved to 34 s — he leans in at 22–29 s and the real-size card reached his hair; at 34 s he says 'you need a will… it gives clarity… here at CEOwills' (cardfit: hair ≥ 407, card ends 378). 1 Oct (Eyad): no shot under 0.8 s inside one take (the 0.44 s flash cut at 1:25 in #2), air after lines 0.12 s, title without a question mark, title font sans. 1 Oct (Sofian, 15:48): pauses ≥ 0.15 s cut to 0.08 s with smooth joins inside a take, end 0.35 s after the last word, captions higher, title under the platform bar. 1 Oct (Eyad): title is his wording, question mark kept on purpose: 'Nothing written down? Here's why you need to be safe than sorry'.",
++ "_source": "Raw 'family access to all docs with steps - awkward family member writing things down, its not pain of not knowing its possibly creating turmoil.MP4' (client Drive id 1T7Z3ENDhcG9bPwN4i4iYjHc_w4GlBLcS); mic = 'wills work 60 seconds, verbal agreement sofa.wav' (Mic 4) @ 913.4985 s. One clean take 1.1–54.7 (verbatim pass: no stutters; 'the absence of not knowing' is what he says). 'CEO'+'wills' merged (words/fam.fixed.json). No spoken CTA → --no-cta; the iMessage card carries the ask. Last cut held to 56.4 (silent). Nasheed the-sins. iMessage cards picked by topic (Eyad 29 Sep: switch them up, match what he's saying): see-for-your-family. 30 Sep (v5): re-tightened (pauses.py --edit), card moved to 34 s — he leans in at 22–29 s and the real-size card reached his hair; at 34 s he says 'you need a will… it gives clarity… here at CEOwills' (cardfit: hair ≥ 407, card ends 378). 1 Oct (Eyad): no shot under 0.8 s inside one take (the 0.44 s flash cut at 1:25 in #2), air after lines 0.12 s, title without a question mark, title font sans. 1 Oct (Sofian, 15:48): pauses ≥ 0.15 s cut to 0.08 s with smooth joins inside a take, end 0.35 s after the last word, captions higher, title under the platform bar. 1 Oct (Eyad): title is his wording, question mark kept on purpose: 'Nothing written down? Here's why you need to be safe than sorry'. 2 Oct (Eyad): no title text on the video.",
+  "name": "Families should find it in the drawer",
+  "video": "src/fam.MP4",
+  "rotate": "ccw",
+@@ -149,12 +149,6 @@
+   }
+  ],
+  "punch_at": [],
+- "hook": [
+-  "Nothing written down?",
+-  "Here's why you need to",
+-  "be _safe_ than *sorry*"
+- ],
+- "hook_until": 8.76,
+  "keywords": [],
+  "cta": null,
+  "nasheed": {
+@@ -220,6 +214,14 @@
+    "at_out": 32.92
+   }
+  ],
+- "hook_font": "sans",
+- "hook_question": true
++ "_title_removed_2oct": {
++  "hook": [
++   "Nothing written down?",
++   "Here's why you need to",
++   "be _safe_ than *sorry*"
++  ],
++  "hook_until": 8.76,
++  "hook_font": "sans",
++  "hook_question": true
++ }
+ }
+\ No newline at end of file
+diff --git a/tools/ceowills/jobs/hmrc-40-percent.edit.json b/tools/ceowills/jobs/hmrc-40-percent.edit.json
+index d70581f..a79c809 100644
+--- a/tools/ceowills/jobs/hmrc-40-percent.edit.json
++++ b/tools/ceowills/jobs/hmrc-40-percent.edit.json
+@@ -1,5 +1,5 @@
+ {
+- "_source": "Raw 'hmrc can take up to 40% for IHT where will your family learn how to do.MP4' (client Drive id 1M1FpmsV6gNyknTlodY6HEOxtcFRYEUdL); mic = 'hmr took 8.5bn in inheritance tax.wav' (Mic 2) @ 890.1657 s. Kept: 'So many of my clients…the generation after', then the second (clean) 'Where are they going to get the liquidity…not HMRC' (the first try said 'the fines' and restarts), then the second CTA take 'comment calculator below' (the director asks for the calculator between the takes). Pauses cut by pauses.py; last cut held to the end of the raw so the CTA reads. Words: '40' + '%' merged into '40%' (words/hmrc40.fixed.json). Nasheed the-sins (warning). v5: latest house style (no script, The Sins, gradient) + the doubled 'work with, with yourselves' cut to one 'with' (verbatim stutter pass). v6: sans title, doubled gradient, centred logo, iPhone chime; his hair reaches y≈325 at the card time, so this job's card is 540 px (ends ≈311). 1 Oct (Eyad): no shot under 0.8 s inside one take (the 0.44 s flash cut at 1:25 in #2), air after lines 0.12 s, title without a question mark, title font serif. 1 Oct (Sofian, 15:48): pauses ≥ 0.15 s cut to 0.08 s with smooth joins inside a take, end 0.35 s after the last word, captions higher, title under the platform bar.",
++ "_source": "Raw 'hmrc can take up to 40% for IHT where will your family learn how to do.MP4' (client Drive id 1M1FpmsV6gNyknTlodY6HEOxtcFRYEUdL); mic = 'hmr took 8.5bn in inheritance tax.wav' (Mic 2) @ 890.1657 s. Kept: 'So many of my clients…the generation after', then the second (clean) 'Where are they going to get the liquidity…not HMRC' (the first try said 'the fines' and restarts), then the second CTA take 'comment calculator below' (the director asks for the calculator between the takes). Pauses cut by pauses.py; last cut held to the end of the raw so the CTA reads. Words: '40' + '%' merged into '40%' (words/hmrc40.fixed.json). Nasheed the-sins (warning). v5: latest house style (no script, The Sins, gradient) + the doubled 'work with, with yourselves' cut to one 'with' (verbatim stutter pass). v6: sans title, doubled gradient, centred logo, iPhone chime; his hair reaches y≈325 at the card time, so this job's card is 540 px (ends ≈311). 1 Oct (Eyad): no shot under 0.8 s inside one take (the 0.44 s flash cut at 1:25 in #2), air after lines 0.12 s, title without a question mark, title font serif. 1 Oct (Sofian, 15:48): pauses ≥ 0.15 s cut to 0.08 s with smooth joins inside a take, end 0.35 s after the last word, captions higher, title under the platform bar. 2 Oct (Eyad): no title text on the video.",
+  "name": "HMRC can take up to 40%",
+  "video": "src/hmrc40.MP4",
+  "rotate": "ccw",
+@@ -129,12 +129,6 @@
+  "punch_at": [
+   95.0
+  ],
+- "hook": [
+-  "UK business owners",
+-  "_HMRC_ *could take*",
+-  "_40%_ of your *legacy*"
+- ],
+- "hook_until": 10.08,
+  "keywords": [
+   "clients",
+   "idea",
+@@ -260,8 +254,16 @@
+    "at_out": 19.24
+   }
+  ],
+- "hook_font": "serif",
+  "removed_ok": [
+   51.9
+- ]
++ ],
++ "_title_removed_2oct": {
++  "hook": [
++   "UK business owners",
++   "_HMRC_ *could take*",
++   "_40%_ of your *legacy*"
++  ],
++  "hook_until": 10.08,
++  "hook_font": "serif"
++ }
+ }
+\ No newline at end of file
+diff --git a/tools/ceowills/jobs/rafa-nadal.edit.json b/tools/ceowills/jobs/rafa-nadal.edit.json
+index b93e83a..6269234 100644
+--- a/tools/ceowills/jobs/rafa-nadal.edit.json
++++ b/tools/ceowills/jobs/rafa-nadal.edit.json
+@@ -1,5 +1,5 @@
+ {
+- "_source": "Raw 'rafael nadal blooper.MP4' (client Drive id 15b-t5GzmStWLBP4EQC8t76rIpPUgHsow); mic = 'wills work 60 seconds, verbal agreement sofa.wav' (Mic 4) @ 549.4178 s. One clean take 5.0–36.2 (verbatim pass: no stutters). 'you won/wouldn't Wimbledon' confirmed as 'you'll win Wimbledon' by a prompted re-transcription (words/nadal.fixed.json). No spoken CTA and 30.8 s long → no end CTA, no iMessage card (a 25 s card + 6 s hold doesn't fit). Last cut held to 37.6 (silent). Nasheed the-sins. 30 Sep (Sofian): the nasheed comes in after he says 'pause' (nasheed.at 19.1) — voice only before that; the director's 'go' (4.8–5.42, off-mic) is no longer at the start. v4: title now two lines ('Plan with' dropped) — in the first cut he leans up to the top of the shot (no headroom possible, shift 0) and the third line reached his hair at 3–5 s. At 1.1–1.5 s he lunges at the lens with the plant (face fills the frame, motion blur): the caption sits on the plant/hand there — accepted with qa.py --ok-heads 1.1,1.4. 1 Oct (Eyad): no shot under 0.8 s inside one take (the 0.44 s flash cut at 1:25 in #2), air after lines 0.12 s, title without a question mark, title font serif. 1 Oct (Sofian, 15:48): pauses ≥ 0.15 s cut to 0.08 s with smooth joins inside a take, end 0.35 s after the last word, captions higher, title under the platform bar. Title until 8.2 s source (2.7 s on screen): from 2.9 s he leans up to the top of the shot for the plant, where any title would sit on his head. 1 Oct 18:36 (Sofian): exposure/whites down a little — the light on his face clipped → tone −0.1 EV, highlight shoulder from 0.65 to 0.9.",
++ "_source": "Raw 'rafael nadal blooper.MP4' (client Drive id 15b-t5GzmStWLBP4EQC8t76rIpPUgHsow); mic = 'wills work 60 seconds, verbal agreement sofa.wav' (Mic 4) @ 549.4178 s. One clean take 5.0–36.2 (verbatim pass: no stutters). 'you won/wouldn't Wimbledon' confirmed as 'you'll win Wimbledon' by a prompted re-transcription (words/nadal.fixed.json). No spoken CTA and 30.8 s long → no end CTA, no iMessage card (a 25 s card + 6 s hold doesn't fit). Last cut held to 37.6 (silent). Nasheed the-sins. 30 Sep (Sofian): the nasheed comes in after he says 'pause' (nasheed.at 19.1) — voice only before that; the director's 'go' (4.8–5.42, off-mic) is no longer at the start. v4: title now two lines ('Plan with' dropped) — in the first cut he leans up to the top of the shot (no headroom possible, shift 0) and the third line reached his hair at 3–5 s. At 1.1–1.5 s he lunges at the lens with the plant (face fills the frame, motion blur): the caption sits on the plant/hand there — accepted with qa.py --ok-heads 1.1,1.4. 1 Oct (Eyad): no shot under 0.8 s inside one take (the 0.44 s flash cut at 1:25 in #2), air after lines 0.12 s, title without a question mark, title font serif. 1 Oct (Sofian, 15:48): pauses ≥ 0.15 s cut to 0.08 s with smooth joins inside a take, end 0.35 s after the last word, captions higher, title under the platform bar. Title until 8.2 s source (2.7 s on screen): from 2.9 s he leans up to the top of the shot for the plant, where any title would sit on his head. 1 Oct 18:36 (Sofian): exposure/whites down a little — the light on his face clipped → tone −0.1 EV, highlight shoulder from 0.65 to 0.9. 2 Oct (Eyad): no title text on the video.",
+  "name": "Plan like Rafa Nadal",
+  "video": "src/nadal.MP4",
+  "rotate": "ccw",
+@@ -96,11 +96,6 @@
+   }
+  ],
+  "punch_at": [],
+- "hook": [
+-  "Why the fake plant",
+-  "Nadal-level *precision*"
+- ],
+- "hook_until": 8.2,
+  "keywords": [],
+  "cta": null,
+  "nasheed": {
+@@ -141,10 +136,17 @@
+   "you'll win Wimbledon",
+   "just like he did"
+  ],
+- "hook_font": "serif",
+  "tone": {
+   "exposure": -0.1,
+   "knee": 0.65,
+   "white": 0.9
++ },
++ "_title_removed_2oct": {
++  "hook": [
++   "Why the fake plant",
++   "Nadal-level *precision*"
++  ],
++  "hook_until": 8.2,
++  "hook_font": "serif"
+  }
+ }
+\ No newline at end of file
+diff --git a/tools/ceowills/layout.json b/tools/ceowills/layout.json
+index 3831fbb..c44e6a5 100644
+--- a/tools/ceowills/layout.json
++++ b/tools/ceowills/layout.json
+@@ -149,6 +149,8 @@
+     "_no_script_note": "27 Sep (Eyad, later): all fonts are fine except the overly styled script (Pinyon) → sans for words + white serif with red underline for ALL-CAPS/numbers; never script. Before that: 27 Sep, Sofian on #6: 'can we just stick to this font [the bold sans], add stronger drop shadow — easier for you and looks clearer' → every caption word in Inter Tight 700 (sans px 72, was 62), heavier drop shadow (blur/alpha/dy passes). The CTA keyword still gets its red underline. Remove single_style to bring back the script/serif mix."
+   },
+   "hook": {
++    "required": false,
++    "_required_2oct": "Eyad, 2 Oct: \"remove all headers title text\" — the videos carry no title; a job may still set one (check.py only demands it when required is true).",
+     "_note": "Eyad (26 Sep): title and CTA up so they don't cover his face, space above not too large, not too close to the edge. Eyebrow cap top 120 px from the top (baseline 143), block ends ≈365 — above his hairline (≈410–490 depending on how far he leans). edge_margin = the closest any top overlay may get to the frame edge (checked by qa.py). History: top 300 → 250 → 143.",
+     "top": 143,
+     "edge_margin": 100,
+diff --git a/tools/ceowills/qa.py b/tools/ceowills/qa.py
+index 0df55ab..9cd16af 100755
+--- a/tools/ceowills/qa.py
++++ b/tools/ceowills/qa.py
+@@ -88,7 +88,11 @@ def main():
+     f0 = np.frombuffer(raw, np.uint8).reshape(H, W)
+     hy = L["hook"]["top"] // 4; band = f0[hy - 12:hy + 40]
+     white = int((band > 225).sum())
+-    check("hook: text visible on frame 1", white > 150, f"{white} bright px in hook band")
++    titled = (not a.boxes) or json.loads(Path(a.boxes).read_text(encoding="utf-8"))["title"][1] > 0
++    if titled: check("hook: text visible on frame 1", white > 150, f"{white} bright px in hook band")
++    else:   # no title layer in the render (boxes.title height 0, render.py draws none): bright pixels up there are his
++        # background — a yellow plant (#6), a white orchid and a lit shelf (#2) all read as "text" to a pixel count (2 Oct)
++        check("hook: no title layer (job has none — Eyad, 2 Oct)", True, "boxes.title height 0")
+     rgb = subprocess.run(["ffmpeg", "-v", "error", "-i", a.video, "-vf", f"scale={W}:{H}", "-frames:v", "1", "-f", "rawvideo", "-pix_fmt", "rgb24", "-"], capture_output=True).stdout
+     c0 = np.frombuffer(rgb, np.uint8).reshape(H, W, 3).astype(int); G = L["logo"]
+     lb = c0[(G["baseline_y"] - 70) // 4:G["baseline_y"] // 4, (G["center_x"] - G["width"] // 2) // 4:(G["center_x"] + G["width"] // 2) // 4]
+@@ -112,7 +116,7 @@ def main():
+         U = L["hook"].get("uniform")
+         htop = (L["hook"]["bar"]["top"] if L["hook"].get("style") == "bar" else U["top"] - round(U["px"] * 0.73) if U
+                 else L["hook"]["top"] - L["hook"]["eyebrow_px"])
+-        check("layout: title under the platform bar (Instagram/TikTok/Shorts)", htop >= S["y0"], f"title cap top {htop}, platform bar ends {S['y0']}")
++        if b["title"][1] > 0: check("layout: title under the platform bar (Instagram/TikTok/Shorts)", htop >= S["y0"], f"title cap top {htop}, platform bar ends {S['y0']}")
+         check("layout: iMessage CTA clear of the top edge", L["notify"]["y"] >= em, f"card top {L['notify']['y']}")
+         cap_top = L["logo"]["baseline_y"] - round(L["logo"]["px"] * 0.72)   # the logo's cap height
+         check("layout: captions above the logo", L["caption"]["baseline_y"] + 40 < cap_top, f"caption baseline {L['caption']['baseline_y']}, logo cap top {cap_top}")
+diff --git a/tools/ceowills/tracker.json b/tools/ceowills/tracker.json
+index 342c363..ce944bc 100644
+--- a/tools/ceowills/tracker.json
++++ b/tools/ceowills/tracker.json
+@@ -15,10 +15,10 @@
+       "board": "hmrc can take up to 40%",
+       "mic": "Mic 2",
+       "status": "edited",
+-      "version": "v13",
+-      "export": "CEOwills - HMRC can take up to 40% - v8.mp4 (in Export) → v13 to replace it in place",
++      "version": "v14",
++      "export": "CEOwills - HMRC can take up to 40% - v8.mp4 (in Export) → v14 to replace it in place",
+       "job": "jobs/hmrc-40-percent.edit.json",
+-      "final_pass": "1 Oct (Sofian 15:48 + 18:36, Eyad): captions higher under his chin (baseline 1370), title lower (under the platform bars), pauses and breaths trimmed tighter (voiced-word guard, edge clicks/in-breaths dropped), end 0.35 s after the last word; #14 exposure/whites down (tone), #16 title in Eyad's words. Previews sent to Telegram; export not in Drive yet (needs the Make connector) 2 Oct: card contact photo = Adnan's black-and-white headshot.",
++      "final_pass": "1 Oct (Sofian 15:48 + 18:36, Eyad): captions higher under his chin (baseline 1370), title lower (under the platform bars), pauses and breaths trimmed tighter (voiced-word guard, edge clicks/in-breaths dropped), end 0.35 s after the last word; #14 exposure/whites down (tone), #16 title in Eyad's words. Previews sent to Telegram; export not in Drive yet (needs the Make connector) 2 Oct: card contact photo = Adnan's black-and-white headshot 2 Oct: no title text (Eyad).",
+       "exported_version": "v8"
+     },
+     {
+@@ -26,10 +26,10 @@
+       "board": "if you are a business leader that wants to feed family",
+       "mic": "Mic 2",
+       "status": "edited",
+-      "version": "v13",
+-      "export": "CEOwills - Business leader feeding your family - v9.mp4 (in Export) → v13 to replace it in place",
++      "version": "v14",
++      "export": "CEOwills - Business leader feeding your family - v9.mp4 (in Export) → v14 to replace it in place",
+       "job": "jobs/business-leader-feed-family.edit.json",
+-      "final_pass": "1 Oct (Sofian 15:48 + 18:36, Eyad): captions higher under his chin (baseline 1370), title lower (under the platform bars), pauses and breaths trimmed tighter (voiced-word guard, edge clicks/in-breaths dropped), end 0.35 s after the last word; #14 exposure/whites down (tone), #16 title in Eyad's words. Previews sent to Telegram; export not in Drive yet (needs the Make connector) 2 Oct: card contact photo = Adnan's black-and-white headshot.",
++      "final_pass": "1 Oct (Sofian 15:48 + 18:36, Eyad): captions higher under his chin (baseline 1370), title lower (under the platform bars), pauses and breaths trimmed tighter (voiced-word guard, edge clicks/in-breaths dropped), end 0.35 s after the last word; #14 exposure/whites down (tone), #16 title in Eyad's words. Previews sent to Telegram; export not in Drive yet (needs the Make connector) 2 Oct: card contact photo = Adnan's black-and-white headshot 2 Oct: no title text (Eyad).",
+       "exported_version": "v9"
+     },
+     {
+@@ -37,11 +37,11 @@
+       "board": "ceowills bridge",
+       "mic": "Mic 3",
+       "status": "edited",
+-      "version": "v10",
+-      "export": "CEOwills - CEOwills bridges your company and your will - v6.mp4 (in Export) → v10 to replace it in place",
++      "version": "v11",
++      "export": "CEOwills - CEOwills bridges your company and your will - v6.mp4 (in Export) → v11 to replace it in place",
+       "job": "jobs/ceowills-bridge.edit.json",
+       "note": "no spoken CTA in the take",
+-      "final_pass": "1 Oct (Sofian 15:48 + 18:36, Eyad): captions higher under his chin (baseline 1370), title lower (under the platform bars), pauses and breaths trimmed tighter (voiced-word guard, edge clicks/in-breaths dropped), end 0.35 s after the last word; #14 exposure/whites down (tone), #16 title in Eyad's words. Previews sent to Telegram; export not in Drive yet (needs the Make connector) 2 Oct: card contact photo = Adnan's black-and-white headshot.",
++      "final_pass": "1 Oct (Sofian 15:48 + 18:36, Eyad): captions higher under his chin (baseline 1370), title lower (under the platform bars), pauses and breaths trimmed tighter (voiced-word guard, edge clicks/in-breaths dropped), end 0.35 s after the last word; #14 exposure/whites down (tone), #16 title in Eyad's words. Previews sent to Telegram; export not in Drive yet (needs the Make connector) 2 Oct: card contact photo = Adnan's black-and-white headshot 2 Oct: no title text (Eyad).",
+       "exported_version": "v6"
+     },
+     {
+@@ -49,11 +49,11 @@
+       "board": "business owners",
+       "mic": "Mic 3",
+       "status": "edited",
+-      "version": "v9",
+-      "export": "CEOwills - Business owners deep dark IHT conversation - v5.mp4 (in Export) → v9 to replace it in place",
++      "version": "v10",
++      "export": "CEOwills - Business owners deep dark IHT conversation - v5.mp4 (in Export) → v10 to replace it in place",
+       "job": "jobs/business-owners-deep-dark.edit.json",
+       "note": "two-keyword CTA (MORE + CALCULATOR) kept on purpose",
+-      "final_pass": "1 Oct (Sofian 15:48 + 18:36, Eyad): captions higher under his chin (baseline 1370), title lower (under the platform bars), pauses and breaths trimmed tighter (voiced-word guard, edge clicks/in-breaths dropped), end 0.35 s after the last word; #14 exposure/whites down (tone), #16 title in Eyad's words. Previews sent to Telegram; export not in Drive yet (needs the Make connector) 2 Oct: card contact photo = Adnan's black-and-white headshot.",
++      "final_pass": "1 Oct (Sofian 15:48 + 18:36, Eyad): captions higher under his chin (baseline 1370), title lower (under the platform bars), pauses and breaths trimmed tighter (voiced-word guard, edge clicks/in-breaths dropped), end 0.35 s after the last word; #14 exposure/whites down (tone), #16 title in Eyad's words. Previews sent to Telegram; export not in Drive yet (needs the Make connector) 2 Oct: card contact photo = Adnan's black-and-white headshot 2 Oct: no title text (Eyad).",
+       "exported_version": "v5"
+     },
+     {
+@@ -61,10 +61,10 @@
+       "board": "bestfriends partnership",
+       "mic": "Mic 3",
+       "status": "edited",
+-      "version": "v9",
+-      "export": "CEOwills - Business partners agree your succession - v4.mp4 (in Export) → v9 to replace it in place",
++      "version": "v10",
++      "export": "CEOwills - Business partners agree your succession - v4.mp4 (in Export) → v10 to replace it in place",
+       "job": "jobs/business-partners-succession.edit.json",
+-      "final_pass": "1 Oct (Sofian 15:48 + 18:36, Eyad): captions higher under his chin (baseline 1370), title lower (under the platform bars), pauses and breaths trimmed tighter (voiced-word guard, edge clicks/in-breaths dropped), end 0.35 s after the last word; #14 exposure/whites down (tone), #16 title in Eyad's words. Previews sent to Telegram; export not in Drive yet (needs the Make connector) 2 Oct: card contact photo = Adnan's black-and-white headshot.",
++      "final_pass": "1 Oct (Sofian 15:48 + 18:36, Eyad): captions higher under his chin (baseline 1370), title lower (under the platform bars), pauses and breaths trimmed tighter (voiced-word guard, edge clicks/in-breaths dropped), end 0.35 s after the last word; #14 exposure/whites down (tone), #16 title in Eyad's words. Previews sent to Telegram; export not in Drive yet (needs the Make connector) 2 Oct: card contact photo = Adnan's black-and-white headshot 2 Oct: no title text (Eyad).",
+       "exported_version": "v4"
+     },
+     {
+@@ -72,11 +72,11 @@
+       "board": "rafael nadal blooper",
+       "mic": "Mic 4",
+       "status": "edited",
+-      "version": "v7",
+-      "export": "CEOwills - Plan like Rafa Nadal - v3.mp4 (in Export) → v7 to replace it in place",
++      "version": "v8",
++      "export": "CEOwills - Plan like Rafa Nadal - v3.mp4 (in Export) → v8 to replace it in place",
+       "job": "jobs/rafa-nadal.edit.json",
+       "note": "31 s, no spoken CTA, no card",
+-      "final_pass": "1 Oct (Sofian 15:48 + 18:36, Eyad): captions higher under his chin (baseline 1370), title lower (under the platform bars), pauses and breaths trimmed tighter (voiced-word guard, edge clicks/in-breaths dropped), end 0.35 s after the last word; #14 exposure/whites down (tone), #16 title in Eyad's words. Previews sent to Telegram; export not in Drive yet (needs the Make connector).",
++      "final_pass": "1 Oct (Sofian 15:48 + 18:36, Eyad): captions higher under his chin (baseline 1370), title lower (under the platform bars), pauses and breaths trimmed tighter (voiced-word guard, edge clicks/in-breaths dropped), end 0.35 s after the last word; #14 exposure/whites down (tone), #16 title in Eyad's words. Previews sent to Telegram; export not in Drive yet (needs the Make connector) 2 Oct: no title text (Eyad).",
+       "exported_version": "v3"
+     },
+     {
+@@ -84,11 +84,11 @@
+       "board": "family should have access to your private information",
+       "mic": "Mic 4",
+       "status": "edited",
+-      "version": "v9",
+-      "export": "CEOwills - Families should find it in the drawer - v4.mp4 (in Export) → v9 to replace it in place",
++      "version": "v10",
++      "export": "CEOwills - Families should find it in the drawer - v4.mp4 (in Export) → v10 to replace it in place",
+       "job": "jobs/family-drawer.edit.json",
+       "note": "v1 also still in Export (Eyad declined binning it)",
+-      "final_pass": "1 Oct (Sofian 15:48 + 18:36, Eyad): captions higher under his chin (baseline 1370), title lower (under the platform bars), pauses and breaths trimmed tighter (voiced-word guard, edge clicks/in-breaths dropped), end 0.35 s after the last word; #14 exposure/whites down (tone), #16 title in Eyad's words. Previews sent to Telegram; export not in Drive yet (needs the Make connector) 2 Oct: card contact photo = Adnan's black-and-white headshot.",
++      "final_pass": "1 Oct (Sofian 15:48 + 18:36, Eyad): captions higher under his chin (baseline 1370), title lower (under the platform bars), pauses and breaths trimmed tighter (voiced-word guard, edge clicks/in-breaths dropped), end 0.35 s after the last word; #14 exposure/whites down (tone), #16 title in Eyad's words. Previews sent to Telegram; export not in Drive yet (needs the Make connector) 2 Oct: card contact photo = Adnan's black-and-white headshot 2 Oct: no title text (Eyad).",
+       "exported_version": "v4"
+     },
+     {
+@@ -96,11 +96,11 @@
+       "board": "business owners juggling",
+       "mic": "Mic 4",
+       "status": "edited",
+-      "version": "v15",
+-      "export": "CEOwills - Business owner juggling - v12.mp4 (in Export) → v15 to replace it in place",
++      "version": "v16",
++      "export": "CEOwills - Business owner juggling - v12.mp4 (in Export) → v16 to replace it in place",
+       "job": "jobs/business-owner-juggling.edit.json",
+       "note": "v10 = current style (29 Sep); the old-style v9 from another session is still in Export",
+-      "final_pass": "1 Oct (Sofian 15:48 + 18:36, Eyad): captions higher under his chin (baseline 1370), title lower (under the platform bars), pauses and breaths trimmed tighter (voiced-word guard, edge clicks/in-breaths dropped), end 0.35 s after the last word; #14 exposure/whites down (tone), #16 title in Eyad's words. Previews sent to Telegram; export not in Drive yet (needs the Make connector).",
++      "final_pass": "1 Oct (Sofian 15:48 + 18:36, Eyad): captions higher under his chin (baseline 1370), title lower (under the platform bars), pauses and breaths trimmed tighter (voiced-word guard, edge clicks/in-breaths dropped), end 0.35 s after the last word; #14 exposure/whites down (tone), #16 title in Eyad's words. Previews sent to Telegram; export not in Drive yet (needs the Make connector) 2 Oct: no title text (Eyad).",
+       "exported_version": "v12"
+     },
+     {
+@@ -108,10 +108,10 @@
+       "board": "culture leaving daughters out",
+       "mic": "Mic 1",
+       "status": "edited",
+-      "version": "v10",
+-      "export": "CEOwills - Culture leaving daughters out - v6.mp4 (in Export) → v10 to replace it in place",
++      "version": "v11",
++      "export": "CEOwills - Culture leaving daughters out - v6.mp4 (in Export) → v11 to replace it in place",
+       "job": "jobs/culture-leaving-daughters-out.edit.json",
+-      "final_pass": "1 Oct (Sofian 15:48 + 18:36, Eyad): captions higher under his chin (baseline 1370), title lower (under the platform bars), pauses and breaths trimmed tighter (voiced-word guard, edge clicks/in-breaths dropped), end 0.35 s after the last word; #14 exposure/whites down (tone), #16 title in Eyad's words. Previews sent to Telegram; export not in Drive yet (needs the Make connector) 2 Oct: card contact photo = Adnan's black-and-white headshot.",
++      "final_pass": "1 Oct (Sofian 15:48 + 18:36, Eyad): captions higher under his chin (baseline 1370), title lower (under the platform bars), pauses and breaths trimmed tighter (voiced-word guard, edge clicks/in-breaths dropped), end 0.35 s after the last word; #14 exposure/whites down (tone), #16 title in Eyad's words. Previews sent to Telegram; export not in Drive yet (needs the Make connector) 2 Oct: card contact photo = Adnan's black-and-white headshot 2 Oct: no title text (Eyad).",
+       "exported_version": "v6"
+     },
+     {
+-- 
+2.43.0
+

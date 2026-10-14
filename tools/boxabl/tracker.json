@@ -1,0 +1,28 @@
+{
+ "_doc": "Queue for the BOXABL campaign. status: edited (preview sent) → delivered (handed to Mohanad) → posted (he confirms). One row per clip; open_angles = what's not done yet. Vary: every new clip = a new angle or a new source moment.",
+ "campaign": {"agency": "ClipFlow × ASG", "cpm_usd": 2.0, "min_views": 2500, "max_views": 250000, "budget_usd": 17500},
+ "clips": [
+  {"name": "01_elon_guesthouse", "title": "Elon's Guest House", "angle": "celebrity: Elon owns one", "sources": ["/3. BOXABL YouTube/2022-08-05 - Delivering Elon Musk’s BOXABL Casita.mp4", "1OnH2B5N-TaGyHqPdmT0uxdCeA-38FXry"], "version": 1, "status": "delivered", "batch": 1},
+  {"name": "02_casita_unfolds", "title": "This House Showed Up Folded", "angle": "unfold timelapse + tour", "sources": ["/1. Most Viewed YouTube/2024-05-14 - BOXABL Casita Tour.mp4", "/zPR/1 Casita Unfold.mp4"], "version": 1, "status": "delivered", "batch": 1},
+  {"name": "03_enes_one_hour", "title": "A Home Built in Under an Hour", "angle": "creator tour: under an hour", "sources": ["/1. Most Viewed YouTube/Inside Elon Musk's Famous $50,000 Tiny Home.mp4"], "version": 1, "status": "delivered", "batch": 1},
+  {"name": "04_fazerug_elons_casita", "title": "Elon's $50K Casita (FaZe Rug)", "angle": "celebrity creator: FaZe Rug", "sources": ["/1. Most Viewed YouTube/2024-05-14 - BOXABL Casita Tour.mp4", "/1. Most Viewed YouTube/Visiting Elon Musk’s $50,000 Tiny Home! SHOCKING.mp4"], "version": 1, "status": "delivered", "batch": 1},
+  {"name": "05_factory_houses_like_cars", "title": "A Factory That Builds Houses", "angle": "factory / assembly line", "sources": ["/1. Most Viewed YouTube/Ep. 7 BOXABL Factory Update 2025 - Phase 2.mp4"], "version": 1, "status": "delivered", "batch": 1},
+  {"name": "06_one_house_per_minute", "title": "One House Per Minute", "angle": "vision: a house a minute", "sources": ["/1. Most Viewed YouTube/Touring Elon Musk’s $50,000 Tiny Home.mp4"], "version": 1, "status": "delivered", "batch": 1},
+  {"name": "07_six_cars_on_the_roof", "title": "Six Cars on the Roof", "angle": "strength test", "sources": ["/3. BOXABL YouTube/Boxabl Car Stack and Drop Strength Tests_.mov"], "version": 1, "status": "edited", "batch": 2},
+  {"name": "08_baby_box", "title": "The $20K Baby Box", "angle": "price / new product (Baby Box)", "sources": ["/BOXABL MEDIA ASSETS/PRODUCT CATEGORIES/BABY BOX/VIDEO/NEW $19,999 BOXABL.mp4"], "version": 1, "status": "edited", "batch": 2},
+  {"name": "09_unpacked_in_48_minutes", "title": "Unpacked in 48 Minutes", "angle": "speed of setup + tour", "sources": ["/2. 3rd Party Videos/I Built a HOME In 48 Minutes!.mp4"], "version": 1, "status": "edited", "batch": 2},
+  {"name": "10_doesnt_feel_tiny", "title": "It Doesn't Feel Tiny", "angle": "first impressions / size", "sources": ["/2. 3rd Party Videos/Touring the Famous $50,000 Boxabl Casita in Las Vegas.mp4"], "version": 1, "status": "edited", "batch": 2},
+  {"name": "11_not_a_tiny_home", "title": "Not a Tiny Home (2-Story)", "angle": "new product: 2-story family home", "sources": ["/1. Most Viewed YouTube/BOXABL debuts NEW 2-STORY DESIGN.mp4"], "version": 1, "status": "edited", "batch": 2},
+  {"name": "12_a_home_in_your_backyard", "title": "A Home in Your Backyard", "angle": "backyard ADU / use case", "sources": ["/2. 3rd Party Videos/Full home unfolds in 1-hour, kitchen & bathroom included.mp4", "/2. 3rd Party Videos/The Boxabl “Casita” Your Primary Home, or Backyard Rental.mp4"], "version": 1, "status": "edited", "batch": 2}
+ ],
+ "open_angles": [
+   "Casita delivery / crane install (Casita Installs folder)",
+   "news segments (News Segments folder — check each for stock talk)",
+   "most-viewed Shorts re-cut (4. Most Viewed Shorts)",
+   "Galiano founder story (3rd-party interviews, skip investor parts)",
+   "hurricane / wind rating",
+   "Casita dress-ups (zPR/Casita Dress Ups.mp4)",
+   "Russian / Turkish creator reactions (--lang)",
+   "Elon delivery at Starbase (reuse 01 footage from a new angle)"
+ ]
+}

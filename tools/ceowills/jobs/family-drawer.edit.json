@@ -1,0 +1,227 @@
+{
+ "_source": "Raw 'family access to all docs with steps - awkward family member writing things down, its not pain of not knowing its possibly creating turmoil.MP4' (client Drive id 1T7Z3ENDhcG9bPwN4i4iYjHc_w4GlBLcS); mic = 'wills work 60 seconds, verbal agreement sofa.wav' (Mic 4) @ 913.4985 s. One clean take 1.1–54.7 (verbatim pass: no stutters; 'the absence of not knowing' is what he says). 'CEO'+'wills' merged (words/fam.fixed.json). No spoken CTA → --no-cta; the iMessage card carries the ask. Last cut held to 56.4 (silent). Nasheed the-sins. iMessage cards picked by topic (Eyad 29 Sep: switch them up, match what he's saying): see-for-your-family. 30 Sep (v5): re-tightened (pauses.py --edit), card moved to 34 s — he leans in at 22–29 s and the real-size card reached his hair; at 34 s he says 'you need a will… it gives clarity… here at CEOwills' (cardfit: hair ≥ 407, card ends 378). 1 Oct (Eyad): no shot under 0.8 s inside one take (the 0.44 s flash cut at 1:25 in #2), air after lines 0.12 s, title without a question mark, title font sans. 1 Oct (Sofian, 15:48): pauses ≥ 0.15 s cut to 0.08 s with smooth joins inside a take, end 0.35 s after the last word, captions higher, title under the platform bar. 1 Oct (Eyad): title is his wording, question mark kept on purpose: 'Nothing written down? Here's why you need to be safe than sorry'. 2 Oct (Eyad): no title text on the video.",
+ "name": "Families should find it in the drawer",
+ "video": "src/fam.MP4",
+ "rotate": "ccw",
+ "audio": "mic/fam.mic.wav",
+ "words": "words/fam.fixed.json",
+ "cuts": [
+  {
+   "in": 1.32,
+   "out": 4.2
+  },
+  {
+   "in": 4.48,
+   "out": 8.8,
+   "punch": true
+  },
+  {
+   "in": 9.4,
+   "out": 11.32
+  },
+  {
+   "in": 11.64,
+   "out": 12.32,
+   "punch": true
+  },
+  {
+   "in": 13.04,
+   "out": 16.76,
+   "join": "smooth",
+   "punch": true
+  },
+  {
+   "in": 17.2,
+   "out": 18.2
+  },
+  {
+   "in": 18.56,
+   "out": 20.6,
+   "punch": true
+  },
+  {
+   "in": 20.96,
+   "out": 22.16
+  },
+  {
+   "in": 22.4,
+   "out": 23.72,
+   "punch": true
+  },
+  {
+   "in": 23.96,
+   "out": 25.16
+  },
+  {
+   "in": 25.32,
+   "out": 27.56,
+   "punch": true
+  },
+  {
+   "in": 27.84,
+   "out": 28.92
+  },
+  {
+   "in": 29.12,
+   "out": 30.28,
+   "punch": true
+  },
+  {
+   "in": 30.6,
+   "out": 31.64
+  },
+  {
+   "in": 31.92,
+   "out": 32.72,
+   "punch": true
+  },
+  {
+   "in": 33.04,
+   "out": 33.52,
+   "join": "smooth",
+   "punch": true
+  },
+  {
+   "in": 33.76,
+   "out": 35.16
+  },
+  {
+   "in": 35.56,
+   "out": 37.08,
+   "punch": true
+  },
+  {
+   "in": 37.44,
+   "out": 38.36
+  },
+  {
+   "in": 38.48,
+   "out": 40.16,
+   "punch": true
+  },
+  {
+   "in": 40.6,
+   "out": 42.16
+  },
+  {
+   "in": 42.48,
+   "out": 42.92,
+   "punch": true
+  },
+  {
+   "in": 43.32,
+   "out": 44.28,
+   "join": "smooth",
+   "punch": true
+  },
+  {
+   "in": 44.8,
+   "out": 45.4
+  },
+  {
+   "in": 46.0,
+   "out": 46.76,
+   "join": "smooth"
+  },
+  {
+   "in": 46.88,
+   "out": 47.96,
+   "punch": true
+  },
+  {
+   "in": 48.04,
+   "out": 48.96
+  },
+  {
+   "in": 49.08,
+   "out": 49.48,
+   "punch": true
+  },
+  {
+   "in": 49.64,
+   "out": 52.36,
+   "join": "smooth",
+   "punch": true
+  },
+  {
+   "in": 52.44,
+   "out": 55.28
+  }
+ ],
+ "punch_at": [],
+ "keywords": [],
+ "cta": null,
+ "nasheed": {
+  "file": "nasheed/the-sins.mp3",
+  "start": 0
+ },
+ "chunks": [
+  "It's such an",
+  "awkward experience",
+  "when you have to",
+  "sit down and talk",
+  "to a family",
+  "or potential client",
+  "about why they need",
+  "to have things",
+  "written down.",
+  "It's not just",
+  "the pain of",
+  "not knowing,",
+  "it's the absence",
+  "of not knowing",
+  "that creates turmoil,",
+  "that creates",
+  "really bad,",
+  "awkward memories",
+  "after you've",
+  "passed on.",
+  "Families should",
+  "be able to",
+  "reach into the drawer,",
+  "see a document",
+  "and hold it up",
+  "to themselves",
+  "to be able to see",
+  "where the money is,",
+  "where it's paid into,",
+  "what debts are due,",
+  "what the estate owes,",
+  "how to discharge",
+  "of this,",
+  "what goes to whom",
+  "and exactly how",
+  "divisions are made.",
+  "That's the",
+  "importance of a will.",
+  "So, brothers",
+  "and sisters,",
+  "children,",
+  "parents,",
+  "you need a will",
+  "not just because",
+  "it gives",
+  "administrative ease",
+  "but because",
+  "it gives clarity",
+  "and here at CEOwills",
+  "that's something",
+  "we prioritize."
+ ],
+ "ctas": [
+  {
+   "text": "hey friend, could your family find everything in one drawer? Let's get it written down at ceowills.com",
+   "at_out": 32.92
+  }
+ ],
+ "_title_removed_2oct": {
+  "hook": [
+   "Nothing written down?",
+   "Here's why you need to",
+   "be _safe_ than *sorry*"
+  ],
+  "hook_until": 8.76,
+  "hook_font": "sans",
+  "hook_question": true
+ }
+}

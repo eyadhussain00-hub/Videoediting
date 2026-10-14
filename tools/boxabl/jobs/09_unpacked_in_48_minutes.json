@@ -1,0 +1,22 @@
+{
+ "name": "09_unpacked_in_48_minutes",
+ "title": "Unpacked in 48 Minutes",
+ "version": 1,
+ "angle": "speed of setup + tour",
+ "sources": {"min48": "/2. 3rd Party Videos/I Built a HOME In 48 Minutes!.mp4"},
+ "_why": "Kristina Smallhorn's tour with her on-screen setup timer (00:48:00). Exterior shot at 0:17-0:21 has her burned-in caption spelling 'Castia' → hf 0.72 crops it off. Interview part skipped (shipping dates / weight Q&A).",
+ "segments": [
+  {"v": "min48", "vs": 16.8, "ve": 29.0, "a": "min48", "as": 17.25, "ae": 26.1, "hf": 0.72, "home": true},
+  {"v": "min48", "vs": 30.0, "ve": 45.0, "a": "min48", "as": 26.06, "ae": 39.3},
+  {"v": "min48", "vs": 47.0, "ve": 52.4},
+  {"v": "min48", "vs": 94.0, "ve": 99.9}
+ ],
+ "overlays": [
+  {"s": 0, "e": 8.85, "text": "UNPACKED IN\n*48 MINUTES*"},
+  {"s": 8.85, "e": 22.1, "text": "THE *BOXABL CASITA*\n375 SQ FT"},
+  {"s": 22.1, "e": 27.5, "text": "FULL-SIZE\n*KITCHEN*"},
+  {"s": 27.5, "e": 33.4, "text": "A *REAL* SHOWER"}
+ ],
+ "post": {"short": "This whole house unpacked in 48 minutes ⏱️🏠 Full tour of the BOXABL Casita. @boxabl #boxabl #casita #tinyhouse #hometour",
+          "x": "This whole house unpacked in 48 minutes ⏱️🏠 Full tour of the BOXABL Casita. [TRACKING URL]"}
+}

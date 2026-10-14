@@ -1,0 +1,23 @@
+{
+ "name": "05_factory_houses_like_cars",
+ "title": "A Factory That Builds Houses",
+ "version": 1,
+ "status": "delivered",
+ "sources": {"factory7": "/1. Most Viewed YouTube/Ep. 7 BOXABL Factory Update 2025 - Phase 2.mp4"},
+ "segments": [
+  {"v": "factory7", "vs": 2.1, "ve": 6.1, "home": true},
+  {"v": "factory7", "vs": 7.2, "ve": 7.9},
+  {"v": "factory7", "vs": 10.0, "ve": 13.8},
+  {"v": "factory7", "vs": 186.9, "ve": 189.8},
+  {"v": "factory7", "vs": 191.9, "ve": 198.4},
+  {"v": "factory7", "vs": 198.5, "ve": 206.5},
+  {"v": "factory7", "vs": 206.5, "ve": 209.0}
+ ],
+ "overlays": [
+  {"s": 0, "e": 8.5, "text": "THE *BOXABL CASITA*"},
+  {"s": 8.5, "e": 18.1, "text": "BUILT ON AN\n*ASSEMBLY LINE*"},
+  {"s": 18.1, "e": 26.1, "text": "A FACTORY THAT\nBUILDS *HOUSES*"},
+  {"s": 26.1, "e": 28.6, "text": "OVER *700 HOMES*\nBUILT"}
+ ],
+ "post": {"short": "BOXABL builds houses on an assembly line like cars 🏭 700+ homes built so far. @boxabl #boxabl #casita #factory #howitsmade", "x": "BOXABL builds houses on an assembly line like cars 🏭 700+ homes built. [TRACKING URL]"}
+}

@@ -1,0 +1,118 @@
+{
+ "_source": "Raw 'business owner juggling.MP4' (client Drive id 1fYYZPsmOpmYUJhfRW1hzLY-HH0AjKMxg); mic = 'wills work 60 seconds, verbal agreement sofa.wav' @ 1303.101 s v10 (29 Sep): re-rendered in the current house style (was v9, exported by another session in the old script/serif look). 1 Oct (Eyad): no shot under 0.8 s inside one take (the 0.44 s flash cut at 1:25 in #2), air after lines 0.12 s, title without a question mark, title font sans. 1 Oct (Sofian, 15:48): pauses ≥ 0.15 s cut to 0.08 s with smooth joins inside a take, end 0.35 s after the last word, captions higher, title under the platform bar. 2 Oct (Eyad): no title text on the video.",
+ "name": "Business owner juggling",
+ "video": "src/juggling.mp4",
+ "rotate": "ccw",
+ "audio": "mic/juggling.mic.wav",
+ "words": "words/juggling.mic.json",
+ "cuts": [
+  {
+   "in": 1.88,
+   "out": 3.08
+  },
+  {
+   "in": 3.2,
+   "out": 3.84,
+   "punch": true
+  },
+  {
+   "in": 3.92,
+   "out": 5.7,
+   "join": "smooth",
+   "punch": true
+  },
+  {
+   "in": 6.2,
+   "out": 6.8
+  },
+  {
+   "in": 6.92,
+   "out": 9.4,
+   "join": "smooth"
+  },
+  {
+   "in": 9.52,
+   "out": 11.24,
+   "punch": true
+  },
+  {
+   "in": 11.44,
+   "out": 12.68
+  },
+  {
+   "in": 12.88,
+   "out": 14.96,
+   "punch": true
+  },
+  {
+   "in": 15.08,
+   "out": 17.16
+  },
+  {
+   "in": 17.28,
+   "out": 19.28,
+   "punch": true
+  }
+ ],
+ "punch_at": [
+  17.4
+ ],
+ "keywords": [
+  "muslim",
+  "juggling",
+  "legacy",
+  "guy",
+  "back",
+  "trouble",
+  "day",
+  "little",
+  "possible",
+  "paying",
+  "more"
+ ],
+ "cta": {
+  "at": 17.4,
+  "keyword": "IHT",
+  "script": [
+   "below"
+  ],
+  "underline": [
+   "IHT"
+  ]
+ },
+ "nasheed": {
+  "file": "nasheed/the-sins.mp3",
+  "start": 0
+ },
+ "chunks": [
+  "Are you a",
+  "Muslim owner",
+  "juggling",
+  "your business,",
+  "your life and your legacy?",
+  "Well, just like",
+  "this guy",
+  "who's juggling",
+  "in the back,",
+  "I don't want you",
+  "to be in trouble",
+  "one day",
+  "when it comes",
+  "to IHT.",
+  "I want you",
+  "to pay as little",
+  "as possible.",
+  "Make sure",
+  "you aren't paying",
+  "more than",
+  "you need to."
+ ],
+ "_title_removed_2oct": {
+  "hook": [
+   "Muslim business owner",
+   "*Don't overpay* _IHT_"
+  ],
+  "hook_until": 5.7,
+  "hook_font": "sans"
+ }
+}

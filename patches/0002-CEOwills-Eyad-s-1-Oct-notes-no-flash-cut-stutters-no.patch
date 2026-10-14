@@ -1,0 +1,2797 @@
+From a3564d11671efb1bd15657c39bbce26194042222 Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Thu, 1 Oct 2026 09:58:37 +0000
+Subject: [PATCH 2/5] =?UTF-8?q?CEOwills:=20Eyad's=201=20Oct=20notes=20?=
+ =?UTF-8?q?=E2=80=94=20no=20flash-cut=20stutters,=20no=20question=20marks?=
+ =?UTF-8?q?=20in=20titles,=20serif=20titles=20to=20switch=20it=20up?=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+- pauses.py: no shot under 0.8 s inside a take; merge_short() joins a short shot to a <= 0.35 s neighbour when the
+  join is silent on the lav (#2's "If" alone in 0.44 s at 1:25, and the same in #7/#10/#16); air after lines 0.12 s
+- check.py fails a short shot next to a tiny pause and any "?" in a title; hook_font sans|serif (Playfair 800 with
+  lining figures, titles only) — serif on #2, #6, #12, #14
+- #10: the lone "So," cut (words + chunks updated); #14: limiter margin for AAC overshoot (limit_margin_db 2.0)
+- All 9 re-rendered: #2 v8, #6 v10, #7 v11, #9 v8, #10 v7, #12 v6, #14 v5, #16 v6, #17 v14 — QA ALL PASS +
+  stutters PASS, previews on Telegram, not yet in Drive Export
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_011udnMWfLa6iF13BP2WLqvC
+---
+ tools/ceowills/HISTORY.md                     |   14 +
+ tools/ceowills/PRESET.md                      |    6 +-
+ tools/ceowills/check.py                       |    8 +-
+ tools/ceowills/cta_history.json               |   24 +-
+ .../business-leader-feed-family.edit.json     |  103 +-
+ .../jobs/business-owner-juggling.edit.json    |    9 +-
+ .../jobs/business-owners-deep-dark.edit.json  |   43 +-
+ .../jobs/business-owners-deep-dark.words.json | 1494 ++++++++---------
+ .../business-partners-succession.edit.json    |   15 +-
+ tools/ceowills/jobs/ceowills-bridge.edit.json |    9 +-
+ .../culture-leaving-daughters-out.edit.json   |   59 +-
+ tools/ceowills/jobs/family-drawer.edit.json   |   49 +-
+ tools/ceowills/jobs/hmrc-40-percent.edit.json |   21 +-
+ tools/ceowills/jobs/rafa-nadal.edit.json      |   11 +-
+ tools/ceowills/layout.json                    |   12 +-
+ tools/ceowills/pauses.py                      |   27 +
+ tools/ceowills/render.py                      |   22 +-
+ tools/ceowills/tracker.json                   |   54 +-
+ 18 files changed, 990 insertions(+), 990 deletions(-)
+
+diff --git a/tools/ceowills/HISTORY.md b/tools/ceowills/HISTORY.md
+index dc311d9..d57c0b4 100644
+--- a/tools/ceowills/HISTORY.md
++++ b/tools/ceowills/HISTORY.md
+@@ -279,3 +279,17 @@ talking about; it helps choose the right CTA. Good CTAs help make more money for
+ - **#2's end CTA was up for 0.9 s** in its first v7 render: the tail check had cut the silent end hold short because
+   of a sound after "below" (his hand knocking on the desk; loud on the camera, faint on the lav). → the hold stays and
+   his mic is muted from there (`"mute_after"`, set by `pauses.py --edit`); check.py fails an end CTA shown < 1.8 s.
++
++## Eyad on #2 v7 (1 Oct) → all 9 re-cut again
++- **"At 1:25 there's a weird visual stutter… and a gap that can be smoothened"**: the 30 Sep tightening cut a 0.12 s
++  pause after a soft "If", leaving "If" alone in a 0.44 s shot with its own punch-in, then "you are…" — two jump cuts
++  in half a second, and the lone soft "If" read as a gap. The same short shots were in #7, #10, #16 (and some came from
++  the original cuts). → `min_clip_s` 0.8 inside a take; `merge_short()` joins a short shot to a ≤ 0.35 s neighbour when
++  that join is silent on the lav (so a word the edit removed can't come back); check.py fails a short shot next to a
++  tiny pause. #10's lone "So," (between breaths) is cut instead. Air after a line back to 0.12 s (#2's "sorted" lost
++  its "d").
++- **"Remove the question mark"** from the title → none in any title (check.py). **"Use the font you used in the end
++  sometimes to switch it up, only for the title not captions"** → `hook_font: serif` (Playfair 800, lining figures so
++  "40%" is full height); this batch: #2, #6, #12, #14 serif, the rest sans.
++- **#14 v5 peaked at −1.1 dBTP** (QA limit −1.5): the last limiters sat 1.3 dB under the target and AAC overshoots up
++  to ~1.7 dB on loud, bright speech ("…your succession planning") → `audio.limit_margin_db` 2.0.
+diff --git a/tools/ceowills/PRESET.md b/tools/ceowills/PRESET.md
+index e5e2bba..7785600 100644
+--- a/tools/ceowills/PRESET.md
++++ b/tools/ceowills/PRESET.md
+@@ -63,7 +63,9 @@
+    When the director asks for a different take between tries, use the last one he asked for. **The video starts on his
+    first sound, never on the director's "go"** (Sofian, 30 Sep): Whisper can't hear the difference (#14: it merged the
+    director's "go" and Adnan's "so" into one word), `offmic.py` can, and `check.py` fails on it. **Trim like ExamQA**:
+-   pauses down to 0.1 s, 0.06 s of air before a line — `pauses.py` (new jobs) or `pauses.py --edit` (re-tighten a job;
++   pauses down to 0.1 s, 0.06 s of air before a line, 0.12 s after — **but never a shot under 0.8 s inside one take**
++   (Eyad, 1 Oct: a 0.44 s shot left by cutting a tiny pause "looks like a weird visual stutter"; the pause stays
++   instead, and check.py fails it) — `pauses.py` (new jobs) or `pauses.py --edit` (re-tighten a job;
+    also moves the first cut past the director and remaps card times). The end CTA stays on screen ≥ 1.8 s: keep the
+    silent hold after "below"; if something off his mic is in it, `"mute_after"` silences his mic there instead.
+ 5. **Frame 1 carries the title and the logo.**
+@@ -84,7 +86,7 @@
+ | Element | Now |
+ |---|---|
+ | Captions | **Last line on baseline 1450, extra lines stack upward** — under his beard, just above the logo (Sofian, 30 Sep). Inter Tight 700, 72 px, white, strong 3-pass drop shadow. ALL-CAPS and numbers → Playfair 800 white with a red underline that draws in (honorifics SWT/SAW/PBUH stay plain). **Never the Pinyon script.** 1–3 words per chunk, broken on phrases; each word appears as he says it; the chunk is laid out once so nothing shifts |
+-| Title (hook) | Top of frame over a soft black scrim: **every line the same Inter Tight 700 at 64 px, the question line included** (Sofian, 30 Sep: "the question and the text are different sizes"); `*marked*` words look like the rest, `_MARKED_` keeps a red underline. ≤ 22 characters a line. Fades at `hook_until` (end of the first sentence, before the first card at 25 s) |
++| Title (hook) | Top of frame over a soft black scrim: **every line the same face and size** (Sofian, 30 Sep). **No question marks** (Eyad, 1 Oct; check.py fails them). Face per video, switched up across the account: `"hook_font": "sans"` (Inter Tight 700, 64 px) or `"serif"` (the end CTA's Playfair 800, 66 px, lining figures) — the serif is for titles only, never captions (Eyad, 1 Oct). `*marked*` words look like the rest, `_MARKED_` keeps a red underline. ≤ 22 characters a line. Fades at `hook_until` (end of the first sentence, before the first card at 25 s) |
+ | Logo | Red `CEOwills` (Arimo 700, `#EB1519`, 392 px wide, baseline 1600), centred on its ink, every frame, over a black bottom gradient **from y 1300 down** (the layer doubled) — behind the captions and logo only, like ExamQA (Sofian, 30 Sep: "the gradient is so high"; it used to start at 1000, across his chest) |
+ | Frame | **Zoomed 1.08× and moved down up to 190 px** (Sofian, 30 Sep) so there's room above his head. Per cut, render.py tracks his head and fills the space with **only the wall above his hair**, stretched (no blurred copy of the frame — that put a ghost head above him and blurred his hair). A cut where he leans to the top of the shot gets less shift, or none; a cut where he leans in gets less so his beard stays above the captions (`frame` in layout.json, `shifts` in boxes.json) |
+ | iMessage cards | **Real-size iPhone banners** (Sofian/Eyad, 30 Sep: "so small it looks unrealistic"): 1000 px wide at y 100, Adnan's contact photo (his face from the video) with the Messages badge, "Adnan · now", frosted glass, ceowills.com in red, drawn by render.py (`notify.style: ios`). Slide down, 6 s each, first at 25 s then every 30 s, never over the end CTA, none in reels under 30 s, notification sound on each. **Text written for what he's saying at that moment, different in every video** — see below |
+diff --git a/tools/ceowills/check.py b/tools/ceowills/check.py
+index e4d5623..1487f21 100644
+--- a/tools/ceowills/check.py
++++ b/tools/ceowills/check.py
+@@ -45,7 +45,11 @@ def main():
+         except Exception: fail(f"raw video won't open (incomplete download?): {E['video']}")
+     for i, c in enumerate(E.get("cuts", [])):
+         if c["out"] <= c["in"]: fail(f"cut {i}: out {c['out']} ≤ in {c['in']}")
+-        elif c["out"] - c["in"] < L["cuts"]["min_clip_s"]: warn(f"cut {i} is only {c['out'] - c['in']:.2f} s — a flash cut?")
++        elif c["out"] - c["in"] < L["cuts"]["min_clip_s"]:
++            # a short shot that only removed a small pause inside one take reads as a stutter (#2 v7 at 1:25, 1 Oct)
++            near = ([c["in"] - E["cuts"][i - 1]["out"]] if i else []) + ([E["cuts"][i + 1]["in"] - c["out"]] if i + 1 < len(E["cuts"]) else [])
++            gap = min([g for g in near if g >= 0], default=9)   # a negative gap = re-ordered words, on purpose
++            (fail if 0 <= gap <= 0.35 else warn)(f"cut {i} is only {c['out'] - c['in']:.2f} s" + (f" and {gap:.2f} s from its neighbour — merge it (a jump cut for a tiny pause looks like a stutter)" if 0 <= gap <= 0.35 else " — a flash cut? fine only if it's a whole word or line on purpose"))
+     segs, dur, to_out = render.timeline(E.get("cuts", []), fps)
+     if not segs: fail("no cuts")
+     lo, hi = L["length"]["target_s"]
+@@ -84,6 +88,8 @@ def main():
+         for line in hook:
+             plain = re.sub(r"[*_]", "", line)
+             if len(plain) > 22: warn(f"title line '{plain}' is {len(plain)} characters (≤ 22 keeps it big)")
++            if "?" in plain: fail(f"title line '{plain}' has a question mark — titles have none (Eyad, 1 Oct)")
++        if E.get("hook_font", "sans") not in ("sans", "serif"): fail(f"hook_font '{E['hook_font']}' — use sans or serif")
+         hu = E.get("hook_until")
+         hu_out = to_out(hu) if hu is not None else dur
+         if hu is not None and hu_out is None: fail(f"hook_until {hu} is not inside a kept cut")
+diff --git a/tools/ceowills/cta_history.json b/tools/ceowills/cta_history.json
+index 83ce187..610f1c5 100644
+--- a/tools/ceowills/cta_history.json
++++ b/tools/ceowills/cta_history.json
+@@ -1,13 +1,18 @@
+ {
+  "_comment": "iMessage CTA cards used per video, oldest first (render.py writes this on every final render; plan_ctas penalises cards used in the last few videos).",
+  "videos": {
+-  "Business owner juggling": [],
+-  "CEOwills bridges your company and your will": [
+-   "say:hey-brother-own-1m-in-property-let-s-sit-down-an"
++  "Culture leaving daughters out": [
++   "say:hey-brother-your-daughters-shouldn-t-be-left-wit",
++   "say:hey-friend-want-a-will-that-includes-your-whole-",
++   "say:uncles-brothers-fathers-let-s-get-it-sorted-befo"
+   ],
+   "HMRC can take up to 40%": [
+    "say:hey-ceo-hmrc-could-take-40-of-everything-you-ve-"
+   ],
++  "Business partners: agree your succession": [
++   "say:hey-partner-who-gets-your-shares-and-when-agree-",
++   "say:hey-friend-3-hours-with-your-partners-today-save"
++  ],
+   "Families should find it in the drawer": [
+    "say:hey-friend-could-your-family-find-everything-in-"
+   ],
+@@ -15,18 +20,13 @@
+   "Business owners: deep, dark IHT conversation": [
+    "say:hey-ceo-let-s-have-that-deep-dark-conversation-a"
+   ],
++  "CEOwills bridges your company and your will": [
++   "say:hey-brother-own-1m-in-property-let-s-sit-down-an"
++  ],
++  "Business owner juggling": [],
+   "Business leader feeding your family": [
+    "say:hey-boss-you-built-this-company-to-feed-your-fam",
+    "say:hey-friend-pass-on-your-success-not-a-tax-bill-s"
+-  ],
+-  "Business partners: agree your succession": [
+-   "say:hey-partner-who-gets-your-shares-and-when-agree-",
+-   "say:hey-friend-3-hours-with-your-partners-today-save"
+-  ],
+-  "Culture leaving daughters out": [
+-   "say:hey-brother-your-daughters-shouldn-t-be-left-wit",
+-   "say:hey-friend-want-a-will-that-includes-your-whole-",
+-   "say:uncles-brothers-fathers-let-s-get-it-sorted-befo"
+   ]
+  }
+ }
+diff --git a/tools/ceowills/jobs/business-leader-feed-family.edit.json b/tools/ceowills/jobs/business-leader-feed-family.edit.json
+index e16c936..0cabfd2 100644
+--- a/tools/ceowills/jobs/business-leader-feed-family.edit.json
++++ b/tools/ceowills/jobs/business-leader-feed-family.edit.json
+@@ -1,5 +1,5 @@
+ {
+- "_source": "Raw 'if you are a business leader that wants to feed family.MP4' (client Drive id 1b_1RMw3LYFEWSqygIWl4yJGeXgDzzchQ); mic = 'hmr took 8.5bn in inheritance tax.wav' (Mic 2) @ 1081.8074 s. One clean take (slate 'three, two, one… ready Mike? go, testing' cut); pauses by pauses.py over 7.10–99.84, last cut held to 101.0 (silent) so the CTA reads. Words: 'CEO'+'Wills' → 'CEOwills', '40'+'%' → '40%' (jobs/business-leader-feed-family.words.json → words/leader.fixed.json; src/leader.MP4 and mic/leader.mic.wav are symlinks to the full-name files). Nasheed the-sins (muffled; Eyad asked for it on v3, was bika-moulhimi). v5 (Eyad): 'setting off and' cut (keep 'putting off'), the doubled 'blueprint, blueprint' cut to one, 0.6 s pause after 'wills and' tightened; words re-timed from a verbatim pass. iMessage cards picked by topic (Eyad 29 Sep: switch them up, match what he's saying): legacy-decades, got-you-thinking. v10 (30 Sep): re-tightened; the breath between '…than you need to.' and 'To make sure…' kept (63.88–70.04 one cut) so it doesn't read as a 'to, to' stutter (stutters.py --ok 51.28: 'than you need to, to make sure…' is a purpose clause, not a repeat); card 2 moved to 45 s ('here at CEOwills… business owners like you succeed. You aren't paying more taxes') — at 51.6 he leans up and the card reached his hair.",
++ "_source": "Raw 'if you are a business leader that wants to feed family.MP4' (client Drive id 1b_1RMw3LYFEWSqygIWl4yJGeXgDzzchQ); mic = 'hmr took 8.5bn in inheritance tax.wav' (Mic 2) @ 1081.8074 s. One clean take (slate 'three, two, one… ready Mike? go, testing' cut); pauses by pauses.py over 7.10–99.84, last cut held to 101.0 (silent) so the CTA reads. Words: 'CEO'+'Wills' → 'CEOwills', '40'+'%' → '40%' (jobs/business-leader-feed-family.words.json → words/leader.fixed.json; src/leader.MP4 and mic/leader.mic.wav are symlinks to the full-name files). Nasheed the-sins (muffled; Eyad asked for it on v3, was bika-moulhimi). v5 (Eyad): 'setting off and' cut (keep 'putting off'), the doubled 'blueprint, blueprint' cut to one, 0.6 s pause after 'wills and' tightened; words re-timed from a verbatim pass. iMessage cards picked by topic (Eyad 29 Sep: switch them up, match what he's saying): legacy-decades, got-you-thinking. v10 (30 Sep): re-tightened; the breath between '…than you need to.' and 'To make sure…' kept (63.88–70.04 one cut) so it doesn't read as a 'to, to' stutter (stutters.py --ok 51.28 in v10, 51.84 in v11: 'than you need to, to make sure…' is a purpose clause, not a repeat); card 2 moved to 45 s ('here at CEOwills… business owners like you succeed. You aren't paying more taxes') — at 51.6 he leans up and the card reached his hair. 1 Oct (Eyad): no shot under 0.8 s inside one take (the 0.44 s flash cut at 1:25 in #2), air after lines 0.12 s, title without a question mark, title font sans.",
+  "name": "Business leader feeding your family",
+  "video": "src/leader.MP4",
+  "rotate": "ccw",
+@@ -17,7 +17,7 @@
+   },
+   {
+    "in": 9.84,
+-   "out": 10.84
++   "out": 10.88
+   },
+   {
+    "in": 11.12,
+@@ -62,137 +62,125 @@
+   },
+   {
+    "in": 35.6,
+-   "out": 36.28
+-  },
+-  {
+-   "in": 36.44,
+-   "out": 37.2,
+-   "punch": true
+-  },
+-  {
+-   "in": 37.28,
+-   "out": 37.76
+-  },
+-  {
+-   "in": 38.04,
+-   "out": 38.42,
+-   "punch": true
++   "out": 38.42
+   },
+   {
+    "in": 38.96,
+-   "out": 42.64
++   "out": 42.64,
++   "punch": true
+   },
+   {
+    "in": 42.84,
+-   "out": 45.48,
+-   "punch": true
++   "out": 45.48
+   },
+   {
+    "in": 45.96,
+-   "out": 49.16
++   "out": 49.16,
++   "punch": true
+   },
+   {
+    "in": 49.4,
+-   "out": 51.64,
+-   "punch": true
++   "out": 51.64
+   },
+   {
+    "in": 51.76,
+-   "out": 52.92
++   "out": 52.92,
++   "punch": true
+   },
+   {
+    "in": 53.04,
+-   "out": 57.12,
+-   "punch": true
++   "out": 57.12
+   },
+   {
+    "in": 57.48,
+-   "out": 60.6
++   "out": 60.6,
++   "punch": true
+   },
+   {
+    "in": 60.92,
+-   "out": 63.56,
+-   "punch": true
++   "out": 63.56
+   },
+   {
+    "in": 63.88,
+-   "out": 70.04
++   "out": 70.04,
++   "punch": true
+   },
+   {
+    "in": 70.24,
+-   "out": 71.88
++   "out": 71.88,
++   "punch": true
+   },
+   {
+    "in": 72.12,
+-   "out": 73.56,
+-   "punch": true
++   "out": 73.56
+   },
+   {
+    "in": 73.92,
+-   "out": 75.48
++   "out": 75.48,
++   "punch": true
+   },
+   {
+    "in": 75.8,
+-   "out": 77.88,
+-   "punch": true
++   "out": 77.88
+   },
+   {
+    "in": 78.48,
+-   "out": 80.12
++   "out": 80.12,
++   "punch": true
+   },
+   {
+    "in": 80.36,
+-   "out": 81.48,
+-   "punch": true
++   "out": 81.48
+   },
+   {
+    "in": 81.84,
+-   "out": 85.72
++   "out": 85.72,
++   "punch": true
+   },
+   {
+    "in": 86.16,
+-   "out": 88.32,
+-   "punch": true
++   "out": 88.32
+   },
+   {
+    "in": 88.96,
+-   "out": 89.92
++   "out": 89.92,
++   "punch": true
+   },
+   {
+    "in": 90.04,
+-   "out": 91.84,
+-   "punch": true
++   "out": 91.84
+   },
+   {
+    "in": 91.96,
+-   "out": 93.76
++   "out": 93.76,
++   "punch": true
+   },
+   {
+    "in": 93.96,
+-   "out": 96.8,
+-   "punch": true
++   "out": 96.8
+   },
+   {
+    "in": 97.12,
+-   "out": 98.28
++   "out": 98.28,
++   "punch": true
+   },
+   {
+    "in": 98.36,
+-   "out": 99.88,
+-   "punch": true
++   "out": 99.88
+   },
+   {
+    "in": 100.16,
+-   "out": 101.0
++   "out": 101.0,
++   "punch": true
+   }
+  ],
+  "punch_at": [
+   98.5
+  ],
+  "hook": [
+-  "CEOs & business owners?",
++  "CEOs & business owners",
+   "*Where's your*",
+-  "family _BLUEPRINT_?"
++  "family _BLUEPRINT_"
+  ],
+  "hook_until": 15.24,
+  "keywords": [
+@@ -352,11 +340,12 @@
+  "ctas": [
+   {
+    "text": "hey boss, you built this company to feed your family. Don't put off their blueprint any longer: ceowills.com",
+-   "at_out": 23.56
++   "at_out": 23.6
+   },
+   {
+    "text": "hey friend, pass on your success, not a tax bill. See what you'd really owe at ceowills.com",
+-   "at_out": 45.0
++   "at_out": 45.52
+   }
+- ]
++ ],
++ "hook_font": "sans"
+ }
+\ No newline at end of file
+diff --git a/tools/ceowills/jobs/business-owner-juggling.edit.json b/tools/ceowills/jobs/business-owner-juggling.edit.json
+index 4b8a0db..f0c21c8 100644
+--- a/tools/ceowills/jobs/business-owner-juggling.edit.json
++++ b/tools/ceowills/jobs/business-owner-juggling.edit.json
+@@ -1,5 +1,5 @@
+ {
+- "_source": "Raw 'business owner juggling.MP4' (client Drive id 1fYYZPsmOpmYUJhfRW1hzLY-HH0AjKMxg); mic = 'wills work 60 seconds, verbal agreement sofa.wav' @ 1303.101 s v10 (29 Sep): re-rendered in the current house style (was v9, exported by another session in the old script/serif look).",
++ "_source": "Raw 'business owner juggling.MP4' (client Drive id 1fYYZPsmOpmYUJhfRW1hzLY-HH0AjKMxg); mic = 'wills work 60 seconds, verbal agreement sofa.wav' @ 1303.101 s v10 (29 Sep): re-rendered in the current house style (was v9, exported by another session in the old script/serif look). 1 Oct (Eyad): no shot under 0.8 s inside one take (the 0.44 s flash cut at 1:25 in #2), air after lines 0.12 s, title without a question mark, title font sans.",
+  "name": "Business owner juggling",
+  "video": "src/juggling.mp4",
+  "rotate": "ccw",
+@@ -83,8 +83,9 @@
+   "you need to."
+  ],
+  "hook": [
+-  "Muslim business owner?",
++  "Muslim business owner",
+   "*Don't overpay* _IHT_"
+  ],
+- "hook_until": 5.7
+-}
++ "hook_until": 5.7,
++ "hook_font": "sans"
++}
+\ No newline at end of file
+diff --git a/tools/ceowills/jobs/business-owners-deep-dark.edit.json b/tools/ceowills/jobs/business-owners-deep-dark.edit.json
+index 94ea56c..2f7be55 100644
+--- a/tools/ceowills/jobs/business-owners-deep-dark.edit.json
++++ b/tools/ceowills/jobs/business-owners-deep-dark.edit.json
+@@ -1,5 +1,5 @@
+ {
+- "_source": "Raw 'businessowners comment calculator and more.MP4' (client Drive id 1iiz9rd8HYKbin8s9jsjEhxS4NqhXfHkr); mic = 'standing under vines deep dark conversation.wav' (Mic 3) @ 787.4582 s. One take 3.7–41.0; the false start 'Comment more if you want a…' (41.6–43.4) cut, the full two-keyword CTA re-said at 47.9–57.3 kept ('Comment MORE if you would like a free blueprint… comment calculator below' — the director kept both keywords). 'more' in the CTA set in caps so it gets the serif + underline; end CTA = 'comment CALCULATOR below'. Verbatim stutter pass: none. Last cut held to 58.5 (silent). Nasheed the-sins. iMessage cards picked by topic (Eyad 29 Sep: switch them up, match what he's saying): assume-family-inherit.",
++ "_source": "Raw 'businessowners comment calculator and more.MP4' (client Drive id 1iiz9rd8HYKbin8s9jsjEhxS4NqhXfHkr); mic = 'standing under vines deep dark conversation.wav' (Mic 3) @ 787.4582 s. One take 3.7–41.0; the false start 'Comment more if you want a…' (41.6–43.4) cut, the full two-keyword CTA re-said at 47.9–57.3 kept ('Comment MORE if you would like a free blueprint… comment calculator below' — the director kept both keywords). 'more' in the CTA set in caps so it gets the serif + underline; end CTA = 'comment CALCULATOR below'. Verbatim stutter pass: none. Last cut held to 58.5 (silent). Nasheed the-sins. iMessage cards picked by topic (Eyad 29 Sep: switch them up, match what he's saying): assume-family-inherit. 1 Oct (Eyad): no shot under 0.8 s inside one take (the 0.44 s flash cut at 1:25 in #2), air after lines 0.12 s, title without a question mark, title font sans. The lone 'So,' (28.36–28.8, a 0.44 s shot between breaths) is cut: '…how your IHT works. CEOwills helps you…'; removed from the words file.",
+  "name": "Business owners: deep, dark IHT conversation",
+  "video": "src/biz.MP4",
+  "rotate": "ccw",
+@@ -35,28 +35,19 @@
+   },
+   {
+    "in": 15.24,
+-   "out": 18.12
+-  },
+-  {
+-   "in": 18.2,
+-   "out": 18.92,
+-   "punch": true
++   "out": 18.92
+   },
+   {
+    "in": 19.04,
+-   "out": 20.08
++   "out": 20.08,
++   "punch": true
+   },
+   {
+    "in": 20.28,
+-   "out": 21.56,
+-   "punch": true
++   "out": 21.56
+   },
+   {
+    "in": 21.76,
+-   "out": 23.56
+-  },
+-  {
+-   "in": 23.84,
+    "out": 24.56,
+    "punch": true
+   },
+@@ -64,22 +55,13 @@
+    "in": 24.76,
+    "out": 27.76
+   },
+-  {
+-   "in": 28.36,
+-   "out": 28.76,
+-   "punch": true
+-  },
+   {
+    "in": 29.0,
+-   "out": 33.64
+-  },
+-  {
+-   "in": 33.8,
+-   "out": 34.76,
++   "out": 33.64,
+    "punch": true
+   },
+   {
+-   "in": 34.84,
++   "in": 33.8,
+    "out": 35.44
+   },
+   {
+@@ -117,7 +99,7 @@
+  ],
+  "punch_at": [],
+  "hook": [
+-  "Earning £1M+ a year?",
++  "Earning £1M+ a year",
+   "Have a *deep, dark*",
+   "_IHT_ conversation"
+  ],
+@@ -159,7 +141,7 @@
+   "has a implication",
+   "on how",
+   "your IHT works.",
+-  "So, CEOwills",
++  "CEOwills",
+   "helps you",
+   "make sure that",
+   "you aren't paying",
+@@ -184,7 +166,8 @@
+  "ctas": [
+   {
+    "text": "hey CEO, let's have that deep dark conversation about IHT before HMRC has it for you: ceowills.com",
+-   "at_out": 23.4
++   "at_out": 23.8
+   }
+- ]
+-}
++ ],
++ "hook_font": "sans"
++}
+\ No newline at end of file
+diff --git a/tools/ceowills/jobs/business-owners-deep-dark.words.json b/tools/ceowills/jobs/business-owners-deep-dark.words.json
+index b584423..3071a74 100644
+--- a/tools/ceowills/jobs/business-owners-deep-dark.words.json
++++ b/tools/ceowills/jobs/business-owners-deep-dark.words.json
+@@ -1,752 +1,746 @@
+ [
+-{
+-"word": "Wealthy",
+-"start": 3.7,
+-"end": 4.3,
+-"p": 0.64
+-},
+-{
+-"word": "CEOs,",
+-"start": 4.3,
+-"end": 4.74,
+-"p": 0.8
+-},
+-{
+-"word": "business",
+-"start": 5.42,
+-"end": 5.64,
+-"p": 0.9
+-},
+-{
+-"word": "owners,",
+-"start": 5.64,
+-"end": 5.98,
+-"p": 1.0
+-},
+-{
+-"word": "business",
+-"start": 6.26,
+-"end": 6.52,
+-"p": 0.98
+-},
+-{
+-"word": "leaders,",
+-"start": 6.52,
+-"end": 6.9,
+-"p": 1.0
+-},
+-{
+-"word": "if",
+-"start": 7.0,
+-"end": 7.56,
+-"p": 0.92
+-},
+-{
+-"word": "you're",
+-"start": 7.56,
+-"end": 7.78,
+-"p": 0.92
+-},
+-{
+-"word": "earning",
+-"start": 7.78,
+-"end": 8.04,
+-"p": 0.99
+-},
+-{
+-"word": "more",
+-"start": 8.04,
+-"end": 8.26,
+-"p": 0.99
+-},
+-{
+-"word": "than",
+-"start": 8.26,
+-"end": 8.42,
+-"p": 0.99
+-},
+-{
+-"word": "a",
+-"start": 8.42,
+-"end": 8.82,
+-"p": 0.87
+-},
+-{
+-"word": "million",
+-"start": 8.82,
+-"end": 9.14,
+-"p": 0.98
+-},
+-{
+-"word": "pounds",
+-"start": 9.14,
+-"end": 9.44,
+-"p": 0.95
+-},
+-{
+-"word": "in",
+-"start": 9.44,
+-"end": 9.66,
+-"p": 0.97
+-},
+-{
+-"word": "revenue",
+-"start": 9.66,
+-"end": 9.94,
+-"p": 0.99
+-},
+-{
+-"word": "a",
+-"start": 9.94,
+-"end": 10.16,
+-"p": 0.95
+-},
+-{
+-"word": "year,",
+-"start": 10.16,
+-"end": 10.36,
+-"p": 1.0
+-},
+-{
+-"word": "I'm",
+-"start": 10.66,
+-"end": 10.9,
+-"p": 0.98
+-},
+-{
+-"word": "sure",
+-"start": 10.9,
+-"end": 11.06,
+-"p": 1.0
+-},
+-{
+-"word": "you",
+-"start": 11.06,
+-"end": 11.24,
+-"p": 0.99
+-},
+-{
+-"word": "have",
+-"start": 11.24,
+-"end": 11.48,
+-"p": 0.96
+-},
+-{
+-"word": "deep,",
+-"start": 11.48,
+-"end": 11.96,
+-"p": 0.96
+-},
+-{
+-"word": "dark",
+-"start": 12.42,
+-"end": 12.5,
+-"p": 1.0
+-},
+-{
+-"word": "conversations",
+-"start": 12.5,
+-"end": 13.16,
+-"p": 0.99
+-},
+-{
+-"word": "with",
+-"start": 13.16,
+-"end": 13.44,
+-"p": 1.0
+-},
+-{
+-"word": "your",
+-"start": 13.44,
+-"end": 13.62,
+-"p": 1.0
+-},
+-{
+-"word": "accountant.",
+-"start": 13.62,
+-"end": 14.06,
+-"p": 0.99
+-},
+-{
+-"word": "I",
+-"start": 15.28,
+-"end": 15.48,
+-"p": 1.0
+-},
+-{
+-"word": "want",
+-"start": 15.48,
+-"end": 15.64,
+-"p": 0.99
+-},
+-{
+-"word": "you",
+-"start": 15.64,
+-"end": 15.76,
+-"p": 0.99
+-},
+-{
+-"word": "to",
+-"start": 15.76,
+-"end": 15.86,
+-"p": 1.0
+-},
+-{
+-"word": "have",
+-"start": 15.86,
+-"end": 15.94,
+-"p": 1.0
+-},
+-{
+-"word": "a",
+-"start": 15.94,
+-"end": 16.12,
+-"p": 0.99
+-},
+-{
+-"word": "deep,",
+-"start": 16.12,
+-"end": 16.24,
+-"p": 1.0
+-},
+-{
+-"word": "dark",
+-"start": 16.4,
+-"end": 16.46,
+-"p": 1.0
+-},
+-{
+-"word": "conversation",
+-"start": 16.46,
+-"end": 17.02,
+-"p": 0.98
+-},
+-{
+-"word": "with",
+-"start": 17.02,
+-"end": 17.42,
+-"p": 0.99
+-},
+-{
+-"word": "me",
+-"start": 17.42,
+-"end": 17.7,
+-"p": 1.0
+-},
+-{
+-"word": "about",
+-"start": 17.7,
+-"end": 18.14,
+-"p": 0.98
+-},
+-{
+-"word": "IHT,",
+-"start": 18.14,
+-"end": 18.84,
+-"p": 0.91
+-},
+-{
+-"word": "inheritance",
+-"start": 19.12,
+-"end": 19.48,
+-"p": 0.66
+-},
+-{
+-"word": "tax,",
+-"start": 19.48,
+-"end": 20.0,
+-"p": 0.99
+-},
+-{
+-"word": "because",
+-"start": 20.38,
+-"end": 20.74,
+-"p": 0.99
+-},
+-{
+-"word": "what",
+-"start": 20.74,
+-"end": 20.98,
+-"p": 1.0
+-},
+-{
+-"word": "you",
+-"start": 20.98,
+-"end": 21.18,
+-"p": 1.0
+-},
+-{
+-"word": "do,",
+-"start": 21.18,
+-"end": 21.44,
+-"p": 1.0
+-},
+-{
+-"word": "every",
+-"start": 21.82,
+-"end": 22.08,
+-"p": 1.0
+-},
+-{
+-"word": "business",
+-"start": 22.08,
+-"end": 22.48,
+-"p": 1.0
+-},
+-{
+-"word": "decision",
+-"start": 22.48,
+-"end": 22.9,
+-"p": 1.0
+-},
+-{
+-"word": "you",
+-"start": 22.9,
+-"end": 23.1,
+-"p": 1.0
+-},
+-{
+-"word": "make",
+-"start": 23.1,
+-"end": 23.5,
+-"p": 1.0
+-},
+-{
+-"word": "has",
+-"start": 23.5,
+-"end": 24.16,
+-"p": 0.69
+-},
+-{
+-"word": "an",
+-"start": 24.16,
+-"end": 24.92,
+-"p": 0.41
+-},
+-{
+-"word": "implication",
+-"start": 24.92,
+-"end": 25.6,
+-"p": 1.0
+-},
+-{
+-"word": "on",
+-"start": 25.6,
+-"end": 25.94,
+-"p": 0.99
+-},
+-{
+-"word": "how",
+-"start": 25.94,
+-"end": 26.26,
+-"p": 1.0
+-},
+-{
+-"word": "your",
+-"start": 26.26,
+-"end": 26.6,
+-"p": 0.98
+-},
+-{
+-"word": "IHT",
+-"start": 26.6,
+-"end": 27.08,
+-"p": 1.0
+-},
+-{
+-"word": "works.",
+-"start": 27.08,
+-"end": 27.62,
+-"p": 1.0
+-},
+-{
+-"word": "So,",
+-"start": 28.26,
+-"end": 28.68,
+-"p": 0.75
+-},
+-{
+-"word": "CEOwills",
+-"start": 29.22,
+-"end": 29.84,
+-"p": 0.59
+-},
+-{
+-"word": "helps",
+-"start": 29.84,
+-"end": 30.32,
+-"p": 0.95
+-},
+-{
+-"word": "you",
+-"start": 30.32,
+-"end": 30.6,
+-"p": 0.98
+-},
+-{
+-"word": "make",
+-"start": 30.6,
+-"end": 30.86,
+-"p": 0.95
+-},
+-{
+-"word": "sure",
+-"start": 30.86,
+-"end": 31.14,
+-"p": 1.0
+-},
+-{
+-"word": "that",
+-"start": 31.14,
+-"end": 31.58,
+-"p": 0.74
+-},
+-{
+-"word": "you",
+-"start": 31.58,
+-"end": 31.74,
+-"p": 1.0
+-},
+-{
+-"word": "aren't",
+-"start": 31.74,
+-"end": 32.0,
+-"p": 0.97
+-},
+-{
+-"word": "paying",
+-"start": 32.0,
+-"end": 32.32,
+-"p": 0.99
+-},
+-{
+-"word": "more",
+-"start": 32.32,
+-"end": 32.76,
+-"p": 0.99
+-},
+-{
+-"word": "than",
+-"start": 32.76,
+-"end": 32.96,
+-"p": 0.98
+-},
+-{
+-"word": "what",
+-"start": 32.96,
+-"end": 33.1,
+-"p": 0.82
+-},
+-{
+-"word": "you",
+-"start": 33.1,
+-"end": 33.18,
+-"p": 1.0
+-},
+-{
+-"word": "need",
+-"start": 33.18,
+-"end": 33.36,
+-"p": 0.99
+-},
+-{
+-"word": "to,",
+-"start": 33.36,
+-"end": 33.62,
+-"p": 0.96
+-},
+-{
+-"word": "because",
+-"start": 33.9,
+-"end": 34.1,
+-"p": 0.96
+-},
+-{
+-"word": "who,",
+-"start": 34.1,
+-"end": 34.66,
+-"p": 0.92
+-},
+-{
+-"word": "tell",
+-"start": 34.98,
+-"end": 35.1,
+-"p": 0.97
+-},
+-{
+-"word": "me,",
+-"start": 35.1,
+-"end": 35.4,
+-"p": 1.0
+-},
+-{
+-"word": "likes",
+-"start": 35.76,
+-"end": 35.96,
+-"p": 0.97
+-},
+-{
+-"word": "to",
+-"start": 35.96,
+-"end": 36.2,
+-"p": 0.99
+-},
+-{
+-"word": "give",
+-"start": 36.2,
+-"end": 36.3,
+-"p": 0.99
+-},
+-{
+-"word": "more",
+-"start": 36.3,
+-"end": 36.66,
+-"p": 0.99
+-},
+-{
+-"word": "to",
+-"start": 36.66,
+-"end": 37.16,
+-"p": 0.99
+-},
+-{
+-"word": "HMRC",
+-"start": 37.16,
+-"end": 37.76,
+-"p": 1.0
+-},
+-{
+-"word": "than",
+-"start": 37.76,
+-"end": 38.22,
+-"p": 0.91
+-},
+-{
+-"word": "they",
+-"start": 38.22,
+-"end": 38.36,
+-"p": 0.99
+-},
+-{
+-"word": "already",
+-"start": 38.36,
+-"end": 38.6,
+-"p": 0.99
+-},
+-{
+-"word": "do?",
+-"start": 38.6,
+-"end": 38.88,
+-"p": 1.0
+-},
+-{
+-"word": "Not",
+-"start": 39.44,
+-"end": 39.54,
+-"p": 0.95
+-},
+-{
+-"word": "me,",
+-"start": 39.54,
+-"end": 39.78,
+-"p": 0.99
+-},
+-{
+-"word": "not",
+-"start": 40.34,
+-"end": 40.5,
+-"p": 0.97
+-},
+-{
+-"word": "you.",
+-"start": 40.5,
+-"end": 40.96,
+-"p": 1.0
+-},
+-{
+-"word": "Comment",
+-"start": 41.56,
+-"end": 41.72,
+-"p": 0.98
+-},
+-{
+-"word": "more",
+-"start": 41.72,
+-"end": 42.06,
+-"p": 0.96
+-},
+-{
+-"word": "if",
+-"start": 42.06,
+-"end": 42.58,
+-"p": 0.95
+-},
+-{
+-"word": "you",
+-"start": 42.58,
+-"end": 42.76,
+-"p": 0.99
+-},
+-{
+-"word": "want",
+-"start": 42.76,
+-"end": 43.02,
+-"p": 0.65
+-},
+-{
+-"word": "a...",
+-"start": 43.02,
+-"end": 44.22,
+-"p": 0.67
+-},
+-{
+-"word": "Comment",
+-"start": 47.84,
+-"end": 48.4,
+-"p": 0.34
+-},
+-{
+-"word": "MORE",
+-"start": 48.4,
+-"end": 48.96,
+-"p": 0.98
+-},
+-{
+-"word": "if",
+-"start": 48.96,
+-"end": 49.2,
+-"p": 0.98
+-},
+-{
+-"word": "you",
+-"start": 49.2,
+-"end": 49.34,
+-"p": 1.0
+-},
+-{
+-"word": "would",
+-"start": 49.34,
+-"end": 49.48,
+-"p": 0.94
+-},
+-{
+-"word": "like",
+-"start": 49.48,
+-"end": 49.76,
+-"p": 1.0
+-},
+-{
+-"word": "a",
+-"start": 49.76,
+-"end": 50.04,
+-"p": 1.0
+-},
+-{
+-"word": "free",
+-"start": 50.04,
+-"end": 50.52,
+-"p": 0.96
+-},
+-{
+-"word": "blueprint",
+-"start": 50.52,
+-"end": 51.08,
+-"p": 0.94
+-},
+-{
+-"word": "as",
+-"start": 51.08,
+-"end": 51.48,
+-"p": 0.97
+-},
+-{
+-"word": "to",
+-"start": 51.48,
+-"end": 51.62,
+-"p": 1.0
+-},
+-{
+-"word": "how",
+-"start": 51.62,
+-"end": 51.8,
+-"p": 1.0
+-},
+-{
+-"word": "you",
+-"start": 51.8,
+-"end": 52.04,
+-"p": 0.99
+-},
+-{
+-"word": "can",
+-"start": 52.04,
+-"end": 52.3,
+-"p": 1.0
+-},
+-{
+-"word": "save,",
+-"start": 52.3,
+-"end": 52.6,
+-"p": 1.0
+-},
+-{
+-"word": "and",
+-"start": 53.06,
+-"end": 53.42,
+-"p": 0.98
+-},
+-{
+-"word": "if",
+-"start": 53.42,
+-"end": 53.62,
+-"p": 0.92
+-},
+-{
+-"word": "you",
+-"start": 53.62,
+-"end": 53.72,
+-"p": 1.0
+-},
+-{
+-"word": "want",
+-"start": 53.72,
+-"end": 53.9,
+-"p": 1.0
+-},
+-{
+-"word": "our",
+-"start": 53.9,
+-"end": 54.44,
+-"p": 0.72
+-},
+-{
+-"word": "IHT",
+-"start": 54.44,
+-"end": 54.98,
+-"p": 0.89
+-},
+-{
+-"word": "calculator,",
+-"start": 54.98,
+-"end": 55.68,
+-"p": 0.81
+-},
+-{
+-"word": "comment",
+-"start": 56.32,
+-"end": 56.46,
+-"p": 0.85
+-},
+-{
+-"word": "calculator",
+-"start": 56.46,
+-"end": 56.98,
+-"p": 0.54
+-},
+-{
+-"word": "below.",
+-"start": 56.98,
+-"end": 57.28,
+-"p": 0.99
+-}
++ {
++  "word": "Wealthy",
++  "start": 3.7,
++  "end": 4.3,
++  "p": 0.64
++ },
++ {
++  "word": "CEOs,",
++  "start": 4.3,
++  "end": 4.74,
++  "p": 0.8
++ },
++ {
++  "word": "business",
++  "start": 5.42,
++  "end": 5.64,
++  "p": 0.9
++ },
++ {
++  "word": "owners,",
++  "start": 5.64,
++  "end": 5.98,
++  "p": 1.0
++ },
++ {
++  "word": "business",
++  "start": 6.26,
++  "end": 6.52,
++  "p": 0.98
++ },
++ {
++  "word": "leaders,",
++  "start": 6.52,
++  "end": 6.9,
++  "p": 1.0
++ },
++ {
++  "word": "if",
++  "start": 7.0,
++  "end": 7.56,
++  "p": 0.92
++ },
++ {
++  "word": "you're",
++  "start": 7.56,
++  "end": 7.78,
++  "p": 0.92
++ },
++ {
++  "word": "earning",
++  "start": 7.78,
++  "end": 8.04,
++  "p": 0.99
++ },
++ {
++  "word": "more",
++  "start": 8.04,
++  "end": 8.26,
++  "p": 0.99
++ },
++ {
++  "word": "than",
++  "start": 8.26,
++  "end": 8.42,
++  "p": 0.99
++ },
++ {
++  "word": "a",
++  "start": 8.42,
++  "end": 8.82,
++  "p": 0.87
++ },
++ {
++  "word": "million",
++  "start": 8.82,
++  "end": 9.14,
++  "p": 0.98
++ },
++ {
++  "word": "pounds",
++  "start": 9.14,
++  "end": 9.44,
++  "p": 0.95
++ },
++ {
++  "word": "in",
++  "start": 9.44,
++  "end": 9.66,
++  "p": 0.97
++ },
++ {
++  "word": "revenue",
++  "start": 9.66,
++  "end": 9.94,
++  "p": 0.99
++ },
++ {
++  "word": "a",
++  "start": 9.94,
++  "end": 10.16,
++  "p": 0.95
++ },
++ {
++  "word": "year,",
++  "start": 10.16,
++  "end": 10.36,
++  "p": 1.0
++ },
++ {
++  "word": "I'm",
++  "start": 10.66,
++  "end": 10.9,
++  "p": 0.98
++ },
++ {
++  "word": "sure",
++  "start": 10.9,
++  "end": 11.06,
++  "p": 1.0
++ },
++ {
++  "word": "you",
++  "start": 11.06,
++  "end": 11.24,
++  "p": 0.99
++ },
++ {
++  "word": "have",
++  "start": 11.24,
++  "end": 11.48,
++  "p": 0.96
++ },
++ {
++  "word": "deep,",
++  "start": 11.48,
++  "end": 11.96,
++  "p": 0.96
++ },
++ {
++  "word": "dark",
++  "start": 12.42,
++  "end": 12.5,
++  "p": 1.0
++ },
++ {
++  "word": "conversations",
++  "start": 12.5,
++  "end": 13.16,
++  "p": 0.99
++ },
++ {
++  "word": "with",
++  "start": 13.16,
++  "end": 13.44,
++  "p": 1.0
++ },
++ {
++  "word": "your",
++  "start": 13.44,
++  "end": 13.62,
++  "p": 1.0
++ },
++ {
++  "word": "accountant.",
++  "start": 13.62,
++  "end": 14.06,
++  "p": 0.99
++ },
++ {
++  "word": "I",
++  "start": 15.28,
++  "end": 15.48,
++  "p": 1.0
++ },
++ {
++  "word": "want",
++  "start": 15.48,
++  "end": 15.64,
++  "p": 0.99
++ },
++ {
++  "word": "you",
++  "start": 15.64,
++  "end": 15.76,
++  "p": 0.99
++ },
++ {
++  "word": "to",
++  "start": 15.76,
++  "end": 15.86,
++  "p": 1.0
++ },
++ {
++  "word": "have",
++  "start": 15.86,
++  "end": 15.94,
++  "p": 1.0
++ },
++ {
++  "word": "a",
++  "start": 15.94,
++  "end": 16.12,
++  "p": 0.99
++ },
++ {
++  "word": "deep,",
++  "start": 16.12,
++  "end": 16.24,
++  "p": 1.0
++ },
++ {
++  "word": "dark",
++  "start": 16.4,
++  "end": 16.46,
++  "p": 1.0
++ },
++ {
++  "word": "conversation",
++  "start": 16.46,
++  "end": 17.02,
++  "p": 0.98
++ },
++ {
++  "word": "with",
++  "start": 17.02,
++  "end": 17.42,
++  "p": 0.99
++ },
++ {
++  "word": "me",
++  "start": 17.42,
++  "end": 17.7,
++  "p": 1.0
++ },
++ {
++  "word": "about",
++  "start": 17.7,
++  "end": 18.14,
++  "p": 0.98
++ },
++ {
++  "word": "IHT,",
++  "start": 18.14,
++  "end": 18.84,
++  "p": 0.91
++ },
++ {
++  "word": "inheritance",
++  "start": 19.12,
++  "end": 19.48,
++  "p": 0.66
++ },
++ {
++  "word": "tax,",
++  "start": 19.48,
++  "end": 20.0,
++  "p": 0.99
++ },
++ {
++  "word": "because",
++  "start": 20.38,
++  "end": 20.74,
++  "p": 0.99
++ },
++ {
++  "word": "what",
++  "start": 20.74,
++  "end": 20.98,
++  "p": 1.0
++ },
++ {
++  "word": "you",
++  "start": 20.98,
++  "end": 21.18,
++  "p": 1.0
++ },
++ {
++  "word": "do,",
++  "start": 21.18,
++  "end": 21.44,
++  "p": 1.0
++ },
++ {
++  "word": "every",
++  "start": 21.82,
++  "end": 22.08,
++  "p": 1.0
++ },
++ {
++  "word": "business",
++  "start": 22.08,
++  "end": 22.48,
++  "p": 1.0
++ },
++ {
++  "word": "decision",
++  "start": 22.48,
++  "end": 22.9,
++  "p": 1.0
++ },
++ {
++  "word": "you",
++  "start": 22.9,
++  "end": 23.1,
++  "p": 1.0
++ },
++ {
++  "word": "make",
++  "start": 23.1,
++  "end": 23.5,
++  "p": 1.0
++ },
++ {
++  "word": "has",
++  "start": 23.5,
++  "end": 24.16,
++  "p": 0.69
++ },
++ {
++  "word": "an",
++  "start": 24.16,
++  "end": 24.92,
++  "p": 0.41
++ },
++ {
++  "word": "implication",
++  "start": 24.92,
++  "end": 25.6,
++  "p": 1.0
++ },
++ {
++  "word": "on",
++  "start": 25.6,
++  "end": 25.94,
++  "p": 0.99
++ },
++ {
++  "word": "how",
++  "start": 25.94,
++  "end": 26.26,
++  "p": 1.0
++ },
++ {
++  "word": "your",
++  "start": 26.26,
++  "end": 26.6,
++  "p": 0.98
++ },
++ {
++  "word": "IHT",
++  "start": 26.6,
++  "end": 27.08,
++  "p": 1.0
++ },
++ {
++  "word": "works.",
++  "start": 27.08,
++  "end": 27.62,
++  "p": 1.0
++ },
++ {
++  "word": "CEOwills",
++  "start": 29.22,
++  "end": 29.84,
++  "p": 0.59
++ },
++ {
++  "word": "helps",
++  "start": 29.84,
++  "end": 30.32,
++  "p": 0.95
++ },
++ {
++  "word": "you",
++  "start": 30.32,
++  "end": 30.6,
++  "p": 0.98
++ },
++ {
++  "word": "make",
++  "start": 30.6,
++  "end": 30.86,
++  "p": 0.95
++ },
++ {
++  "word": "sure",
++  "start": 30.86,
++  "end": 31.14,
++  "p": 1.0
++ },
++ {
++  "word": "that",
++  "start": 31.14,
++  "end": 31.58,
++  "p": 0.74
++ },
++ {
++  "word": "you",
++  "start": 31.58,
++  "end": 31.74,
++  "p": 1.0
++ },
++ {
++  "word": "aren't",
++  "start": 31.74,
++  "end": 32.0,
++  "p": 0.97
++ },
++ {
++  "word": "paying",
++  "start": 32.0,
++  "end": 32.32,
++  "p": 0.99
++ },
++ {
++  "word": "more",
++  "start": 32.32,
++  "end": 32.76,
++  "p": 0.99
++ },
++ {
++  "word": "than",
++  "start": 32.76,
++  "end": 32.96,
++  "p": 0.98
++ },
++ {
++  "word": "what",
++  "start": 32.96,
++  "end": 33.1,
++  "p": 0.82
++ },
++ {
++  "word": "you",
++  "start": 33.1,
++  "end": 33.18,
++  "p": 1.0
++ },
++ {
++  "word": "need",
++  "start": 33.18,
++  "end": 33.36,
++  "p": 0.99
++ },
++ {
++  "word": "to,",
++  "start": 33.36,
++  "end": 33.62,
++  "p": 0.96
++ },
++ {
++  "word": "because",
++  "start": 33.9,
++  "end": 34.1,
++  "p": 0.96
++ },
++ {
++  "word": "who,",
++  "start": 34.1,
++  "end": 34.66,
++  "p": 0.92
++ },
++ {
++  "word": "tell",
++  "start": 34.98,
++  "end": 35.1,
++  "p": 0.97
++ },
++ {
++  "word": "me,",
++  "start": 35.1,
++  "end": 35.4,
++  "p": 1.0
++ },
++ {
++  "word": "likes",
++  "start": 35.76,
++  "end": 35.96,
++  "p": 0.97
++ },
++ {
++  "word": "to",
++  "start": 35.96,
++  "end": 36.2,
++  "p": 0.99
++ },
++ {
++  "word": "give",
++  "start": 36.2,
++  "end": 36.3,
++  "p": 0.99
++ },
++ {
++  "word": "more",
++  "start": 36.3,
++  "end": 36.66,
++  "p": 0.99
++ },
++ {
++  "word": "to",
++  "start": 36.66,
++  "end": 37.16,
++  "p": 0.99
++ },
++ {
++  "word": "HMRC",
++  "start": 37.16,
++  "end": 37.76,
++  "p": 1.0
++ },
++ {
++  "word": "than",
++  "start": 37.76,
++  "end": 38.22,
++  "p": 0.91
++ },
++ {
++  "word": "they",
++  "start": 38.22,
++  "end": 38.36,
++  "p": 0.99
++ },
++ {
++  "word": "already",
++  "start": 38.36,
++  "end": 38.6,
++  "p": 0.99
++ },
++ {
++  "word": "do?",
++  "start": 38.6,
++  "end": 38.88,
++  "p": 1.0
++ },
++ {
++  "word": "Not",
++  "start": 39.44,
++  "end": 39.54,
++  "p": 0.95
++ },
++ {
++  "word": "me,",
++  "start": 39.54,
++  "end": 39.78,
++  "p": 0.99
++ },
++ {
++  "word": "not",
++  "start": 40.34,
++  "end": 40.5,
++  "p": 0.97
++ },
++ {
++  "word": "you.",
++  "start": 40.5,
++  "end": 40.96,
++  "p": 1.0
++ },
++ {
++  "word": "Comment",
++  "start": 41.56,
++  "end": 41.72,
++  "p": 0.98
++ },
++ {
++  "word": "more",
++  "start": 41.72,
++  "end": 42.06,
++  "p": 0.96
++ },
++ {
++  "word": "if",
++  "start": 42.06,
++  "end": 42.58,
++  "p": 0.95
++ },
++ {
++  "word": "you",
++  "start": 42.58,
++  "end": 42.76,
++  "p": 0.99
++ },
++ {
++  "word": "want",
++  "start": 42.76,
++  "end": 43.02,
++  "p": 0.65
++ },
++ {
++  "word": "a...",
++  "start": 43.02,
++  "end": 44.22,
++  "p": 0.67
++ },
++ {
++  "word": "Comment",
++  "start": 47.84,
++  "end": 48.4,
++  "p": 0.34
++ },
++ {
++  "word": "MORE",
++  "start": 48.4,
++  "end": 48.96,
++  "p": 0.98
++ },
++ {
++  "word": "if",
++  "start": 48.96,
++  "end": 49.2,
++  "p": 0.98
++ },
++ {
++  "word": "you",
++  "start": 49.2,
++  "end": 49.34,
++  "p": 1.0
++ },
++ {
++  "word": "would",
++  "start": 49.34,
++  "end": 49.48,
++  "p": 0.94
++ },
++ {
++  "word": "like",
++  "start": 49.48,
++  "end": 49.76,
++  "p": 1.0
++ },
++ {
++  "word": "a",
++  "start": 49.76,
++  "end": 50.04,
++  "p": 1.0
++ },
++ {
++  "word": "free",
++  "start": 50.04,
++  "end": 50.52,
++  "p": 0.96
++ },
++ {
++  "word": "blueprint",
++  "start": 50.52,
++  "end": 51.08,
++  "p": 0.94
++ },
++ {
++  "word": "as",
++  "start": 51.08,
++  "end": 51.48,
++  "p": 0.97
++ },
++ {
++  "word": "to",
++  "start": 51.48,
++  "end": 51.62,
++  "p": 1.0
++ },
++ {
++  "word": "how",
++  "start": 51.62,
++  "end": 51.8,
++  "p": 1.0
++ },
++ {
++  "word": "you",
++  "start": 51.8,
++  "end": 52.04,
++  "p": 0.99
++ },
++ {
++  "word": "can",
++  "start": 52.04,
++  "end": 52.3,
++  "p": 1.0
++ },
++ {
++  "word": "save,",
++  "start": 52.3,
++  "end": 52.6,
++  "p": 1.0
++ },
++ {
++  "word": "and",
++  "start": 53.06,
++  "end": 53.42,
++  "p": 0.98
++ },
++ {
++  "word": "if",
++  "start": 53.42,
++  "end": 53.62,
++  "p": 0.92
++ },
++ {
++  "word": "you",
++  "start": 53.62,
++  "end": 53.72,
++  "p": 1.0
++ },
++ {
++  "word": "want",
++  "start": 53.72,
++  "end": 53.9,
++  "p": 1.0
++ },
++ {
++  "word": "our",
++  "start": 53.9,
++  "end": 54.44,
++  "p": 0.72
++ },
++ {
++  "word": "IHT",
++  "start": 54.44,
++  "end": 54.98,
++  "p": 0.89
++ },
++ {
++  "word": "calculator,",
++  "start": 54.98,
++  "end": 55.68,
++  "p": 0.81
++ },
++ {
++  "word": "comment",
++  "start": 56.32,
++  "end": 56.46,
++  "p": 0.85
++ },
++ {
++  "word": "calculator",
++  "start": 56.46,
++  "end": 56.98,
++  "p": 0.54
++ },
++ {
++  "word": "below.",
++  "start": 56.98,
++  "end": 57.28,
++  "p": 0.99
++ }
+ ]
+\ No newline at end of file
+diff --git a/tools/ceowills/jobs/business-partners-succession.edit.json b/tools/ceowills/jobs/business-partners-succession.edit.json
+index 4d08ba2..e9596d5 100644
+--- a/tools/ceowills/jobs/business-partners-succession.edit.json
++++ b/tools/ceowills/jobs/business-partners-succession.edit.json
+@@ -1,5 +1,5 @@
+ {
+- "_source": "Raw 'bestfriend close partnership.MP4' (client Drive id 1cEBAF75TqRD4Vu11-vdaj0_qFa3U9eQ6); mic = 'standing under vines deep dark conversation.wav' (Mic 3) @ 1065.4986 s. One take 6.6–80.2. Stutter cut (verbatim pass): 'What are the criteria that you need to make sure to, what are the criteria that your success-,' (29.1–36.6) → keeps the third, complete 'What are the criteria that your beneficiaries…'; those words are deleted from words/bff.fixed.json. 'we sit down with you and your partners, we sit down and we discuss' left as spoken (no clean gap). CTA 'comment PARTNERSHIP now'. Last cut held to 81.3 (silent). Nasheed the-sins. iMessage cards picked by topic (Eyad 29 Sep: switch them up, match what he's saying): clarity, legacy-decades. v5 (30 Sep): re-tightened; the director's voice before 7.16 is off the start; cards moved to 18 s ('how quickly… the criteria… to grab those shares') and 41.5 s (into 'spend three hours with your partners'; it ends before the cut at 47.6 s where he stands tall) — he leans up to the top of the shot at 22–33 s and 44–50 s, where the real-size card reached his hair (cardfit).",
++ "_source": "Raw 'bestfriend close partnership.MP4' (client Drive id 1cEBAF75TqRD4Vu11-vdaj0_qFa3U9eQ6); mic = 'standing under vines deep dark conversation.wav' (Mic 3) @ 1065.4986 s. One take 6.6–80.2. Stutter cut (verbatim pass): 'What are the criteria that you need to make sure to, what are the criteria that your success-,' (29.1–36.6) → keeps the third, complete 'What are the criteria that your beneficiaries…'; those words are deleted from words/bff.fixed.json. 'we sit down with you and your partners, we sit down and we discuss' left as spoken (no clean gap). CTA 'comment PARTNERSHIP now'. Last cut held to 81.3 (silent). Nasheed the-sins. iMessage cards picked by topic (Eyad 29 Sep: switch them up, match what he's saying): clarity, legacy-decades. v5 (30 Sep): re-tightened; the director's voice before 7.16 is off the start; cards moved to 18 s ('how quickly… the criteria… to grab those shares') and 41.5 s (into 'spend three hours with your partners'; it ends before the cut at 47.6 s where he stands tall) — he leans up to the top of the shot at 22–33 s and 44–50 s, where the real-size card reached his hair (cardfit). 1 Oct (Eyad): no shot under 0.8 s inside one take (the 0.44 s flash cut at 1:25 in #2), air after lines 0.12 s, title without a question mark, title font serif.",
+  "name": "Business partners: agree your succession",
+  "video": "src/bff.MP4",
+  "rotate": "ccw",
+@@ -30,7 +30,7 @@
+   },
+   {
+    "in": 20.48,
+-   "out": 21.08,
++   "out": 21.12,
+    "punch": true
+   },
+   {
+@@ -44,7 +44,7 @@
+   },
+   {
+    "in": 27.64,
+-   "out": 29.08
++   "out": 29.1
+   },
+   {
+    "in": 36.68,
+@@ -108,7 +108,7 @@
+  ],
+  "punch_at": [],
+  "hook": [
+-  "Business partners?",
++  "Business partners",
+   "Have _THIS_ conversation",
+   "before it's *too late*"
+  ],
+@@ -206,11 +206,12 @@
+  "ctas": [
+   {
+    "text": "hey partner, who gets your shares, and when? Agree it with your business partner now. We'll help at ceowills.com",
+-   "at_out": 18.0
++   "at_out": 18.04
+   },
+   {
+    "text": "hey friend, 3 hours with your partners today saves your families years of fights. Book in at ceowills.com",
+-   "at_out": 41.5
++   "at_out": 41.58
+   }
+- ]
++ ],
++ "hook_font": "serif"
+ }
+\ No newline at end of file
+diff --git a/tools/ceowills/jobs/ceowills-bridge.edit.json b/tools/ceowills/jobs/ceowills-bridge.edit.json
+index b2d9fdb..ebcdd24 100644
+--- a/tools/ceowills/jobs/ceowills-bridge.edit.json
++++ b/tools/ceowills/jobs/ceowills-bridge.edit.json
+@@ -1,5 +1,5 @@
+ {
+- "_source": "Raw 'ceowills bridges companies and wills between each other.MP4' (client Drive id 1tXLSZLLaZ9W6exLc5uleaNPqUZjEVnSZ); mic = 'standing under vines deep dark conversation.wav' (Mic 3) @ 714.1779 s. One complete take 1.9–42.8 ('…don't waste any more money'); the clip ends on 'I'm going to try that again' (cut) — the next thing filmed is a different script (#10), so there is no retake. He says no comment CTA in this take → no end CTA (captions verbatim); the one iMessage card at 25 s carries the ask. 'CEO'+'Wills' merged (jobs/ceowills-bridge.words.json → words/bridge.fixed.json; src/bridge.MP4, mic/bridge.mic.wav = symlinks). Nasheed the-sins (muffled). v2 (Eyad): the 'One of the, one of the' stutter cut (starts on the second), and 'one-plus, one-million' re-ordered by cuts into '1 million plus' (render.py sorts kept words by output time). iMessage cards picked by topic (Eyad 29 Sep: switch them up, match what he's saying): business-properties-wealth.",
++ "_source": "Raw 'ceowills bridges companies and wills between each other.MP4' (client Drive id 1tXLSZLLaZ9W6exLc5uleaNPqUZjEVnSZ); mic = 'standing under vines deep dark conversation.wav' (Mic 3) @ 714.1779 s. One complete take 1.9–42.8 ('…don't waste any more money'); the clip ends on 'I'm going to try that again' (cut) — the next thing filmed is a different script (#10), so there is no retake. He says no comment CTA in this take → no end CTA (captions verbatim); the one iMessage card at 25 s carries the ask. 'CEO'+'Wills' merged (jobs/ceowills-bridge.words.json → words/bridge.fixed.json; src/bridge.MP4, mic/bridge.mic.wav = symlinks). Nasheed the-sins (muffled). v2 (Eyad): the 'One of the, one of the' stutter cut (starts on the second), and 'one-plus, one-million' re-ordered by cuts into '1 million plus' (render.py sorts kept words by output time). iMessage cards picked by topic (Eyad 29 Sep: switch them up, match what he's saying): business-properties-wealth. 1 Oct (Eyad): no shot under 0.8 s inside one take (the 0.44 s flash cut at 1:25 in #2), air after lines 0.12 s, title without a question mark, title font sans.",
+  "name": "CEOwills bridges your company and your will",
+  "video": "src/bridge.MP4",
+  "rotate": "ccw",
+@@ -76,7 +76,7 @@
+  ],
+  "punch_at": [],
+  "hook": [
+-  "£1M+ business owners?",
++  "£1M+ business owners",
+   "Bridge your _COMPANY_ & *will*"
+  ],
+  "hook_until": 12.8,
+@@ -131,5 +131,6 @@
+    "text": "hey brother, own £1M+ in property? Let's sit down and restructure it so your family has a clear blueprint: ceowills.com",
+    "at_out": 23.96
+   }
+- ]
+-}
++ ],
++ "hook_font": "sans"
++}
+\ No newline at end of file
+diff --git a/tools/ceowills/jobs/culture-leaving-daughters-out.edit.json b/tools/ceowills/jobs/culture-leaving-daughters-out.edit.json
+index e610e90..8dcf72b 100644
+--- a/tools/ceowills/jobs/culture-leaving-daughters-out.edit.json
++++ b/tools/ceowills/jobs/culture-leaving-daughters-out.edit.json
+@@ -1,5 +1,5 @@
+ {
+- "_source": "Raw 'culture leaving daughters out.MP4' (client Drive id 1J2x_GyyWkQzhRuuHwwT1Xq1XVXQiDTb6); mic = 'beginning uncles brothers sisters and PENSIONS.wav' (Mic 1) @ 100.3331 s. Structure follows Sofian's edit of the same raw: first pitch ('Here's how we solve it… in the Quran') and 'You see' dropped, repeated 'distributing it' cut, pauses cut in silence only (sk-media pauses.py v2, edge word-guard). Corrected transcript: jobs/culture-leaving-daughters-out.words.json → copy to $W/words/culture.fixed.json. Nasheed hona-marro from SoundCloud (nasheeds.json). v1 = 99.12 s, QA ALL PASS. v3 (29 Sep): current house style (sans title, no script, gradient ×2, centred logo, iPhone chime, 600 px cards), nasheed the-sins, cards by topic: islamic-uk-law (Allah/Quran), see-for-your-family (daughters), clarity at 85 s (check.py: no inheritance talk around 85 s). v7 (30 Sep): re-tightened; cards 1/2 moved to 27 s ('…not been left anything behind? Big issue. Allah… a blueprint') and 55 s ('we can help… the entire family is included') — at 24/53 s the real-size card grazed his hair. The camera-only sound at 135.5 s (checked: his hand tapping the stone desk; the lav is quiet) is not in the audio: the end hold runs to 138.4 (CTA readable 2.2 s) with his mic muted from 137.06 (mute_after) — his hand knocks on the desk three times after 'below'.",
++ "_source": "Raw 'culture leaving daughters out.MP4' (client Drive id 1J2x_GyyWkQzhRuuHwwT1Xq1XVXQiDTb6); mic = 'beginning uncles brothers sisters and PENSIONS.wav' (Mic 1) @ 100.3331 s. Structure follows Sofian's edit of the same raw: first pitch ('Here's how we solve it… in the Quran') and 'You see' dropped, repeated 'distributing it' cut, pauses cut in silence only (sk-media pauses.py v2, edge word-guard). Corrected transcript: jobs/culture-leaving-daughters-out.words.json → copy to $W/words/culture.fixed.json. Nasheed hona-marro from SoundCloud (nasheeds.json). v1 = 99.12 s, QA ALL PASS. v3 (29 Sep): current house style (sans title, no script, gradient ×2, centred logo, iPhone chime, 600 px cards), nasheed the-sins, cards by topic: islamic-uk-law (Allah/Quran), see-for-your-family (daughters), clarity at 85 s (check.py: no inheritance talk around 85 s). v7 (30 Sep): re-tightened; cards 1/2 moved to 27 s ('…not been left anything behind? Big issue. Allah… a blueprint') and 55 s ('we can help… the entire family is included') — at 24/53 s the real-size card grazed his hair. The camera-only sound at 135.5 s (checked: his hand tapping the stone desk; the lav is quiet) is not in the audio: the end hold runs to 138.4 (CTA readable 2.2 s) with his mic muted from 137.06 (mute_after) — his hand knocks on the desk three times after 'below'. 1 Oct (Eyad): no shot under 0.8 s inside one take (the 0.44 s flash cut at 1:25 in #2), air after lines 0.12 s, title without a question mark, title font serif.",
+  "name": "Culture leaving daughters out",
+  "video": "src/culture leaving daughters out.MP4",
+  "rotate": "ccw",
+@@ -8,7 +8,7 @@
+  "cuts": [
+   {
+    "in": 3.16,
+-   "out": 7.68
++   "out": 7.72
+   },
+   {
+    "in": 8.2,
+@@ -39,7 +39,7 @@
+   },
+   {
+    "in": 25.12,
+-   "out": 26.88,
++   "out": 26.96,
+    "punch": true
+   },
+   {
+@@ -53,7 +53,7 @@
+   },
+   {
+    "in": 32.2,
+-   "out": 32.84
++   "out": 32.92
+   },
+   {
+    "in": 50.6,
+@@ -98,7 +98,7 @@
+   },
+   {
+    "in": 83.16,
+-   "out": 85.68
++   "out": 85.72
+   },
+   {
+    "in": 86.24,
+@@ -116,33 +116,24 @@
+   },
+   {
+    "in": 97.48,
+-   "out": 99.76
+-  },
+-  {
+-   "in": 100.0,
+-   "out": 100.56,
+-   "punch": true
++   "out": 100.6
+   },
+   {
+    "in": 101.08,
+-   "out": 103.16
++   "out": 103.16,
++   "punch": true
+   },
+   {
+    "in": 103.32,
+-   "out": 104.36,
+-   "punch": true
++   "out": 104.36
+   },
+   {
+    "in": 104.52,
+-   "out": 107.72
+-  },
+-  {
+-   "in": 108.24,
+-   "out": 108.92,
++   "out": 107.72,
+    "punch": true
+   },
+   {
+-   "in": 109.0,
++   "in": 108.24,
+    "out": 109.52
+   },
+   {
+@@ -161,37 +152,32 @@
+   },
+   {
+    "in": 115.2,
+-   "out": 117.64
++   "out": 117.76
+   },
+   {
+    "in": 126.56,
+-   "out": 127.0,
++   "out": 128.6,
+    "punch": true
+   },
+-  {
+-   "in": 127.12,
+-   "out": 128.6
+-  },
+   {
+    "in": 128.76,
+-   "out": 133.76,
+-   "punch": true
++   "out": 133.84
+   },
+   {
+    "in": 134.28,
+-   "out": 135.76
++   "out": 135.76,
++   "punch": true
+   },
+   {
+    "in": 136.0,
+-   "out": 138.4,
+-   "punch": true
++   "out": 138.4
+   }
+  ],
+  "punch_at": [
+   136.1
+  ],
+  "hook": [
+-  "Muslim parents?",
++  "Muslim parents",
+   "*Don't leave out*",
+   "your _DAUGHTERS_"
+  ],
+@@ -389,16 +375,17 @@
+  "ctas": [
+   {
+    "text": "hey brother, your daughters shouldn't be left with nothing. Let's make sure your will gives them their share: ceowills.com",
+-   "at_out": 27.0
++   "at_out": 27.2
+   },
+   {
+    "text": "hey friend, want a will that includes your whole family, done the Islamic way? We'll guide you through it at ceowills.com",
+-   "at_out": 55.0
++   "at_out": 55.2
+   },
+   {
+    "text": "uncles, brothers, fathers... let's get it sorted before it's too late. Book your clarity call at ceowills.com",
+-   "at_out": 82.12
++   "at_out": 82.72
+   }
+  ],
+- "mute_after": 137.06
++ "mute_after": 137.06,
++ "hook_font": "serif"
+ }
+\ No newline at end of file
+diff --git a/tools/ceowills/jobs/family-drawer.edit.json b/tools/ceowills/jobs/family-drawer.edit.json
+index ffde5fe..70facae 100644
+--- a/tools/ceowills/jobs/family-drawer.edit.json
++++ b/tools/ceowills/jobs/family-drawer.edit.json
+@@ -1,5 +1,5 @@
+ {
+- "_source": "Raw 'family access to all docs with steps - awkward family member writing things down, its not pain of not knowing its possibly creating turmoil.MP4' (client Drive id 1T7Z3ENDhcG9bPwN4i4iYjHc_w4GlBLcS); mic = 'wills work 60 seconds, verbal agreement sofa.wav' (Mic 4) @ 913.4985 s. One clean take 1.1–54.7 (verbatim pass: no stutters; 'the absence of not knowing' is what he says). 'CEO'+'wills' merged (words/fam.fixed.json). No spoken CTA → --no-cta; the iMessage card carries the ask. Last cut held to 56.4 (silent). Nasheed the-sins. iMessage cards picked by topic (Eyad 29 Sep: switch them up, match what he's saying): see-for-your-family. 30 Sep (v5): re-tightened (pauses.py --edit), card moved to 34 s — he leans in at 22–29 s and the real-size card reached his hair; at 34 s he says 'you need a will… it gives clarity… here at CEOwills' (cardfit: hair ≥ 407, card ends 378).",
++ "_source": "Raw 'family access to all docs with steps - awkward family member writing things down, its not pain of not knowing its possibly creating turmoil.MP4' (client Drive id 1T7Z3ENDhcG9bPwN4i4iYjHc_w4GlBLcS); mic = 'wills work 60 seconds, verbal agreement sofa.wav' (Mic 4) @ 913.4985 s. One clean take 1.1–54.7 (verbatim pass: no stutters; 'the absence of not knowing' is what he says). 'CEO'+'wills' merged (words/fam.fixed.json). No spoken CTA → --no-cta; the iMessage card carries the ask. Last cut held to 56.4 (silent). Nasheed the-sins. iMessage cards picked by topic (Eyad 29 Sep: switch them up, match what he's saying): see-for-your-family. 30 Sep (v5): re-tightened (pauses.py --edit), card moved to 34 s — he leans in at 22–29 s and the real-size card reached his hair; at 34 s he says 'you need a will… it gives clarity… here at CEOwills' (cardfit: hair ≥ 407, card ends 378). 1 Oct (Eyad): no shot under 0.8 s inside one take (the 0.44 s flash cut at 1:25 in #2), air after lines 0.12 s, title without a question mark, title font sans.",
+  "name": "Families should find it in the drawer",
+  "video": "src/fam.MP4",
+  "rotate": "ccw",
+@@ -8,7 +8,7 @@
+  "cuts": [
+   {
+    "in": 1.32,
+-   "out": 8.76
++   "out": 8.8
+   },
+   {
+    "in": 9.4,
+@@ -17,11 +17,11 @@
+   },
+   {
+    "in": 11.6,
+-   "out": 12.36
++   "out": 12.44
+   },
+   {
+    "in": 13.04,
+-   "out": 16.76,
++   "out": 16.84,
+    "punch": true
+   },
+   {
+@@ -30,7 +30,7 @@
+   },
+   {
+    "in": 18.56,
+-   "out": 20.56,
++   "out": 20.6,
+    "punch": true
+   },
+   {
+@@ -66,38 +66,29 @@
+   },
+   {
+    "in": 31.92,
+-   "out": 32.84,
++   "out": 33.56,
+    "punch": true
+   },
+-  {
+-   "in": 33.04,
+-   "out": 33.56
+-  },
+   {
+    "in": 33.76,
+-   "out": 35.16,
+-   "punch": true
++   "out": 35.16
+   },
+   {
+    "in": 35.52,
+-   "out": 37.24
++   "out": 37.24,
++   "punch": true
+   },
+   {
+    "in": 37.4,
+-   "out": 38.36,
+-   "punch": true
++   "out": 38.36
+   },
+   {
+    "in": 38.48,
+-   "out": 40.16
+-  },
+-  {
+-   "in": 40.56,
+-   "out": 42.16,
++   "out": 40.16,
+    "punch": true
+   },
+   {
+-   "in": 42.48,
++   "in": 40.56,
+    "out": 42.96
+   },
+   {
+@@ -111,15 +102,6 @@
+   },
+   {
+    "in": 45.96,
+-   "out": 46.76,
+-   "punch": true
+-  },
+-  {
+-   "in": 46.88,
+-   "out": 48.96
+-  },
+-  {
+-   "in": 49.08,
+    "out": 49.56,
+    "punch": true
+   },
+@@ -130,7 +112,7 @@
+  ],
+  "punch_at": [],
+  "hook": [
+-  "Nothing written down?",
++  "Nothing written down",
+   "Get it *written down*",
+   "before you *go*"
+  ],
+@@ -197,7 +179,8 @@
+  "ctas": [
+   {
+    "text": "hey friend, could your family find everything in one drawer? Let's get it written down at ceowills.com",
+-   "at_out": 34.0
++   "at_out": 34.44
+   }
+- ]
++ ],
++ "hook_font": "sans"
+ }
+\ No newline at end of file
+diff --git a/tools/ceowills/jobs/hmrc-40-percent.edit.json b/tools/ceowills/jobs/hmrc-40-percent.edit.json
+index 0b294a9..6b25d24 100644
+--- a/tools/ceowills/jobs/hmrc-40-percent.edit.json
++++ b/tools/ceowills/jobs/hmrc-40-percent.edit.json
+@@ -1,5 +1,5 @@
+ {
+- "_source": "Raw 'hmrc can take up to 40% for IHT where will your family learn how to do.MP4' (client Drive id 1M1FpmsV6gNyknTlodY6HEOxtcFRYEUdL); mic = 'hmr took 8.5bn in inheritance tax.wav' (Mic 2) @ 890.1657 s. Kept: 'So many of my clients…the generation after', then the second (clean) 'Where are they going to get the liquidity…not HMRC' (the first try said 'the fines' and restarts), then the second CTA take 'comment calculator below' (the director asks for the calculator between the takes). Pauses cut by pauses.py; last cut held to the end of the raw so the CTA reads. Words: '40' + '%' merged into '40%' (words/hmrc40.fixed.json). Nasheed the-sins (warning). v5: latest house style (no script, The Sins, gradient) + the doubled 'work with, with yourselves' cut to one 'with' (verbatim stutter pass). v6: sans title, doubled gradient, centred logo, iPhone chime; his hair reaches y≈325 at the card time, so this job's card is 540 px (ends ≈311).",
++ "_source": "Raw 'hmrc can take up to 40% for IHT where will your family learn how to do.MP4' (client Drive id 1M1FpmsV6gNyknTlodY6HEOxtcFRYEUdL); mic = 'hmr took 8.5bn in inheritance tax.wav' (Mic 2) @ 890.1657 s. Kept: 'So many of my clients…the generation after', then the second (clean) 'Where are they going to get the liquidity…not HMRC' (the first try said 'the fines' and restarts), then the second CTA take 'comment calculator below' (the director asks for the calculator between the takes). Pauses cut by pauses.py; last cut held to the end of the raw so the CTA reads. Words: '40' + '%' merged into '40%' (words/hmrc40.fixed.json). Nasheed the-sins (warning). v5: latest house style (no script, The Sins, gradient) + the doubled 'work with, with yourselves' cut to one 'with' (verbatim stutter pass). v6: sans title, doubled gradient, centred logo, iPhone chime; his hair reaches y≈325 at the card time, so this job's card is 540 px (ends ≈311). 1 Oct (Eyad): no shot under 0.8 s inside one take (the 0.44 s flash cut at 1:25 in #2), air after lines 0.12 s, title without a question mark, title font serif.",
+  "name": "HMRC can take up to 40%",
+  "video": "src/hmrc40.MP4",
+  "rotate": "ccw",
+@@ -17,11 +17,11 @@
+   },
+   {
+    "in": 17.16,
+-   "out": 19.84
++   "out": 19.88
+   },
+   {
+    "in": 20.32,
+-   "out": 22.0,
++   "out": 22.04,
+    "punch": true
+   },
+   {
+@@ -48,7 +48,7 @@
+   },
+   {
+    "in": 43.84,
+-   "out": 45.68,
++   "out": 45.72,
+    "punch": true
+   },
+   {
+@@ -62,7 +62,7 @@
+   },
+   {
+    "in": 50.28,
+-   "out": 51.88
++   "out": 51.9
+   },
+   {
+    "in": 52.64,
+@@ -89,7 +89,7 @@
+   },
+   {
+    "in": 64.64,
+-   "out": 65.72
++   "out": 65.75
+   },
+   {
+    "in": 90.32,
+@@ -105,7 +105,7 @@
+   95.0
+  ],
+  "hook": [
+-  "UK business owners?",
++  "UK business owners",
+   "_HMRC_ *could take*",
+   "_40%_ of your *legacy*"
+  ],
+@@ -232,7 +232,8 @@
+  "ctas": [
+   {
+    "text": "hey CEO, HMRC could take 40% of everything you've built. Let's make sure it goes to your family instead: ceowills.com",
+-   "at_out": 19.68
++   "at_out": 19.76
+   }
+- ]
+-}
++ ],
++ "hook_font": "serif"
++}
+\ No newline at end of file
+diff --git a/tools/ceowills/jobs/rafa-nadal.edit.json b/tools/ceowills/jobs/rafa-nadal.edit.json
+index a18bc40..75a8000 100644
+--- a/tools/ceowills/jobs/rafa-nadal.edit.json
++++ b/tools/ceowills/jobs/rafa-nadal.edit.json
+@@ -1,5 +1,5 @@
+ {
+- "_source": "Raw 'rafael nadal blooper.MP4' (client Drive id 15b-t5GzmStWLBP4EQC8t76rIpPUgHsow); mic = 'wills work 60 seconds, verbal agreement sofa.wav' (Mic 4) @ 549.4178 s. One clean take 5.0–36.2 (verbatim pass: no stutters). 'you won/wouldn't Wimbledon' confirmed as 'you'll win Wimbledon' by a prompted re-transcription (words/nadal.fixed.json). No spoken CTA and 30.8 s long → no end CTA, no iMessage card (a 25 s card + 6 s hold doesn't fit). Last cut held to 37.6 (silent). Nasheed the-sins. 30 Sep (Sofian): the nasheed comes in after he says 'pause' (nasheed.at 19.1) — voice only before that; the director's 'go' (4.8–5.42, off-mic) is no longer at the start. v4: title now two lines ('Plan with' dropped) — in the first cut he leans up to the top of the shot (no headroom possible, shift 0) and the third line reached his hair at 3–5 s. At 1.1–1.5 s he lunges at the lens with the plant (face fills the frame, motion blur): the caption sits on the plant/hand there — accepted with qa.py --ok-heads 1.1,1.4.",
++ "_source": "Raw 'rafael nadal blooper.MP4' (client Drive id 15b-t5GzmStWLBP4EQC8t76rIpPUgHsow); mic = 'wills work 60 seconds, verbal agreement sofa.wav' (Mic 4) @ 549.4178 s. One clean take 5.0–36.2 (verbatim pass: no stutters). 'you won/wouldn't Wimbledon' confirmed as 'you'll win Wimbledon' by a prompted re-transcription (words/nadal.fixed.json). No spoken CTA and 30.8 s long → no end CTA, no iMessage card (a 25 s card + 6 s hold doesn't fit). Last cut held to 37.6 (silent). Nasheed the-sins. 30 Sep (Sofian): the nasheed comes in after he says 'pause' (nasheed.at 19.1) — voice only before that; the director's 'go' (4.8–5.42, off-mic) is no longer at the start. v4: title now two lines ('Plan with' dropped) — in the first cut he leans up to the top of the shot (no headroom possible, shift 0) and the third line reached his hair at 3–5 s. At 1.1–1.5 s he lunges at the lens with the plant (face fills the frame, motion blur): the caption sits on the plant/hand there — accepted with qa.py --ok-heads 1.1,1.4. 1 Oct (Eyad): no shot under 0.8 s inside one take (the 0.44 s flash cut at 1:25 in #2), air after lines 0.12 s, title without a question mark, title font serif.",
+  "name": "Plan like Rafa Nadal",
+  "video": "src/nadal.MP4",
+  "rotate": "ccw",
+@@ -21,7 +21,7 @@
+   },
+   {
+    "in": 16.8,
+-   "out": 17.84,
++   "out": 17.88,
+    "punch": true
+   },
+   {
+@@ -35,7 +35,7 @@
+   },
+   {
+    "in": 24.8,
+-   "out": 29.88
++   "out": 29.92
+   },
+   {
+    "in": 30.36,
+@@ -49,7 +49,7 @@
+  ],
+  "punch_at": [],
+  "hook": [
+-  "Why the fake plant?",
++  "Why the fake plant",
+   "Nadal-level *precision*"
+  ],
+  "hook_until": 10.3,
+@@ -92,5 +92,6 @@
+   "I'm sure",
+   "you'll win Wimbledon",
+   "just like he did"
+- ]
++ ],
++ "hook_font": "serif"
+ }
+\ No newline at end of file
+diff --git a/tools/ceowills/layout.json b/tools/ceowills/layout.json
+index 1cb29cc..b81f20b 100644
+--- a/tools/ceowills/layout.json
++++ b/tools/ceowills/layout.json
+@@ -29,6 +29,8 @@
+   "audio": {
+     "lufs": -15,
+     "true_peak": -1.5,
++    "limit_margin_db": 2.0,
++    "_limit_note": "the last limiters sit limit_margin_db under true_peak: AAC overshoots up to ~1.7 dB on loud, bright speech (#14 v5, 1 Oct: -1.1 dBTP with a 1.3 dB margin)",
+     "lra": 11,
+     "edge_fade_ms": 12,
+     "nasheed_db_under_voice": 7,
+@@ -41,11 +43,13 @@
+   },
+   "cuts": {
+     "pad_before_s": 0.06,
+-    "pad_after_s": 0.09,
++    "pad_after_s": 0.12,
+     "edge_search_s": 0.12,
+-    "_30sep_note": "Sofian 30 Sep: 'you can hear me say go at the start of videos' and 'the trimming isn't fast like ExamQA videos' → tighter everywhere: air before a line 0.1 → 0.06 s, after 0.12 → 0.09 s (the quietest frame within edge_search_s after that, was 0.25), pauses ≥ 0.2 s (was 0.3) cut down to 0.1 s (was 0.2). Re-tighten an existing job with pauses.py --edit. This replaces the 26 Sep 'keep a ≤0.5 s breath after a key line' rule.",
++    "_30sep_note": "Sofian 30 Sep: 'you can hear me say go at the start of videos' and 'the trimming isn't fast like ExamQA videos' → tighter everywhere: air before a line 0.1 → 0.06 s, after 0.12 s (the quietest frame within edge_search_s after that, was 0.25), pauses ≥ 0.2 s (was 0.3) cut down to 0.1 s (was 0.2). Re-tighten an existing job with pauses.py --edit. This replaces the 26 Sep 'keep a ≤0.5 s breath after a key line' rule.",
+     "max_kept_pause_s": 0.25,
+-    "min_clip_s": 0.4,
++    "min_clip_s": 0.8,
++    "merge_gap_s": 0.35,
++    "_min_clip_1oct": "Eyad 1 Oct on #2 v7 at 1:25: 'a weird visual stutter… and a gap' — tightening cut a 0.12 s pause after a soft 'If', leaving a 0.44 s shot with its own punch-in. Inside one take a shot is never shorter than 0.8 s now (pauses.py folds it into its neighbour, keeping that small pause); air after a line back to 0.12 s (the 'd' of 'sorted' was clipped).",
+     "_pauses": "values for pauses.py (tested on 'culture leaving daughters out'): cut silences ≥ min_pause_s down to keep_pause_s; ASR words longer than guard_long_s swallowed a pause, so only guard_edge_s at each end is protected",
+     "min_pause_s": 0.2,
+     "keep_pause_s": 0.1,
+@@ -145,7 +149,7 @@
+     "serif_as": {"style": "sans", "px": 72, "_note": "27 Sep, Eyad: no serif in the title, it reads clearer in sans"},
+     "script_as": {"style": "sans", "px": 72, "_note": "27 Sep, Eyad: no script font — *marked* title words are set in a bigger sans instead"},
+     "style": "type",
+-    "uniform": {"top": 156, "px": 64, "line_gap": 82, "_note": "30 Sep, Sofian: 'the question mark and text are different size' (small tracked-caps question over 56/72 px mixed lines) → every title line the same Inter Tight 700 at one size; *marked* words no longer change size, _MARKED_ keeps the red underline. top = first baseline (cap top ≈ 108, ≥ edge_margin)."},
++    "uniform": {"top": 156, "px": 64, "serif_px": 66, "line_gap": 82, "_note": "30 Sep, Sofian: 'the question mark and text are different size' (small tracked-caps question over 56/72 px mixed lines) → every title line the same Inter Tight 700 at one size; *marked* words no longer change size, _MARKED_ keeps the red underline. top = first baseline (cap top ≈ 108, ≥ edge_margin)."},
+     "bar": {"_note": "27 Sep, Sofian/Adnan on #6 v1: 'make the top text clearer so it's easy to read, maybe white text on a red background' (like the ExamQA title bars). One solid CEOwills-red bar per line, white bold caps, no scrim; top = top edge of the first bar (qa checks it against edge_margin). style \"type\" = the old scrim + script/serif title.",
+             "top": 110, "color": "#EB1519", "px": 66, "eyebrow_px": 38, "pad_x": 30, "pad_y": 20, "gap": 12, "max_w": 960, "tracking": 1, "shadow": [8, 110]}
+   },
+diff --git a/tools/ceowills/pauses.py b/tools/ceowills/pauses.py
+index 8302fd1..8ede022 100755
+--- a/tools/ceowills/pauses.py
++++ b/tools/ceowills/pauses.py
+@@ -78,6 +78,7 @@ def retighten(a, C):
+     # from there instead of cutting the hold short (#2 v7 first render: the CTA was up for 0.9 s)
+     if blocks[-1][1] < hold - 0.05: E["mute_after"] = round(blocks[-1][1], 2)
+     cuts[-1]["out"] = round(max(cuts[-1]["out"], hold), 2)
++    cuts = merge_short(cuts, base / E["audio"], C)
+     new, new_d = timeline(cuts)
+     def remap(t_out):
+         src = next((i + (t_out - t0) for i, o, t0 in old if t0 <= t_out <= t0 + (o - i) + 1e-6), None)
+@@ -103,6 +104,32 @@ def retighten(a, C):
+           f"first cut in {old[0][0]:.2f} → {cuts[0]['in']:.2f}; cards " + ", ".join(str(c.get("at_out")) for c in (E.get("ctas") or []) if isinstance(c, dict)))
+ 
+ 
++def merge_short(cuts, audio, C):
++    """A shot shorter than min_clip_s next to a ≤ merge_gap_s join reads as a stutter (#2 v7 at 1:25, Eyad 1 Oct) → join it
++    to that neighbour, putting the small pause back — only when the join is silent on the lav (so a word the edit
++    removed there can never come back). Re-ordered cuts (negative gap) are left alone. Punch-ins re-alternate."""
++    x = np.frombuffer(subprocess.run(["ffmpeg", "-v", "error", "-i", str(audio), "-ac", "1", "-ar", "16000", "-f", "f32le", "-"],
++                                     capture_output=True, check=True).stdout, np.float32)
++    lvl = lambda a, b: 10 * np.log10(np.mean(x[int(a * 16000):max(int(b * 16000), int(a * 16000) + 1)] ** 2) + 1e-12)
++    speech = np.percentile([lvl(c["in"], c["out"]) for c in cuts], 50)
++    cuts = [dict(c) for c in cuts]; changed = True
++    while changed:
++        changed = False
++        for i, c in enumerate(cuts):
++            if c["out"] - c["in"] >= C["min_clip_s"]: continue
++            opts = []
++            if i and 0 <= c["in"] - cuts[i - 1]["out"] <= C.get("merge_gap_s", 0.35): opts.append((c["in"] - cuts[i - 1]["out"], i - 1))
++            if i + 1 < len(cuts) and 0 <= cuts[i + 1]["in"] - c["out"] <= C.get("merge_gap_s", 0.35): opts.append((cuts[i + 1]["in"] - c["out"], i))
++            for gap, j in sorted(opts):
++                if lvl(cuts[j]["out"], cuts[j + 1]["in"]) < speech - 18:   # the join is a pause, not a removed word
++                    cuts[j]["out"] = cuts[j + 1]["out"]; del cuts[j + 1]; changed = True; break
++            if changed: break
++    for i, c in enumerate(cuts):
++        c.pop("punch", None)
++        if i % 2: c["punch"] = True
++    return cuts
++
++
+ def cut_blocks(audio, words_path, blocks, fps, C):
+     x = np.frombuffer(subprocess.run(["ffmpeg", "-v", "error", "-i", str(audio), "-ac", "1", "-ar", str(SR), "-f", "f32le", "-"],
+                                      capture_output=True, check=True).stdout, np.float32).astype(np.float64)
+diff --git a/tools/ceowills/render.py b/tools/ceowills/render.py
+index 22f20d7..dae2e73 100755
+--- a/tools/ceowills/render.py
++++ b/tools/ceowills/render.py
+@@ -15,6 +15,7 @@ edit.json (paths relative to the file):
+   "hook": ["Muslim business owner?", "*Don't overpay* _IHT_"],   top hook, no box. Plain caps line = tracked eyebrow;
+                                        *script words*  _SERIF RED_  plain = sans
+   "hook_until": 5.70,                  source time the hook fades out (omit = stays the whole video)
++  "hook_font": "sans" | "serif",       title face (serif = the end CTA's Playfair; switch it up across videos)
+   "keywords": ["legacy", "juggling"],  words set in the big script when spoken (ALL-CAPS / numbers → white bold serif, red underline)
+   "cta": {"at": 17.40, "keyword": "IHT", "script": ["below"], "underline": ["IHT"]},   from "at" to the end: the CTA words, larger
+   "nasheed": {"file": "nasheed/bika-moulhimi.wav", "start": 0, "at": 19.1} | null,   at = source time it comes in (optional)
+@@ -305,7 +306,7 @@ def bottom_gradient(W, H):
+     return img, G["top"]
+ 
+ 
+-def hook_layer(lines, W):
++def hook_layer(lines, W, font="sans"):
+     """Top hook. style 'bar' (default since 27 Sep) → hook_bars. style 'type': no box, a soft top scrim + tracked sans
+     eyebrow + script/serif line. Markup: *script*  _SERIF_."""
+     if L["hook"].get("style") == "bar": return hook_bars(lines, W)
+@@ -318,11 +319,15 @@ def hook_layer(lines, W):
+     for line in lines:
+         if U:   # uniform: one face, one size; *marked* words look like the rest, _MARKED_ keeps its red underline
+             parts = [(b, True) if b else (a or c, False) for a, b, c in re.findall(r"\*([^*]+)\*|_([^_]+)_|([^*_]+)", line)]
+-            f = face("sans", U["px"]); x = (W - f.getlength(re.sub(r"[*_]", "", line).replace("'", "’"))) / 2
++            # font: the job's "hook_font" — "serif" = the end CTA's Playfair 800 (Eyad 1 Oct: "use the font you used in
++            # the end sometimes to switch it up, only for the title, not captions")
++            f = face(font, U["serif_px"] if font == "serif" else U["px"])
++            ft = {"features": ["lnum"]} if font == "serif" and __import__("PIL.features").features.check("raqm") else {}   # full-height 40%, £1M
++            x = (W - f.getlength(re.sub(r"[*_]", "", line).replace("'", "’"), **ft)) / 2
+             for tx, ul in parts:
+-                tx = tx.replace("'", "’"); d.text((x, y), tx, font=f, fill=WHITE, anchor="ls"); w = f.getlength(tx)
++                tx = tx.replace("'", "’"); d.text((x, y), tx, font=f, fill=WHITE, anchor="ls", **ft); w = f.getlength(tx, **ft)
+                 if ul:
+-                    x0 = x + (w - f.getlength(tx.lstrip())); x1 = x + f.getlength(tx.rstrip())
++                    x0 = x + (w - f.getlength(tx.lstrip(), **ft)); x1 = x + f.getlength(tx.rstrip(), **ft)
+                     d.line([(x0, y + 14), (x1, y + 14)], fill=RED + (255,), width=6)
+                 x += w
+             y += U["line_gap"]; continue
+@@ -633,7 +638,7 @@ def main():
+                                                + (f"\n{cta_t:6.2f}-{dur:6.2f}  [CTA] " + " ".join(display_word(w["word"]) for w in words if (to_out(w["start"]) or -1) >= cta_t - 0.05) if cta else "") + "\n", encoding="utf-8")
+ 
+     # ---- static layers
+-    hook = hook_layer(E["hook"], W) if E.get("hook") else None
++    hook = hook_layer(E["hook"], W, E.get("hook_font", "sans")) if E.get("hook") else None
+     hook_until = to_out(E["hook_until"]) if E.get("hook_until") is not None else None
+     logo, logo_y = logo_layer(W)
+     grad, grad_y = bottom_gradient(W, H)
+@@ -829,6 +834,7 @@ def build_audio(E, base, segs, dur, dst, sfx=()):
+     raw = dst.with_suffix(".cut.wav")
+     run(["ffmpeg", "-v", "error", "-y", "-i", str(src), "-filter_complex", ";".join(filt), "-map", "[cat]", "-c:a", "pcm_s24le", str(raw)])
+     I, TP, LRA = A["lufs"], A["true_peak"], A["lra"]
++    LIM = 10 ** ((TP - A.get("limit_margin_db", 2.0)) / 20)   # last limiters: margin for AAC overshoot (#14 v5)
+     m = subprocess.run(["ffmpeg", "-hide_banner", "-nostats", "-i", str(raw), "-af", f"{pre},loudnorm=I={I}:TP={TP}:LRA={LRA}:print_format=json",
+                         "-f", "null", "-"], capture_output=True, text=True).stderr
+     j = json.loads(m[m.rindex("{"):m.rindex("}") + 1])
+@@ -866,7 +872,7 @@ def build_audio(E, base, segs, dur, dst, sfx=()):
+         # the bed adds loudness and inter-sample peaks → re-trim to target with extra limiter headroom (AAC adds ~1 dB of overs)
+         e = subprocess.run(["ffmpeg", "-hide_banner", "-nostats", "-i", str(mixed), "-af", "ebur128", "-f", "null", "-"], capture_output=True, text=True).stderr
+         got = float(re.findall(r"I:\s+(-?[\d.]+) LUFS", e)[-1])
+-        run(["ffmpeg", "-v", "error", "-y", "-i", str(mixed), "-af", f"volume={I - got:.2f}dB,alimiter=limit={10 ** ((TP - 1.3) / 20):.4f}:attack=1:release=40:level=false",
++        run(["ffmpeg", "-v", "error", "-y", "-i", str(mixed), "-af", f"volume={I - got:.2f}dB,alimiter=limit={LIM:.4f}:attack=1:release=40:level=false",
+              "-c:a", "pcm_s24le", str(dst)])
+         voice.unlink(missing_ok=True); mixed.unlink(missing_ok=True)
+     else:
+@@ -877,7 +883,7 @@ def build_audio(E, base, segs, dur, dst, sfx=()):
+         g = 10 ** (L["notify"]["sfx_db"] / 20)
+         fc = f"[1:a]asplit={len(sfx)}" + "".join(f"[r{i}]" for i in range(len(sfx))) + ";" if len(sfx) > 1 else "[1:a]anull[r0];"
+         fc += "".join(f"[r{i}]adelay={int(t * 1000)}:all=1,volume={g:.3f}[s{i}];" for i, t in enumerate(sfx))
+-        fc += "[0:a]" + "".join(f"[s{i}]" for i in range(len(sfx))) + f"amix=inputs={len(sfx) + 1}:normalize=0:duration=first,alimiter=limit={10 ** ((TP - 1.3) / 20):.4f}:level=false[o]"
++        fc += "[0:a]" + "".join(f"[s{i}]" for i in range(len(sfx))) + f"amix=inputs={len(sfx) + 1}:normalize=0:duration=first,alimiter=limit={LIM:.4f}:level=false[o]"
+         run(["ffmpeg", "-v", "error", "-y", "-i", str(tmp), "-i", str(sf), "-filter_complex", fc, "-map", "[o]", "-c:a", "pcm_s24le", str(dst)])
+         tmp.unlink(missing_ok=True)
+     # loudness lock: every stage above sets its gain and then limits, and on long, peaky speech the limiter eats loudness
+@@ -887,7 +893,7 @@ def build_audio(E, base, segs, dur, dst, sfx=()):
+         got = float(re.findall(r"I:\s+(-?[\d.]+) LUFS", e)[-1])
+         if abs(I - got) <= 0.3: break
+         tmp = dst.with_suffix(".lock.wav"); dst.rename(tmp)
+-        run(["ffmpeg", "-v", "error", "-y", "-i", str(tmp), "-af", f"volume={I - got:.2f}dB,alimiter=limit={10 ** ((TP - 1.3) / 20):.4f}:attack=1:release=40:level=false",
++        run(["ffmpeg", "-v", "error", "-y", "-i", str(tmp), "-af", f"volume={I - got:.2f}dB,alimiter=limit={LIM:.4f}:attack=1:release=40:level=false",
+              "-c:a", "pcm_s24le", str(dst)])
+         tmp.unlink(missing_ok=True)
+ 
+diff --git a/tools/ceowills/tracker.json b/tools/ceowills/tracker.json
+index 4eecf4f..b9d5ee5 100644
+--- a/tools/ceowills/tracker.json
++++ b/tools/ceowills/tracker.json
+@@ -15,10 +15,10 @@
+       "board": "hmrc can take up to 40%",
+       "mic": "Mic 2",
+       "status": "edited",
+-      "version": "v9",
+-      "export": "CEOwills - HMRC can take up to 40% - v8.mp4 (in Export) → v9 to replace it in place",
++      "version": "v10",
++      "export": "CEOwills - HMRC can take up to 40% - v8.mp4 (in Export) → v10 to replace it in place",
+       "job": "jobs/hmrc-40-percent.edit.json",
+-      "final_pass": "30 Sep evening, Sofian's notes (preset v5): captions under his beard, fill above the shot never on his hair (no ghost/blur), bottom gradient from 1300, one-size title, starts after the director's 'go', tighter pauses; QA ALL PASS (title/cards/captions/fill vs his head every 0.5 s) + stutters PASS; preview sent on Telegram. Not uploaded: this session had no Make connector — replace the Export file in place with deliver.sh's Make step.",
++      "final_pass": "1 Oct, Eyad's notes on #2 v7: no shot under 0.8 s inside a take (flash-cut stutters), no question mark in the title, title face switched up (serif on #2/#6/#12/#14), word endings 0.12 s; on top of 30 Sep (Sofian): captions under his beard, fill never on his hair, gradient from 1300, starts after the director's 'go', tight pauses. QA ALL PASS + stutters PASS; preview on Telegram. Not uploaded: no Make connector in this session.",
+       "exported_version": "v8"
+     },
+     {
+@@ -26,10 +26,10 @@
+       "board": "if you are a business leader that wants to feed family",
+       "mic": "Mic 2",
+       "status": "edited",
+-      "version": "v10",
+-      "export": "CEOwills - Business leader feeding your family - v9.mp4 (in Export) → v10 to replace it in place",
++      "version": "v11",
++      "export": "CEOwills - Business leader feeding your family - v9.mp4 (in Export) → v11 to replace it in place",
+       "job": "jobs/business-leader-feed-family.edit.json",
+-      "final_pass": "30 Sep evening, Sofian's notes (preset v5): captions under his beard, fill above the shot never on his hair (no ghost/blur), bottom gradient from 1300, one-size title, starts after the director's 'go', tighter pauses; QA ALL PASS (title/cards/captions/fill vs his head every 0.5 s) + stutters PASS; preview sent on Telegram. Not uploaded: this session had no Make connector — replace the Export file in place with deliver.sh's Make step.",
++      "final_pass": "1 Oct, Eyad's notes on #2 v7: no shot under 0.8 s inside a take (flash-cut stutters), no question mark in the title, title face switched up (serif on #2/#6/#12/#14), word endings 0.12 s; on top of 30 Sep (Sofian): captions under his beard, fill never on his hair, gradient from 1300, starts after the director's 'go', tight pauses. QA ALL PASS + stutters PASS; preview on Telegram. Not uploaded: no Make connector in this session.",
+       "exported_version": "v9"
+     },
+     {
+@@ -37,11 +37,11 @@
+       "board": "ceowills bridge",
+       "mic": "Mic 3",
+       "status": "edited",
+-      "version": "v7",
+-      "export": "CEOwills - CEOwills bridges your company and your will - v6.mp4 (in Export) → v7 to replace it in place",
++      "version": "v8",
++      "export": "CEOwills - CEOwills bridges your company and your will - v6.mp4 (in Export) → v8 to replace it in place",
+       "job": "jobs/ceowills-bridge.edit.json",
+       "note": "no spoken CTA in the take",
+-      "final_pass": "30 Sep evening, Sofian's notes (preset v5): captions under his beard, fill above the shot never on his hair (no ghost/blur), bottom gradient from 1300, one-size title, starts after the director's 'go', tighter pauses; QA ALL PASS (title/cards/captions/fill vs his head every 0.5 s) + stutters PASS; preview sent on Telegram. Not uploaded: this session had no Make connector — replace the Export file in place with deliver.sh's Make step.",
++      "final_pass": "1 Oct, Eyad's notes on #2 v7: no shot under 0.8 s inside a take (flash-cut stutters), no question mark in the title, title face switched up (serif on #2/#6/#12/#14), word endings 0.12 s; on top of 30 Sep (Sofian): captions under his beard, fill never on his hair, gradient from 1300, starts after the director's 'go', tight pauses. QA ALL PASS + stutters PASS; preview on Telegram. Not uploaded: no Make connector in this session.",
+       "exported_version": "v6"
+     },
+     {
+@@ -49,11 +49,11 @@
+       "board": "business owners",
+       "mic": "Mic 3",
+       "status": "edited",
+-      "version": "v6",
+-      "export": "CEOwills - Business owners deep dark IHT conversation - v5.mp4 (in Export) → v6 to replace it in place",
++      "version": "v7",
++      "export": "CEOwills - Business owners deep dark IHT conversation - v5.mp4 (in Export) → v7 to replace it in place",
+       "job": "jobs/business-owners-deep-dark.edit.json",
+       "note": "two-keyword CTA (MORE + CALCULATOR) kept on purpose",
+-      "final_pass": "30 Sep evening, Sofian's notes (preset v5): captions under his beard, fill above the shot never on his hair (no ghost/blur), bottom gradient from 1300, one-size title, starts after the director's 'go', tighter pauses; QA ALL PASS (title/cards/captions/fill vs his head every 0.5 s) + stutters PASS; preview sent on Telegram. Not uploaded: this session had no Make connector — replace the Export file in place with deliver.sh's Make step.",
++      "final_pass": "1 Oct, Eyad's notes on #2 v7: no shot under 0.8 s inside a take (flash-cut stutters), no question mark in the title, title face switched up (serif on #2/#6/#12/#14), word endings 0.12 s; on top of 30 Sep (Sofian): captions under his beard, fill never on his hair, gradient from 1300, starts after the director's 'go', tight pauses. QA ALL PASS + stutters PASS; preview on Telegram. Not uploaded: no Make connector in this session.",
+       "exported_version": "v5"
+     },
+     {
+@@ -61,10 +61,10 @@
+       "board": "bestfriends partnership",
+       "mic": "Mic 3",
+       "status": "edited",
+-      "version": "v5",
+-      "export": "CEOwills - Business partners agree your succession - v4.mp4 (in Export) → v5 to replace it in place",
++      "version": "v6",
++      "export": "CEOwills - Business partners agree your succession - v4.mp4 (in Export) → v6 to replace it in place",
+       "job": "jobs/business-partners-succession.edit.json",
+-      "final_pass": "30 Sep evening, Sofian's notes (preset v5): captions under his beard, fill above the shot never on his hair (no ghost/blur), bottom gradient from 1300, one-size title, starts after the director's 'go', tighter pauses; QA ALL PASS (title/cards/captions/fill vs his head every 0.5 s) + stutters PASS; preview sent on Telegram. Not uploaded: this session had no Make connector — replace the Export file in place with deliver.sh's Make step.",
++      "final_pass": "1 Oct, Eyad's notes on #2 v7: no shot under 0.8 s inside a take (flash-cut stutters), no question mark in the title, title face switched up (serif on #2/#6/#12/#14), word endings 0.12 s; on top of 30 Sep (Sofian): captions under his beard, fill never on his hair, gradient from 1300, starts after the director's 'go', tight pauses. QA ALL PASS + stutters PASS; preview on Telegram. Not uploaded: no Make connector in this session.",
+       "exported_version": "v4"
+     },
+     {
+@@ -72,11 +72,11 @@
+       "board": "rafael nadal blooper",
+       "mic": "Mic 4",
+       "status": "edited",
+-      "version": "v4",
+-      "export": "CEOwills - Plan like Rafa Nadal - v3.mp4 (in Export) → v4 to replace it in place",
++      "version": "v5",
++      "export": "CEOwills - Plan like Rafa Nadal - v3.mp4 (in Export) → v5 to replace it in place",
+       "job": "jobs/rafa-nadal.edit.json",
+       "note": "31 s, no spoken CTA, no card",
+-      "final_pass": "30 Sep evening, Sofian's notes (preset v5): captions under his beard, fill above the shot never on his hair (no ghost/blur), bottom gradient from 1300, one-size title, starts after the director's 'go', tighter pauses; QA ALL PASS (title/cards/captions/fill vs his head every 0.5 s) + stutters PASS; preview sent on Telegram. Not uploaded: this session had no Make connector — replace the Export file in place with deliver.sh's Make step.",
++      "final_pass": "1 Oct, Eyad's notes on #2 v7: no shot under 0.8 s inside a take (flash-cut stutters), no question mark in the title, title face switched up (serif on #2/#6/#12/#14), word endings 0.12 s; on top of 30 Sep (Sofian): captions under his beard, fill never on his hair, gradient from 1300, starts after the director's 'go', tight pauses. QA ALL PASS + stutters PASS; preview on Telegram. Not uploaded: no Make connector in this session.",
+       "exported_version": "v3"
+     },
+     {
+@@ -84,11 +84,11 @@
+       "board": "family should have access to your private information",
+       "mic": "Mic 4",
+       "status": "edited",
+-      "version": "v5",
+-      "export": "CEOwills - Families should find it in the drawer - v4.mp4 (in Export) → v5 to replace it in place",
++      "version": "v6",
++      "export": "CEOwills - Families should find it in the drawer - v4.mp4 (in Export) → v6 to replace it in place",
+       "job": "jobs/family-drawer.edit.json",
+       "note": "v1 also still in Export (Eyad declined binning it)",
+-      "final_pass": "30 Sep evening, Sofian's notes (preset v5): captions under his beard, fill above the shot never on his hair (no ghost/blur), bottom gradient from 1300, one-size title, starts after the director's 'go', tighter pauses; QA ALL PASS (title/cards/captions/fill vs his head every 0.5 s) + stutters PASS; preview sent on Telegram. Not uploaded: this session had no Make connector — replace the Export file in place with deliver.sh's Make step.",
++      "final_pass": "1 Oct, Eyad's notes on #2 v7: no shot under 0.8 s inside a take (flash-cut stutters), no question mark in the title, title face switched up (serif on #2/#6/#12/#14), word endings 0.12 s; on top of 30 Sep (Sofian): captions under his beard, fill never on his hair, gradient from 1300, starts after the director's 'go', tight pauses. QA ALL PASS + stutters PASS; preview on Telegram. Not uploaded: no Make connector in this session.",
+       "exported_version": "v4"
+     },
+     {
+@@ -96,11 +96,11 @@
+       "board": "business owners juggling",
+       "mic": "Mic 4",
+       "status": "edited",
+-      "version": "v13",
+-      "export": "CEOwills - Business owner juggling - v12.mp4 (in Export) → v13 to replace it in place",
++      "version": "v14",
++      "export": "CEOwills - Business owner juggling - v12.mp4 (in Export) → v14 to replace it in place",
+       "job": "jobs/business-owner-juggling.edit.json",
+       "note": "v10 = current style (29 Sep); the old-style v9 from another session is still in Export",
+-      "final_pass": "30 Sep evening, Sofian's notes (preset v5): captions under his beard, fill above the shot never on his hair (no ghost/blur), bottom gradient from 1300, one-size title, starts after the director's 'go', tighter pauses; QA ALL PASS (title/cards/captions/fill vs his head every 0.5 s) + stutters PASS; preview sent on Telegram. Not uploaded: this session had no Make connector — replace the Export file in place with deliver.sh's Make step.",
++      "final_pass": "1 Oct, Eyad's notes on #2 v7: no shot under 0.8 s inside a take (flash-cut stutters), no question mark in the title, title face switched up (serif on #2/#6/#12/#14), word endings 0.12 s; on top of 30 Sep (Sofian): captions under his beard, fill never on his hair, gradient from 1300, starts after the director's 'go', tight pauses. QA ALL PASS + stutters PASS; preview on Telegram. Not uploaded: no Make connector in this session.",
+       "exported_version": "v12"
+     },
+     {
+@@ -108,10 +108,10 @@
+       "board": "culture leaving daughters out",
+       "mic": "Mic 1",
+       "status": "edited",
+-      "version": "v7",
+-      "export": "CEOwills - Culture leaving daughters out - v6.mp4 (in Export) → v7 to replace it in place",
++      "version": "v8",
++      "export": "CEOwills - Culture leaving daughters out - v6.mp4 (in Export) → v8 to replace it in place",
+       "job": "jobs/culture-leaving-daughters-out.edit.json",
+-      "final_pass": "30 Sep evening, Sofian's notes (preset v5): captions under his beard, fill above the shot never on his hair (no ghost/blur), bottom gradient from 1300, one-size title, starts after the director's 'go', tighter pauses; QA ALL PASS (title/cards/captions/fill vs his head every 0.5 s) + stutters PASS; preview sent on Telegram. Not uploaded: this session had no Make connector — replace the Export file in place with deliver.sh's Make step.",
++      "final_pass": "1 Oct, Eyad's notes on #2 v7: no shot under 0.8 s inside a take (flash-cut stutters), no question mark in the title, title face switched up (serif on #2/#6/#12/#14), word endings 0.12 s; on top of 30 Sep (Sofian): captions under his beard, fill never on his hair, gradient from 1300, starts after the director's 'go', tight pauses. QA ALL PASS + stutters PASS; preview on Telegram. Not uploaded: no Make connector in this session.",
+       "exported_version": "v6"
+     },
+     {
+-- 
+2.43.0
+

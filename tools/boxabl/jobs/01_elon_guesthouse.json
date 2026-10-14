@@ -1,0 +1,24 @@
+{
+ "name": "01_elon_guesthouse",
+ "title": "Elon's Guest House",
+ "version": 1,
+ "status": "delivered",
+ "sources": {"delivering": "/3. BOXABL YouTube/2022-08-05 - Delivering Elon Musk’s BOXABL Casita.mp4", "elon": "1OnH2B5N-TaGyHqPdmT0uxdCeA-38FXry"},
+ "segments": [
+  {"v": "elon", "vs": 9.1, "ve": 13.3, "cx": 0.62},
+  {"v": "delivering", "vs": 0.5, "ve": 5.5, "a": "elon", "as": 130.5, "ae": 133.4, "bed": 0.2},
+  {"v": "delivering", "vs": 6.0, "ve": 21.0, "a": "elon", "as": 137.5, "ae": 144.7, "bed": 0.2, "home": true},
+  {"v": "elon", "vs": 61.2, "ve": 67.7, "cx": 0.62},
+  {"v": "delivering", "vs": 21.0, "ve": 35.5, "a": "delivering", "as": 21.0, "ae": 28.5, "nocap": true, "home": true}
+ ],
+ "overlays": [
+  {"s": 0, "e": 4.2, "text": "ELON MUSK OWNS\nA *BOXABL*"},
+  {"s": 4.2, "e": 7.1, "text": "DELIVERED TO\n*STARBASE, TEXAS*"},
+  {"s": 7.1, "e": 14.3, "text": "THE *BOXABL CASITA*\nUNFOLDS ON SITE"},
+  {"s": 14.3, "e": 20.8, "text": "ELON'S *GUEST HOUSE*"},
+  {"s": 20.8, "e": 28.3, "text": "*BOXABL CASITA*\nFULL HOME INSIDE"},
+  {"s": 21.3, "e": 28.3, "style": "Tag", "pos": [540, 1560], "text": "KITCHEN • BATHROOM • BEDROOM"}
+ ],
+ "post": {"short": "Elon Musk uses his BOXABL Casita as a guest house 🏠 Delivered folded to Starbase and unfolded on site. @boxabl #boxabl #casita #elonmusk #tinyhome", "x": "Elon Musk uses his BOXABL Casita as a guest house 🏠 Delivered folded to Starbase, unfolded on site. [TRACKING URL]"},
+ "_sources_note": "elon = the Full Send podcast clip linked in ClipFlow's BOXABL Content doc (not in the folder index)"
+}

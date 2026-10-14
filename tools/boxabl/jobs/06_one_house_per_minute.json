@@ -1,0 +1,20 @@
+{
+ "name": "06_one_house_per_minute",
+ "title": "One House Per Minute",
+ "version": 1,
+ "status": "delivered",
+ "sources": {"touring": "/1. Most Viewed YouTube/Touring Elon Musk’s $50,000 Tiny Home.mp4"},
+ "segments": [
+  {"v": "touring", "vs": 0.0, "ve": 8.7, "home": true},
+  {"v": "touring", "vs": 98.1, "ve": 104.2},
+  {"v": "touring", "vs": 107.3, "ve": 119.5},
+  {"v": "touring", "vs": 75.9, "ve": 80.6}
+ ],
+ "overlays": [
+  {"s": 0, "e": 8.7, "text": "THE *FOLDABLE HOME*\nELON MUSK OWNS"},
+  {"s": 8.7, "e": 14.8, "text": "*BOXABL* HOMES\nSHIP FOLDED"},
+  {"s": 14.8, "e": 27.0, "text": "THE GOAL:\n*1 HOUSE PER MINUTE*"},
+  {"s": 27.0, "e": 31.7, "text": "INSIDE THE\n*BOXABL CASITA*"}
+ ],
+ "post": {"short": "Tesla makes a car a minute. BOXABL wants to make a HOUSE a minute 🏠 Homes that ship folded, straight from the factory. @boxabl #boxabl #casita #prefab #innovation", "x": "Tesla makes a car a minute. BOXABL wants to make a house a minute 🏠 [TRACKING URL]"}
+}
