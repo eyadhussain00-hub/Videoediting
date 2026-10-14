@@ -1,0 +1,27 @@
+{
+  "name": "tomhutch-sample",
+  "source": "../../tomhutch-10k-mindset/assets/footage/source.mp4",
+  "words": "tomhutch-sample.words.json",
+  "theme": { "accent": "#E9C27A" },
+  "focusY": 640,
+  "hook": { "tag": "THE $10K/MONTH MINDSET", "y": 360 },
+  "speaker": { "name": "Tom Hutcheson", "role": "Coach" },
+  "covers": [
+    { "mode": "patch", "x": 50, "y": 300, "w": 980, "h": 250, "to": 8.85 },
+    { "mode": "blur", "x": 0, "y": 1110, "w": 1080, "h": 220 }
+  ],
+  "captions": { "y": 1330 },
+  "emphasis": ["nothing.", "same", "money", "Instagram,", "changes.", "game.", "pedestalizing", "easier.", "normalize", "reality,", "emotions", "welcome."],
+  "cards": [
+    { "at": 15.74, "dur": 2.0, "lines": ["Nothing", "changes."], "sub": "Same bed. Same game." },
+    { "at": 24.3, "dur": 2.4, "lines": ["Normalize", "it."], "sub": "Then it shows up." }
+  ],
+  "end": {
+    "kicker": "The takeaway",
+    "title": "Stop chasing",
+    "accent": "$10K a month.",
+    "points": ["Same life after it", "Normalize the number", "It comes easier"],
+    "handle": "@tomhutchmove"
+  },
+  "music": { "on": false }
+}
