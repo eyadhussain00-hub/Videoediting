@@ -15,3 +15,6 @@ flag is required: without it, bootstrap misreads `--project` as the package mana
 `npx remotion render src/index.tsx final-reel <out>.mp4 --concurrency=4` (about 5.5 min).
 
 Status (14 Oct): v1 rendered, 55.96 s, 1080×1920, −14.9 LUFS. Sent to Telegram. Waiting on Eyad's notes.
+
+Outreach DM draft (sent to Eyad on Telegram, 14 Oct): same format as the five-currencies / $10K-mindset DMs,
+with [Name] and [Drive link] placeholders.
