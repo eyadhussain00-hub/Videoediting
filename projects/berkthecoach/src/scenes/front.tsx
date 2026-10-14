@@ -24,7 +24,7 @@ const HookTags = ({ t }: { t: number }) => {
   if (t > out) return null;
   return (
     <>
-      <Row y={248} style={pop(t, 0.15, out)}>
+      <Row y={196} style={pop(t, 0.15, out)}>
         <Pill><span style={{ width: 10, height: 10, borderRadius: 5, background: GOLD, boxShadow: `0 0 12px ${GOLD}` }} />FOR MUSLIM COACHES</Pill>
       </Row>
     </>

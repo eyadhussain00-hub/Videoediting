@@ -1,17 +1,19 @@
 # PROGRESS – berkthecoach   (updated 2026-10-14)
-Phase: preview (v1 sent on Telegram, awaiting Eyad's notes)
-Current version: v1 → renders/final/berkthecoach_v1.mp4 (1080×1920, 30 fps, 55.5 s, -14 LUFS; not committed).
-  Telegram preview: renders/previews/berkthecoach_v1_preview.mp4.
+Phase: preview (v2 sent on Telegram)
+Current version: v2 → renders/final/berkthecoach_v2.mp4 (1080×1920, 30 fps, 55.5 s, -14 LUFS; not committed).
+  Telegram preview: renders/previews/berkthecoach_v2_preview.mp4.
+  v2 notes (Eyad, 14 Oct): "everything is good, only change the beginning": hook keeps the footage at its normal window
+  size (no drop / breakout, no zoom-in) and the بركة / رزق words are gone. Everything after the hook is unchanged.
 
 Done:
 - Source: instagram.com/reel/DdY7PJfos7B (@berkthecoach, "3 sins destroying your barakah as a Muslim coach", 52.4 s).
   Spec edit: a pitch piece, not for publishing without his permission.
 - The original is a 1080×864 band (y 528–1392 of the frame) between a title pill and captions, so the band is clean:
-  no caption removal. It's shown in a rounded window on a designed backdrop; the speaker breaks out of it in hook + finale.
+  no caption removal. It's shown in a rounded window on a designed backdrop; the speaker breaks out of it in the finale.
 - Transcript (plan/words.json → scripts/fix_words.py → src/words.json), storyboard (plan/storyboard.md), all scenes,
   speaker matte, Demucs voice + synthesised D Hijaz score and SFX (public/mix.wav), v1 render, Telegram preview.
 
-Next step: Eyad's notes → v2.
+Next step: Eyad's notes on v2.
 
 Rebuild from scratch (fresh container), from this folder:
   npm ci · pip install yt-dlp faster-whisper opencv-python-headless rembg onnxruntime scipy fonttools brotli ·

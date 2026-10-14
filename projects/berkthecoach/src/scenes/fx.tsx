@@ -3,7 +3,7 @@ import { CARD_IN, FPS, SINS, T } from "../data";
 import { Abs, inOutCubic, lerp, prog, rnd } from "../ui";
 
 /** Warm light leaks sweeping across on the big transitions. */
-const LEAKS = [0.02, T.barakah, ...SINS.map((s) => s.at - CARD_IN), T.blessed, T.provider, T.dunya - 0.35, T.cta];
+const LEAKS = [0.02, ...SINS.map((s) => s.at - CARD_IN), T.blessed, T.provider, T.dunya - 0.35, T.cta];
 export const LightLeaks = () => {
   const t = useCurrentFrame() / FPS;
   return (
@@ -24,7 +24,7 @@ export const LightLeaks = () => {
 };
 
 /** Anamorphic flare streaks on the big hits. */
-const FLARES: [number, number][] = [[T.barakah, 620], [T.blessed, 650], [T.provider, 620], [T.heart2, 600], [T.cta + 0.5, 960]];
+const FLARES: [number, number][] = [[T.blessed, 650], [T.provider, 620], [T.heart2, 600], [T.cta + 0.5, 960]];
 export const Flares = () => {
   const t = useCurrentFrame() / FPS;
   return (
