@@ -135,11 +135,9 @@ T = dict(destroy=at("destroy"), barakah=at("barakah"), rizq=at("rizq"), s1=at("t
 CARD_IN = 0.32
 cards = [T["s1"] - CARD_IN, T["s2"] - CARD_IN, T["s3"] - CARD_IN]
 
-# hook: 3 SINS slams in, "destroy" cracks it, Barakah / rizq shimmer in
+# hook: 3 SINS slams in, "destroy" cracks it
 put(boom(2.4), 0.02, -6); put(braam(2.0), 0.02, -14); put(whoosh(0.4), 0.0, -18)
 put(crack(), T["destroy"] - 0.01, -9); put(thud(0.6), T["destroy"], -12)
-put(swell(0.5), T["barakah"] - 0.5, -18); put(shimmer(1.6), T["barakah"], -16); put(chime(1174.7, 2.0), T["barakah"] + 0.02, -20)
-put(shimmer(1.2), T["rizq"], -19); put(chime(1396.9, 1.6), T["rizq"] + 0.02, -21)
 # sin cards: seam opens (whoosh + boom), numeral stamps, fold up
 for i, c in enumerate(cards):
     put(riser(0.9) * 0.7, c - 0.85, -22); put(whoosh(0.5), c - 0.2, -13); put(boom(1.6), c + 0.12, -11)
@@ -239,7 +237,7 @@ def ney_note(m, s, d, g=0.07):
     ph = 2 * np.pi * np.cumsum(f) / SR
     a = np.minimum(1, tt / 0.25) * np.minimum(1, (d - tt) / 0.5)
     ney[i0:i1] += g * a * (np.sin(ph) + 0.25 * np.sin(2 * ph) + 0.12 * band(i1 - i0, 400, 3000))
-ney_note(74, T["barakah"], 2.6); ney_note(75, T["blessed"] - 0.1, 1.2); ney_note(74, T["blessed"] + 1.0, 1.6)
+ney_note(75, T["blessed"] - 0.1, 1.2); ney_note(74, T["blessed"] + 1.0, 1.6)
 ney_note(78, T["provider"], 2.0); ney_note(74, T["heart2"], 3.0); ney_note(69, T["cta"] + 0.5, 2.8)
 
 music = pad * 1.0 + oud + drum + ney

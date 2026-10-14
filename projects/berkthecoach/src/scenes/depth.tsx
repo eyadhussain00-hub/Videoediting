@@ -10,41 +10,27 @@ const rise = (t: number, a: number, d = 0.5) => {
   return { opacity: prog(t, a, d * 0.6), transform: `translateY(${(1 - p) * 60}px)`, filter: `blur(${(1 - p) * 14}px)` };
 };
 
-/** Hook: 3 SINS lands, "destroy" cracks it, then بركة and رزق rise behind his head. */
+/** Hook: "3 SINS" lands above the window; "destroy" cracks it red. */
 const Hook = ({ t }: { t: number }) => {
   const out = SINS[0].at - CARD_IN;
   if (t > out + 0.1) return null;
-  const sinsUp = prog(t, T.barakah - 0.15, 0.55, inOutCubic); // 3 SINS shrinks up to make room for the Arabic
   const hit = prog(t, 0.02, 0.5, outBack);
   const crack = t >= T.destroy ? Math.max(0, 1 - (t - T.destroy) / 0.5) : 0;
   const f = Math.floor(t * FPS);
-  const slice = crack > 0 ? (rnd(f) - 0.5) * 30 * crack : 0;
-  const bar = win(t, T.barakah - 0.05, T.rizq + 0.05, 0.4, 0.3);
-  const riz = win(t, T.rizq - 0.05, out + 0.1, 0.4, 0.3);
+  const slice = crack > 0 ? (rnd(f) - 0.5) * 24 * crack : 0;
   return (
-    <>
-      <Abs style={{ left: 0, right: 0, top: lerp(430, 318, sinsUp), textAlign: "center", transform: `scale(${lerp(lerp(1.5, 1, hit), 0.42, sinsUp)})`, transformOrigin: "50% 0%" }}>
-        <div style={{ position: "relative", display: "inline-block", fontFamily: SANS, fontWeight: 900, fontSize: 270, letterSpacing: -10, lineHeight: "270px", ...goldText,
-          filter: `drop-shadow(0 10px 40px rgba(0,0,0,0.6)) drop-shadow(0 0 ${30 + 40 * crack}px rgba(${crack > 0 ? "226,87,63" : "233,201,131"},${0.35 + 0.4 * crack}))`,
-          opacity: prog(t, 0, 0.2) }}>
-          3 SINS
-          {crack > 0 && (
-            <Abs style={{ inset: 0, color: CRIMSON, WebkitTextFillColor: CRIMSON, clipPath: `inset(${30 + rnd(f + 3) * 40}% 0 ${20 + rnd(f + 5) * 30}% 0)`, transform: `translateX(${slice}px)`, opacity: crack }}>
-              3 SINS
-            </Abs>
-          )}
-        </div>
-      </Abs>
-      {/* the Arabic, huge, behind him */}
-      <Abs style={{ left: 0, right: 0, top: 400, textAlign: "center", direction: "rtl", fontFamily: ARABIC, fontWeight: 700, fontSize: 330, lineHeight: "520px", ...goldText,
-        opacity: bar, transform: `scale(${lerp(1.12, 1, prog(t, T.barakah - 0.05, 0.9))})`, filter: `drop-shadow(0 0 40px rgba(233,201,131,0.45)) blur(${(1 - bar) * 12}px)` }}>
-        بَرَكَة
-      </Abs>
-      <Abs style={{ left: 0, right: 0, top: 400, textAlign: "center", direction: "rtl", fontFamily: ARABIC, fontWeight: 700, fontSize: 330, lineHeight: "520px", ...goldText,
-        opacity: riz, transform: `scale(${lerp(1.12, 1, prog(t, T.rizq - 0.05, 0.9))})`, filter: `drop-shadow(0 0 40px rgba(233,201,131,0.45)) blur(${(1 - riz) * 12}px)` }}>
-        رِزق
-      </Abs>
-    </>
+    <Abs style={{ left: 0, right: 0, top: 268, textAlign: "center", transform: `scale(${lerp(1.4, 1, hit)})`, transformOrigin: "50% 50%" }}>
+      <div style={{ position: "relative", display: "inline-block", fontFamily: SANS, fontWeight: 900, fontSize: 180, letterSpacing: -7, lineHeight: "190px", ...goldText,
+        filter: `drop-shadow(0 10px 40px rgba(0,0,0,0.6)) drop-shadow(0 0 ${24 + 36 * crack}px rgba(${crack > 0 ? "226,87,63" : "233,201,131"},${0.3 + 0.4 * crack}))`,
+        opacity: prog(t, 0, 0.2) }}>
+        3 SINS
+        {crack > 0 && (
+          <Abs style={{ inset: 0, color: CRIMSON, WebkitTextFillColor: CRIMSON, clipPath: `inset(${30 + rnd(f + 3) * 40}% 0 ${20 + rnd(f + 5) * 30}% 0)`, transform: `translateX(${slice}px)`, opacity: crack }}>
+            3 SINS
+          </Abs>
+        )}
+      </div>
+    </Abs>
   );
 };
 

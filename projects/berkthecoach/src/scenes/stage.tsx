@@ -1,19 +1,18 @@
 import type { ReactNode } from "react";
 import { AbsoluteFill, Freeze, OffthreadVideo, staticFile, useCurrentFrame } from "remotion";
-import { CARD_IN, FPS, GOLD, SINS, SRC_END, T } from "../data";
-import { Abs, inOutCubic, lerp, prog, rnd } from "../ui";
+import { FPS, GOLD, SRC_END, T } from "../data";
+import { Abs, inOutCubic, lerp, prog } from "../ui";
 
 // The source is a 1080×864 landscape band (letterboxed by the original edit). It's placed on the 1080×1920 canvas at
-// FOOT and seen through a rounded "window". In the hook and the finale the window drops low and the speaker
-// (alpha layer fg.webm, same placement) breaks out of its top edge, in front of the type.
+// FOOT and seen through a rounded "window". In the finale the window drops low and the speaker (alpha layer fg.webm,
+// same placement) breaks out of its top edge, in front of the type. The hook keeps the plain window (Eyad, v2).
 const FOOT = { ox: -260, oy: 440, s: 1.24, w: 1080, h: 864 };
 
 type Win = { x: number; y: number; w: number; h: number; z: number; fx: number; fy: number; br: number };
 const OPEN: Win = { x: 60, y: 470, w: 960, h: 1000, z: 1, fx: 540, fy: 760, br: 0 };
 const POP: Win = { x: 60, y: 900, w: 960, h: 570, z: 1.28, fx: 534, fy: 1000, br: 1 };
 const KEYS: [number, Win, number][] = [
-  [0, POP, 0],
-  [SINS[0].at - CARD_IN + 0.12, OPEN, 0.4],
+  [0, OPEN, 0],
   [T.dunya - 0.35, POP, 0.6],
 ];
 const lerpWin = (a: Win, b: Win, p: number): Win => ({
@@ -46,21 +45,10 @@ export const winAt = (t: number): Win => {
     if (t < at) break;
     w = d ? lerpWin(w, k, prog(t, at, d, inOutCubic)) : k;
   }
-  // hook: the opening frame springs in from wide and blurred
-  const open = prog(t, 0, 0.7, inOutCubic);
-  const z = w.z * punchAt(t) * lerp(1.22, 1, open);
-  return { ...w, z };
+  return { ...w, z: w.z * punchAt(t) };
 };
-export const blurAt = (t: number) => lerp(14, 0, prog(t, 0, 0.45)) + (t > T.cta ? 0 : 0);
-
-/** Shake on "destroy". */
-const shakeAt = (t: number) => {
-  const k = t - T.destroy;
-  if (k < 0 || k > 0.45) return [0, 0];
-  const a = (1 - k / 0.45) * 14;
-  const f = Math.floor(t * FPS);
-  return [(rnd(f) - 0.5) * a, (rnd(f + 99) - 0.5) * a];
-};
+/** The opening frame focuses in. */
+export const blurAt = (t: number) => lerp(14, 0, prog(t, 0, 0.45));
 
 const Plate = ({ src, transparent = false }: { src: string; transparent?: boolean }) => {
   const frame = useCurrentFrame();
@@ -79,12 +67,11 @@ const Plate = ({ src, transparent = false }: { src: string; transparent?: boolea
 /** Canvas-space camera: both the plate and the speaker layer go through it, so they stay pixel-aligned. */
 const Cam = ({ t, children }: { t: number; children: ReactNode }) => {
   const w = winAt(t);
-  const [sx, sy] = shakeAt(t);
   const b = blurAt(t);
   return (
     <AbsoluteFill
       style={{
-        transform: `translate(${sx}px, ${sy}px) scale(${w.z})`,
+        transform: `scale(${w.z})`,
         transformOrigin: `${w.fx}px ${w.fy}px`,
         filter: b > 0.1 ? `blur(${b}px)` : undefined,
       }}

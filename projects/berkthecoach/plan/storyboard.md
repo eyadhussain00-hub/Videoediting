@@ -10,7 +10,7 @@ Type: Inter Tight 900 (impact), Instrument Serif (titles, keywords, quotes), Jet
 
 | Time | Beat | Picture |
 |---|---|---|
-| 0–5.8 | Hook: "Three sins that destroy Barakah and rizq…" | Window drops low and he breaks out of its top edge. "3 SINS" slams in behind his head; "destroy" cracks it red with a shake; then بَرَكَة, then رِزق rise huge behind him. Kicker pill "FOR MUSLIM COACHES". |
+| 0–5.8 | Hook: "Three sins that destroy Barakah and rizq…" | v2: the footage at its normal window size from frame one (focuses in from a blur). "3 SINS" lands above the window and "destroy" cracks it red. Kicker pill "FOR MUSLIM COACHES". (v1 dropped the window and had بَرَكَة / رِزق behind him; Eyad cut that.) |
 | 5.8–7.1 | Sin 01 card | Opens from a gold seam: outline "01", "Dishonesty in *Trade*", faint الغش; folds up into the header (sin title + 3-step rail). |
 | 7.1–16 | Hadith | Pill "THE PROPHET ﷺ SAID" → BUYER and SELLER chips, gold deal line between them, TRUSTFUL / TRANSPARENT tags on the words; "*Blessed*" blooms behind him with emerald glow and motes; pill becomes "SAHIH AL-BUKHARI · 2079". |
 | 16–17.4 | Sin 02 card | "Neglecting *Salah*", faint الصلاة. |

@@ -13,3 +13,8 @@
   captions, fx. Stills checked across every beat; fixes: shrunk "3 SINS" clear of the kicker, plain رِزق / الرزّاق / بركة
   (stacked harakat rendered detached), Blessed below the citation pill, finale lockup at 100/92 px so it fits one line each.
 - scripts/audio.py: D Hijaz score (drone pad, Karplus-Strong oud, frame drum, ney lead) + SFX; -14.1 LUFS / -1.5 dBTP.
+- v1 sent on Telegram, merged (PR #5).
+- v2 (Eyad: "only change the beginning… keep the original footage the same size, remove the baraka and rizq words…
+  make it clean"): the hook uses the plain window from frame one (no breakout, no opening zoom, no shake), "3 SINS"
+  sits above the window at 180 px, kicker moved up; the Arabic words, their flare/leak and their shimmer/chime/ney
+  cues are gone. Finale breakout and everything else unchanged.
