@@ -1,0 +1,11 @@
+{
+  "assets": [
+    { "path": "cache/src.mp4", "source": "https://www.instagram.com/reel/DdY7PJfos7B/", "author": "@berkthecoach (Berk, Muslim business coach)", "license": "creator footage — spec edit, not for publishing without his permission", "used_in": "whole video (footage band + his voice)" },
+    { "path": "public/fonts/InterTight.woff2", "source": "Google Fonts", "license": "OFL" },
+    { "path": "public/fonts/InstrumentSerif-Italic.woff2", "source": "Google Fonts", "license": "OFL" },
+    { "path": "public/fonts/InstrumentSerif-Regular.woff2", "source": "Google Fonts (via @fontsource/instrument-serif)", "license": "OFL" },
+    { "path": "public/fonts/JetBrainsMono.woff2", "source": "Google Fonts", "license": "OFL" },
+    { "path": "public/fonts/Amiri-Bold.woff2", "source": "Google Fonts (via @fontsource/amiri, arabic subset)", "license": "OFL" },
+    { "path": "public/mix.wav", "source": "scripts/audio.py (synthesised D Hijaz score + SFX, his own voice via Demucs)", "license": "own work" }
+  ]
+}
