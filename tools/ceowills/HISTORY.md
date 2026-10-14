@@ -297,3 +297,21 @@ talking about; it helps choose the right CTA. Good CTAs help make more money for
   a file failed → setup.sh pins `av<16` (also SK Media's uv commands and BOXABL's setup, whose transcribers pass paths).
 - **Make isn't connected in this account any more** (no Make connector on 10 Oct), so the Export replace-in-place
   (7680385) couldn't run from the session; the Drive connector can't upload video.
+
+## Adnan's message, 13 Oct (passed on by Eyad) → all 9 re-rendered and replaced in Export
+"the top text is still there … please remove it akhi" (a frame of #2 with its title), then: **"all videos must have —
+no top text, no imessage cta, no background music"**, and Eyad: "that's it".
+- **Why he still saw the title:** the 10 Oct renders (no title) only went out as Telegram previews. On 11 Oct,
+  07:40–09:00, nine "CEOwills - <Title> - voice only.mp4" files were put in Export, outside any session that committed
+  here, and the v-numbered files left it. Frame 1 of #2's file carries the "Muslim parents? Don't leave out your
+  DAUGHTERS" title, so these are the older voice-only renders, the exact frame Adnan sent. The tracker still said
+  `edited` with the old export names. Lesson: before you say a fix is live, list Export and pull frame 1 of the file
+  that's there (`curl -r 0-12000000` of its usercontent link and `ffmpeg -frames:v 1`). The 13 Oct renders replace those
+  nine files in place (same links), and the tracker now records each file id.
+- **No iMessage CTA** also takes out the 10 Oct end banner: it was drawn in the same iPhone/iMessage style as the cards.
+  check.py now fails a job with `end_banner`, with `ctas` anything but `[]` (a missing key means auto cards), or with a
+  `nasheed`. qa.py fails a render that draws any card.
+- **No background music** replaces Adnan's 7 Oct nasheed rotation. qa.py checks the follow card is silent: his voice
+  ends where the card starts, so anything audible there is a bed.
+- Kept: the "Great Wealth Transfer" follow card (Adnan's own 7 Oct ask, and none of the three rules) and his spoken
+  "Comment … below" with its caption.

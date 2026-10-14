@@ -52,9 +52,9 @@
 
 ## Hard rules
 
-1. **Audio = Adnan's voice + a voice-only nasheed in Adnan's rotation.** No music, no instruments, ever (halal). SFX only
-   non-musical and rare. (4–6 Oct the set went out voice only; 7 Oct Adnan asked for nasheeds again, with a rotation — see
-   Nasheeds below. `tracker.json` names each video's nasheed and check.py fails a job that differs.)
+1. **Audio = Adnan's voice only. No background music, no nasheed** (Adnan via Eyad, 13 Oct: "all videos must have no
+   top text, no imessage cta, no background music — that's it"; replaces the 7 Oct nasheed rotation). No music or
+   instruments ever (halal). check.py fails a job with a `nasheed`; qa.py fails a render that isn't silent under the end card.
 2. **Lav mic, never the camera audio.** `match_mic.py` gives the synced `<clip>.mic.wav`. `NO MATCH` = the mic part is
    missing: ask Eyad, never fall back to camera audio silently. Check the camera file's rotation (Sony files are often
    sideways → `"rotate": "ccw"`).
@@ -67,7 +67,7 @@
    always Eyad's first note. When the director asks for a different take between tries, use the last one he asked for.
    Don't cut inside a ≤0.5 s breath straight after a key line. Every pause ≥ 0.16 s is cut to 0.08 s (`pauses.py`;
    `tighten.py` re-cuts an existing job that way and moves its cards onto the new timeline).
-5. **No title on any video** (Sofian, 9 Oct: "ALL VIDEOS -> remove the top text on all videos"; `hook.off` in
+5. **No title on any video** (Sofian, 9 Oct: "ALL VIDEOS -> remove the top text on all videos"; again Adnan, 13 Oct; `hook.off` in
    layout.json, check.py fails a job with a `hook`). Frame 1 carries the logo.
 6. **Nothing covers Adnan's head.** The title and the iMessage cards sit high; his hair top is at y ≈ 325–440 depending
    on how far he leans, and grazing the top of his hair is the limit. `qa.py` checks it on real frames; when a card
@@ -90,16 +90,16 @@
 | Title (hook) | **Off on every video since 9 Oct** (Sofian). When it was on: top of frame over a soft black scrim: every line — the question included — **one sans size, 64 px** (Sofian 30 Sep: "the question mark and text are different size"; `hook.uniform`); `_MARKED_` words keep a red underline. ≤ 22 characters a line. Fades at `hook_until` (end of the first sentence, before the first card at 25 s) |
 | Logo | Red `CEOwills` (Arimo 700, `#EB1519`, 392 px wide, baseline 1600), centred on its ink, every frame, over a black bottom gradient from y 1300 (30 Sep, Sofian: "the gradient is so high" — it started at 1000, doubled) |
 | Frame | **Zoomed 1.08× and moved down 190 px** (Sofian, 30 Sep) so there's room above his head; the space above is the same shot zoomed + blurred, faded in over 70 px (190–260; was 170, it smeared his hair). No move-down in a reel without cards where he leans in (#14) |
-| iMessage cards | **Off** (Eyad, 5 Oct: "send them again without the ctas" → `"ctas": []`; 7 Oct: "remove call to action" = these cards, the spoken "Comment … below" stays; ask before putting them back. Adnan also sent a new headshot "for the iMessage picture" — Eyad: ignore it, the cards are off). When on: **Real-size iPhone banners** (Sofian/Eyad, 30 Sep: "so small it looks unrealistic"): 1000 px wide at y 100, Adnan's contact photo (his face from the video) with the Messages badge, "Adnan · now", frosted glass, ceowills.com in red, drawn by render.py (`notify.style: ios`). Slide down, 6 s each, first at 25 s then every 30 s, never over the end CTA, none in reels under 30 s, notification sound on each. **Text written for what he's saying at that moment, different in every video** — see below |
+| iMessage cards | **Off — Adnan's rule since 13 Oct: "no imessage cta"; never put them back** (Eyad, 5 Oct: "send them again without the ctas" → `"ctas": []`; 7 Oct: "remove call to action" = these cards, the spoken "Comment … below" stays; ask before putting them back. Adnan also sent a new headshot "for the iMessage picture" — Eyad: ignore it, the cards are off). When on: **Real-size iPhone banners** (Sofian/Eyad, 30 Sep: "so small it looks unrealistic"): 1000 px wide at y 100, Adnan's contact photo (his face from the video) with the Messages badge, "Adnan · now", frosted glass, ceowills.com in red, drawn by render.py (`notify.style: ios`). Slide down, 6 s each, first at 25 s then every 30 s, never over the end CTA, none in reels under 30 s, notification sound on each. **Text written for what he's saying at that moment, different in every video** — see below |
 | End CTA | From "Comment" to the end, 1.12× size, the keyword in the job's spelling with the red underline. Two keywords (#10) is fine when he says two |
-| End banner | **Every video** (Sofian, 9 Oct: "add call to action banner at the end of all videos"; Eyad, 10 Oct: "nah not the png use the banner" = the drawn iPhone banner, not Adnan's PNGs): the real-size iPhone banner (same look as the iMessage cards below) slides down at the top over the last 5 s, gone before the end card, with the notification sound. **Its text is written for that video's ending** in his voice, ending on ceowills.com, different in every video (`"end_banner": {"text": …}`; check.py warns on a repeat or a missing ceowills.com). qa.py checks it against his head; a job where he leans in at the end overrides `width`/`hold_s` (#14: 800 px, last 2.6 s) |
-| End card | **Every video** (Adnan, 7 Oct: "add it at the end of every video please"): his "Welcome to the Great Wealth Transfer / follow me on social media" card (`endcard/great-wealth-transfer.jpg`) for 3 s after the last frame — 0.3 s cross-fade in, slow 1.03 push-in, no logo or captions on it, the nasheed carries on under it and fades out at the very end (`endcard` in layout.json; a job opts out with `"endcard": null`). qa.py checks it's the last thing on screen |
+| End banner | **Off** (Adnan via Eyad, 13 Oct: "no imessage cta"). The 10 Oct end banner was drawn as an iPhone/iMessage banner, so it went with the cards. check.py fails a job with `end_banner`; qa.py fails a render with any card drawn |
+| End card | **Every video** (Adnan, 7 Oct: "add it at the end of every video please"): his "Welcome to the Great Wealth Transfer / follow me on social media" card (`endcard/great-wealth-transfer.jpg`) for 3 s after the last frame — 0.3 s cross-fade in, slow 1.03 push-in, no logo or captions on it, silent (no background music, 13 Oct) (`endcard` in layout.json; a job opts out with `"endcard": null`). qa.py checks it's the last thing on screen |
 | Motion | Alternating 1.00/1.08 punch-ins at cuts, slow 3 % drift, one in-shot punch-in where he says the CTA |
 | Grade | Sofian's Premiere look: **safe** 33³ LUT (`luts/sofian-juggling-safe.cube`) + measured vignette (`grade_fit`). The raw fitted LUT made grey/red blotches on bright skin (#14, a red cheek in #2) — 30 Sep: its difference from the curves is now smoothed and capped. Look at his face in close, bright shots on every contact sheet. New numbers from him go in layout.json, never hand-tuned filters |
-| Audio | Lav through `voice_chain()` (hum notches, RNNoise, clarity EQ, de-esser, compressor), master **−15 LUFS**. Nasheed from the rotation (below), ≈ 11 dB under him, gentle duck; `nasheed.from` (source s) starts it later (#14: after "each pause") |
+| Audio | Lav through `voice_chain()` (hum notches, RNNoise, clarity EQ, de-esser, compressor), master **−15 LUFS**. Voice only: no nasheed, no card ping |
 | Length | Keep the whole message: 15–120 s |
 
-### iMessage cards: written for the moment, never repeated (Eyad, 29–30 Sep, "always remember this")
+### iMessage cards: written for the moment, never repeated (Eyad, 29–30 Sep) — OFF since 13 Oct, kept for reference
 
 Good cards make Adnan money. Before the final render, read the transcript around each card time and write the card's
 text for what he's saying there, in his voice ("hey brother / hey friend / hey CEO …", one idea, one ask, ending on
@@ -128,8 +128,8 @@ bash $T/setup.sh $W                                         # ffmpeg, pillow, op
 5. **Plan** — copy the nearest `jobs/*.edit.json` to `$W/edit.json` (schema at the top of `render.py`):
    `cuts` (long takes: pick the blocks and run `python3 $T/pauses.py <mic.wav> <words.json> --blocks "3.0-33.2,…"
    --video <raw>`; extend the last cut ~1.3 s if he holds after "…below"), `punch_at`, `hook` + `hook_until`,
-   hand-set `chunks`, `cta` (`at` = source time of "Comment", `keyword`, `underline`), `ctas` (chosen, see above),
-   `nasheed`, `name`. Then **`python3 $T/check.py $W/edit.json`** must print `OK` (warnings: read them).
+   hand-set `chunks`, `cta` (`at` = source time of "Comment", `keyword`, `underline`), `"ctas": []`,
+   `"nasheed": null`, no `end_banner`, `name`. Then **`python3 $T/check.py $W/edit.json`** must print `OK` (warnings: read them).
 6. **Draft (for you)** — `python3 $T/render.py $W/edit.json --draft` and look at the title against his head, the
    captions, each card and the last frame (red underline under the CTA keyword).
 7. **Final** — `python3 $T/render.py $W/edit.json --out $W/out/<name>-v1.mp4`. `ffprobe` it (a render killed by an idle
@@ -157,11 +157,5 @@ of it and of the raw, plus `<clip>.mic.wav` as a document; say which mic part it
 
 ### Nasheeds
 
-`nasheeds.json` lists Adnan's approved voice-only nasheeds. Drive copies of 11 of them: `RSV Video/SK/SK Files/nasheeds/`
-(download with `fetch.sh`); otherwise `yt-dlp -x --audio-format mp3 "<soundcloud url>"` (YouTube blocks the container).
-Never substitute music.
-
-**Rotation (Adnan, 7 Oct):** "every 3 or 4 videos use a separate nasheed — then after 12 videos are done you can use the
-same 3 nasheeds again, rinse and repeat". In board order, 3 videos per nasheed, cycling **the-sins → bika-moulhimi →
-hona-marro**: #2, #6, #7 the-sins · #9, #10, #12 bika-moulhimi · #14, #16, #17 hona-marro. The next three videos start the
-cycle again on the-sins. Write the nasheed into the video's `tracker.json` row when you pick it up.
+**Off on every video since 13 Oct** (Adnan: "no background music"). `nasheeds.json` and the Drive copies
+(`RSV Video/SK/SK Files/nasheeds/`) stay for reference only; don't put a nasheed back unless Eyad says so in writing.

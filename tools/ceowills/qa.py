@@ -160,15 +160,18 @@ def main():
         else: diff = 999.0
         check("end card: the follow card is the last thing on screen", diff < 12, f"mean diff {diff:.1f} vs {cf}")
         check("end card: on screen ≥2.5 s", ec[1] - ec[0] >= 2.5 and abs(ec[1] - dur) < 0.15, f"{ec[0]:.2f}–{ec[1]:.2f}s of {dur:.2f}s")
+        if au:   # 13 Oct: no background music — the voice ends where the card starts, so the card must be silent
+            e = ff(["-ss", f"{ec[0] + 0.4:.3f}", "-i", a.video, "-map", "0:a", "-af", "volumedetect", "-f", "null", "-"])
+            mx = float((re.findall(r"max_volume:\s+(-?[\d.]+) dB", e) or ["-91"])[-1])
+            check("audio: no background music (silent under the end card)", mx <= -50, f"max {mx} dB")
     if a.boxes:
         em = L["hook"].get("edge_margin", S["y0"])   # Eyad: overlays high and off his face, but not tight to the edge
         htop = L["hook"]["bar"]["top"] if L["hook"].get("style") == "bar" else L["hook"]["top"] - L["hook"]["eyebrow_px"]
         if not L["hook"].get("off"): check("layout: hook clear of the top edge", htop >= em, f"hook top {htop}, margin ≥ {em}")
         check("layout: iMessage CTA clear of the top edge", L["notify"]["y"] >= em, f"card top {L['notify']['y']}")
-        ends = [c for c in b.get("cards", []) if c["key"].startswith("end:")]   # Sofian, 9 Oct: a CTA banner at the end of every video
-        check("end banner: CTA banner over the last seconds", len(ends) == 1 and abs(ends[0]["out"] - (ec[0] if ec else dur)) < 0.1,
-              ", ".join(f"{c['key'][4:]} {c['in']:.1f}–{c['out']:.1f}s" for c in ends) or "none")
-        if ends: check("end banner: clear of the top edge", ends[0]["top"] >= em, f"banner top {ends[0]['top']}")
+        # Eyad, 13 Oct (Adnan's chat): "no top text, no imessage cta, no background music" — no card or end banner drawn at all
+        cards = b.get("cards", [])
+        check("no iMessage cards / end banner", not cards, ", ".join(f"{c['key']} {c['in']:.1f}s" for c in cards) or "none")
         check("layout: captions above the logo", L["caption"]["baseline_y"] + 60 < L["logo"]["baseline_y"] - L["logo"]["px"], f"caption baseline {L['caption']['baseline_y']}")
         check("layout: logo above platform UI", L["logo"]["baseline_y"] <= S["y1"] + 60, f"logo baseline {L['logo']['baseline_y']}")
         head_clearance(a.video, b, L)
