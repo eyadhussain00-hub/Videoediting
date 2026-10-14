@@ -15,7 +15,8 @@ Recurring clients have their own pipeline in `tools/`, with house rules that win
 | CEOwills (Adnan) | "CEOwills", "Adnan" | the `ceowills-reel` skill → `tools/ceowills/PRESET.md` |
 | BOXABL clipping campaign (ClipFlow) | "Boxabl", "ClipFlow" | the `boxabl-clips` skill → `tools/boxabl/PRESET.md` |
 
-Shared helpers: `tools/common/` (stutter check, preview, `pack.sh` client zips) and `tools/tg.sh` (Telegram).
+Shared helpers: `tools/common/` (stutter check, preview, `pack.sh` client zips, `batch_deliver.py`: QA a batch of
+renders, upload the passing ones to a named Drive export folder without duplicates, one Telegram summary) and `tools/tg.sh` (Telegram).
 Each `setup.sh` prepares a fresh container. Output goes to `output/<client>/` (gitignored); footage stays on
 Drive. To add a client, copy the closest `tools/<client>/` as the `ceowills-reel` skill describes.
 
