@@ -1,0 +1,4 @@
+{
+  "_doc": "Named Drive export folders for tools/common/batch_deliver.py --folder <name>. path = the folder under RCLONE_REMOTE (rclone uploads); id = the Drive folder id (Make uploads, listings). A raw folder id also works as --folder.",
+  "ceowills-export": {"id": "143ZMKFEg4NSxAnCI9uWsLkUlGbEt03-D", "path": "RSV Video/Adnan/Export", "client": "ceowills"}
+}

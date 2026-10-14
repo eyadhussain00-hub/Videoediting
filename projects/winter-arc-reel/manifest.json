@@ -1,0 +1,9 @@
+{
+  "assets": [
+    { "path": "cache/raw.mp4", "source": "https://www.instagram.com/reel/Dd9ds6kI-q9/", "author": "@big.esa (Big Esa)", "license": "client/creator footage — spec edit, not for publishing without his permission", "used_in": "whole video" },
+    { "path": "public/fonts/InterTight.woff2", "source": "Google Fonts", "license": "OFL" },
+    { "path": "public/fonts/InstrumentSerif-Italic.woff2", "source": "Google Fonts", "license": "OFL" },
+    { "path": "public/fonts/JetBrainsMono.woff2", "source": "Google Fonts", "license": "OFL" },
+    { "path": "public/mix.wav", "source": "scripts/audio.py (synthesised music + SFX, his own voice)", "license": "own work" }
+  ]
+}
