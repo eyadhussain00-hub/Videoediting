@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """QA gate. Prints PASS/FAIL per check and ALL PASS at the end (exit 1 otherwise).
-Usage: qa.py final.mp4 [--boxes boxes.json] [--faces face_track.json] [--captions captions.txt] [--layout layout.json]
+Usage: qa.py final.mp4 [--boxes boxes.json] [--faces face_track.json] [--captions captions.txt] [--layout layout.json] [--variant wide_face]
 boxes.json : {"<frame>": [{"id","kind","x","y","w","h","overflow":bool,"parent":id|null}]}
 face_track.json : [{"clip","section","cx","cy","w","h"}]   (face centre in the card's crop, px; w/h = crop size)"""
 import argparse, json, re, subprocess, sys
@@ -24,6 +24,7 @@ def main():
     ap = argparse.ArgumentParser(); ap.add_argument("video")
     ap.add_argument("--boxes"); ap.add_argument("--faces"); ap.add_argument("--captions")
     ap.add_argument("--layout", default=str(Path(__file__).with_name("layout.json")))
+    ap.add_argument("--variant", help="layout.json variants key the render used (wide_face for face_frame wide)")
     a = ap.parse_args(); L = json.loads(Path(a.layout).read_text()); cv = L["canvas"]; S = L["safe"]; Q = L["qa"]
 
     # --- encode
@@ -50,7 +51,7 @@ def main():
     bad = []
     lay = L["layouts"]; op_frames = int(L["opening_duration_s"] * cv["fps"])
     for i, f in enumerate(fr):
-        cards = lay["opening"] if i < op_frames else lay["standard"]
+        cards = lay["opening"] if i < op_frames else {**lay["standard"], **(L["variants"][a.variant] if a.variant else {})}
         for k in ("screen", "face"):
             b = cards[k]; crop = f[b["y"] // sc + 4:(b["y"] + b["h"]) // sc - 4, b["x"] // sc + 4:(b["x"] + b["w"]) // sc - 4]
             if crop.std() < Q["empty_card_std"]: bad.append(f"{k}@f{i}")
@@ -77,7 +78,7 @@ def main():
     # --- face centring + jitter
     if a.faces:
         ft = json.loads(Path(a.faces).read_text())
-        off = [f["clip"] for f in ft if abs(f["cx"] / f["w"] - 0.5) > Q["face_center_tol"]]
+        off = [f["clip"] for f in ft if abs(f["cx"] / f["w"] - 0.5) > Q["face_center_tol"] and not f.get("pinned")]
         check("face: centred within 5%", not off, ", ".join(map(str, off[:8])))
         # compare the face position relative to each crop: punch-ins (1.10) and drift change the crop size on purpose
         jumps = [f'{p["clip"]}→{q["clip"]}' for p, q in zip(ft, ft[1:])

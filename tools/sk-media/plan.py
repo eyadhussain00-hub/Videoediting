@@ -107,7 +107,9 @@ def main():
             cx, hc = W / 2, min(H, W / asp) * 0.999   # show the whole frame width rather than a too-tight centred crop
         if J.get("face_frame") == "square":       # same webcam, face centred: square card, crop as wide as centring allows
             hc = min(2 * min(cx, W - cx), H) * 0.999
-        for c in cs: c["face"] = {"cx": cx, "cy": min(max(cy + 0.06 * hc, hc / 2), H - hc / 2), "hc": hc}
+        if J.get("face_frame") == "wide":         # taller full-width card, zoomed out to the whole webcam width (render clamps
+            hc = H * 0.999                        # the crop to the frame), face as centred as the frame edges allow
+        for c in cs: c["face"] = {"cx": cx, "cy": cy if J.get("face_frame") == "wide" else min(max(cy + 0.06 * hc, hc / 2), H - hc / 2), "hc": hc}
     plan_clips = [{**c, "screen_src": P(SRC[c["src"]].get("screen")), "screen_t0": c["in"], "face_src": P(SRC[c["src"]]["face"]),
                    "face_t0": c["in"] + SRC[c["src"]].get("face_offset", 0.0), "face_W": fts[c["src"]]["W"], "face_H": fts[c["src"]]["H"]} for c in clips]
 
