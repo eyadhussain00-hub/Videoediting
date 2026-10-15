@@ -1,0 +1,806 @@
+{
+ "_comment": "Vinh Giang – Video 4 (Part 4/4: newsletter + email). Premium theme. Paths relative to this folder (workspace vinh/v4/).",
+ "subject": "Vinh Giang",
+ "video": 4,
+ "theme": "premium",
+ "series": "Part 4/4 · Newsletter",
+ "drive": {
+  "sources_folder": "RSV Video/SK/Vinh Giang/vinh vid 5 newsletter (Loom 1I40V_sEsPYkAiNq2MhZ_yxCpMEk1virr, OBS 2026-09-10 19-54-12.mov 19dS5yHJnmUK9s_LA59cDW9tT6VJJOBAI)",
+  "export": "RSV Video/SK/Vinh Giang/vinh vid 5 newsletter/Export/Vinh Giang - Video 4.mp4"
+ },
+ "sources": {
+  "v4": {
+   "screen": "../src/v4_loom.mp4",
+   "face": "../src/v4_cam.mov",
+   "face_offset": 10.204,
+   "audio": "../src/v4_loom.mp4",
+   "words": "../words/v4loom.json",
+   "facetrack": "../ft_v4.json"
+  }
+ },
+ "screen_region": [
+  536,
+  548,
+  38,
+  132
+ ],
+ "headline": [
+  "VINH GIANG'S $12M",
+  "EMAIL MACHINE"
+ ],
+ "highlight": [
+  "vinh",
+  "giang",
+  "fomo",
+  "1.5",
+  "£1.99",
+  "kayfabe",
+  "quient",
+  "10,000",
+  "schwartz"
+ ],
+ "sections": {
+  "hook": [
+   "",
+   ""
+  ],
+  "01": [
+   "01",
+   "The Sign-Up Page"
+  ],
+  "02": [
+   "02",
+   "Value Stack"
+  ],
+  "03": [
+   "03",
+   "Lower Resistance"
+  ],
+  "04": [
+   "04",
+   "The Story Email"
+  ],
+  "05": [
+   "05",
+   "Inner Circle"
+  ],
+  "06": [
+   "06",
+   "Ugly Ads"
+  ],
+  "07": [
+   "07",
+   "Subject Lines"
+  ],
+  "cta": [
+   "08",
+   "Follow For More"
+  ]
+ },
+ "caption_fix": {
+  "firmware": "FOMO",
+  "vinyang": "Vinh Giang",
+  "vinay": "Vinh",
+  "vinayank": "Vinh Giang",
+  "quint": "“quient”",
+  "bare": "bear",
+  "tiktok": "TikTok",
+  "eugene": "Eugene",
+  "schwartz": "Schwartz"
+ },
+ "caption_pairs": [
+  [
+   "1",
+   ".5",
+   "1.5"
+  ],
+  [
+   "£1",
+   ".99",
+   "£1.99"
+  ],
+  [
+   "bite",
+   "-sized",
+   "bite-sized"
+  ]
+ ],
+ "cuts": [
+  {
+   "section": "hook",
+   "src": "v4",
+   "in": 36.2,
+   "out": 39.86
+  },
+  {
+   "section": "01",
+   "src": "v4",
+   "in": 20.88,
+   "out": 24.2
+  },
+  {
+   "section": "01",
+   "src": "v4",
+   "in": 25.0,
+   "out": 25.3
+  },
+  {
+   "section": "01",
+   "src": "v4",
+   "in_t": 28.6,
+   "out": 31.75
+  },
+  {
+   "section": "01",
+   "src": "v4",
+   "in": 34.6,
+   "out": 35.62
+  },
+  {
+   "section": "01",
+   "src": "v4",
+   "in": 40.32,
+   "out": 41.02
+  },
+  {
+   "section": "01",
+   "src": "v4",
+   "in": 41.76,
+   "out": 45.42
+  },
+  {
+   "section": "02",
+   "src": "v4",
+   "in": 59.3,
+   "out": 61.84
+  },
+  {
+   "section": "02",
+   "src": "v4",
+   "in_t": 63.16,
+   "out": 65.34
+  },
+  {
+   "section": "02",
+   "src": "v4",
+   "in": 66.2,
+   "out": 68.0
+  },
+  {
+   "section": "02",
+   "src": "v4",
+   "in": 69.12,
+   "out": 70.96
+  },
+  {
+   "section": "02",
+   "src": "v4",
+   "in": 73.46,
+   "out": 77.3
+  },
+  {
+   "section": "02",
+   "src": "v4",
+   "in": 83.58,
+   "out": 84.18
+  },
+  {
+   "section": "03",
+   "src": "v4",
+   "in": 95.7,
+   "out": 96.22
+  },
+  {
+   "section": "03",
+   "src": "v4",
+   "in": 97.54,
+   "out": 98.2
+  },
+  {
+   "section": "03",
+   "src": "v4",
+   "in": 98.48,
+   "out": 100.24
+  },
+  {
+   "section": "04",
+   "src": "v4",
+   "in": 111.16,
+   "out": 112.56
+  },
+  {
+   "section": "04",
+   "src": "v4",
+   "in": 117.98,
+   "out": 119.52
+  },
+  {
+   "section": "04",
+   "src": "v4",
+   "in": 120.76,
+   "out": 121.4
+  },
+  {
+   "section": "04",
+   "src": "v4",
+   "in": 132.66,
+   "out": 137.16
+  },
+  {
+   "section": "04",
+   "src": "v4",
+   "in": 140.54,
+   "out": 142.82
+  },
+  {
+   "section": "04",
+   "src": "v4",
+   "in": 147.5,
+   "out": 149.54
+  },
+  {
+   "section": "04",
+   "src": "v4",
+   "in": 160.48,
+   "out": 162.36
+  },
+  {
+   "section": "05",
+   "src": "v4",
+   "in": 188.96,
+   "out": 194.4
+  },
+  {
+   "section": "05",
+   "src": "v4",
+   "in": 194.58,
+   "out": 196.8
+  },
+  {
+   "section": "05",
+   "src": "v4",
+   "in": 199.4,
+   "out": 199.78
+  },
+  {
+   "section": "05",
+   "src": "v4",
+   "in": 200.84,
+   "out": 202.74
+  },
+  {
+   "section": "05",
+   "src": "v4",
+   "in": 203.02,
+   "out": 204.76
+  },
+  {
+   "section": "06",
+   "src": "v4",
+   "in": 240.76,
+   "out": 242.32
+  },
+  {
+   "section": "06",
+   "src": "v4",
+   "in_t": 244.44,
+   "out": 247.0
+  },
+  {
+   "section": "06",
+   "src": "v4",
+   "in": 250.42,
+   "out": 251.26
+  },
+  {
+   "section": "06",
+   "src": "v4",
+   "in": 253.58,
+   "out": 258.16
+  },
+  {
+   "section": "06",
+   "src": "v4",
+   "in": 260.32,
+   "out": 262.14
+  },
+  {
+   "section": "06",
+   "src": "v4",
+   "in": 272.58,
+   "out": 274.02
+  },
+  {
+   "section": "07",
+   "src": "v4",
+   "in": 281.55,
+   "out": 284.9
+  },
+  {
+   "section": "07",
+   "src": "v4",
+   "in_t": 287.4,
+   "out": 288.4
+  },
+  {
+   "section": "07",
+   "src": "v4",
+   "in_t": 295.85,
+   "out_t": 298.4
+  },
+  {
+   "section": "07",
+   "src": "v4",
+   "in": 298.94,
+   "out": 300.14
+  },
+  {
+   "section": "07",
+   "src": "v4",
+   "in": 314.86,
+   "out": 321.8
+  },
+  {
+   "section": "07",
+   "src": "v4",
+   "in": 322.5,
+   "out": 324.12
+  },
+  {
+   "section": "07",
+   "src": "v4",
+   "in": 335.46,
+   "out": 336.28
+  },
+  {
+   "section": "cta",
+   "src": "v4",
+   "in": 352.62,
+   "out": 356.96
+  }
+ ],
+ "beats": [
+  {
+   "type": "pill",
+   "at": "bandwagon@22.78",
+   "until": "urgency@24.16",
+   "text": "Bandwagon effect + FOMO"
+  },
+  {
+   "type": "badge",
+   "at": "join@28.66",
+   "until": "newsletter@31.72",
+   "big": "1.5M+",
+   "count": 1500000,
+   "suffix": "+",
+   "count_word": "million@29.78",
+   "sub": "readers every week"
+  },
+  {
+   "type": "pill",
+   "at": "sending@34.70",
+   "until": "week@35.62",
+   "text": "Every single week"
+  },
+  {
+   "type": "pill",
+   "at": "free@41.02",
+   "text": "And it's free"
+  },
+  {
+   "type": "quote",
+   "at": "hit@43.56",
+   "until": "for@45.42",
+   "l1": "Hit play and I'll tell you",
+   "l2": "what you're signing up for"
+  },
+  {
+   "type": "pill",
+   "at": "value@61.52",
+   "until": "stacks@61.84",
+   "text": "Value stacking"
+  },
+  {
+   "type": "chips",
+   "at": "bite-sized@63.44",
+   "until": "life@70.96",
+   "items": [
+    "Bite-sized lesson",
+    "Book · podcast · idea",
+    "Behind the scenes"
+   ],
+   "item_words": [
+    "bite-sized@63.44",
+    "book@66.34",
+    "behind@69.12"
+   ]
+  },
+  {
+   "type": "quote",
+   "at": "best@74.50",
+   "until": "code@84.06",
+   "l1": "Best lessons of the year",
+   "l2": "= a cheat code"
+  },
+  {
+   "type": "quote",
+   "at": "unsubscribe@95.70",
+   "until": "ever@98.20",
+   "l1": "Unsubscribe anytime.",
+   "l2": "No spam, ever."
+  },
+  {
+   "type": "pill",
+   "at": "lower@99.70",
+   "until": "resistance@100.24",
+   "text": "Lower sales resistance"
+  },
+  {
+   "type": "pill",
+   "at": "popular@111.86",
+   "until": "newsletters@112.56",
+   "text": "His most popular newsletter"
+  },
+  {
+   "type": "quote",
+   "at": "let@117.98",
+   "until": "embarrassing@119.52",
+   "l1": "“This was",
+   "l2": "embarrassing”"
+  },
+  {
+   "type": "flow",
+   "at": "quiet@133.40",
+   "until": "quient@137.16",
+   "items": [
+    "Son misspells “quiet”",
+    "Dad corrects it",
+    "“QUIENT”"
+   ],
+   "item_words": [
+    "quiet@133.40",
+    "correct@136.40",
+    "quient@137.16"
+   ]
+  },
+  {
+   "type": "quote",
+   "at": "family@140.76",
+   "until": "blind@142.82",
+   "l1": "“The blind leading",
+   "l2": "the blind”"
+  },
+  {
+   "type": "pill",
+   "at": "connect@149.04",
+   "until": "him@149.54",
+   "text": "Connect with him"
+  },
+  {
+   "type": "pill",
+   "at": "same@161.02",
+   "until": "chat@162.36",
+   "text": "He's the same as us"
+  },
+  {
+   "type": "pill",
+   "at": "inner@190.20",
+   "until": "community@190.82",
+   "text": "Inner circle on YouTube"
+  },
+  {
+   "type": "badge",
+   "at": "pay@192.80",
+   "until": "month@194.40",
+   "big": "£1.99",
+   "sub": "a month"
+  },
+  {
+   "type": "pill",
+   "at": "billions@196.30",
+   "until": "views@196.80",
+   "text": "Billions of views"
+  },
+  {
+   "type": "badge",
+   "at": "ten@201.50",
+   "until": "month@202.74",
+   "big": "10,000",
+   "count": 10000,
+   "count_word": "thousand@201.68",
+   "sub": "people paying monthly"
+  },
+  {
+   "type": "quote",
+   "at": "you@203.02",
+   "until": "making@204.76",
+   "l1": "Imagine how much",
+   "l2": "money he's making"
+  },
+  {
+   "type": "pill",
+   "at": "ugly@242.00",
+   "until": "content@242.32",
+   "text": "Ugly content"
+  },
+  {
+   "type": "pill",
+   "at": "car@245.10",
+   "until": "program@247.00",
+   "text": "Sitting in a car, selling"
+  },
+  {
+   "type": "quote",
+   "at": "kayfabe@251.26",
+   "until": "real@258.16",
+   "l1": "Kayfabe:",
+   "l2": "scripted, shown as real"
+  },
+  {
+   "type": "pill",
+   "at": "drama@261.12",
+   "until": "wrestling@262.14",
+   "text": "Drama + pro wrestling"
+  },
+  {
+   "type": "quote",
+   "at": "wouldn't@273.14",
+   "until": "acting@274.02",
+   "l1": "You wouldn't even think",
+   "l2": "they're acting"
+  },
+  {
+   "type": "pill",
+   "at": "email@282.76",
+   "until": "sequences@284.88",
+   "text": "Email sequences"
+  },
+  {
+   "type": "pill",
+   "at": "subjects@287.62",
+   "until": "good@288.40",
+   "text": "Subject lines that pull"
+  },
+  {
+   "type": "dm",
+   "at": "moment@296.50",
+   "until": "video@300.14",
+   "title": "Vinh Giang",
+   "tag": "Email subject lines",
+   "avatar": "/home/user/Videoediting/output/sk-media/vinh/extra/vinh_avatar.png",
+   "msgs": [
+    {
+     "from": "them",
+     "text": "The moment I almost quit speaking"
+    },
+    {
+     "from": "them",
+     "text": "Unlisted video"
+    }
+   ],
+   "item_words": [
+    "moment@296.50",
+    "unlisted@299.64"
+   ]
+  },
+  {
+   "type": "pill",
+   "at": "Eugene@314.86",
+   "until": "says@315.64",
+   "text": "Eugene Schwartz"
+  },
+  {
+   "type": "quote",
+   "at": "best@316.60",
+   "until": "broadcast@318.94",
+   "l1": "Not an announcement",
+   "l2": "or a broadcast"
+  },
+  {
+   "type": "quote",
+   "at": "one@320.12",
+   "until": "voice@324.12",
+   "l1": "One person talking",
+   "l2": "to another person"
+  },
+  {
+   "type": "pill",
+   "at": "automated@336.28",
+   "text": "All automated"
+  }
+ ],
+ "cta": {
+  "keyword": "VINH",
+  "follow": "if@352.68",
+  "comment": "VINH@355.44",
+  "full": "full@353.40",
+  "backdrop": {
+   "src": "v4",
+   "t": 60
+  }
+ },
+ "word_patch": [
+  {
+   "src": "v4",
+   "from": 286.0,
+   "to": 287.9,
+   "words": [
+    [
+     "their",
+     287.46,
+     287.62
+    ],
+    [
+     "subjects",
+     287.62,
+     287.9
+    ]
+   ],
+   "_why": "'where they, their subjects' — restart; keep the second 'their' (verbatim timings)"
+  },
+  {
+   "src": "v4",
+   "from": 193.0,
+   "to": 194.1,
+   "words": [
+    [
+     "£1.99",
+     193.1,
+     194.16
+    ]
+   ],
+   "_why": "one token so the pause cut inside the number keeps it whole in the captions"
+  },
+  {
+   "src": "v4",
+   "from": 27.6,
+   "to": 29.0,
+   "words": [
+    [
+     "join",
+     28.66,
+     28.9
+    ],
+    [
+     "1",
+     28.92,
+     29.22
+    ]
+   ],
+   "_why": "he restarts 'join 1.5 million plus leaders receiving — join 1.5 million plus readers'; ASR put the second 'join' 1 s early (verbatim timings)"
+  },
+  {
+   "src": "v4",
+   "from": 67.1,
+   "to": 67.5,
+   "words": [
+    [
+     "or",
+     67.18,
+     67.36
+    ],
+    [
+     "idea",
+     67.36,
+     67.52
+    ]
+   ],
+   "_why": "he reads 'book, podcast, or idea' — ASR heard 'I did'"
+  },
+  {
+   "src": "v4",
+   "from": 74.0,
+   "to": 74.45,
+   "words": [
+    [
+     "I'll",
+     74.02,
+     74.18
+    ],
+    [
+     "send",
+     74.18,
+     74.3
+    ],
+    [
+     "you",
+     74.3,
+     74.4
+    ],
+    [
+     "my",
+     74.4,
+     74.5
+    ]
+   ],
+   "_why": "he reads 'I'll send you my best lessons' — ASR heard 'I'm sending my'"
+  },
+  {
+   "src": "v4",
+   "from": 292.5,
+   "to": 298.9,
+   "words": [
+    [
+     "here",
+     295.92,
+     296.08
+    ],
+    [
+     "it",
+     296.08,
+     296.18
+    ],
+    [
+     "says",
+     296.18,
+     296.32
+    ],
+    [
+     "the",
+     296.44,
+     296.5
+    ],
+    [
+     "moment",
+     296.5,
+     296.78
+    ],
+    [
+     "I",
+     296.78,
+     296.98
+    ],
+    [
+     "almost",
+     296.98,
+     297.38
+    ],
+    [
+     "quit",
+     297.38,
+     297.72
+    ],
+    [
+     "speaking",
+     297.72,
+     298.3
+    ]
+   ],
+   "_why": "first read 'almost kept speaking' (292.6-294.9), clean retake at 295.9; ASR collapsed both — keep the retake, verbatim timings"
+  },
+  {
+   "src": "v4",
+   "from": 354.9,
+   "to": 356.4,
+   "words": [
+    [
+     "comment",
+     354.98,
+     355.4
+    ],
+    [
+     "VINH",
+     355.44,
+     355.84
+    ],
+    [
+     "and",
+     355.96,
+     356.14
+    ],
+    [
+     "I'll",
+     356.18,
+     356.38
+    ],
+    [
+     "send",
+     356.4,
+     356.5
+    ]
+   ],
+   "_why": "ASR 'comment and I'll' — RMS shows a second syllable 355.44-355.84 = 'VINH' (the CTA keyword, like P1's 'come and win')"
+  }
+ ],
+ "face_frame": "square"
+}
