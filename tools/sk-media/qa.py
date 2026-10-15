@@ -80,9 +80,12 @@ def main():
         ft = json.loads(Path(a.faces).read_text())
         off = [f["clip"] for f in ft if abs(f["cx"] / f["w"] - 0.5) > Q["face_center_tol"] and not f.get("pinned")]
         check("face: centred within 5%", not off, ", ".join(map(str, off[:8])))
-        # compare the face position relative to each crop: punch-ins (1.10) and drift change the crop size on purpose
+        # compare the face position relative to each crop: punch-ins (1.10) and drift change the crop size on purpose.
+        # A crop pinned to the frame edge (face_frame wide) can't keep the face where it was when the punch-in zooms:
+        # the smaller crop re-centres on the face instead (Vinh V4), which is a framing change, not a twitch.
+        recentre = lambda p, q: (p.get("pinned") or q.get("pinned")) and abs(p["w"] / q["w"] - 1) > 0.05
         jumps = [f'{p["clip"]}→{q["clip"]}' for p, q in zip(ft, ft[1:])
-                 if p["section"] == q["section"] and (abs(p["cx"] / p["w"] - q["cx"] / q["w"]) > Q["face_jump_tol"]
+                 if p["section"] == q["section"] and not recentre(p, q) and (abs(p["cx"] / p["w"] - q["cx"] / q["w"]) > Q["face_jump_tol"]
                                                       or abs(p["cy"] / p["h"] - q["cy"] / q["h"]) > Q["face_jump_tol"])]
         check("face: no jitter across same-section cuts", not jumps, ", ".join(jumps[:8]))
 
