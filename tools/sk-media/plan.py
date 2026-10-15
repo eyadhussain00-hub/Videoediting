@@ -94,7 +94,7 @@ def main():
         c["punch"] = (not prev.get("punch", False)) if (same and abs(prev["out"] - c["in"]) > 0.35) else (prev.get("punch", False) if same else False)
         prev = c
     fts = {k: json.loads(Path(P(s["facetrack"])).read_text()) for k, s in SRC.items()}
-    asp = max(l["face"]["w"] / l["face"]["h"] for l in L["layouts"].values())
+    asp = 1.0 if J.get("face_frame") == "square" else max(l["face"]["w"] / l["face"]["h"] for l in L["layouts"].values())
     for sec in secs:
         cs = [c for c in clips if c["section"] == sec]; s = SRC[cs[0]["src"]]; ft = fts[cs[0]["src"]]; W, H = ft["W"], ft["H"]
         off = s.get("face_offset", 0.0)
@@ -105,6 +105,8 @@ def main():
         hc = max(min(1.35 * fh, 2 * min(cx, W - cx) / asp, H) * 0.999, 1.15 * fh)  # widest crop that still centres the face
         if J.get("face_frame") == "full_width":   # narrow webcam with the face off to one side (Vinh V1: OBS preview inside the Loom):
             cx, hc = W / 2, min(H, W / asp) * 0.999   # show the whole frame width rather than a too-tight centred crop
+        if J.get("face_frame") == "square":       # same webcam, face centred: square card, crop as wide as centring allows
+            hc = min(2 * min(cx, W - cx), H) * 0.999
         for c in cs: c["face"] = {"cx": cx, "cy": min(max(cy + 0.06 * hc, hc / 2), H - hc / 2), "hc": hc}
     plan_clips = [{**c, "screen_src": P(SRC[c["src"]].get("screen")), "screen_t0": c["in"], "face_src": P(SRC[c["src"]]["face"]),
                    "face_t0": c["in"] + SRC[c["src"]].get("face_offset", 0.0), "face_W": fts[c["src"]]["W"], "face_H": fts[c["src"]]["H"]} for c in clips]
@@ -215,7 +217,7 @@ def main():
     subprocess.run([sys.executable, str(TOOLS / "sfx.py"), str(V / "voice_master.wav"), str(V / "mix.wav"), json.dumps(kept)], check=True)
 
     # ---------- 6. plan.json
-    plan = {"theme": J.get("theme", "house"), "series": J.get("series", ""), "highlight": J.get("highlight", []), "clips": plan_clips, "captions": caps, "sections": secs, "graphics": gfx, "headline": J["headline"], "cta": ctad,
+    plan = {"face_frame": J.get("face_frame", ""), "theme": J.get("theme", "house"), "series": J.get("series", ""), "highlight": J.get("highlight", []), "clips": plan_clips, "captions": caps, "sections": secs, "graphics": gfx, "headline": J["headline"], "cta": ctad,
             "cta_backdrop": str(bd), "cta_keyword": cta["keyword"], "screen_region": rg, "sfx": [{"t": t, "kind": k} for t, k in kept],
             "audio_master": str(V / "mix.wav"), "total_s": total}
     (V / "plan.json").write_text(json.dumps(plan, indent=1))

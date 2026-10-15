@@ -10,7 +10,7 @@ All recorded 10 Sep 2026; times from the macOS clock in the Loom.
 
 | Part | Topic | Folder | Loom (screen) | OBS webcam | Sync |
 |---|---|---|---|---|---|
-| 1 | Short-form (IG + TikTok) | `vinh vid 2 shortform good` | 6:58 pm, 3:00 | **missing** (OBS was recording, `2026-09-10 18-58-xx.mov` never uploaded) | face = OBS preview inside the Loom, `face_frame: full_width` |
+| 1 | Short-form (IG + TikTok) | `vinh vid 2 shortform good` | 6:58 pm, 3:00 | **missing** (OBS was recording, `2026-09-10 18-58-xx.mov` never uploaded) | face = OBS preview inside the Loom, `face_frame: square` (card centred on his face, native pixels) |
 | 2 | Long-form (YouTube) | `longform vinh vid 3` | 7:04 pm, 3:11 | `2026-09-10 19-04-27.mov`, 3:27 | same take (checked by ear) but **no single offset**: the Loom looks trimmed. Sync per section |
 | 3 | Landing pages + webinar | `landing pages vinh vid 5` | 7:39 pm, 8:32 | `2026-09-10 19-38-53.mov` | NCC 0.917, offset +12.59 s |
 | 4 | Newsletter + email | `vinh vid 5 newsletter` | 7:54 pm, 5:59 | `2026-09-10 19-54-12.mov` | NCC 0.902, offset +10.20 s |

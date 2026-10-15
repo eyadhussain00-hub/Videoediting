@@ -26,8 +26,14 @@ def ease_io(x): return 4 * x ** 3 if x < .5 else 1 - (-2 * x + 2) ** 3 / 2
 def ease_out_expo(x): return 1 if x >= 1 else 1 - 2 ** (-10 * x)
 def lerp(a, b, t): return a + (b - a) * t
 
+FACE_SQUARE = [False]   # plan["face_frame"] == "square": face card as wide as it is tall, still centred on x=540
 def rect_at(name, t, S):
     """Card rect at output time t (layout switch opening->standard animates 300 ms)."""
+    r = _rect_at(name, t, S)
+    if name == "face" and FACE_SQUARE[0]: r = [r[0] + (r[2] - r[3]) / 2, r[1], r[3], r[3]]
+    return r
+
+def _rect_at(name, t, S):
     op, sd = L["layouts"]["opening"], L["layouts"]["standard"]
     t0 = L["opening_duration_s"]; d = 0.0  # hard switch: animating would slide screen and face cards across each other
     if name not in op: r = sd[name]; return [r["x"] * S, r["y"] * S, r["w"] * S, r["h"] * S]
@@ -115,7 +121,7 @@ def render_segment(args):
     caps = plan["captions"]; secs = plan["sections"]; gfx = plan.get("graphics", []) if graphics else []
     boxes, faces = {}, []
     sys.path.insert(0, str(HERE)); import graphics as G
-    EXTRA_HL.update(x.lower() for x in plan.get("highlight", []))
+    EXTRA_HL.update(x.lower() for x in plan.get("highlight", [])); FACE_SQUARE[0] = plan.get("face_frame") == "square"
     PREM = plan.get("theme") == "premium"
     if PREM: import premium as PM
     for c in clips:
