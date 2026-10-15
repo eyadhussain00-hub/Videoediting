@@ -167,8 +167,13 @@ def main():
         if not c: sys.exit(f"beat word not found (is it still in the cut?): {spec}")
         w = min(c, key=lambda w: abs(w["src_s"] - float(t))); return w["e"] if end else w["s"]
     def sec_of(t): return next(k for k, v in secs.items() if v["t0"] <= t < v["t0"] + v["dur"])
+    def flat(x):  # every string inside a beat's text fields (items may be strings, [tag, text] pairs or dicts)
+        if isinstance(x, str): return [x]
+        if isinstance(x, dict): return [s for v in x.values() for s in flat(v)]
+        if isinstance(x, (list, tuple)): return [s for v in x for s in flat(v)]
+        return [str(x)] if isinstance(x, (int, float)) else []
     def reading(g):
-        n = len((" ".join(str(g.get(k, "")) for k in ("text", "big", "sub", "l1", "l2")) + " " + " ".join(g.get("items", []))).split())
+        n = len(" ".join(flat([g.get(k, "") for k in ("text", "big", "sub", "l1", "l2", "items", "msgs")])).split())
         return max(RD["min_ms"], RD["base_ms"] + RD["per_word_ms"] * n) / 1000
     gfx = []
     for i, b in enumerate(J.get("beats", [])):
@@ -206,7 +211,7 @@ def main():
     subprocess.run([sys.executable, str(TOOLS / "sfx.py"), str(V / "voice_master.wav"), str(V / "mix.wav"), json.dumps(kept)], check=True)
 
     # ---------- 6. plan.json
-    plan = {"clips": plan_clips, "captions": caps, "sections": secs, "graphics": gfx, "headline": J["headline"], "cta": ctad,
+    plan = {"theme": J.get("theme", "house"), "series": J.get("series", ""), "highlight": J.get("highlight", []), "clips": plan_clips, "captions": caps, "sections": secs, "graphics": gfx, "headline": J["headline"], "cta": ctad,
             "cta_backdrop": str(bd), "cta_keyword": cta["keyword"], "screen_region": rg, "sfx": [{"t": t, "kind": k} for t, k in kept],
             "audio_master": str(V / "mix.wav"), "total_s": total}
     (V / "plan.json").write_text(json.dumps(plan, indent=1))
