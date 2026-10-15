@@ -218,9 +218,12 @@ def dm(card, t, S, g, ki, ko):
     """Instagram DM thread: header (avatar, handle, tag) + bubbles appearing at their words; 'them' bubbles are
     preceded by 450 ms of typing dots. msgs: [{"from": "me"|"them", "text": ...}]."""
     W, H = card.size; G.dim(card, ki * ko)
-    pw, ph = W - 110 * S, H - 70 * S; lay = G.Layer(pw, ph); d = lay.d
+    pw = W - 110 * S; fb = G.inter(36 * S, 600); maxw = pw * 0.74; av = int(64 * S)
+    need = 22 * S + av + 40 * S + sum(46 * S * len(_wrap(m["text"], fb, maxw - 44 * S)) + 34 * S + 18 * S + (30 * S if m.get("label") else 0)
+                                      for m in g["msgs"]) + 20 * S
+    ph = min(H - 70 * S, max(need, H * 0.5)); lay = G.Layer(pw, ph); d = lay.d
     d.rounded_rectangle([0, 0, pw - 1, ph - 1], int(30 * S), fill=(14, 14, 18, 250), outline=(255, 255, 255, 34), width=max(1, int(2 * S)))
-    av = int(64 * S); lay.im.alpha_composite(_avatar_img(g.get("avatar", ""), av), (int(26 * S), int(22 * S)))
+    lay.im.alpha_composite(_avatar_img(g.get("avatar", ""), av), (int(26 * S), int(22 * S)))
     fh = G.inter(32 * S, 800); d.text((26 * S + av + 18 * S, 22 * S + av * 0.34), g.get("title", ""), font=fh, fill=WHITE, anchor="lm")
     tx = 26 * S + av + 18 * S + fh.getlength(g.get("title", "")) + 12 * S
     d.ellipse([tx, 22 * S + av * 0.34 - 11 * S, tx + 22 * S, 22 * S + av * 0.34 + 11 * S], fill=IGBLUE)   # verified dot
@@ -228,7 +231,7 @@ def dm(card, t, S, g, ki, ko):
     if g.get("tag"):
         ft = G.inter(22 * S, 700); d.text((26 * S + av + 18 * S, 22 * S + av * 0.78), g["tag"], font=ft, fill=SOFT, anchor="lm")
     d.line([(0, 22 * S + av + 18 * S), (pw, 22 * S + av + 18 * S)], fill=(255, 255, 255, 26), width=1)
-    fb = G.inter(31 * S, 600); y = 22 * S + av + 40 * S; maxw = pw * 0.70; out = []
+    y = 22 * S + av + 40 * S; out = []
     for i, (m, at) in enumerate(zip(g["msgs"], g["times"])):
         them = m["from"] == "them"; show = at + (0.45 if them else 0)
         if t < at: break
@@ -239,7 +242,7 @@ def dm(card, t, S, g, ki, ko):
                 a = 0.35 + 0.65 * (0.5 + 0.5 * math.sin((t - at) * 14 - j * 0.9))
                 cx = bx + 30 * S + j * 25 * S; d.ellipse([cx - 7 * S, y + bh / 2 - 7 * S, cx + 7 * S, y + bh / 2 + 7 * S], fill=(200, 200, 208, int(255 * a)))
             break
-        lines = _wrap(m["text"], fb, maxw - 44 * S); lh = 40 * S; bh = lh * len(lines) + 30 * S
+        lines = _wrap(m["text"], fb, maxw - 44 * S); lh = 46 * S; bh = lh * len(lines) + 34 * S
         bw = max(fb.getlength(l) for l in lines) + 44 * S
         k = R.ease_out_quint(min(1, (t - show) / 0.25)); bx = 26 * S if them else pw - 26 * S - bw
         yy = y + (1 - k) * 14 * S
@@ -251,7 +254,7 @@ def dm(card, t, S, g, ki, ko):
             bub = Image.fromarray(arr.astype(np.uint8), "RGB").convert("RGBA")
             mk = Image.new("L", bub.size, 0); ImageDraw.Draw(mk).rounded_rectangle([0, 0, bw - 1, bh - 1], int(min(30 * S, bh / 2)), fill=255); bub.putalpha(mk)
             bd = ImageDraw.Draw(bub)
-        for j, l in enumerate(lines): bd.text((22 * S, 15 * S + lh * j + lh / 2), l, font=fb, fill=WHITE, anchor="lm")
+        for j, l in enumerate(lines): bd.text((22 * S, 17 * S + lh * j + lh / 2), l, font=fb, fill=WHITE, anchor="lm")
         if k < 1: bub.putalpha(bub.getchannel("A").point(lambda v: int(v * k)))
         lay.im.alpha_composite(bub, (int(bx), int(yy)))
         if m.get("label"):

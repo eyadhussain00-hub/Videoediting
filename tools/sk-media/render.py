@@ -71,13 +71,13 @@ def draw_caption(img, chunk, t, S, box):
     words = chunk["words"]; hl_chunk = any(is_hl(q["w"]) for q in words)
     size = ST["caption"]["size_px"] * S
     f = font(size)
-    sp = f.getlength(" ") * 1.3  # extra room so the 1.06 pop never touches its neighbour
+    sp = max(f.getlength(" ") * 1.3, size * 0.42)  # extra room so the 1.06 pop never touches its neighbour
     widths = [f.getlength(q["w"]) for q in words]
     total = sum(widths) + sp * (len(words) - 1)
     maxw = w - 40 * S
     overflow = False
     if total > maxw:  # auto-fit
-        size *= maxw / total; f = font(size); sp = f.getlength(" ") * 1.3
+        size *= maxw / total; f = font(size); sp = max(f.getlength(" ") * 1.3, size * 0.42)
         widths = [f.getlength(q["w"]) for q in words]; total = sum(widths) + sp * (len(words) - 1)
     # chunk enter: 120 ms fade/rise
     age = t - chunk["start"]; k = min(1, max(0, age / 0.12)); k = ease_out_quint(k)
@@ -122,7 +122,7 @@ def render_segment(args):
         n = c["frames"]
         # screen: decode the Miro region at native res, crop per frame
         sr = None
-        if c["screen_src"]:
+        if c["screen_src"] and not (c["section"] == "cta" and plan.get("cta")):   # CTA card always uses the dimmed backdrop
             sr = Reader(c["screen_src"], c["screen_t0"], n, crop=plan["screen_region"])
         fr = Reader(c["face_src"], c["face_t0"], n, scale=None, crop=[c["face_W"], c["face_H"], 0, 0])
         for k in range(n):

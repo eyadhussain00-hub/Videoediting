@@ -98,9 +98,13 @@ def main():
     for sec in secs:
         cs = [c for c in clips if c["section"] == sec]; s = SRC[cs[0]["src"]]; ft = fts[cs[0]["src"]]; W, H = ft["W"], ft["H"]
         off = s.get("face_offset", 0.0)
-        pts = [p for p in ft["track"] for c in cs if c["in"] + off - 0.5 <= p["t"] <= c["out"] + off + 0.5] or ft["track"]
+        big = statistics.median(sorted(p["h"] for p in ft["track"])[len(ft["track"]) // 2:])   # hands/mics detected as small "faces"
+        real = [p for p in ft["track"] if p["h"] >= 0.6 * big]
+        pts = [p for p in real for c in cs if c["in"] + off - 0.5 <= p["t"] <= c["out"] + off + 0.5] or real
         cx = statistics.median(p["cx"] for p in pts); cy = statistics.median(p["cy"] for p in pts); fh = statistics.median(p["h"] for p in pts)
         hc = max(min(1.35 * fh, 2 * min(cx, W - cx) / asp, H) * 0.999, 1.15 * fh)  # widest crop that still centres the face
+        if J.get("face_frame") == "full_width":   # narrow webcam with the face off to one side (Vinh V1: OBS preview inside the Loom):
+            cx, hc = W / 2, min(H, W / asp) * 0.999   # show the whole frame width rather than a too-tight centred crop
         for c in cs: c["face"] = {"cx": cx, "cy": min(max(cy + 0.06 * hc, hc / 2), H - hc / 2), "hc": hc}
     plan_clips = [{**c, "screen_src": P(SRC[c["src"]].get("screen")), "screen_t0": c["in"], "face_src": P(SRC[c["src"]]["face"]),
                    "face_t0": c["in"] + SRC[c["src"]].get("face_offset", 0.0), "face_W": fts[c["src"]]["W"], "face_H": fts[c["src"]]["H"]} for c in clips]
