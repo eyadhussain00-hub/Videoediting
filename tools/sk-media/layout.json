@@ -74,6 +74,29 @@
       }
     }
   },
+  "variants": {
+    "_wide_face": "face_frame \"wide\": standard layout with a shorter screen card and a taller full-width face card (bottom edge unchanged)",
+    "wide_face": {
+      "screen": {
+        "x": 120,
+        "y": 330,
+        "w": 840,
+        "h": 600
+      },
+      "caption": {
+        "x": 120,
+        "y": 946,
+        "w": 840,
+        "h": 92
+      },
+      "face": {
+        "x": 120,
+        "y": 1054,
+        "w": 840,
+        "h": 490
+      }
+    }
+  },
   "style": {
     "font": "Inter Tight",
     "card_bg": "#17171c",
