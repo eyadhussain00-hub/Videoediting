@@ -117,6 +117,7 @@ plan.py enforces: never cross a section/layout change, min reading time 300 ms +
   public folder view (`embeddedfolderview?id=<folder>`) and copy/download by id. Vinh P1 had no OBS file → face = the OBS
   preview inside the Loom (cropped, cleaned), ask Sofian for the real file. Haar mistook the
   hand/mic for a face → plan.py drops small detections. Batch plan + premium theme: `jobs/vinh-giang/BATCH.md`.
-  A face at the side of a narrow webcam → `face_frame: square` (Eyad: "keep the webcam full res, centre his face"):
-  the card goes square on x=540 and the crop is the widest one that keeps the face centred, no fill. `full_width` showed
-  the face off-centre. A Loom that was trimmed after recording won't sync to its webcam with one offset (Vinh P2) → sync per section.
+  Eyad wants the webcam big and zoomed out: `face_frame: "wide"`
+  makes the face card as wide as the screen card and taller (layout.json `variants.wide_face`, screen card 600 tall), crop
+  = full webcam width, face as centred as the frame allows, no fill. QA with `--variant wide_face`. (`square` = small
+  centred card; rejected as too tight.)
