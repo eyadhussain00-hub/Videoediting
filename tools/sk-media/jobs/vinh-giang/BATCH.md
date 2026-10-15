@@ -10,8 +10,8 @@ All recorded 10 Sep 2026; times from the macOS clock in the Loom.
 
 | Part | Topic | Folder | Loom (screen) | OBS webcam | Sync |
 |---|---|---|---|---|---|
-| 1 | Short-form (IG + TikTok) | `vinh vid 2 shortform good` | 6:58 pm, 3:00 | **missing** (OBS was recording, `2026-09-10 18-58-xx.mov` never uploaded) | face = OBS preview inside the Loom, `face_frame: square` (card centred on his face, native pixels) |
-| 2 | Long-form (YouTube) | `longform vinh vid 3` | 7:04 pm, 3:11 | `2026-09-10 19-04-27.mov`, 3:27 | same take (checked by ear) but **no single offset**: the Loom looks trimmed. Sync per section |
+| 1 | Short-form (IG + TikTok) | `vinh vid 2 shortform good` | 6:58 pm, 3:00 | **missing** (OBS was recording, `2026-09-10 18-58-xx.mov` never uploaded) | face = OBS preview inside the Loom (Chrome covers its left edge, so his face sits left of centre) |
+| 2 | Long-form (YouTube) | `longform vinh vid 3` | 7:04 pm, 3:11 | `2026-09-10 19-04-27.mov`, 3:27 | one offset: webcam_t = loom_t + 14.527 (5 s probes every 6 s across the Loom, NCC 0.85 to 0.92, no drift) |
 | 3 | Landing pages + webinar | `landing pages vinh vid 5` | 7:39 pm, 8:32 | `2026-09-10 19-38-53.mov` | NCC 0.917, offset +12.59 s |
 | 4 | Newsletter + email | `vinh vid 5 newsletter` | 7:54 pm, 5:59 | `2026-09-10 19-54-12.mov` | NCC 0.902, offset +10.20 s |
 
@@ -22,6 +22,9 @@ All recorded 10 Sep 2026; times from the macOS clock in the Loom.
 - `"theme": "premium"` (tools/sk-media/premium.py): living background, card shadows and borders, screen push-in,
   gradient badges and pills with a light sweep, quote underline, and the stat3 / funnel / dm beats.
 - `"series": "Part N/4 · <Topic>"`, shown as a kicker on the opening screen card.
+- `"face_frame": "wide"` (Eyad, 15 Oct): the webcam card is as wide as the screen card and taller (layout.json
+  `variants.wide_face`), zoomed out to the full webcam width with no black edges, face as centred as the frame allows.
+  Run QA with `--variant wide_face`.
 - Headline formula: line 1 white `VINH GIANG'S …`, line 2 yellow, the part's angle. P1 `VINH GIANG'S $12M / SHORT-FORM MACHINE`,
   P2 `… / YOUTUBE PLAYBOOK`, P3 `… / $12M FUNNEL PAGES`, P4 `… / EMAIL MACHINE`.
 - CTA keyword **VINH** in all four ("comment VINH for the full breakdown" is said in P1, P2 and P4; P3 borrows the CTA take if it has none).
@@ -36,11 +39,9 @@ All recorded 10 Sep 2026; times from the macOS clock in the Loom.
 **P1 Short-form (edited, `v1.json`)**: hook $12M a year → 01 The Bio → 02 Backstage → 03 The 7-11-4 Rule →
 04 Story Highlights → 05 3 Pinned Posts → 06 Keyword Replies → 07 ManyChat Bot → 08 Fan Accounts → 09 Follow.
 
-**P2 Long-form**: hook "I spent over 20 hours analysing this guy's academy" → 01 The Banner (weekly, low-angle stage
-shot) → 02 Numbers (4M subscribers, 1,400 videos: stat tiles) → 03 No Flexing, Straight Value → 04 Awareness Stages
-(top/middle/bottom of funnel, Schwartz's 5 levels) → 05 Titles & Thumbnails ("crazy title LMAO" comment, 30k likes) →
-06 Description Links (membership, training, video series, newsletter, mentorship: chips) → 07 Clips & Podcasts
-(Jay Shetty, Diary of a CEO) → 08 Follow.
+**P2 Long-form (as built, `v2.json`, 1:46)**: 01 The Banner → 02 The Numbers (4M / 1,400 stat tiles) → 03 No Flexing →
+04 Awareness Stages (Schwartz's 5 levels as a pyramid: premium funnel `"shape": "pyramid"`) → 05 Every Stage (TOF/MOF/BOF) →
+06 Titles & Thumbnails → 07 Description Links → 08 Clips & Podcasts → 09 Follow For More.
 
 **P3 Landing pages** (8.5 min raw, the hardest trim): hook "4 links, 3 landing pages, 1 newsletter" (stat tiles) →
 01 Fake-Live Webinar (WebinarJam, "starts in 6 minutes", countdown) → 02 Why It Works (scarcity, urgency, social

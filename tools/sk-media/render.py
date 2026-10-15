@@ -27,6 +27,7 @@ def ease_out_expo(x): return 1 if x >= 1 else 1 - 2 ** (-10 * x)
 def lerp(a, b, t): return a + (b - a) * t
 
 FACE_SQUARE = [False]   # plan["face_frame"] == "square": face card as wide as it is tall, still centred on x=540
+STD = {}                # plan["face_frame"] == "wide": layout.json variants.wide_face overrides the standard cards
 def rect_at(name, t, S):
     """Card rect at output time t (layout switch opening->standard animates 300 ms)."""
     r = _rect_at(name, t, S)
@@ -34,7 +35,7 @@ def rect_at(name, t, S):
     return r
 
 def _rect_at(name, t, S):
-    op, sd = L["layouts"]["opening"], L["layouts"]["standard"]
+    op, sd = L["layouts"]["opening"], {**L["layouts"]["standard"], **STD}
     t0 = L["opening_duration_s"]; d = 0.0  # hard switch: animating would slide screen and face cards across each other
     if name not in op: r = sd[name]; return [r["x"] * S, r["y"] * S, r["w"] * S, r["h"] * S]
     if name not in sd: r = op[name]; return [r["x"] * S, r["y"] * S, r["w"] * S, r["h"] * S]
@@ -122,6 +123,7 @@ def render_segment(args):
     boxes, faces = {}, []
     sys.path.insert(0, str(HERE)); import graphics as G
     EXTRA_HL.update(x.lower() for x in plan.get("highlight", [])); FACE_SQUARE[0] = plan.get("face_frame") == "square"
+    STD.clear(); STD.update(L["variants"]["wide_face"] if plan.get("face_frame") == "wide" else {})
     PREM = plan.get("theme") == "premium"
     if PREM: import premium as PM
     for c in clips:
@@ -179,7 +181,8 @@ def render_segment(args):
             if PREM: PM.card_border(img, (round(fx), round(fy), im.size[0], im.size[1]), S)
             els.append({"id": "face", "kind": "card", "x": fx / S, "y": fy / S, "w": fw / S, "h": fh / S, "parent": None})
             if k == n // 2:
-                faces.append({"clip": c["idx"], "section": c["section"], "cx": fc["cx"] - x0, "cy": fc["cy"] - y0, "w": cw, "h": ch})
+                faces.append({"clip": c["idx"], "section": c["section"], "cx": fc["cx"] - x0, "cy": fc["cy"] - y0, "w": cw, "h": ch,
+                              "pinned": x0 <= 0.5 or x0 >= bw - cw - 0.5})   # crop against a frame edge: as centred as the frame allows
             # --- header / progress (graphics stage)
             if graphics: els += G.header(img, t, S, plan, c)
             # --- caption
