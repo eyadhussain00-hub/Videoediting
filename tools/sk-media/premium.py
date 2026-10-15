@@ -295,4 +295,78 @@ def kicker(card, t, S, plan):
     b = lay.paste(card, cx, cy, k, ko, S)
     return [{"id": "kicker", "kind": "text", "x": b[0], "y": b[1], "w": b[2], "h": b[3], "overflow": False}]
 
+def _tab(d, x0, y, s, f, fill):
+    """Draw s left-to-right from x0 on baseline y with tabular digits; returns the width."""
+    dw = max(f.getlength(ch) for ch in "0123456789"); x = x0
+    for ch in s:
+        cw = dw if ch.isdigit() else f.getlength(ch); d.text((x + cw / 2, y), ch, font=f, fill=fill, anchor="ms"); x += cw
+    return x - x0
+
+def _tabw(s, f):
+    dw = max(f.getlength(ch) for ch in "0123456789"); return sum(dw if ch.isdigit() else f.getlength(ch) for ch in s)
+
+def countdown(card, t, S, g, ki, ko):
+    """Webinar countdown: panel with a big digit that steps on each spoken number (item_words), a ring that fills per
+    step, and an optional last item "LIVE" (red pill). items: ["6","5",…,"1"(,"LIVE")]; label: line above the digit."""
+    W, H = card.size; G.dim(card, ki * ko)
+    pw = W - 110 * S; ph = min(H - 70 * S, pw * 0.86); lay = G.Layer(pw, ph); d = lay.d
+    grad_rr(lay, [0, 0, pw, ph], int(30 * S), (30, 30, 38), (16, 16, 21))
+    fl = G.inter(30 * S, 800); d.text((pw / 2, 52 * S), g.get("label", "WEBINAR STARTS IN").upper(), font=fl, fill=SOFT, anchor="mm")
+    items, times = g["items"], g["times"]; nums = [i for i in items if i.upper() != "LIVE"]
+    k = max([i for i, at in enumerate(times) if t >= at] or [-1]); cur = items[k] if k >= 0 else nums[0]
+    cx, cy = pw / 2, ph * 0.56; r = min(pw, ph) * 0.33; wd = max(4, int(16 * S))
+    d.ellipse([cx - r, cy - r, cx + r, cy + r], outline=(255, 255, 255, 30), width=wd)
+    if cur.upper() == "LIVE":
+        d.ellipse([cx - r, cy - r, cx + r, cy + r], outline=RED + (255,), width=wd)
+        kin = R.ease_out_quint(min(1, (t - times[k]) / 0.25)); f = G.anton(120 * S * (0.85 + 0.15 * kin))
+        tw = f.getlength("LIVE"); dot = 30 * S
+        d.ellipse([cx - (tw + dot + 20 * S) / 2, cy - dot / 2, cx - (tw + dot + 20 * S) / 2 + dot, cy + dot / 2], fill=RED)
+        d.text((cx + (dot + 20 * S) / 2, cy), "LIVE", font=f, fill=WHITE, anchor="mm")
+    else:
+        done = (nums.index(cur) + (1 if k >= 0 else 0)) / len(nums) if cur in nums else 0
+        if done > 0: d.arc([cx - r, cy - r, cx + r, cy + r], -90, -90 + 360 * done, fill=YEL + (255,), width=wd)
+        kin = R.ease_out_quint(min(1, (t - times[k]) / 0.2)) if k >= 0 else 1
+        f = G.anton(r * 1.25 * (1.18 - 0.18 * kin)); d.text((cx, cy), cur, font=f, fill=YEL, anchor="mm")
+    shine(lay, t, g["t0"], S)
+    drop(card, lay, W / 2, H / 2, ki, ko, S)
+    b = lay.paste(card, W / 2, H / 2, ki, ko, S)
+    return [{"id": g["id"], "kind": "panel", "x": b[0], "y": b[1], "w": b[2], "h": b[3], "overflow": False}]
+
+def price(card, t, S, g, ki, ko):
+    """Price anchor: the anchor price (old) with a red strike that draws in at the second word, then the real price (new)
+    counting down from the anchor in 400 ms (tabular digits). old/new: numbers; prefix; old_label/new_label; title.
+    item_words: [old price word, new price word]."""
+    W, H = card.size; G.dim(card, ki * ko); pre = g.get("prefix", "$")
+    pw = W - 110 * S; ph = min(H - 70 * S, pw * 0.92); lay = G.Layer(pw, ph); d = lay.d
+    grad_rr(lay, [0, 0, pw, ph], int(30 * S), (30, 30, 38), (16, 16, 21))
+    ft = G.inter(28 * S, 800); fl = G.inter(26 * S, 700); fo = G.anton(118 * S); fn = G.anton(196 * S)
+    cap = lambda f: f.getbbox("0")[3] - f.getbbox("0")[1]
+    # stack top-down (title, label, anchor price, label, real price), then centre the stack in the panel
+    y_title = 0; y_ol = y_title + (46 * S if g.get("title") else 0); oy = y_ol + 30 * S + cap(fo)
+    y_nl = oy + 46 * S; ny = y_nl + 34 * S + cap(fn); dy = (ph - ny) / 2 + 14 * S
+    y_title, y_ol, oy, y_nl, ny = [v + dy for v in (y_title, y_ol, oy, y_nl, ny)]
+    if g.get("title"): d.text((pw / 2, y_title), g["title"].upper(), font=ft, fill=YEL, anchor="mt")
+    t_old, t_new = g["times"][0], g["times"][1]
+    so = pre + f'{g["old"]:,}'; ow = _tabw(so, fo)
+    struck = R.ease_out_quint(min(1, max(0, (t - t_new + 0.1) / 0.25)))
+    grey = tuple(int(255 + (v - 255) * struck) for v in (128, 128, 138))   # solid colour: alpha text would punch a hole
+    d.text((pw / 2, y_ol), g.get("old_label", "").upper(), font=fl, fill=SOFT, anchor="mt")
+    _tab(d, pw / 2 - ow / 2, oy, so, fo, grey)
+    if struck > 0:
+        ly = oy - cap(fo) * 0.5
+        d.line([(pw / 2 - ow / 2 - 14 * S, ly + 10 * S), (pw / 2 - ow / 2 - 14 * S + (ow + 28 * S) * struck, ly + 10 * S - 20 * S * struck)],
+               fill=RED + (255,), width=max(3, int(12 * S)))
+    out_over = ow > pw - 40 * S or ny > ph
+    if t >= t_new:
+        kn = R.ease_out_expo(min(1, (t - t_new) / 0.4)); val = int(round(g["old"] + (g["new"] - g["old"]) * kn))
+        sn = pre + f"{val:,}"; ref = pre + f'{g["old"]:,}'
+        d.text((pw / 2, y_nl), g.get("new_label", "").upper(), font=fl, fill=WHITE, anchor="mt")
+        _tab(d, pw / 2 - _tabw(sn, fn) / 2, ny, sn, fn, YEL)
+        out_over = out_over or _tabw(ref, fn) > pw - 40 * S
+    shine(lay, t, g["t0"], S)
+    drop(card, lay, W / 2, H / 2, ki, ko, S)
+    b = lay.paste(card, W / 2, H / 2, ki, ko, S)
+    return [{"id": g["id"], "kind": "panel", "x": b[0], "y": b[1], "w": b[2], "h": b[3], "overflow": out_over}]
+
 TYPES = {"badge": badge, "pill": pill, "quote": quote, "stat3": stat3, "funnel": funnel, "dm": dm}
+TYPES.update({"countdown": countdown, "price": price})

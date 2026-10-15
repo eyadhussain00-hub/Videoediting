@@ -1,0 +1,764 @@
+{
+ "_comment": "Vinh Giang – Video 3B (Part 3/4, second half: the sales pages). Premium theme, wide face card. Workspace vinh/{src,extra,words}, job in vinh/p3b/job.json. src/p3_loom.mp4 + src/p3_cam.mov = landing pages vinh vid 5 (webcam = Loom + 12.59 s, NCC 0.917, no drift). extra/p4_tail.mp4 = Part 4 webcam (2026-09-10 19-54-12.mov) from 318 s: ffmpeg -ss 318 -i <mov> -c:v libx264 -crf 12 -c:a aac -b:a 192k; it supplies the 'comment VINH' CTA (Part 3 has none). Words: transcribe.py medium.en on p3_loom.mp4 and p4_tail.mp4; face tracks: facetrack.py p3_cam.mov 0 529 / p4_tail.mp4 0 55.",
+ "subject": "Vinh Giang",
+ "theme": "premium",
+ "sources": {
+  "p3": {
+   "screen": "../src/p3_loom.mp4",
+   "face": "../src/p3_cam.mov",
+   "face_offset": 12.59,
+   "audio": "../src/p3_loom.mp4",
+   "words": "../words/p3loom.json",
+   "facetrack": "../ft_p3.json"
+  },
+  "p4": {
+   "screen": null,
+   "face": "../extra/p4_tail.mp4",
+   "face_offset": 0.0,
+   "audio": "../extra/p4_tail.mp4",
+   "words": "../words/p4tail.json",
+   "facetrack": "../ft_p4tail.json"
+  }
+ },
+ "screen_region": [
+  536,
+  548,
+  38,
+  132
+ ],
+ "face_frame": "wide",
+ "video": "3B",
+ "series": "Part 3B/4 · Sales Pages",
+ "drive": {
+  "sources_folder": "RSV Video/SK/Vinh Giang/landing pages vinh vid 5 (Loom + OBS 2026-09-10 19-38-53.mov); CTA from vinh vid 5 newsletter/2026-09-10 19-54-12.mov",
+  "export": "RSV Video/SK/Vinh Giang/landing pages vinh vid 5/Export/Vinh Giang - Video 3B.mp4"
+ },
+ "headline": [
+  "VINH GIANG'S $12M",
+  "SALES PAGES"
+ ],
+ "highlight": [
+  "vinh",
+  "giang",
+  "stage",
+  "academy",
+  "$997",
+  "$2,999",
+  "100,000",
+  "fomo",
+  "urgency",
+  "countdown",
+  "guarantee"
+ ],
+ "sections": {
+  "hook": [
+   "",
+   ""
+  ],
+  "01": [
+   "01",
+   "3-Part Video Shortcut"
+  ],
+  "02": [
+   "02",
+   "Name + Email Only"
+  ],
+  "03": [
+   "03",
+   "The Button Copy"
+  ],
+  "04": [
+   "04",
+   "Ugly Testimonials"
+  ],
+  "05": [
+   "05",
+   "The Next Page"
+  ],
+  "06": [
+   "06",
+   "Emotional Headline"
+  ],
+  "07": [
+   "07",
+   "Price Anchoring"
+  ],
+  "08": [
+   "08",
+   "Risk Reversal"
+  ],
+  "cta": [
+   "09",
+   "Follow For More"
+  ]
+ },
+ "caption_fix": {
+  "vin": "Vinh",
+  "yang": "Giang",
+  "yang's": "Giang's",
+  "997": "$997",
+  "war": "raw",
+  "stage": "Stage",
+  "academy": "Academy",
+  "fomo": "FOMO"
+ },
+ "caption_pairs": [
+  [
+   "three",
+   "-part",
+   "3-part"
+  ],
+  [
+   "2",
+   ",999",
+   "$2,999"
+  ],
+  [
+   "100",
+   ",000",
+   "100,000"
+  ],
+  [
+   "billion",
+   "-dollar",
+   "billion-dollar"
+  ],
+  [
+   "check",
+   "out",
+   "checkout"
+  ],
+  [
+   "call",
+   "to",
+   "call-to"
+  ]
+ ],
+ "cuts": [
+  {
+   "section": "hook",
+   "src": "p3",
+   "in": 52.0,
+   "out": 57.66
+  },
+  {
+   "section": "01",
+   "src": "p3",
+   "in": 177.36,
+   "out": 180.12
+  },
+  {
+   "section": "01",
+   "src": "p3",
+   "in": 181.1,
+   "out": 185.3
+  },
+  {
+   "section": "01",
+   "src": "p3",
+   "in": 185.86,
+   "out": 186.8
+  },
+  {
+   "section": "02",
+   "src": "p3",
+   "in": 193.8,
+   "out": 198.26
+  },
+  {
+   "section": "03",
+   "src": "p3",
+   "in": 200.3,
+   "out": 202.42
+  },
+  {
+   "section": "03",
+   "src": "p3",
+   "in": 202.44,
+   "out": 203.8,
+   "out_t": 203.93
+  },
+  {
+   "section": "03",
+   "src": "p3",
+   "in_t": 204.86,
+   "out": 205.6,
+   "out_t": 205.81
+  },
+  {
+   "section": "03",
+   "src": "p3",
+   "in_t": 206.19,
+   "out": 206.3,
+   "out_t": 206.56
+  },
+  {
+   "section": "04",
+   "src": "p3",
+   "in": 251.5,
+   "out": 253.84
+  },
+  {
+   "section": "04",
+   "src": "p3",
+   "in": 254.7,
+   "out": 257.08
+  },
+  {
+   "section": "04",
+   "src": "p3",
+   "in": 257.22,
+   "out": 262.2
+  },
+  {
+   "section": "05",
+   "src": "p3",
+   "in": 290.56,
+   "out": 292.92
+  },
+  {
+   "section": "05",
+   "src": "p3",
+   "in": 293.72,
+   "out": 296.44
+  },
+  {
+   "section": "05",
+   "src": "p3",
+   "in": 304.44,
+   "out": 306.78
+  },
+  {
+   "section": "05",
+   "src": "p3",
+   "in": 315.68,
+   "out": 319.44
+  },
+  {
+   "section": "06",
+   "src": "p3",
+   "in": 329.46,
+   "out": 335.78
+  },
+  {
+   "section": "06",
+   "src": "p3",
+   "in": 344.98,
+   "out": 348.14
+  },
+  {
+   "section": "06",
+   "src": "p3",
+   "in": 352.0,
+   "out": 357.0
+  },
+  {
+   "section": "07",
+   "src": "p3",
+   "in": 430.12,
+   "out": 437.78
+  },
+  {
+   "section": "08",
+   "src": "p3",
+   "in": 444.3,
+   "out": 445.46
+  },
+  {
+   "section": "08",
+   "src": "p3",
+   "in": 445.92,
+   "out": 446.3
+  },
+  {
+   "section": "08",
+   "src": "p3",
+   "in": 450.62,
+   "out": 451.34
+  },
+  {
+   "section": "08",
+   "src": "p3",
+   "in": 457.34,
+   "out": 460.2
+  },
+  {
+   "section": "08",
+   "src": "p3",
+   "in": 463.44,
+   "out": 464.92
+  },
+  {
+   "section": "08",
+   "src": "p3",
+   "in": 468.92,
+   "out": 472.14
+  },
+  {
+   "section": "cta",
+   "src": "p3",
+   "in": 508.8,
+   "out": 510.6
+  },
+  {
+   "section": "cta",
+   "src": "p4",
+   "in": 44.92,
+   "out_t": 46.33,
+   "out": 46.0
+  },
+  {
+   "section": "cta",
+   "src": "p4",
+   "out": 49.38,
+   "in_t": 47.15
+  }
+ ],
+ "beats": [
+  {
+   "type": "pill",
+   "at": "3-part@178.18",
+   "until": "communication@180.10",
+   "text": "3-part video shortcut"
+  },
+  {
+   "type": "quote",
+   "at": "easier@183.66",
+   "until": "three@185.28",
+   "l1": "Easier for the brain",
+   "l2": "when it's in three"
+  },
+  {
+   "type": "quote",
+   "at": "this@185.90",
+   "until": "mechanism@186.78",
+   "l1": "A unique",
+   "l2": "mechanism"
+  },
+  {
+   "type": "chips",
+   "at": "name@194.62",
+   "until": "email@194.86",
+   "items": [
+    "Name",
+    "Email"
+   ],
+   "item_words": [
+    "name@194.62",
+    "email@194.86"
+   ]
+  },
+  {
+   "type": "pill",
+   "at": "phone@195.94",
+   "until": "number@196.12",
+   "text": "No phone number"
+  },
+  {
+   "type": "pill",
+   "at": "email@197.74",
+   "until": "sequence@198.24",
+   "text": "Dialed-in email sequence"
+  },
+  {
+   "type": "quote",
+   "at": "give@200.78",
+   "until": "authority@202.02",
+   "l1": "Give me the 3-part plan",
+   "l2": "to speak with authority"
+  },
+  {
+   "type": "chips",
+   "at": "give@203.36",
+   "until": "submit@206.20",
+   "items": [
+    "Give me the plan",
+    "Apply for the plan",
+    "Submit"
+   ],
+   "item_words": [
+    "give@203.36",
+    "apply@204.88",
+    "submit@206.20"
+   ]
+  },
+  {
+   "type": "pill",
+   "at": "studio@253.82",
+   "text": "Not in a studio"
+  },
+  {
+   "type": "quote",
+   "at": "ugly@255.58",
+   "until": "it@257.06",
+   "l1": "The ugly",
+   "l2": "raw effect"
+  },
+  {
+   "type": "chips",
+   "at": "bedroom@259.54",
+   "until": "hotel@262.18",
+   "items": [
+    "Bedroom",
+    "Living room",
+    "Nice hotel"
+   ],
+   "item_words": [
+    "bedroom@259.54",
+    "living@260.52",
+    "hotel@262.18"
+   ]
+  },
+  {
+   "type": "pill",
+   "at": "information@294.42",
+   "until": "stage@296.42",
+   "text": "Then the next stage"
+  },
+  {
+   "type": "quote",
+   "at": "overlook@304.64",
+   "until": "waste@306.76",
+   "l1": "Overlook this one lesson,",
+   "l2": "your talents go to waste"
+  },
+  {
+   "type": "chips",
+   "at": "hurry@316.36",
+   "until": "urgency@319.42",
+   "items": [
+    "Hurry",
+    "Countdown",
+    "FOMO",
+    "Urgency"
+   ],
+   "item_words": [
+    "hurry@316.36",
+    "countdown@317.94",
+    "FOMO@319.06",
+    "urgency@319.42"
+   ]
+  },
+  {
+   "type": "pill",
+   "at": "emotionally@331.82",
+   "until": "headline@332.50",
+   "text": "Emotionally powerful headline"
+  },
+  {
+   "type": "quote",
+   "at": "how@333.96",
+   "until": "you@335.74",
+   "l1": "How much is the way you",
+   "l2": "communicate costing you?"
+  },
+  {
+   "type": "pill",
+   "at": "trusted@345.22",
+   "until": "companies@346.18",
+   "text": "Trusted by billion-dollar companies"
+  },
+  {
+   "type": "badge",
+   "at": "100,000@347.38",
+   "until": "worldwide@348.12",
+   "big": "100,000+",
+   "count": 100000,
+   "suffix": "+",
+   "count_word": "100,000@347.38",
+   "sub": "people worldwide"
+  },
+  {
+   "type": "chips",
+   "at": "imagine@352.48",
+   "until": "promotion@356.98",
+   "items": [
+    "Spoke up in meetings",
+    "Got noticed",
+    "Landed a promotion"
+   ],
+   "item_words": [
+    "spoke@354.10",
+    "noticed@355.72",
+    "promotion@356.98"
+   ]
+  },
+  {
+   "type": "pill",
+   "at": "price@431.10",
+   "until": "anchoring@431.24",
+   "text": "Price anchoring"
+  },
+  {
+   "type": "price",
+   "at": "says@432.16",
+   "until": "cheap@437.76",
+   "title": "Stage Academy",
+   "old": 2999,
+   "new": 997,
+   "old_label": "He says it's",
+   "new_label": "Actually",
+   "item_words": [
+    "2999@432.64",
+    "997@434.38"
+   ]
+  },
+  {
+   "type": "pill",
+   "at": "guarantee@445.42",
+   "until": "guarantee@445.42",
+   "text": "The guarantee"
+  },
+  {
+   "type": "quote",
+   "at": "not@450.82",
+   "until": "convinced@451.20",
+   "l1": "Not 100%",
+   "l2": "convinced"
+  },
+  {
+   "type": "quote",
+   "at": "risk@459.38",
+   "until": "reversal@459.54",
+   "l1": "Risk",
+   "l2": "reversal"
+  },
+  {
+   "type": "pill",
+   "at": "straight@464.52",
+   "until": "page@472.12",
+   "text": "Straight to checkout"
+  }
+ ],
+ "cta": {
+  "keyword": "VINH",
+  "follow": "follow@508.84",
+  "comment": "VINH@p4:47.64",
+  "full": "full@p4:45.62",
+  "backdrop": {
+   "src": "p3",
+   "t": 140
+  }
+ },
+ "word_patch": [
+  {
+   "src": "p4",
+   "from": 46.2,
+   "to": 48.4,
+   "words": [
+    [
+     "comment",
+     47.18,
+     47.62
+    ],
+    [
+     "VINH",
+     47.64,
+     48.04
+    ],
+    [
+     "and",
+     48.16,
+     48.36
+    ]
+   ],
+   "_why": "ASR 'then it's common to Vin and' = 'then comment VINH and' (RMS edges; 'then' cut)"
+  },
+  {
+   "src": "p3",
+   "from": 57.6,
+   "to": 57.7,
+   "words": [
+    [
+     "year.",
+     57.64,
+     57.78
+    ]
+   ],
+   "_why": "caption break at the hook end"
+  },
+  {
+   "src": "p3",
+   "from": 197.3,
+   "to": 197.6,
+   "words": [
+    [
+     "dialed-in",
+     197.32,
+     197.72
+    ]
+   ],
+   "_why": "ASR 'doubt in' = 'dialed in' (verbatim pass)"
+  },
+  {
+   "src": "p3",
+   "from": 201.7,
+   "to": 202.1,
+   "words": [
+    [
+     "to",
+     201.78,
+     201.88
+    ],
+    [
+     "speak",
+     201.9,
+     202.0
+    ],
+    [
+     "with",
+     202.02,
+     202.12
+    ],
+    [
+     "authority",
+     202.14,
+     202.42
+    ]
+   ],
+   "_why": "button copy reads 'to Speak with Authority'; ASR 'speaker authority'"
+  },
+  {
+   "src": "p3",
+   "from": 251.5,
+   "to": 252.7,
+   "words": [
+    [
+     "he's",
+     251.7,
+     251.74
+    ],
+    [
+     "got",
+     251.76,
+     251.82
+    ],
+    [
+     "these",
+     251.84,
+     251.94
+    ],
+    [
+     "testimonials,",
+     251.96,
+     252.6
+    ]
+   ],
+   "_why": "verbatim: 'he's got these testimonials'"
+  },
+  {
+   "src": "p3",
+   "from": 293.6,
+   "to": 294.9,
+   "words": [
+    [
+     "and",
+     293.82,
+     294.04
+    ],
+    [
+     "you",
+     294.06,
+     294.14
+    ],
+    [
+     "fill",
+     294.16,
+     294.24
+    ],
+    [
+     "in",
+     294.26,
+     294.32
+    ],
+    [
+     "the",
+     294.34,
+     294.4
+    ],
+    [
+     "information,",
+     294.42,
+     294.84
+    ]
+   ],
+   "_why": "ASR 'and different information' = 'and you fill in the information'"
+  },
+  {
+   "src": "p3",
+   "from": 355.9,
+   "to": 356.95,
+   "words": [
+    [
+     "for",
+     355.96,
+     356.06
+    ],
+    [
+     "your",
+     356.08,
+     356.16
+    ],
+    [
+     "ideas",
+     356.18,
+     356.5
+    ],
+    [
+     "landed",
+     356.56,
+     356.8
+    ],
+    [
+     "a",
+     356.82,
+     356.96
+    ]
+   ],
+   "_why": "ASR 'from ideas landed at' = 'for your ideas, landed a' (page copy)"
+  },
+  {
+   "src": "p3",
+   "from": 203.7,
+   "to": 206.6,
+   "words": [
+    [
+     "plan,",
+     203.72,
+     203.9
+    ],
+    [
+     "apply",
+     204.88,
+     205.02
+    ],
+    [
+     "for",
+     205.1,
+     205.16
+    ],
+    [
+     "the",
+     205.18,
+     205.26
+    ],
+    [
+     "plan,",
+     205.3,
+     205.48
+    ],
+    [
+     "or",
+     205.54,
+     205.76
+    ],
+    [
+     "submit.",
+     206.2,
+     206.52
+    ]
+   ],
+   "_why": "'plan, or, uh, apply for the plan, or s- s- submit' — cut 'or uh' and the 's- s-' restart (verbatim pass + RMS)"
+  }
+ ]
+}
