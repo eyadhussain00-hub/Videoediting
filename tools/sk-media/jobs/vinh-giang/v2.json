@@ -1,0 +1,863 @@
+{
+ "_comment": "Vinh Giang – Video 2 (Part 2/4: long-form / YouTube). Premium theme. Paths relative to the job's folder (workspace vinh/v2/job.json).",
+ "subject": "Vinh Giang",
+ "video": 2,
+ "theme": "premium",
+ "series": "Part 2/4 · YouTube",
+ "drive": {
+  "sources_folder": "RSV Video/SK/Vinh Giang/longform vinh vid 3 (Loom 1E7AnK7LzGbKV-LooMvdm00r30geZdxBk, OBS 1WXZRhJfXirhIndOxAqJMGrJ2ZlF6eKml)",
+  "export": "RSV Video/SK/Vinh Giang/longform vinh vid 3/Export/Vinh Giang - Video 2.mp4"
+ },
+ "sources": {
+  "v3": {
+   "screen": "../src/v3loom.mp4",
+   "face": "../src/v3cam.mov",
+   "face_offset": 14.527,
+   "audio": "../src/v3loom.mp4",
+   "words": "../words/v3loom.json",
+   "facetrack": "../ft_v3cam.json"
+  }
+ },
+ "_sync": "webcam_t = loom_t + 14.527: 5 s probes every 6 s over the whole Loom all land on the same offset (NCC 0.85-0.92), no drift",
+ "face_frame": "wide",
+ "screen_region": [
+  536,
+  548,
+  38,
+  132
+ ],
+ "headline": [
+  "VINH GIANG'S $12M",
+  "YOUTUBE PLAYBOOK"
+ ],
+ "highlight": [
+  "vinh",
+  "giang",
+  "schwartz",
+  "shetty",
+  "ceo",
+  "youtube",
+  "stage",
+  "academy",
+  "lmao"
+ ],
+ "sections": {
+  "hook": [
+   "",
+   ""
+  ],
+  "01": [
+   "01",
+   "The Banner"
+  ],
+  "02": [
+   "02",
+   "The Numbers"
+  ],
+  "03": [
+   "03",
+   "No Flexing"
+  ],
+  "04": [
+   "04",
+   "Awareness Stages"
+  ],
+  "05": [
+   "05",
+   "Every Stage"
+  ],
+  "06": [
+   "06",
+   "Titles & Thumbnails"
+  ],
+  "07": [
+   "07",
+   "Description Links"
+  ],
+  "08": [
+   "08",
+   "Clips & Podcasts"
+  ],
+  "cta": [
+   "09",
+   "Follow For More"
+  ]
+ },
+ "caption_fix": {
+  "vinayank": "Vinh Giang",
+  "1400": "1,400",
+  "lmao": "LMAO",
+  "copyright": "copywriting",
+  "youtube": "YouTube",
+  "shorts": "Shorts",
+  "easier": "easy",
+  "eugene": "Eugene",
+  "schwartz": "Schwartz",
+  "jay": "Jay",
+  "shetty": "Shetty",
+  "diary of a ceo": "Diary of a CEO",
+  "stage academy": "Stage Academy",
+  "in-depth": "in-depth",
+  "guys": "Guys"
+ },
+ "caption_pairs": [
+  [
+   "30",
+   ",000",
+   "30,000"
+  ],
+  [
+   "self",
+   "-improvement",
+   "self-improvement"
+  ],
+  [
+   "dire",
+   "vco",
+   "Diary of a CEO"
+  ],
+  [
+   "99",
+   "%",
+   "99%"
+  ],
+  [
+   "stage",
+   "academy",
+   "Stage Academy"
+  ],
+  [
+   "in",
+   "depth",
+   "in-depth"
+  ]
+ ],
+ "cuts": [
+  {
+   "section": "hook",
+   "src": "v3",
+   "in_t": 3.12,
+   "out": 6.42
+  },
+  {
+   "section": "hook",
+   "src": "v3",
+   "in": 10.18,
+   "out": 11.4
+  },
+  {
+   "section": "01",
+   "src": "v3",
+   "in": 12.06,
+   "out": 12.6
+  },
+  {
+   "section": "01",
+   "src": "v3",
+   "in_t": 16.84,
+   "out": 20.36
+  },
+  {
+   "section": "01",
+   "src": "v3",
+   "in": 23.62,
+   "out": 26.58
+  },
+  {
+   "section": "01",
+   "src": "v3",
+   "in": 27.3,
+   "out": 28.26
+  },
+  {
+   "section": "01",
+   "src": "v3",
+   "in": 30.0,
+   "out": 31.52
+  },
+  {
+   "section": "02",
+   "src": "v3",
+   "in": 34.06,
+   "out": 36.26
+  },
+  {
+   "section": "03",
+   "src": "v3",
+   "in": 37.92,
+   "out": 40.12
+  },
+  {
+   "section": "03",
+   "src": "v3",
+   "in": 41.4,
+   "out": 43.78
+  },
+  {
+   "section": "03",
+   "src": "v3",
+   "in": 44.56,
+   "out": 47.58
+  },
+  {
+   "section": "04",
+   "src": "v3",
+   "in": 48.96,
+   "out": 51.82
+  },
+  {
+   "section": "04",
+   "src": "v3",
+   "in": 52.32,
+   "out": 55.06
+  },
+  {
+   "section": "04",
+   "src": "v3",
+   "in": 61.62,
+   "out": 62.78
+  },
+  {
+   "section": "04",
+   "src": "v3",
+   "in": 76.96,
+   "out": 79.7
+  },
+  {
+   "section": "04",
+   "src": "v3",
+   "in": 80.24,
+   "out": 82.76
+  },
+  {
+   "section": "04",
+   "src": "v3",
+   "in": 83.62,
+   "out": 86.92
+  },
+  {
+   "section": "04",
+   "src": "v3",
+   "in": 89.48,
+   "out": 91.2
+  },
+  {
+   "section": "04",
+   "src": "v3",
+   "in": 93.28,
+   "out": 95.62
+  },
+  {
+   "section": "05",
+   "src": "v3",
+   "in": 96.36,
+   "out": 99.54
+  },
+  {
+   "section": "05",
+   "src": "v3",
+   "in": 100.08,
+   "out": 101.68
+  },
+  {
+   "section": "06",
+   "src": "v3",
+   "in": 103.54,
+   "out": 106.58
+  },
+  {
+   "section": "06",
+   "src": "v3",
+   "in": 107.16,
+   "out": 108.22
+  },
+  {
+   "section": "06",
+   "src": "v3",
+   "in": 108.4,
+   "out": 111.16
+  },
+  {
+   "section": "06",
+   "src": "v3",
+   "in": 112.32,
+   "out": 114.62
+  },
+  {
+   "section": "06",
+   "src": "v3",
+   "in": 115.5,
+   "out": 121.98
+  },
+  {
+   "section": "07",
+   "src": "v3",
+   "in": 125.08,
+   "out": 132.52
+  },
+  {
+   "section": "07",
+   "src": "v3",
+   "in": 135.88,
+   "out": 138.1
+  },
+  {
+   "section": "08",
+   "src": "v3",
+   "in": 141.98,
+   "out": 144.82
+  },
+  {
+   "section": "08",
+   "src": "v3",
+   "in": 148.46,
+   "out": 151.84
+  },
+  {
+   "section": "08",
+   "src": "v3",
+   "in": 153.54,
+   "out": 155.06
+  },
+  {
+   "section": "08",
+   "src": "v3",
+   "in": 155.64,
+   "out": 156.8
+  },
+  {
+   "section": "08",
+   "src": "v3",
+   "in": 157.06,
+   "out": 159.22
+  },
+  {
+   "section": "08",
+   "src": "v3",
+   "in": 159.6,
+   "out": 161.44
+  },
+  {
+   "section": "08",
+   "src": "v3",
+   "in": 163.64,
+   "out": 164.38
+  },
+  {
+   "section": "08",
+   "src": "v3",
+   "in": 165.24,
+   "out": 166.26
+  },
+  {
+   "section": "08",
+   "src": "v3",
+   "in": 169.8,
+   "out": 172.32
+  },
+  {
+   "section": "cta",
+   "src": "v3",
+   "in": 179.38,
+   "out": 180.18
+  },
+  {
+   "section": "cta",
+   "src": "v3",
+   "in_t": 184.28,
+   "out": 185.44
+  }
+ ],
+ "word_patch": [
+  {
+   "src": "v3",
+   "from": 13.0,
+   "to": 17.66,
+   "words": [
+    [
+     "in",
+     16.88,
+     16.98
+    ],
+    [
+     "his",
+     16.98,
+     17.08
+    ],
+    [
+     "banner",
+     17.1,
+     17.32
+    ],
+    [
+     "he",
+     17.34,
+     17.42
+    ],
+    [
+     "explains",
+     17.42,
+     17.66
+    ]
+   ],
+   "_why": "he restarted 'in his banner he' four times (13.1-16.4); ASR folded all of it into 'explains' 15.04-17.66 — keep only the last take (verbatim timings + RMS)"
+  },
+  {
+   "src": "v3",
+   "from": 10.7,
+   "to": 11.05,
+   "words": [
+    [
+     "long-form",
+     10.78,
+     11.1
+    ]
+   ],
+   "_why": "ASR 'vlog from' = 'long-form'"
+  },
+  {
+   "src": "v3",
+   "from": 184.2,
+   "to": 185.8,
+   "words": [
+    [
+     "comment",
+     184.32,
+     184.54
+    ],
+    [
+     "VINH",
+     184.54,
+     184.8
+    ],
+    [
+     "if",
+     184.8,
+     185.0
+    ],
+    [
+     "you",
+     185.0,
+     185.08
+    ],
+    [
+     "want",
+     185.08,
+     185.16
+    ],
+    [
+     "the",
+     185.16,
+     185.28
+    ],
+    [
+     "full",
+     185.28,
+     185.44
+    ],
+    [
+     "breakdown",
+     185.44,
+     185.78
+    ]
+   ],
+   "_why": "ASR 'comment Vin if you want to feel the breakdown' = 'comment VINH if you want the full breakdown' (the CTA keyword)"
+  },
+  {
+   "src": "v3",
+   "from": 3.0,
+   "to": 3.15,
+   "words": [
+    [
+     "Guys,",
+     3.2,
+     3.44
+    ]
+   ],
+   "_why": "second take of the opening starts at 3.20 (first 'guys, I spent' at 2.1-2.9 is cut); keep 'Guys' in the captions"
+  },
+  {
+   "src": "v3",
+   "from": 80.5,
+   "to": 83.1,
+   "words": [
+    [
+     "most aware,",
+     80.54,
+     80.94
+    ],
+    [
+     "product aware,",
+     80.94,
+     81.44
+    ],
+    [
+     "solution aware,",
+     81.44,
+     81.94
+    ],
+    [
+     "problem aware,",
+     81.94,
+     82.42
+    ],
+    [
+     "completely unaware.",
+     82.56,
+     83.06
+    ]
+   ],
+   "_why": "Schwartz's levels: ASR punctuated 'most aware product, aware solution…' — it's 'most aware, product aware, solution aware, problem aware, completely unaware'; one caption token per level"
+  }
+ ],
+ "beats": [
+  {
+   "type": "badge",
+   "at": "this@5.56",
+   "until": "academy@6.42",
+   "big": "20+ HOURS",
+   "sub": "analysing his academy"
+  },
+  {
+   "type": "pill",
+   "at": "long-form@10.78",
+   "until": "quickly@11.40",
+   "text": "His long-form content"
+  },
+  {
+   "type": "chips",
+   "at": "explains@17.42",
+   "until": "weekly@20.36",
+   "items": [
+    "What he does",
+    "Very active",
+    "New videos weekly"
+   ],
+   "item_words": [
+    "what@17.66",
+    "active@19.14",
+    "weekly@20.36"
+   ]
+  },
+  {
+   "type": "quote",
+   "at": "stageacademy@24.60",
+   "until": "stageacademy@24.60",
+   "l1": "The Stage",
+   "l2": "Academy"
+  },
+  {
+   "type": "pill",
+   "at": "low@25.84",
+   "until": "teaching@26.58",
+   "text": "Low-angle shot of him teaching"
+  },
+  {
+   "type": "quote",
+   "at": "dominant@28.08",
+   "until": "figure@28.26",
+   "l1": "A dominant",
+   "l2": "figure"
+  },
+  {
+   "type": "pill",
+   "at": "important@31.26",
+   "until": "figure@31.52",
+   "text": "A very important figure"
+  },
+  {
+   "type": "stat3",
+   "at": "4@34.76",
+   "until": "videos@36.26",
+   "items": [
+    {
+     "n": 4,
+     "suffix": "M",
+     "label": "subscribers"
+    },
+    {
+     "n": 1400,
+     "label": "videos"
+    }
+   ],
+   "item_words": [
+    "4@34.76",
+    "1400@35.84"
+   ]
+  },
+  {
+   "type": "pill",
+   "at": "private@39.56",
+   "until": "jets@40.12",
+   "text": "No private jets"
+  },
+  {
+   "type": "quote",
+   "at": "straight@42.80",
+   "until": "value@43.78",
+   "l1": "Straight game,",
+   "l2": "straight value"
+  },
+  {
+   "type": "chips",
+   "at": "deliver@45.30",
+   "until": "videos@47.58",
+   "items": [
+    "In-depth content",
+    "Trust",
+    "Reliability"
+   ],
+   "item_words": [
+    "indepth@45.46",
+    "trust@46.52",
+    "reliability@46.84"
+   ]
+  },
+  {
+   "type": "quote",
+   "at": "audience@50.36",
+   "until": "stage@51.82",
+   "l1": "Not all at",
+   "l2": "the same stage"
+  },
+  {
+   "type": "chips",
+   "at": "know@52.72",
+   "until": "is@55.06",
+   "items": [
+    "Know their problem",
+    "Don't know it"
+   ],
+   "item_words": [
+    "know@52.72",
+    "don't@54.32"
+   ]
+  },
+  {
+   "type": "pill",
+   "at": "awareness@62.54",
+   "until": "stage@62.78",
+   "text": "Different awareness stages"
+  },
+  {
+   "type": "pill",
+   "at": "Eugene@76.96",
+   "until": "audience@79.70",
+   "text": "Eugene Schwartz: 5 levels of awareness"
+  },
+  {
+   "type": "funnel",
+   "shape": "pyramid",
+   "at": "mostaware@80.54",
+   "until": "unaware@86.92",
+   "items": [
+    [
+     "Most aware",
+     ""
+    ],
+    [
+     "Product aware",
+     ""
+    ],
+    [
+     "Solution aware",
+     ""
+    ],
+    [
+     "Problem aware",
+     ""
+    ],
+    [
+     "Completely unaware",
+     ""
+    ]
+   ],
+   "item_words": [
+    "mostaware@80.54",
+    "productaware@80.94",
+    "solutionaware@81.44",
+    "problemaware@81.94",
+    "completelyunaware@82.56"
+   ]
+  },
+  {
+   "type": "quote",
+   "at": "someone@90.04",
+   "until": "aware@91.20",
+   "l1": "Completely unaware",
+   "l2": "vs extremely aware"
+  },
+  {
+   "type": "chips",
+   "at": "problem@93.66",
+   "until": "product@95.62",
+   "items": [
+    "The problem",
+    "The solution",
+    "Stage Academy"
+   ],
+   "item_words": [
+    "problem@93.66",
+    "solution@94.08",
+    "stageacademy@95.16"
+   ]
+  },
+  {
+   "type": "funnel",
+   "at": "different@98.86",
+   "until": "funnel@101.68",
+   "items": [
+    [
+     "Top of funnel",
+     ""
+    ],
+    [
+     "Middle of funnel",
+     ""
+    ],
+    [
+     "Bottom of funnel",
+     ""
+    ]
+   ],
+   "item_words": [
+    "top@100.38",
+    "middle@100.78",
+    "bottom@101.32"
+   ]
+  },
+  {
+   "type": "quote",
+   "at": "how@105.16",
+   "until": "colour@106.58",
+   "l1": "How to talk to anyone",
+   "l2": "once you know their colour"
+  },
+  {
+   "type": "pill",
+   "at": "celebrities@107.52",
+   "until": "him@108.22",
+   "text": "Celebrities behind him"
+  },
+  {
+   "type": "pill",
+   "at": "getting@110.32",
+   "until": "it@111.16",
+   "text": "Gets people to click"
+  },
+  {
+   "type": "quote",
+   "at": "crazy@113.64",
+   "until": "LMAO@114.62",
+   "l1": "Top comment:",
+   "l2": "“crazy title LMAO”"
+  },
+  {
+   "type": "badge",
+   "at": "30000@116.64",
+   "until": "likes@117.58",
+   "big": "30,000",
+   "count": 30000,
+   "count_word": "30000@116.64",
+   "sub": "likes on one comment"
+  },
+  {
+   "type": "pill",
+   "at": "powerful@118.70",
+   "until": "well@121.98",
+   "text": "Powerful copy + a good thumbnail"
+  },
+  {
+   "type": "chips",
+   "at": "description@125.44",
+   "until": "mentorship@132.52",
+   "items": [
+    "Paid YouTube membership",
+    "Free training",
+    "Free video series",
+    "Free newsletter",
+    "Paid mentorship"
+   ],
+   "item_words": [
+    "paid@127.74",
+    "communication@129.54",
+    "video@130.82",
+    "newsletter@131.68",
+    "mentorship@132.52"
+   ]
+  },
+  {
+   "type": "pill",
+   "at": "timestamps@136.32",
+   "until": "along@138.10",
+   "text": "Timestamps: easy to follow"
+  },
+  {
+   "type": "pill",
+   "at": "uploads@142.10",
+   "until": "YouTube@144.82",
+   "text": "Shorts + people clipping him"
+  },
+  {
+   "type": "chips",
+   "at": "podcasts@148.98",
+   "until": "diaryofaceo@151.74",
+   "items": [
+    "Jay Shetty",
+    "Diary of a CEO"
+   ],
+   "item_words": [
+    "jay@149.86",
+    "diaryofaceo@151.74"
+   ]
+  },
+  {
+   "type": "quote",
+   "at": "entirely@155.96",
+   "until": "audience@156.80",
+   "l1": "Not a completely",
+   "l2": "different audience"
+  },
+  {
+   "type": "chips",
+   "at": "same@159.02",
+   "until": "business@161.44",
+   "items": [
+    "Same age",
+    "Trying to improve",
+    "In business"
+   ],
+   "item_words": [
+    "same@159.02",
+    "improve@160.20",
+    "business@161.44"
+   ]
+  },
+  {
+   "type": "pill",
+   "at": "business@164.18",
+   "until": "podcast@166.26",
+   "text": "Business & self-improvement podcasts"
+  },
+  {
+   "type": "badge",
+   "at": "99@169.80",
+   "until": "well@172.32",
+   "big": "99%",
+   "count": 99,
+   "suffix": "%",
+   "count_word": "99@169.80",
+   "sub": "want to communicate better"
+  }
+ ],
+ "cta": {
+  "keyword": "VINH",
+  "follow": "check@179.38",
+  "comment": "VINH@184.54",
+  "full": "full@185.28",
+  "backdrop": {
+   "src": "v3",
+   "t": 20
+  }
+ }
+}

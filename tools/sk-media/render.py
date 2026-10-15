@@ -171,10 +171,18 @@ def render_segment(args):
             prog = (t - secs[c["section"]]["t0"]) / max(0.1, secs[c["section"]]["dur"])
             drift = lerp(MO["face_drift"]["from"], MO["face_drift"]["to"], min(1, max(0, prog)))
             zoom = drift * (MO["punch_in"] if c.get("punch") else 1.0)
-            ch = fc["hc"] / zoom; cw = ch * asp
-            if cw > bw: cw = bw; ch = cw / asp
-            if ch > bh: ch = bh; cw = ch * asp
-            x0 = min(max(fc["cx"] - cw / 2, 0), bw - cw); y0 = min(max(fc["cy"] - ch / 2, 0), bh - ch)
+            def fit_crop(z):
+                h_ = fc["hc"] / z; w_ = h_ * asp
+                if w_ > bw: w_ = bw; h_ = w_ / asp
+                if h_ > bh: h_ = bh; w_ = h_ * asp
+                return w_, h_
+            # where the face sits in the widest crop (off-centre when that crop is pinned to a frame edge, e.g. face_frame
+            # wide); drift and punch-ins zoom about that same spot so the face doesn't slide sideways at a punch-in cut
+            cw0, ch0 = fit_crop(1.0)
+            rx = (fc["cx"] - min(max(fc["cx"] - cw0 / 2, 0), bw - cw0)) / cw0
+            ry = (fc["cy"] - min(max(fc["cy"] - ch0 / 2, 0), bh - ch0)) / ch0
+            cw, ch = fit_crop(zoom)
+            x0 = min(max(fc["cx"] - rx * cw, 0), bw - cw); y0 = min(max(fc["cy"] - ry * ch, 0), bh - ch)
             im = Image.fromarray(b).crop((x0, y0, x0 + cw, y0 + ch)).resize((int(round(fw)), int(round(fh))), Image.LANCZOS)
             if PREM: PM.card_shadow(img, (fx, fy, fw, fh), S)
             img.paste(im, (int(round(fx)), int(round(fy))), rounded_mask(im.size[0], im.size[1], int(ST["card_radius"] * S)))
@@ -182,7 +190,7 @@ def render_segment(args):
             els.append({"id": "face", "kind": "card", "x": fx / S, "y": fy / S, "w": fw / S, "h": fh / S, "parent": None})
             if k == n // 2:
                 faces.append({"clip": c["idx"], "section": c["section"], "cx": fc["cx"] - x0, "cy": fc["cy"] - y0, "w": cw, "h": ch,
-                              "pinned": x0 <= 0.5 or x0 >= bw - cw - 0.5})   # crop against a frame edge: as centred as the frame allows
+                              "pinned": x0 <= 0.5 or x0 >= bw - cw - 0.5 or abs(rx - 0.5) > 1e-3})   # widest crop against a frame edge: as centred as the frame allows
             # --- header / progress (graphics stage)
             if graphics: els += G.header(img, t, S, plan, c)
             # --- caption
