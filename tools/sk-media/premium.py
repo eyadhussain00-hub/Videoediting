@@ -155,8 +155,10 @@ def stat3(card, t, S, g, ki, ko):
         if t >= at:
             kin = R.ease_out_quint(min(1, (t - at) / G.ms("enter")))
             lay = G.Layer(tw, th); grad_rr(lay, [0, 0, tw, th], int(26 * S), (34, 34, 42), (20, 20, 26))
-            kc = R.ease_out_expo(min(1, (t - at) / 0.35)); val = str(int(round(it["n"] * kc)))
-            lay.d.text((tw / 2, th * 0.50), val, font=fb, fill=YEL, anchor="ms")
+            kc = R.ease_out_expo(min(1, (t - at) / 0.35)); val = it.get("prefix", "") + f'{int(round(it["n"] * kc)):,}' + it.get("suffix", "")
+            ref = it.get("prefix", "") + f'{it["n"]:,}' + it.get("suffix", "")   # size from the final value so digits don't jump
+            fv, _, _ = G.fit(G.anton, ref, min(170 * S, th * 0.5), tw - 30 * S)
+            lay.d.text((tw / 2, th * 0.50), val, font=fv, fill=YEL, anchor="ms")
             f, _, o = G.fit(lambda p: G.inter(p, 800), it["label"].upper(), 30 * S, tw - 24 * S)
             lay.d.text((tw / 2, th * 0.70), it["label"].upper(), font=f, fill=WHITE, anchor="mm")
             if it.get("sub"):
@@ -171,26 +173,40 @@ def stat3(card, t, S, g, ki, ko):
     return out
 
 def funnel(card, t, S, g, ki, ko):
-    """Funnel tiers (widest on top), each sliding in on its word: [tag, text] per item."""
-    W, H = card.size; G.dim(card, ki * ko); n = len(g["items"]); gap = 14 * S
-    th = min(118 * S, (H - 80 * S - gap * (n - 1)) / n); top = W - 90 * S; bot = W * 0.46
+    """Funnel tiers (widest on top), each sliding in on its word: [tag, text] per item (text may be "").
+    "shape": "pyramid" flips it (narrowest on top), e.g. Schwartz's 5 levels of awareness listed from most aware down."""
+    W, H = card.size; G.dim(card, ki * ko); n = len(g["items"]); gap = (14 if n <= 3 else 10) * S
+    th = min(118 * S, (H - 80 * S - gap * (n - 1)) / n); top = W - 90 * S; bot = W * (0.46 if n <= 3 else 0.36)
+    pyr = g.get("shape") == "pyramid"
     cols = [((255, 222, 40), (240, 190, 0), BLACK), ((255, 150, 40), (236, 110, 20), BLACK), ((240, 52, 58), (176, 20, 30), WHITE)]
+    if n > 3:   # yellow -> orange -> red across the tiers
+        stops = [c[:2] for c in cols]; cols = []
+        for i in range(n):
+            u = i / (n - 1) * 2; a, b = stops[min(int(u), 1)], stops[min(int(u), 1) + 1]; f = u - min(int(u), 1)
+            mix = lambda p, q: tuple(int(p[k] + (q[k] - p[k]) * f) for k in range(3))
+            cols.append((mix(a[0], b[0]), mix(a[1], b[1]), BLACK if u < 1.4 else WHITE))
     y = H / 2 - (th * n + gap * (n - 1)) / 2; out = []
     for i, ((tag, txt), at) in enumerate(zip(g["items"], g["times"])):
         w0 = top - (top - bot) * i / n; w1 = top - (top - bot) * (i + 1) / n
+        if pyr: w0, w1 = bot + (top - bot) * (i + 1) / n, bot + (top - bot) * i / n   # w0 = widest edge (layer width)
         if t >= at:
             kin = R.ease_out_quint(min(1, (t - at) / G.ms("enter")))
-            lay = G.Layer(w0, th); c1, c2, fg = cols[i % 3]
+            lay = G.Layer(w0, th); c1, c2, fg = cols[i % len(cols)]
             m = Image.new("L", lay.im.size, 0); inset = (w0 - w1) / 2
-            ImageDraw.Draw(m).polygon([(0, 0), (w0, 0), (w0 - inset, th), (inset, th)], fill=255)
+            poly = [(inset, 0), (w0 - inset, 0), (w0, th), (0, th)] if pyr else [(0, 0), (w0, 0), (w0 - inset, th), (inset, th)]
+            ImageDraw.Draw(m).polygon(poly, fill=255)
             gr = np.linspace(0, 1, int(th))[:, None, None]
             arr = (np.array(c1) * (1 - gr) + np.array(c2) * gr) * np.ones((1, int(w0), 1))
             im = Image.fromarray(arr.astype(np.uint8), "RGB").convert("RGBA").resize(lay.im.size); im.putalpha(m)
             lay.im.alpha_composite(im)
-            ft = G.anton(th * 0.36); fx = G.inter(th * 0.25, 800)
-            lay.d.text((w0 / 2, th * 0.36), tag.upper(), font=ft, fill=fg, anchor="mm")
-            f2, _, o = G.fit(lambda p: G.inter(p, 700), txt, th * 0.24, w1 - 40 * S)
-            lay.d.text((w0 / 2, th * 0.72), txt, font=f2, fill=fg, anchor="mm")
+            if txt:
+                ft, _, o1 = G.fit(G.anton, tag.upper(), th * 0.36, min(w0, w1) - 40 * S)
+                lay.d.text((w0 / 2, th * 0.36), tag.upper(), font=ft, fill=fg, anchor="mm")
+                f2, _, o = G.fit(lambda p: G.inter(p, 700), txt, th * 0.24, min(w0, w1) - 40 * S); o = o or o1
+                lay.d.text((w0 / 2, th * 0.72), txt, font=f2, fill=fg, anchor="mm")
+            else:      # tag only, centred
+                ft, _, o = G.fit(G.anton, tag.upper(), th * 0.44, min(w0, w1) - 36 * S)
+                lay.d.text((w0 / 2, th * 0.52), tag.upper(), font=ft, fill=fg, anchor="mm")
             shine(lay, t, at, S, 0.55)
             b = lay.paste(card, W / 2, y + th / 2, kin, ko, S)
             out.append({"id": f'{g["id"]}.{i}', "kind": "chip", "x": b[0], "y": b[1], "w": b[2], "h": b[3], "overflow": o})
