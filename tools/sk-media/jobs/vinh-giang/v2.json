@@ -19,7 +19,7 @@
   }
  },
  "_sync": "webcam_t = loom_t + 14.527: 5 s probes every 6 s over the whole Loom all land on the same offset (NCC 0.85-0.92), no drift",
- "face_frame": "square",
+ "face_frame": "wide",
  "screen_region": [
   536,
   548,
@@ -684,8 +684,8 @@
    "type": "quote",
    "at": "someone@90.04",
    "until": "aware@91.20",
-   "l1": "Unaware ≠",
-   "l2": "extremely aware"
+   "l1": "Completely unaware",
+   "l2": "vs extremely aware"
   },
   {
    "type": "chips",
