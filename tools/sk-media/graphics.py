@@ -104,9 +104,15 @@ def active(plan, t, sec):
 
 def screen_overlay(card, t, S, plan, c, origin=(0, 0)):
     W, H = card.size; els = []
+    if plan.get("theme") == "premium" and t < R.L["opening_duration_s"]:
+        import premium
+        for b in premium.kicker(card, t, S, plan):
+            b.update({"x": (origin[0] + b["x"]) / S, "y": (origin[1] + b["y"]) / S, "w": b["w"] / S, "h": b["h"] / S, "parent": "screen"}); els.append(b)
     for g in active(plan, t, c["section"]):
         e = env(t, g["t0"], g["t1"]); ki, ko = e
-        fn = {"pill": pill, "badge": badge, "quote": quote, "chips": chips, "flow": flow}[g["type"]]
+        fn = {"pill": pill, "badge": badge, "quote": quote, "chips": chips, "flow": flow}.get(g["type"])
+        if plan.get("theme") == "premium":
+            import premium; fn = premium.TYPES.get(g["type"], fn)
         for b in fn(card, t, S, g, ki, ko) or []:
             b.update({"x": (origin[0] + b["x"]) / S, "y": (origin[1] + b["y"]) / S, "w": b["w"] / S, "h": b["h"] / S, "parent": "screen"})
             els.append(b)

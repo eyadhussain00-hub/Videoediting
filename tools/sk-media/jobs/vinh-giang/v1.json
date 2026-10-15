@@ -1,0 +1,870 @@
+{
+ "_comment": "Vinh Giang – Video 1 (Part 1/4: short-form). Premium theme. Paths relative to this folder.",
+ "subject": "Vinh Giang",
+ "video": 1,
+ "theme": "premium",
+ "series": "Part 1/4 · Short-form",
+ "drive": {
+  "sources_folder": "RSV Video/SK/Vinh Giang/vinh vid 2 shortform good (no OBS webcam uploaded; face = OBS preview inside the Loom)",
+  "export": "RSV Video/SK/Vinh Giang/vinh vid 2 shortform good/Export/Vinh Giang - Video 1.mp4"
+ },
+ "sources": {
+  "v2": {
+   "screen": "../src/v2__good_quality_shortform_and_manychat_stories_How_Vinh_Giang_Builds_Trust_And_Sales.mp4",
+   "face": "../extra/v2_cam.mp4",
+   "face_offset": 0.0,
+   "audio": "../src/v2__good_quality_shortform_and_manychat_stories_How_Vinh_Giang_Builds_Trust_And_Sales.mp4",
+   "words": "../words/v2good.json",
+   "facetrack": "../ft_v2.json"
+  }
+ },
+ "screen_region": [
+  536,
+  548,
+  38,
+  132
+ ],
+ "headline": [
+  "VINH GIANG'S $12M",
+  "SHORT-FORM MACHINE"
+ ],
+ "highlight": [
+  "vinh",
+  "giang",
+  "manychat",
+  "banana",
+  "7-11-4",
+  "stage",
+  "academy"
+ ],
+ "sections": {
+  "hook": [
+   "",
+   ""
+  ],
+  "01": [
+   "01",
+   "The Bio"
+  ],
+  "02": [
+   "02",
+   "Backstage"
+  ],
+  "03": [
+   "03",
+   "The 7-11-4 Rule"
+  ],
+  "04": [
+   "04",
+   "Story Highlights"
+  ],
+  "05": [
+   "05",
+   "3 Pinned Posts"
+  ],
+  "06": [
+   "06",
+   "Keyword Replies"
+  ],
+  "07": [
+   "07",
+   "ManyChat Bot"
+  ],
+  "08": [
+   "08",
+   "Fan Accounts"
+  ],
+  "cta": [
+   "09",
+   "Follow For More"
+  ]
+ },
+ "caption_fix": {
+  "vinang": "Vinh Giang",
+  "vin": "Vinh",
+  "yang's": "Giang's",
+  "yang": "Giang",
+  "manychat": "ManyChat",
+  "tiktok": "TikTok",
+  "bomber": "bottom",
+  "distance": "resistance",
+  "p2y": "PTY",
+  "o2d": "LTD",
+  "google": "Google"
+ },
+ "caption_pairs": [
+  [
+   "tick",
+   "tock",
+   "TikTok"
+  ],
+  [
+   "7",
+   "-eleven",
+   "7-11-4"
+  ],
+  [
+   "free",
+   "to",
+   "free 2-hour"
+  ],
+  [
+   "shoot",
+   "from",
+   "short-form"
+  ],
+  [
+   "long",
+   "form",
+   "long-form"
+  ],
+  [
+   "third",
+   "party",
+   "third-party"
+  ]
+ ],
+ "cuts": [
+  {
+   "section": "hook",
+   "src": "v2",
+   "in_t": 11.28,
+   "out": 14.95
+  },
+  {
+   "section": "01",
+   "src": "v2",
+   "in": 17.38,
+   "out": 21.62
+  },
+  {
+   "section": "01",
+   "src": "v2",
+   "in": 22.5,
+   "out": 23.78
+  },
+  {
+   "section": "01",
+   "src": "v2",
+   "in": 24.04,
+   "out": 26.1
+  },
+  {
+   "section": "01",
+   "src": "v2",
+   "in": 26.58,
+   "out": 29.26
+  },
+  {
+   "section": "01",
+   "src": "v2",
+   "in": 29.62,
+   "out": 31.0
+  },
+  {
+   "section": "01",
+   "src": "v2",
+   "in": 33.94,
+   "out": 37.94
+  },
+  {
+   "section": "01",
+   "src": "v2",
+   "in": 38.42,
+   "out": 43.92
+  },
+  {
+   "section": "01",
+   "src": "v2",
+   "in": 44.96,
+   "out": 46.32
+  },
+  {
+   "section": "02",
+   "src": "v2",
+   "in": 49.1,
+   "out": 51.06
+  },
+  {
+   "section": "02",
+   "src": "v2",
+   "in": 52.36,
+   "out": 55.76
+  },
+  {
+   "section": "02",
+   "src": "v2",
+   "in": 56.72,
+   "out": 57.48
+  },
+  {
+   "section": "03",
+   "src": "v2",
+   "in": 60.54,
+   "out": 62.28
+  },
+  {
+   "section": "03",
+   "src": "v2",
+   "in": 63.9,
+   "out": 66.22
+  },
+  {
+   "section": "03",
+   "src": "v2",
+   "in": 66.94,
+   "out": 70.3
+  },
+  {
+   "section": "03",
+   "src": "v2",
+   "in": 72.08,
+   "out": 75.4
+  },
+  {
+   "section": "04",
+   "src": "v2",
+   "in": 76.06,
+   "out": 76.94
+  },
+  {
+   "section": "04",
+   "src": "v2",
+   "in": 78.2,
+   "out": 79.82
+  },
+  {
+   "section": "04",
+   "src": "v2",
+   "in": 80.04,
+   "out": 82.26
+  },
+  {
+   "section": "04",
+   "src": "v2",
+   "in": 83.42,
+   "out": 84.7
+  },
+  {
+   "section": "04",
+   "src": "v2",
+   "in": 85.22,
+   "out": 88.32
+  },
+  {
+   "section": "04",
+   "src": "v2",
+   "in": 88.5,
+   "out": 90.0
+  },
+  {
+   "section": "05",
+   "src": "v2",
+   "in": 94.92,
+   "out": 96.04
+  },
+  {
+   "section": "05",
+   "src": "v2",
+   "in_t": 96.48,
+   "out_t": 97.0
+  },
+  {
+   "section": "05",
+   "src": "v2",
+   "in": 98.3,
+   "out": 99.14
+  },
+  {
+   "section": "05",
+   "src": "v2",
+   "in": 99.98,
+   "out": 101.54
+  },
+  {
+   "section": "05",
+   "src": "v2",
+   "in": 101.84,
+   "out": 103.12
+  },
+  {
+   "section": "05",
+   "src": "v2",
+   "in": 103.58,
+   "out": 104.96
+  },
+  {
+   "section": "05",
+   "src": "v2",
+   "out": 108.44,
+   "in_t": 105.94
+  },
+  {
+   "section": "06",
+   "src": "v2",
+   "in": 111.38,
+   "out": 112.24
+  },
+  {
+   "section": "06",
+   "src": "v2",
+   "in": 112.4,
+   "out": 114.98
+  },
+  {
+   "section": "06",
+   "src": "v2",
+   "in": 116.52,
+   "out": 118.54
+  },
+  {
+   "section": "06",
+   "src": "v2",
+   "in": 118.86,
+   "out": 120.26
+  },
+  {
+   "section": "06",
+   "src": "v2",
+   "in": 124.02,
+   "out": 128.3
+  },
+  {
+   "section": "07",
+   "src": "v2",
+   "in": 129.62,
+   "out": 132.2
+  },
+  {
+   "section": "07",
+   "src": "v2",
+   "in": 132.86,
+   "out": 137.26
+  },
+  {
+   "section": "07",
+   "src": "v2",
+   "in": 138.06,
+   "out": 142.18
+  },
+  {
+   "section": "07",
+   "src": "v2",
+   "in": 142.64,
+   "out": 145.36
+  },
+  {
+   "section": "07",
+   "src": "v2",
+   "in": 145.84,
+   "out": 147.38
+  },
+  {
+   "section": "08",
+   "src": "v2",
+   "in": 153.38,
+   "out": 155.24
+  },
+  {
+   "section": "08",
+   "src": "v2",
+   "in": 156.6,
+   "out": 158.16
+  },
+  {
+   "section": "08",
+   "src": "v2",
+   "in": 164.78,
+   "out": 167.24
+  },
+  {
+   "section": "08",
+   "src": "v2",
+   "in": 170.2,
+   "out": 171.06
+  },
+  {
+   "section": "08",
+   "src": "v2",
+   "in": 174.76,
+   "out": 175.26
+  },
+  {
+   "section": "cta",
+   "src": "v2",
+   "in": 176.34,
+   "out_t": 180.15
+  }
+ ],
+ "beats": [
+  {
+   "type": "pill",
+   "at": "personal@12.98",
+   "until": "academy@14.92",
+   "text": "Personal brand + Stage Academy"
+  },
+  {
+   "type": "pill",
+   "at": "ask@17.80",
+   "until": "that@18.78",
+   "text": "“Ask Vinh” = approachable"
+  },
+  {
+   "type": "quote",
+   "at": "older@21.00",
+   "until": "uncle@21.62",
+   "l1": "Older brother",
+   "l2": "or young uncle"
+  },
+  {
+   "type": "pill",
+   "at": "teacher@22.86",
+   "until": "does@23.78",
+   "text": "Teacher: clear what he does"
+  },
+  {
+   "type": "quote",
+   "at": "helping@24.04",
+   "until": "communication@26.10",
+   "l1": "Unlock your potential",
+   "l2": "through communication"
+  },
+  {
+   "type": "pill",
+   "at": "setting@27.02",
+   "until": "him@29.26",
+   "text": "Setting the outcome"
+  },
+  {
+   "type": "badge",
+   "at": "free@29.62",
+   "until": "resistance@31.00",
+   "big": "FREE",
+   "sub": "2-hour training · low sales resistance"
+  },
+  {
+   "type": "pill",
+   "at": "proper@37.78",
+   "until": "company@37.94",
+   "text": "A proper company"
+  },
+  {
+   "type": "dm",
+   "at": "DM@38.42",
+   "until": "reply@46.32",
+   "title": "askvinh",
+   "tag": "Instagram DM",
+   "avatar": "/home/user/Videoediting/output/sk-media/vinh/extra/vinh_avatar.png",
+   "msgs": [
+    {
+     "from": "me",
+     "text": "VOICE"
+    },
+    {
+     "from": "them",
+     "text": "Here's your free training",
+     "label": "automated reply"
+    }
+   ],
+   "item_words": [
+    "voice@38.90",
+    "automation@42.06"
+   ]
+  },
+  {
+   "type": "pill",
+   "at": "backstage@49.32",
+   "until": "Giang@49.84",
+   "text": "Backstage with Vinh Giang"
+  },
+  {
+   "type": "quote",
+   "at": "inner@50.68",
+   "until": "community@51.06",
+   "l1": "The inner",
+   "l2": "circle"
+  },
+  {
+   "type": "chips",
+   "at": "freebies@54.38",
+   "until": "course@57.48",
+   "items": [
+    "Freebies",
+    "Special offers",
+    "Discounts"
+   ],
+   "item_words": [
+    "freebies@54.38",
+    "special@55.00",
+    "discounts@55.76"
+   ]
+  },
+  {
+   "type": "pill",
+   "at": "know@61.68",
+   "until": "him@62.28",
+   "text": "Know · like · trust"
+  },
+  {
+   "type": "pill",
+   "at": "Google@65.10",
+   "until": "framework@66.22",
+   "text": "Google's 7-11-4 rule"
+  },
+  {
+   "type": "stat3",
+   "at": "seven@66.94",
+   "until": "locations@70.30",
+   "items": [
+    {
+     "n": 7,
+     "label": "hours",
+     "sub": "of engagement"
+    },
+    {
+     "n": 11,
+     "label": "touchpoints",
+     "sub": "& interactions"
+    },
+    {
+     "n": 4,
+     "label": "locations",
+     "sub": "separate places"
+    }
+   ],
+   "item_words": [
+    "seven@66.94",
+    "11@67.82",
+    "four@69.90"
+   ]
+  },
+  {
+   "type": "quote",
+   "at": "deciding@74.08",
+   "until": "purchase@75.40",
+   "l1": "Then people",
+   "l2": "decide to buy"
+  },
+  {
+   "type": "chips",
+   "at": "testimonials@78.20",
+   "until": "resistance@90.00",
+   "items": [
+    "Testimonials",
+    "Socials",
+    "YouTube",
+    "Podcast",
+    "Online course",
+    "Free training"
+   ],
+   "item_words": [
+    "testimonials@78.20",
+    "socials@80.04",
+    "YouTube@84.70",
+    "podcast@85.22",
+    "online@86.82",
+    "free@89.08"
+   ]
+  },
+  {
+   "type": "pill",
+   "at": "pinned@98.72",
+   "until": "post@99.14",
+   "text": "3 pinned posts"
+  },
+  {
+   "type": "funnel",
+   "at": "journey@100.76",
+   "until": "audiences@108.44",
+   "items": [
+    [
+     "Top of funnel",
+     "Journey & struggle"
+    ],
+    [
+     "Middle of funnel",
+     "Giving value"
+    ],
+    [
+     "Bottom of funnel",
+     "Selling his book"
+    ]
+   ],
+   "item_words": [
+    "journey@100.76",
+    "value@103.12",
+    "book@104.96"
+   ]
+  },
+  {
+   "type": "pill",
+   "at": "ramble@114.60",
+   "until": "lot@114.98",
+   "text": "His audience rambles"
+  },
+  {
+   "type": "quote",
+   "at": "articulate@117.68",
+   "until": "clearly@118.54",
+   "l1": "Hard to articulate",
+   "l2": "their thoughts"
+  },
+  {
+   "type": "quote",
+   "at": "reply@119.98",
+   "until": "banana@120.26",
+   "l1": "Keyword:",
+   "l2": "“BANANA”"
+  },
+  {
+   "type": "pill",
+   "at": "easier@127.24",
+   "until": "resources@128.30",
+   "text": "Easier to send resources"
+  },
+  {
+   "type": "pill",
+   "at": "automation@131.36",
+   "until": "ManyChat@132.20",
+   "text": "Automation with ManyChat"
+  },
+  {
+   "type": "dm",
+   "at": "follow@133.20",
+   "until": "lot@137.26",
+   "title": "askvinh",
+   "tag": "ManyChat bot · automated",
+   "avatar": "/home/user/Videoediting/output/sk-media/vinh/extra/vinh_avatar.png",
+   "msgs": [
+    {
+     "from": "me",
+     "text": "Followed"
+    },
+    {
+     "from": "them",
+     "text": "Hey! Vinh here. Super glad you followed, it means a lot",
+     "label": "sent by a bot"
+    }
+   ],
+   "item_words": [
+    "follow@133.20",
+    "bot@134.10"
+   ]
+  },
+  {
+   "type": "quote",
+   "at": "actually@140.70",
+   "until": "personalized@142.18",
+   "l1": "Feels like",
+   "l2": "it's really him"
+  },
+  {
+   "type": "flow",
+   "at": "banana@143.88",
+   "until": "resources@147.38",
+   "items": [
+    "Message “BANANA”",
+    "Info sent",
+    "Tap “Send free training”",
+    "More resources"
+   ],
+   "item_words": [
+    "banana@143.88",
+    "information@145.36",
+    "click@146.12",
+    "resources@147.38"
+   ]
+  },
+  {
+   "type": "pill",
+   "at": "third-party@153.86",
+   "until": "content@155.24",
+   "text": "Third-party fan accounts"
+  },
+  {
+   "type": "badge",
+   "at": "millions@157.56",
+   "until": "alone@158.16",
+   "big": "MILLIONS",
+   "sub": "of views on one fan page"
+  },
+  {
+   "type": "pill",
+   "at": "owns@167.24",
+   "text": "Some he owns himself"
+  },
+  {
+   "type": "quote",
+   "at": "millions@170.76",
+   "until": "autopilot@175.26",
+   "l1": "Millions of views",
+   "l2": "on autopilot"
+  }
+ ],
+ "cta": {
+  "keyword": "VINH",
+  "follow": "follow@176.34",
+  "comment": "VINH@177.86",
+  "full": "full@178.68",
+  "backdrop": {
+   "src": "v2",
+   "t": 163
+  }
+ },
+ "word_patch": [
+  {
+   "src": "v2",
+   "from": 29.6,
+   "to": 30.1,
+   "words": [
+    [
+     "free",
+     29.62,
+     29.84
+    ],
+    [
+     "2-hour",
+     29.86,
+     30.16
+    ]
+   ],
+   "_why": "ASR 'free to our training' = 'free 2-hour training'"
+  },
+  {
+   "src": "v2",
+   "from": 64.2,
+   "to": 64.8,
+   "words": [
+    [
+     "7-11-4",
+     64.28,
+     64.66
+    ],
+    [
+     "rule",
+     64.68,
+     64.9
+    ]
+   ],
+   "_why": "ASR '7 -eleven forum' = '7-11-4 rule'"
+  },
+  {
+   "src": "v2",
+   "from": 135.4,
+   "to": 135.8,
+   "words": [
+    [
+     "Vinh",
+     135.46,
+     135.68
+    ],
+    [
+     "here",
+     135.7,
+     136.0
+    ]
+   ],
+   "_why": "he reads the DM 'Hey! Vinh here' — ASR heard 'you've been here'"
+  },
+  {
+   "src": "v2",
+   "from": 177.8,
+   "to": 178.3,
+   "words": [
+    [
+     "comment",
+     177.86,
+     178.12
+    ],
+    [
+     "VINH",
+     178.14,
+     178.32
+    ]
+   ],
+   "_why": "ASR 'come and win' = 'comment VINH' (the CTA keyword)"
+  },
+  {
+   "src": "v2",
+   "from": 9.9,
+   "to": 12.9,
+   "words": [
+    [
+     "Vinang",
+     11.32,
+     11.5
+    ],
+    [
+     "made",
+     11.5,
+     11.7
+    ],
+    [
+     "over",
+     11.7,
+     11.92
+    ],
+    [
+     "$12",
+     11.92,
+     12.12
+    ],
+    [
+     "million",
+     12.12,
+     12.26
+    ],
+    [
+     "in",
+     12.26,
+     12.4
+    ],
+    [
+     "a",
+     12.6,
+     12.66
+    ],
+    [
+     "year",
+     12.66,
+     12.76
+    ],
+    [
+     "of",
+     12.76,
+     12.84
+    ],
+    [
+     "his",
+     12.84,
+     12.96
+    ]
+   ],
+   "_why": "he said the hook twice (7.5 and 10.6); ASR merged the second take into 'of'/'his' — verbatim timings of the clean second take"
+  },
+  {
+   "src": "v2",
+   "from": 96.2,
+   "to": 98.4,
+   "words": [
+    [
+     "he",
+     96.52,
+     96.6
+    ],
+    [
+     "has",
+     96.62,
+     96.95
+    ],
+    [
+     "three",
+     98.34,
+     98.68
+    ]
+   ],
+   "_why": "'he has, he has three pinned posts' — keep the first 'he has' + 'three' after the pause (ASR heard 'free')"
+  }
+ ],
+ "face_frame": "full_width"
+}

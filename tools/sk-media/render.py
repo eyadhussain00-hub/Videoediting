@@ -61,22 +61,23 @@ class Reader:
 
 # ---------------- captions ----------------
 BRAND = {"tjr", "kick", "youtube", "tiktok", "instagram", "twitter", "x", "threads", "island", "tjr's", "£25,000", "25,000"}
+EXTRA_HL = set()   # per-job highlight words (plan["highlight"])
 def is_hl(w):
     lw = w.lower().strip(".,!?")
-    return lw in BRAND or any(ch.isdigit() for ch in lw) or lw in ("billion", "billions")
+    return lw in BRAND or lw in EXTRA_HL or any(ch.isdigit() for ch in lw) or lw in ("billion", "billions")
 
 def draw_caption(img, chunk, t, S, box):
     x, y, w, h = box
     words = chunk["words"]; hl_chunk = any(is_hl(q["w"]) for q in words)
     size = ST["caption"]["size_px"] * S
     f = font(size)
-    sp = f.getlength(" ") * 1.3  # extra room so the 1.06 pop never touches its neighbour
+    sp = max(f.getlength(" ") * 1.3, size * 0.42)  # extra room so the 1.06 pop never touches its neighbour
     widths = [f.getlength(q["w"]) for q in words]
     total = sum(widths) + sp * (len(words) - 1)
     maxw = w - 40 * S
     overflow = False
     if total > maxw:  # auto-fit
-        size *= maxw / total; f = font(size); sp = f.getlength(" ") * 1.3
+        size *= maxw / total; f = font(size); sp = max(f.getlength(" ") * 1.3, size * 0.42)
         widths = [f.getlength(q["w"]) for q in words]; total = sum(widths) + sp * (len(words) - 1)
     # chunk enter: 120 ms fade/rise
     age = t - chunk["start"]; k = min(1, max(0, age / 0.12)); k = ease_out_quint(k)
@@ -114,16 +115,19 @@ def render_segment(args):
     caps = plan["captions"]; secs = plan["sections"]; gfx = plan.get("graphics", []) if graphics else []
     boxes, faces = {}, []
     sys.path.insert(0, str(HERE)); import graphics as G
+    EXTRA_HL.update(x.lower() for x in plan.get("highlight", []))
+    PREM = plan.get("theme") == "premium"
+    if PREM: import premium as PM
     for c in clips:
         n = c["frames"]
         # screen: decode the Miro region at native res, crop per frame
         sr = None
-        if c["screen_src"]:
+        if c["screen_src"] and not (c["section"] == "cta" and plan.get("cta")):   # CTA card always uses the dimmed backdrop
             sr = Reader(c["screen_src"], c["screen_t0"], n, crop=plan["screen_region"])
         fr = Reader(c["face_src"], c["face_t0"], n, scale=None, crop=[c["face_W"], c["face_H"], 0, 0])
         for k in range(n):
             gi = c["out_f0"] + k; t = gi / FPS
-            img = Image.new("RGBA", (W, H), BG + (255,))
+            img = PM.background(t, S) if PREM else Image.new("RGBA", (W, H), BG + (255,))
             els = []
             # --- screen card
             sx, sy, sw, sh_ = rect_at("screen", t, S)
@@ -134,6 +138,7 @@ def render_segment(args):
                 cw = aw; ch = cw / asp
                 if ch > ah: ch = ah; cw = ch * asp
                 z = G.screen_zoom(plan, c, t) if graphics else None
+                if PREM: pz = PM.push(plan, c, t); cw /= pz; ch /= pz
                 cx0, cy0 = aw / 2, ah / 2
                 if z:
                     zs, (fx, fy) = z; cw /= zs; ch /= zs
@@ -146,7 +151,9 @@ def render_segment(args):
                 for b in G.cta_screen(card, t, S, plan, c) or []:
                     b.update({"x": (sx + b["x"]) / S, "y": (sy + b["y"]) / S, "w": b["w"] / S, "h": b["h"] / S, "parent": "screen"}); els.append(b)
             if graphics: els += G.screen_overlay(card, t, S, plan, c, (sx, sy))
+            if PREM: PM.card_shadow(img, (sx, sy, sw, sh_), S)
             img.paste(card, (int(round(sx)), int(round(sy))), rounded_mask(card.size[0], card.size[1], int(ST["card_radius"] * S)))
+            if PREM: PM.card_border(img, (round(sx), round(sy), card.size[0], card.size[1]), S)
             els.append({"id": "screen", "kind": "card", "x": sx / S, "y": sy / S, "w": sw / S, "h": sh_ / S, "parent": None})
             # --- face card
             fx, fy, fw, fh = rect_at("face", t, S)
@@ -161,7 +168,9 @@ def render_segment(args):
             if ch > bh: ch = bh; cw = ch * asp
             x0 = min(max(fc["cx"] - cw / 2, 0), bw - cw); y0 = min(max(fc["cy"] - ch / 2, 0), bh - ch)
             im = Image.fromarray(b).crop((x0, y0, x0 + cw, y0 + ch)).resize((int(round(fw)), int(round(fh))), Image.LANCZOS)
+            if PREM: PM.card_shadow(img, (fx, fy, fw, fh), S)
             img.paste(im, (int(round(fx)), int(round(fy))), rounded_mask(im.size[0], im.size[1], int(ST["card_radius"] * S)))
+            if PREM: PM.card_border(img, (round(fx), round(fy), im.size[0], im.size[1]), S)
             els.append({"id": "face", "kind": "card", "x": fx / S, "y": fy / S, "w": fw / S, "h": fh / S, "parent": None})
             if k == n // 2:
                 faces.append({"clip": c["idx"], "section": c["section"], "cx": fc["cx"] - x0, "cy": fc["cy"] - y0, "w": cw, "h": ch})
@@ -174,6 +183,7 @@ def render_segment(args):
                     e = draw_caption(img, ch_, t, S, cb); e.update({k2: v / S for k2, v in e.items() if k2 in "xywh"}); els.append(e); break
             if graphics: els += G.overlays(img, t, S, plan, c)
             boxes[gi] = els
+            if PREM: PM.grain(img, gi)
             enc.stdin.write(img.convert("RGB").tobytes())
         if sr: sr.close()
         fr.close()
