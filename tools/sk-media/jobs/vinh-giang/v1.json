@@ -176,8 +176,8 @@
   {
    "section": "01",
    "src": "v2",
-   "in": 44.96,
-   "out": 46.32
+   "out": 46.32,
+   "in_t": 45.44
   },
   {
    "section": "02",
@@ -864,6 +864,19 @@
     ]
    ],
    "_why": "'he has, he has three pinned posts' — keep the first 'he has' + 'three' after the pause (ASR heard 'free')"
+  },
+  {
+   "src": "v2",
+   "from": 44.9,
+   "to": 45.0,
+   "words": [
+    [
+     "you're",
+     45.48,
+     45.62
+    ]
+   ],
+   "_why": "'uh' 44.80-45.26 sat inside the ASR span of 'you're' — real 'you're' starts 45.48"
   }
  ],
  "face_frame": "full_width"
