@@ -1,0 +1,605 @@
+{
+ "_comment": "Vinh Giang – Video 3A (Part 3/4, first half: the webinar funnel). Premium theme, wide face card. Workspace vinh/{src,extra,words}, job in vinh/p3a/job.json. src/p3_loom.mp4 + src/p3_cam.mov = landing pages vinh vid 5 (webcam = Loom + 12.59 s, NCC 0.917, no drift). extra/p4_tail.mp4 = Part 4 webcam (2026-09-10 19-54-12.mov) from 318 s: ffmpeg -ss 318 -i <mov> -c:v libx264 -crf 12 -c:a aac -b:a 192k; it supplies the 'comment VINH' CTA (Part 3 has none). Words: transcribe.py medium.en on p3_loom.mp4 and p4_tail.mp4; face tracks: facetrack.py p3_cam.mov 0 529 / p4_tail.mp4 0 55.",
+ "subject": "Vinh Giang",
+ "video": "3A",
+ "theme": "premium",
+ "series": "Part 3A/4 · Webinar Funnel",
+ "drive": {
+  "sources_folder": "RSV Video/SK/Vinh Giang/landing pages vinh vid 5 (Loom + OBS 2026-09-10 19-38-53.mov); CTA from vinh vid 5 newsletter/2026-09-10 19-54-12.mov",
+  "export": "RSV Video/SK/Vinh Giang/landing pages vinh vid 5/Export/Vinh Giang - Video 3A.mp4"
+ },
+ "sources": {
+  "p3": {
+   "screen": "../src/p3_loom.mp4",
+   "face": "../src/p3_cam.mov",
+   "face_offset": 12.59,
+   "audio": "../src/p3_loom.mp4",
+   "words": "../words/p3loom.json",
+   "facetrack": "../ft_p3.json"
+  },
+  "p4": {
+   "screen": null,
+   "face": "../extra/p4_tail.mp4",
+   "face_offset": 0.0,
+   "audio": "../extra/p4_tail.mp4",
+   "words": "../words/p4tail.json",
+   "facetrack": "../ft_p4tail.json"
+  }
+ },
+ "screen_region": [
+  536,
+  548,
+  38,
+  132
+ ],
+ "headline": [
+  "VINH GIANG'S $12M",
+  "WEBINAR FUNNEL"
+ ],
+ "highlight": [
+  "vinh",
+  "giang",
+  "webinarjam",
+  "webinar",
+  "countdown",
+  "bandwagon",
+  "scarcity",
+  "urgency"
+ ],
+ "sections": {
+  "hook": [
+   "",
+   ""
+  ],
+  "01": [
+   "01",
+   "Fake-Live Webinar"
+  ],
+  "02": [
+   "02",
+   "Why It Works"
+  ],
+  "03": [
+   "03",
+   "The Countdown"
+  ],
+  "04": [
+   "04",
+   "Authority Stacking"
+  ],
+  "05": [
+   "05",
+   "Value Stacking"
+  ],
+  "cta": [
+   "06",
+   "Follow For More"
+  ]
+ },
+ "caption_fix": {
+  "vin": "Vinh",
+  "yang": "Giang",
+  "yang's": "Giang's",
+  "vinayak": "Vinh Giang",
+  "synchronous": "synchronicity",
+  "pinpoint": "pain point",
+  "adjusted": "addressed",
+  "50k": "50K+"
+ },
+ "caption_pairs": [
+  [
+   "webinar",
+   "jam",
+   "WebinarJam"
+  ],
+  [
+   "pre",
+   "-recorded",
+   "pre-recorded"
+  ],
+  [
+   "call",
+   "to",
+   "call-to"
+  ]
+ ],
+ "cuts": [
+  {
+   "section": "hook",
+   "src": "p3",
+   "in": 16.62,
+   "last": "year"
+  },
+  {
+   "section": "hook",
+   "src": "p3",
+   "in": 58.92,
+   "last": "newsletter"
+  },
+  {
+   "section": "01",
+   "src": "p3",
+   "in": 61.58,
+   "out": 68.38
+  },
+  {
+   "section": "01",
+   "src": "p3",
+   "in": 71.92,
+   "out": 76.72
+  },
+  {
+   "section": "01",
+   "src": "p3",
+   "in": 77.02,
+   "out": 79.3
+  },
+  {
+   "section": "01",
+   "src": "p3",
+   "in": 79.92,
+   "out": 85.14
+  },
+  {
+   "section": "01",
+   "src": "p3",
+   "in": 85.62,
+   "out": 90.86
+  },
+  {
+   "section": "01",
+   "src": "p3",
+   "in": 92.7,
+   "out": 95.08
+  },
+  {
+   "section": "02",
+   "src": "p3",
+   "in": 95.68,
+   "out": 97.26
+  },
+  {
+   "section": "02",
+   "src": "p3",
+   "in": 99.72,
+   "out": 103.14
+  },
+  {
+   "section": "02",
+   "src": "p3",
+   "in": 108.46,
+   "out": 109.84
+  },
+  {
+   "section": "02",
+   "src": "p3",
+   "in": 116.34,
+   "out": 118.54
+  },
+  {
+   "section": "03",
+   "src": "p3",
+   "in": 121.4,
+   "out": 122.84
+  },
+  {
+   "section": "03",
+   "src": "p3",
+   "in": 125.82,
+   "out": 130.1
+  },
+  {
+   "section": "03",
+   "src": "p3",
+   "in_t": 130.95,
+   "out": 133.42
+  },
+  {
+   "section": "03",
+   "src": "p3",
+   "in_t": 133.92,
+   "out_t": 134.73,
+   "out": 134.6
+  },
+  {
+   "section": "03",
+   "src": "p3",
+   "in_t": 135.01,
+   "out_t": 135.53,
+   "out": 135.35
+  },
+  {
+   "section": "04",
+   "src": "p3",
+   "in": 135.96,
+   "out": 136.72
+  },
+  {
+   "section": "04",
+   "src": "p3",
+   "in": 138.2,
+   "out": 144.36
+  },
+  {
+   "section": "04",
+   "src": "p3",
+   "in": 146.68,
+   "out": 147.94
+  },
+  {
+   "section": "04",
+   "src": "p3",
+   "in": 150.58,
+   "out": 152.04
+  },
+  {
+   "section": "04",
+   "src": "p3",
+   "in": 152.44,
+   "out": 155.06
+  },
+  {
+   "section": "04",
+   "src": "p3",
+   "in": 155.36,
+   "out": 160.0
+  },
+  {
+   "section": "05",
+   "src": "p3",
+   "in": 164.72,
+   "out": 171.5
+  },
+  {
+   "section": "05",
+   "src": "p3",
+   "in": 171.72,
+   "out": 172.44
+  },
+  {
+   "section": "05",
+   "src": "p3",
+   "in": 172.9,
+   "out": 173.88
+  },
+  {
+   "section": "cta",
+   "src": "p3",
+   "in": 508.8,
+   "out": 510.6
+  },
+  {
+   "section": "cta",
+   "src": "p4",
+   "in": 44.92,
+   "out_t": 46.33,
+   "out": 46.0
+  },
+  {
+   "section": "cta",
+   "src": "p4",
+   "out": 49.38,
+   "in_t": 47.15
+  }
+ ],
+ "beats": [
+  {
+   "type": "stat3",
+   "at": "four@59.62",
+   "until": "newsletter@61.28",
+   "items": [
+    {
+     "n": 4,
+     "label": "links"
+    },
+    {
+     "n": 3,
+     "label": "landing pages"
+    },
+    {
+     "n": 1,
+     "label": "newsletter"
+    }
+   ],
+   "item_words": [
+    "four@59.62",
+    "three@60.06",
+    "one@61.10"
+   ]
+  },
+  {
+   "type": "pill",
+   "at": "webinar@63.24",
+   "until": "live@66.24",
+   "text": "Pre-recorded webinar page"
+  },
+  {
+   "type": "quote",
+   "at": "not@67.16",
+   "until": "recorded@68.36",
+   "l1": "Already",
+   "l2": "recorded"
+  },
+  {
+   "type": "pill",
+   "at": "select@74.56",
+   "until": "date@74.90",
+   "text": "Select date"
+  },
+  {
+   "type": "chips",
+   "at": "multiple@76.38",
+   "until": "hours@79.28",
+   "items": [
+    "Starts in 6 minutes",
+    "Starts in 3 hours",
+    "Starts in 15 hours"
+   ],
+   "item_words": [
+    "six@77.70",
+    "three@78.48",
+    "15@79.10"
+   ]
+  },
+  {
+   "type": "quote",
+   "at": "illusion@81.28",
+   "until": "in@85.12",
+   "l1": "The illusion",
+   "l2": "it's live"
+  },
+  {
+   "type": "pill",
+   "at": "master@88.32",
+   "until": "skills@90.84",
+   "text": "Master your conversations"
+  },
+  {
+   "type": "pill",
+   "at": "software@94.22",
+   "until": "WebinarJam@94.72",
+   "text": "Built with WebinarJam"
+  },
+  {
+   "type": "chips",
+   "at": "scarcity@97.24",
+   "until": "commitment@118.00",
+   "items": [
+    "Scarcity",
+    "Urgency",
+    "Social proof",
+    "Commitment"
+   ],
+   "item_words": [
+    "scarcity@97.24",
+    "urgency@102.18",
+    "social@108.88",
+    "commitment@118.00"
+   ]
+  },
+  {
+   "type": "countdown",
+   "at": "countdown@126.46",
+   "until": "live@130.08",
+   "label": "Webinar starts in",
+   "items": [
+    "6",
+    "5",
+    "4",
+    "3",
+    "2",
+    "1",
+    "LIVE"
+   ],
+   "item_words": [
+    "six@127.12",
+    "five@127.90",
+    "four@128.16",
+    "three@128.40",
+    "two@128.58",
+    "one@128.72",
+    "live@130.08"
+   ]
+  },
+  {
+   "type": "pill",
+   "at": "live@131.70",
+   "until": "chat@131.90",
+   "text": "Live chat"
+  },
+  {
+   "type": "quote",
+   "at": "basically@134.06",
+   "until": "live@135.30",
+   "l1": "Feels like",
+   "l2": "you're there live"
+  },
+  {
+   "type": "pill",
+   "at": "market@140.66",
+   "until": "research@140.90",
+   "text": "Pain point from market research"
+  },
+  {
+   "type": "quote",
+   "at": "free@143.12",
+   "until": "rambling@144.34",
+   "l1": "Free recording",
+   "l2": "ends the rambling"
+  },
+  {
+   "type": "pill",
+   "at": "social@147.06",
+   "until": "stacking@147.92",
+   "text": "Social proof + authority"
+  },
+  {
+   "type": "pill",
+   "at": "corporate@151.24",
+   "until": "here@152.02",
+   "text": "Corporate companies"
+  },
+  {
+   "type": "badge",
+   "at": "50k@153.00",
+   "until": "training@155.04",
+   "big": "50K+",
+   "count": 50,
+   "suffix": "K+",
+   "count_word": "50k@153.00",
+   "sub": "professionals already watched"
+  },
+  {
+   "type": "pill",
+   "at": "bandwagon@156.20",
+   "until": "effect@156.48",
+   "text": "The bandwagon effect"
+  },
+  {
+   "type": "quote",
+   "at": "feel@158.10",
+   "until": "bandwagon@159.98",
+   "l1": "Everyone else",
+   "l2": "feels left out"
+  },
+  {
+   "type": "pill",
+   "at": "value@165.30",
+   "until": "section@165.84",
+   "text": "Value stacking"
+  },
+  {
+   "type": "chips",
+   "at": "webinar@169.02",
+   "until": "well@173.86",
+   "items": [
+    "The webinar",
+    "Extra workbooks",
+    "Testimonials"
+   ],
+   "item_words": [
+    "webinar@169.02",
+    "workbooks@170.86",
+    "testimonials@172.92"
+   ]
+  }
+ ],
+ "cta": {
+  "keyword": "VINH",
+  "follow": "follow@508.84",
+  "comment": "VINH@p4:47.64",
+  "full": "full@p4:45.62",
+  "backdrop": {
+   "src": "p3",
+   "t": 140
+  }
+ },
+ "word_patch": [
+  {
+   "src": "p3",
+   "from": 147.4,
+   "to": 147.5,
+   "words": [
+    [
+     "and",
+     147.46,
+     147.6
+    ]
+   ],
+   "_why": "ASR 'social proof on authority' = 'and'"
+  },
+  {
+   "src": "p4",
+   "from": 46.2,
+   "to": 48.4,
+   "words": [
+    [
+     "comment",
+     47.18,
+     47.62
+    ],
+    [
+     "VINH",
+     47.64,
+     48.04
+    ],
+    [
+     "and",
+     48.16,
+     48.36
+    ]
+   ],
+   "_why": "ASR 'then it's common to Vin and' = 'then comment VINH and' (RMS edges; 'then' cut)"
+  },
+  {
+   "src": "p3",
+   "from": 22.0,
+   "to": 22.1,
+   "words": [
+    [
+     "year.",
+     22.02,
+     22.17
+    ]
+   ],
+   "_why": "caption break at the hook join"
+  },
+  {
+   "src": "p3",
+   "from": 133.6,
+   "to": 135.6,
+   "words": [
+    [
+     "you",
+     133.98,
+     134.06
+    ],
+    [
+     "basically",
+     134.08,
+     134.26
+    ],
+    [
+     "feel",
+     134.26,
+     134.44
+    ],
+    [
+     "like",
+     134.44,
+     134.68
+    ],
+    [
+     "you're",
+     135.02,
+     135.14
+    ],
+    [
+     "there",
+     135.18,
+     135.3
+    ],
+    [
+     "live.",
+     135.32,
+     135.5
+    ]
+   ],
+   "_why": "'you're, you're there live' — drop the first 'you're' (134.78-135.0), keep the second + 'there live'; RMS timings"
+  },
+  {
+   "src": "p3",
+   "from": 130.3,
+   "to": 130.97,
+   "words": [
+    [
+     "over",
+     130.96,
+     131.04
+    ]
+   ],
+   "_why": "drop the mumbled 'then' (130.78-130.94); 'over' starts 130.96"
+  }
+ ],
+ "face_frame": "wide"
+}

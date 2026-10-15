@@ -339,22 +339,28 @@ def price(card, t, S, g, ki, ko):
     W, H = card.size; G.dim(card, ki * ko); pre = g.get("prefix", "$")
     pw = W - 110 * S; ph = min(H - 70 * S, pw * 0.92); lay = G.Layer(pw, ph); d = lay.d
     grad_rr(lay, [0, 0, pw, ph], int(30 * S), (30, 30, 38), (16, 16, 21))
-    ft = G.inter(28 * S, 800); fl = G.inter(26 * S, 700)
-    if g.get("title"): d.text((pw / 2, 50 * S), g["title"].upper(), font=ft, fill=YEL, anchor="mm")
+    ft = G.inter(28 * S, 800); fl = G.inter(26 * S, 700); fo = G.anton(118 * S); fn = G.anton(196 * S)
+    cap = lambda f: f.getbbox("0")[3] - f.getbbox("0")[1]
+    # stack top-down (title, label, anchor price, label, real price), then centre the stack in the panel
+    y_title = 0; y_ol = y_title + (46 * S if g.get("title") else 0); oy = y_ol + 30 * S + cap(fo)
+    y_nl = oy + 46 * S; ny = y_nl + 34 * S + cap(fn); dy = (ph - ny) / 2 + 14 * S
+    y_title, y_ol, oy, y_nl, ny = [v + dy for v in (y_title, y_ol, oy, y_nl, ny)]
+    if g.get("title"): d.text((pw / 2, y_title), g["title"].upper(), font=ft, fill=YEL, anchor="mt")
     t_old, t_new = g["times"][0], g["times"][1]
-    fo = G.anton(118 * S); so = pre + f'{g["old"]:,}'; ow = _tabw(so, fo); oy = ph * 0.38
+    so = pre + f'{g["old"]:,}'; ow = _tabw(so, fo)
     struck = R.ease_out_quint(min(1, max(0, (t - t_new + 0.1) / 0.25)))
-    d.text((pw / 2, oy - 128 * S), g.get("old_label", "").upper(), font=fl, fill=SOFT, anchor="mm")
-    _tab(d, pw / 2 - ow / 2, oy, so, fo, (255, 255, 255, int(255 - 120 * struck)))
+    grey = tuple(int(255 + (v - 255) * struck) for v in (128, 128, 138))   # solid colour: alpha text would punch a hole
+    d.text((pw / 2, y_ol), g.get("old_label", "").upper(), font=fl, fill=SOFT, anchor="mt")
+    _tab(d, pw / 2 - ow / 2, oy, so, fo, grey)
     if struck > 0:
-        ch = fo.getbbox("0")[3] - fo.getbbox("0")[1]; ly = oy - ch * 0.45
+        ly = oy - cap(fo) * 0.5
         d.line([(pw / 2 - ow / 2 - 14 * S, ly + 10 * S), (pw / 2 - ow / 2 - 14 * S + (ow + 28 * S) * struck, ly + 10 * S - 20 * S * struck)],
                fill=RED + (255,), width=max(3, int(12 * S)))
-    out_over = ow > pw - 40 * S
+    out_over = ow > pw - 40 * S or ny > ph
     if t >= t_new:
         kn = R.ease_out_expo(min(1, (t - t_new) / 0.4)); val = int(round(g["old"] + (g["new"] - g["old"]) * kn))
-        fn = G.anton(196 * S); sn = pre + f"{val:,}"; ref = pre + f'{g["old"]:,}'; ny = ph * 0.84
-        d.text((pw / 2, ny - 228 * S), g.get("new_label", "").upper(), font=fl, fill=WHITE, anchor="mm")
+        sn = pre + f"{val:,}"; ref = pre + f'{g["old"]:,}'
+        d.text((pw / 2, y_nl), g.get("new_label", "").upper(), font=fl, fill=WHITE, anchor="mt")
         _tab(d, pw / 2 - _tabw(sn, fn) / 2, ny, sn, fn, YEL)
         out_over = out_over or _tabw(ref, fn) > pw - 40 * S
     shine(lay, t, g["t0"], S)
