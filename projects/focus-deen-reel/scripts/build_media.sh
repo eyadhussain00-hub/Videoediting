@@ -2,7 +2,9 @@
 # Footage for the edit, from cache/ (after clean_captions.py chunks): public/clean.mp4, public/fg.webm, freeze frames, mix.
 set -euo pipefail
 cd "$(dirname "$0")/.."
-ls cache/clean_a1.mp4 cache/clean_a2.mp4 cache/clean_a3.mp4 cache/clean_b.mp4 | sed 's/^/file /; s/cache\///' > cache/concat.txt
+# chunks: a1 = frames 0-119, a2 = 120-239 (pill + captions); c1..c3 = 239-712 (captions, 3-line band). a2 loses its last frame.
+ffmpeg -v error -y -i cache/clean_a2.mp4 -frames:v 119 -c:v libx264 -crf 12 -pix_fmt yuv420p cache/clean_a2t.mp4
+printf 'file %s\n' clean_a1.mp4 clean_a2t.mp4 clean_c1.mp4 clean_c2.mp4 clean_c3.mp4 > cache/concat.txt
 ffmpeg -v error -y -f concat -safe 0 -i cache/concat.txt -c copy cache/clean.mp4
 rm -f public/clean.mp4; ln cache/clean.mp4 public/clean.mp4          # hardlink: Remotion can't follow symlinks out of public/
 # speaker cut-out: matte choked (lut + erosion) so the bright ceiling doesn't halo his head on the coral world

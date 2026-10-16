@@ -80,7 +80,7 @@ def put(x, t, g=1.0, pan=0.0):
 
 # hook
 put(impact(1.2), 0.0, 0.45); put(whoosh(0.4, False), 0.0, 0.35)
-put(whoosh(0.35), T["tiktok"] - 0.3, 0.35); put(pop(), T["tiktok"] - 0.05, 0.5)
+put(whoosh(0.35), 0.05, 0.3); put(pop(), 0.3, 0.5)
 put(whoosh(0.25), T["locked"] - 0.28, 0.3); put(lock(), T["locked"] + 0.08, 0.95); put(impact(0.9), T["locked"] + 0.1, 0.35)
 put(whoosh(0.4, False), T["salah1"] - 0.3, 0.3); put(click(0.04, 1500, 7000, 0.01), T["salah1"] - 0.05, 0.45)
 # pray for us / right?

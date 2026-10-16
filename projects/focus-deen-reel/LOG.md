@@ -16,3 +16,4 @@
 - Cut list trims 6 pauses (23.8 → 20.5 s) + 1.2 s end card = 21.7 s. Words remapped onto the edit in src/data.ts.
 - audio.py: vocal stem cut on the same list, light EQ/compression, synthesised SFX (whooshes, locks, clicks,
   impacts, typing, toggles; nothing tonal), loudnorm -14 LUFS / -1.5 dBTP.
+- v1 rendered (Remotion concurrency 4, ~12 min), QA'd, preview sent on Telegram, full file in project files.

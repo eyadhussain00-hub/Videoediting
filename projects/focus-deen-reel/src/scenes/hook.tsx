@@ -8,8 +8,8 @@ import { TikTok } from "./icons";
 export const HookLock = () => {
   const t = useCurrentFrame() / FPS;
   const a = 1 - prog(t, T.s2 - 0.12, 0.12);
-  if (t > T.s2 || t < T.tiktok - 0.2) return null;
-  const pop = spring(t, T.tiktok - 0.12, 2.2, 7);
+  if (t > T.s2 || t < 0.25) return null;
+  const pop = spring(t, 0.3, 2.2, 7); // on screen early: the hook needs a picture before he names it
   const lockIn = prog(t, T.locked - 0.08, 0.2, outBack);
   const slam = bump(t - T.locked - 0.1, 0.22);
   const dead = prog(t, T.locked + 0.08, 0.35);
@@ -37,21 +37,21 @@ export const HookLock = () => {
       </Abs>
       <Abs
         style={{
-          left: 540 - 85,
-          top: 345 - 85 + (1 - lockIn) * -420,
+          left: 540 + 115 - 72,
+          top: 345 + 105 - 72 + (1 - lockIn) * -420,
           opacity: clamp01(lockIn * 3),
           transform: `scale(${1 + slam * 0.18}) rotate(${(1 - lockIn) * 20}deg)`,
           filter: "drop-shadow(0 18px 30px rgba(60,5,15,0.55))",
         }}
       >
-        <Lock size={170} body={CORAL} color="#fff" open={1 - prog(t, T.locked + 0.02, 0.12)} />
+        <Lock size={144} body={CORAL} color="#fff" open={1 - prog(t, T.locked + 0.02, 0.12)} />
       </Abs>
       <Abs
         style={{
           left: 0,
-          right: 0,
-          top: 488,
-          textAlign: "center",
+          width: 540 - 115 - 34,
+          top: 326,
+          textAlign: "right",
           fontFamily: MONO,
           fontSize: 30,
           letterSpacing: 8,

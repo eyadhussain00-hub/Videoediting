@@ -19,8 +19,8 @@ if "--threads" in sys.argv:
 W, H = 1080, 1920
 PILL_END = 239                                   # first frame without the pill
 PY0, PY1 = 240, 600                              # pill rows (plate region)
-CY0, CY1, CX0, CX1 = 1336, 1560, 120, 960        # caption crop LaMa sees (multiples of 8)
-BY0, BY1, BX0, BX1 = 1380, 1515, 170, 915        # where caption text is searched
+CY0, CY1, CX0, CX1 = 1272, 1560, 120, 960        # caption crop LaMa sees (multiples of 8)
+BY0, BY1, BX0, BX1 = 1320, 1520, 170, 915        # where caption text is searched (3-line captions start at y ~1340)
 
 
 def frames(idx):
@@ -78,18 +78,17 @@ def fill_pill(f, matte):
 def caption_mask(f):
     band = f[BY0:BY1, BX0:BX1].astype(np.int16)
     mn, mx = band.min(2), band.max(2)
-    m = ((mn > 145) & (mx - mn < 65)).astype(np.uint8) * 255   # the text is a slightly lilac white
-    m = cv2.morphologyEx(m, cv2.MORPH_OPEN, np.ones((2, 2), np.uint8))
+    m = ((mn > 190) & (mx - mn < 55)).astype(np.uint8) * 255     # the white letter cores (the collar never gets this white)
     box = cv2.dilate(m, cv2.getStructuringElement(cv2.MORPH_RECT, (29, 13)))
     num, lab, stats, _ = cv2.connectedComponentsWithStats(box)
     keep = np.zeros_like(m)
     for i in range(1, num):
         x, y, w, h, area = stats[i]
-        if 26 <= h <= 150 and w >= 60 and not (x < 40 and w < 160):   # word lines, not highlights or the flowers
-            keep[lab == i] = 255
+        if w >= 60 and h >= 20 and area >= 1500:   # word lines; drops collar specks and the flowers
+            keep[(lab == i) & (m > 0)] = 255
     full = np.zeros((H, W), np.uint8)
     full[BY0:BY1, BX0:BX1] = keep
-    return cv2.dilate(full, cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (15, 15)))
+    return cv2.dilate(full, cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (19, 19)))   # covers the lilac anti-aliasing
 
 
 from simple_lama_inpainting import SimpleLama
