@@ -1,0 +1,32 @@
+{
+  "_doc": "Before/after portfolio reels for RSV Studio (IG + TikTok). Times are seconds in the source files. src paths are relative to the work dir passed to build.py (footage stays on Drive; ids below). 'split.left' lists raw pieces that line up word-for-word with the edit window (offsets measured by audio cross-correlation).",
+  "style": {
+    "night": "#080a0e", "ink": "#eeeff4", "ink_soft": "#a7aab6",
+    "before": "#ff7078", "after": "#88efc2",
+    "endcard": ["RSV Studio", "Reels for finance & business creators", "DM to get yours"]
+  },
+  "reels": {
+    "adnan": {
+      "out": "adnan_before-after.mp4",
+      "hook": "What a re-edit does to a talking-head reel",
+      "highlight": "re-edit",
+      "raw":  {"file": "adnan/raw.MP4",  "drive_id": "1M1FpmsV6gNyknTlodY6HEOxtcFRYEUdL", "name": "hmrc can take up to 40% for IHT where will your family learn how to do.MP4", "vf": "transpose=2,scale=1080:1920", "words": "adnan/raw30.words.json"},
+      "edit": {"file": "adnan/edit.mp4", "drive_id": "1k5nqVYBXCG_By98avk5YkhVfeK1HRMsW", "name": "CEOwills - HMRC can take up to 40% - v14.mp4", "words": "adnan/edit30.words.json"},
+      "before": [0.6, 7.52],
+      "after": [0.0, 10.98],
+      "split": {"edit": [10.98, 13.28], "left": [[14.684, 16.704], [17.161, 17.441]]},
+      "caption_fix": {"go.": "go."}
+    },
+    "sk": {
+      "out": "sk_before-after.mp4",
+      "hook": "What a re-edit does to a raw screen recording",
+      "highlight": "re-edit",
+      "raw":  {"file": "sk/raw.mp4",  "drive_id": "11oWxpW9ZcQsQ79Cvqua0JlhtlAbgxSAe", "name": "FUNNEL BREAKDOWNS/VINH GIANG/vinh vid 2 shortform good/good quality shortform and manychat stories How Vinh Giang Builds Trust And Sales.mp4", "vf": "scale=1080:-2", "words": "sk/raw40.words.json"},
+      "edit": {"file": "sk/edit.mp4", "drive_id": null, "name": "/mnt/project-files/sk-media/vinh-giang/Vinh Giang - Video 1 - final preview.mp4", "words": "sk/edit30.words.json"},
+      "before": [7.2, 13.56],
+      "after": [0.0, 12.5],
+      "split": {"edit": [12.5, 15.14], "left": [[26.603, 29.243]]},
+      "caption_fix": {"Vinang": "Vinh Giang", "12": "$12", "dollars": ""}
+    }
+  }
+}
