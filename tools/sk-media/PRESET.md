@@ -121,3 +121,6 @@ plan.py enforces: never cross a section/layout change, min reading time 300 ms +
   makes the face card as wide as the screen card and taller (layout.json `variants.wide_face`, screen card 600 tall), crop
   = full webcam width, face as centred as the frame allows, no fill. QA with `--variant wide_face`. (`square` = small
   centred card; rejected as too tight.)
+- **17 Oct (Vinh uploads, project B):** a re-render from fresh transcripts broke beats and cuts (faster-whisper drift) →
+  commit the words a job was cut against (`jobs/vinh-giang/words/`) and re-use them. stutters.py flagged Whisper's
+  compound splits ("long" "-form", "7" "-11") as cut-off words → a '-xxx' glued to a whole word is no longer a hit.
