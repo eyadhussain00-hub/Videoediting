@@ -1,5 +1,5 @@
 # PROGRESS – ollie-outreach-reel   (updated 2026-10-17)
-Phase: preview (v2 = trimmed cut)
+Phase: preview (v2 sent on Telegram 17 Oct, merged PR #28, awaiting notes)
 
 Done:
 - Source: tiktok.com/@0llielund2/video/7472099732920290582 (Ollie, 19, appointment setting outreach tips, 60.9 s).
