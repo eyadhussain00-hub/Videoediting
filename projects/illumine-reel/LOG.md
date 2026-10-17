@@ -16,3 +16,4 @@
 - Whisper fixes (fix_words.py): split tokens glued (£20 ,000 / tax -free / 100 %), "do not drop a follow" →
   "do want to drop a follow" and "the next is taxed" → "the rest is taxed" (his own captions).
 - Cut list trims 4 pauses (75.0 → 74.2 s) + 2.2 s end card.
+- v1 rendered (~14 min), -14.3 LUFS. Telegram preview needs ~4 Mb/s for 76 s to stay under 50 MB. Sent 17 Oct; full file in project files.

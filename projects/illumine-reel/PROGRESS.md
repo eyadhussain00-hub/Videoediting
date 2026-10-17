@@ -1,8 +1,13 @@
 # PROGRESS – illumine-reel   (updated 2026-10-17)
-Phase: render (v1)
+Phase: preview (v1 sent on Telegram 17 Oct, awaiting notes)
+Current version: v1 → renders/final/illumine_v1.mp4 (1080×1920, 30 fps, 76.4 s, -14.3 LUFS / -1.5 dBTP; not committed).
+  Telegram preview: renders/previews/illumine_v1_preview.mp4 (4 Mb/s, 39 MB). Full v1 in project files illumine-reel/.
+  QA: stutters.py flags only whisper's split tokens ("tax -free", "self -invested"), not cuts.
 
 Source: tiktok.com/@officialillumine/video/7696997323389422870 (@officialillumine, "ISA or SIPP?", 75 s).
   Spec edit: a pitch piece, not for publishing without his permission. Footage is on TikTok, not in git.
+
+Next step: Eyad's notes on v1.
 
 Done:
 - Burned-in captions, glass labels and the top-right checklist removed (scripts/clean_captions.py via run_chunks.sh),
