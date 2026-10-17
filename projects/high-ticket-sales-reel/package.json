@@ -1,0 +1,20 @@
+{
+  "name": "high-ticket-sales-reel",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "studio": "remotion studio",
+    "typecheck": "tsc --noEmit",
+    "render": "remotion render Reel renders/final/high-ticket-sales-reel.mp4",
+    "still": "remotion still Reel"
+  },
+  "devDependencies": {
+    "@remotion/cli": "4.0.526",
+    "@remotion/google-fonts": "4.0.526",
+    "@types/react": "^19.3.0",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
+    "remotion": "4.0.526",
+    "typescript": "^5"
+  }
+}

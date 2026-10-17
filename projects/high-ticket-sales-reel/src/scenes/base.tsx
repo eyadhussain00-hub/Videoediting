@@ -1,0 +1,134 @@
+import { AbsoluteFill, Img, OffthreadVideo, Sequence, staticFile, useCurrentFrame } from "remotion";
+import { CAPTION_HIDE, CUT_END, DURATION, FPS, GOLD, GROUPS, KEYWORDS, SEGMENTS, SEG_OUT, T, clean } from "../data";
+import { SANS } from "../fonts";
+import { Abs, bump, inOutCubic, lerp, outExpo, prog, spring } from "../ui";
+
+// One camera for the clean plate and the speaker cut-out so they stay pixel-aligned. Each section gets its own framing:
+// punch-in on the hook, wide while the board is busy, a slow push on "rationalize", a snap on "scared".
+export const zoomAt = (t: number) => {
+  if (t < T.high2) return lerp(1.28, 1.12, prog(t, 0, 0.6, outExpo));
+  if (t < T.s2) return lerp(1.02, 1.07, (t - T.high2) / (T.s2 - T.high2)) + 0.05 * bump(t - T.k1 + 0.05, 0.5);
+  if (t < T.most) return lerp(1.14, 1.18, (t - T.s2) / (T.most - T.s2));
+  if (t < T.so1) return lerp(1.04, 1.16, prog(t, T.most, T.so1 - T.most, inOutCubic));
+  if (t < T.they2) return lerp(1.06, 1.1, (t - T.so1) / (T.they2 - T.so1));
+  if (t < T.so3) return lerp(1.16, 1.2, (t - T.they2) / (T.so3 - T.they2)) + 0.08 * Math.min(prog(t, T.scared - 0.06, 0.12, outExpo), 1 - prog(t, T.money3 - 0.2, 0.4));
+  return lerp(1.02, 1.06, prog(t, T.so3, T.end - T.so3));
+};
+const CUTS = [...SEG_OUT.slice(1).map((f) => f / FPS), T.high2, T.most, T.so1, T.they2, T.so3];
+export const camAt = (t: number) => {
+  let blur = 0;
+  for (const c of CUTS) blur = Math.max(blur, bump(t - c + 0.03, 0.16) * 5);
+  const sh = bump(t - T.back, 0.3) * 8 + bump(t - T.scared, 0.3) * 6 + bump(t - T.k1 - 0.1, 0.25) * 5;
+  return { z: zoomAt(t), blur, dx: Math.sin(t * 90) * sh, dy: Math.cos(t * 77) * sh };
+};
+
+/** The edit: kept source ranges laid end to end, then a freeze of the last frame under the end card. */
+export const Plate = ({ src, still, transparent = false }: { src: string; still: string; transparent?: boolean }) => {
+  const t = useCurrentFrame() / FPS;
+  const { z, blur, dx, dy } = camAt(t);
+  const endBlur = prog(t, T.endCard - 0.1, 0.6, inOutCubic) * 14;
+  const b = blur + endBlur;
+  return (
+    <AbsoluteFill style={{ overflow: "hidden" }}>
+      <AbsoluteFill
+        style={{
+          transform: `translate(${dx}px, ${dy}px) scale(${z})`,
+          transformOrigin: "38% 40%",
+          filter: [b > 0.05 ? `blur(${b}px)` : "", "contrast(1.1) saturate(1.04) brightness(0.97)"].join(" "),
+        }}
+      >
+        {SEGMENTS.map(([s, e], i) => (
+          <Sequence key={i} from={SEG_OUT[i]} durationInFrames={e - s} layout="none">
+            <OffthreadVideo src={staticFile(src)} startFrom={s} muted transparent={transparent} style={{ position: "absolute", width: 1080, height: 1920 }} />
+          </Sequence>
+        ))}
+        <Sequence from={CUT_END} layout="none">
+          <Img src={staticFile(still)} style={{ position: "absolute", width: 1080, height: 1920 }} />
+        </Sequence>
+      </AbsoluteFill>
+    </AbsoluteFill>
+  );
+};
+
+export const Footage = () => <Plate src="clean.mp4" still="img/last.png" />;
+export const Person = () => <Plate src="fg.webm" still="img/last_fg.png" transparent />;
+
+/** Cool filmic grade, top falloff so the graphics read on the pale wall, bottom falloff for captions, vignette. */
+export const Shade = () => (
+  <>
+    <AbsoluteFill style={{ background: "linear-gradient(180deg, rgba(120,150,200,0.14), rgba(255,190,120,0.12))", mixBlendMode: "soft-light" }} />
+    <AbsoluteFill style={{ background: "linear-gradient(180deg, rgba(8,10,16,0.5) 0%, rgba(8,10,16,0.22) 20%, rgba(0,0,0,0) 34%, rgba(0,0,0,0) 64%, rgba(6,8,12,0.4) 76%, rgba(6,8,12,0.8) 100%)" }} />
+    <AbsoluteFill style={{ background: "radial-gradient(ellipse 90% 68% at 50% 44%, rgba(0,0,0,0) 55%, rgba(4,6,10,0.5) 100%)" }} />
+  </>
+);
+
+/** Background dim behind the speaker while a card is up (punches the graphics forward). */
+export const BgDim = () => {
+  const t = useCurrentFrame() / FPS;
+  const a = Math.max(0.42 * (1 - prog(t, T.high2 - 0.2, 0.3)), 0.3 * prog(t, T.priced, 0.4) * (1 - prog(t, T.s2, 0.3)), 0.32 * prog(t, T.most, 0.5) * (1 - prog(t, T.so1, 0.3)), 0.3 * prog(t, T.back - 0.1, 0.3) * (1 - prog(t, T.so3, 0.3)));
+  return <AbsoluteFill style={{ background: `rgba(6,8,14,${a})` }} />;
+};
+
+export const Grain = () => {
+  const f = useCurrentFrame();
+  return (
+    <AbsoluteFill style={{ mixBlendMode: "overlay", opacity: 0.1, pointerEvents: "none" }}>
+      <svg width="1080" height="1920">
+        <filter id="g">
+          <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" seed={f % 12} stitchTiles="stitch" />
+          <feColorMatrix type="saturate" values="0" />
+        </filter>
+        <rect width="1080" height="1920" filter="url(#g)" />
+      </svg>
+    </AbsoluteFill>
+  );
+};
+
+export const CAPTION_Y = 1540;
+
+/** Word-by-word captions: bold white, the spoken word lifts into a gold pill; keywords stay gold once said. */
+export const Captions = () => {
+  const t = useCurrentFrame() / FPS;
+  if (t >= DURATION || CAPTION_HIDE.some(([a, b]) => t >= a && t < b)) return null;
+  const gi = GROUPS.findIndex((g, i) => t >= g.s - 0.08 && t < Math.min(GROUPS[i + 1]?.s ?? 99, g.e + 0.6) - 0.02);
+  if (gi < 0) return null;
+  const g = GROUPS[gi];
+  const p = prog(t, g.s - 0.08, 0.2);
+  return (
+    <Abs style={{ left: 50, right: 50, top: CAPTION_Y, display: "flex", justifyContent: "center", alignItems: "center", flexWrap: "wrap", columnGap: 12, rowGap: 6 }}>
+      {g.words.map((w, i) => {
+        const next = g.words[i + 1];
+        const active = t >= w.s - 0.04 && t < (next ? next.s - 0.04 : g.e + 0.6);
+        const spoken = t >= w.s - 0.04;
+        const pop = spring(t, w.s - 0.04, 3, 9);
+        const key = KEYWORDS.has(clean(w.w));
+        const txt = w.w.replace(/[.,?]$/, "");
+        return (
+          <span
+            key={i}
+            style={{
+              display: "inline-block",
+              padding: "2px 16px 8px",
+              borderRadius: 16,
+              fontFamily: SANS,
+              fontWeight: 800,
+              fontSize: 70,
+              letterSpacing: -1.6,
+              lineHeight: "80px",
+              color: active ? "#120C02" : spoken && key ? GOLD : "#fff",
+              opacity: p * (spoken ? 1 : 0.42),
+              transform: `translateY(${(1 - p) * 26}px) scale(${active ? lerp(0.86, 1.06, Math.min(1.2, pop)) : 1}) rotate(${active ? -1.5 : 0}deg)`,
+              background: active ? "linear-gradient(180deg, #FFE08A, #F4C760 55%, #D99A2B)" : "transparent",
+              boxShadow: active ? "0 10px 30px rgba(217,154,43,0.45), inset 0 1px 0 rgba(255,255,255,0.5)" : "none",
+              textShadow: active ? "none" : "0 4px 18px rgba(0,0,0,0.7), 0 2px 4px rgba(0,0,0,0.45)",
+              filter: `blur(${(1 - p) * 8}px)`,
+              whiteSpace: "nowrap",
+            }}
+          >
+            {txt}
+          </span>
+        );
+      })}
+    </Abs>
+  );
+};
