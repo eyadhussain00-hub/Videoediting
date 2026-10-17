@@ -1,6 +1,8 @@
 # PROGRESS – delayed-gratification-reel   (updated 2026-10-17)
-Phase: render (v1)
-Current version: v1 → renders/final/delayedgrat_v1.mp4 (1080×1920, 30 fps, 35.8 s, -14 LUFS; not committed).
+Phase: preview (v1 sent on Telegram 17 Oct, awaiting notes)
+Current version: v1 → renders/final/delayedgrat_v1.mp4 (1080×1920, 30 fps, 35.8 s, -14.4 LUFS / -1.5 dBTP; not committed).
+  Telegram preview: renders/previews/delayedgrat_v1_preview.mp4 (39 MB). Also in project files delayed-gratification-reel/.
+  QA: stutters.py flags only "over -delivered" at 21.44 s, which is whisper splitting his hyphenated word (no cut there).
 
 Done:
 - Source: tiktok.com/@entrepreneurtok_/video/7697045685887159559 (vt.tiktok.com/ZSg2xyv3U, "Entrepreneur Tok" clip page,
@@ -30,4 +32,5 @@ Rebuild from scratch (fresh container), from this folder:
   python3 scripts/matte.py cache/src1080.mp4 cache/matte.mp4 ·
   clean_captions.py in 4 chunks (setsid nohup, --threads 1): --range 0 220 → cache/clean_a.mp4, 220 440 → b, 440 660 → c, 660 880 → d ·
   bash scripts/build_media.sh · bash scripts/render.sh v1.  Stills: bash scripts/stills.sh 0.5 2 … → cache/stills/sheet.jpg.
+Next step: Eyad's notes on v1.
 Key files: src/data.ts (cut list, timings, palette), src/scenes/{base,behind,front,end,fx}.tsx, scripts/*.

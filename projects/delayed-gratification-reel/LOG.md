@@ -10,3 +10,4 @@
   dilated + the line's padded box + tinted glow pixels (not skin). LaMa at native 720p is ~2-6 s/frame on shared cores.
 - Demucs: no_vocals is -48 dB mean, i.e. no music bed; the vocal stem is used anyway (cleaner room).
 - Cut list from vocal-stem silences: 36.6 → 33.6 s of speech + 2.2 s end card.
+- v1 rendered (~8 min at concurrency 4), QA'd, preview sent on Telegram, copy in project files.
