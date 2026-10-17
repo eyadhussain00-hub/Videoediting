@@ -8,7 +8,7 @@ import { Abs, bump, inOutCubic, lerp, outExpo, prog, spring } from "../ui";
 // wide / tight), drifts in slowly, and leans in a touch more while the Qur'an or hadith is quoted.
 const FRAMES = [1.06, 1.16, 1.04, 1.14, 1.07, 1.17, 1.05];
 export const zoomAt = (t: number) => {
-  if (t < ITEMS[0].start) return lerp(1.34, 1.08, prog(t, 0, 0.7, outExpo)) + 0.03 * prog(t, 0.6, 3.2, inOutCubic);
+  if (t < ITEMS[0].start) return lerp(1.2, 1.0, prog(t, 0, 0.7, outExpo)) + 0.03 * prog(t, 0.6, 3.2, inOutCubic);
   if (t >= T.recap) return lerp(1.1, 1.0, prog(t, T.recap, 1.2, inOutCubic));
   let k = 0;
   ITEMS.forEach((it, i) => t >= it.start && (k = i));

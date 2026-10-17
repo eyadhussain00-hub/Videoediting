@@ -4,7 +4,7 @@ import { Accents } from "./scenes/accents";
 import { BgDim, Captions, Footage, Grain, Person, Shade } from "./scenes/base";
 import { ChapterCards, ProgressRail } from "./scenes/chapters";
 import { Flash, LightLeaks, RecapDim } from "./scenes/fx";
-import { HookBehind, HookFront } from "./scenes/hook";
+import { HookArabic, HookBehind, HookFront } from "./scenes/hook";
 import { EndCard, Recap } from "./scenes/outro";
 import { PatternWorld } from "./scenes/pattern";
 import { RefCards } from "./scenes/refs";
@@ -20,6 +20,7 @@ export const Reel = () => (
     <Person />
     <Shade />
     <HookFront />
+    <HookArabic />
     <ProgressRail />
     <RefCards />
     <Accents />
