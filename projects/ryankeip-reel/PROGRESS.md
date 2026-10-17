@@ -1,7 +1,8 @@
 # PROGRESS – ryankeip-reel   (updated 2026-10-17)
-Phase: preview (v1 rendering / sent on Telegram 17 Oct)
+Phase: preview (v1 sent on Telegram 17 Oct, awaiting notes)
 Current version: v1 → renders/final/ryankeip_v1.mp4 (1080×1920, 30 fps, ~100.3 s, -14 LUFS; not committed).
-  Telegram preview: renders/previews/ryankeip_v1_preview.mp4.
+  Telegram preview: renders/previews/ryankeip_v1_tg.mp4 (43 MB). Full v1 also in project files ryankeip-reel/.
+  QA: -14.5 LUFS / -1.5 dBTP, 100.4 s; contact sheet checked, no burned-in captions left.
 
 Done:
 - Source: tiktok.com/@theryankeip/video/7697469893448371470 (Ryan Keip, sales coach, 100.4 s talking head:
