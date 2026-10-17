@@ -130,6 +130,21 @@
    "in",
    "depth",
    "in-depth"
+  ],
+  [
+   "in",
+   "-depth",
+   "in-depth"
+  ],
+  [
+   "long",
+   "-form",
+   "long-form"
+  ],
+  [
+   "self",
+   "-improvement",
+   "self-improvement"
   ]
  ],
  "cuts": [
@@ -185,7 +200,7 @@
    "section": "03",
    "src": "v3",
    "in": 37.92,
-   "out": 40.12
+   "out": 40.15
   },
   {
    "section": "03",
@@ -209,13 +224,13 @@
    "section": "04",
    "src": "v3",
    "in": 52.32,
-   "out": 55.06
+   "out": 55.11
   },
   {
    "section": "04",
    "src": "v3",
    "in": 61.62,
-   "out": 62.78
+   "out": 62.81
   },
   {
    "section": "04",
@@ -239,13 +254,13 @@
    "section": "04",
    "src": "v3",
    "in": 89.48,
-   "out": 91.2
+   "out": 90.9
   },
   {
    "section": "04",
    "src": "v3",
-   "in": 93.28,
-   "out": 95.62
+   "out": 95.62,
+   "in_t": 93.22
   },
   {
    "section": "05",
@@ -257,7 +272,7 @@
    "section": "05",
    "src": "v3",
    "in": 100.08,
-   "out": 101.68
+   "out": 101.71
   },
   {
    "section": "06",
@@ -275,7 +290,7 @@
    "section": "06",
    "src": "v3",
    "in": 108.4,
-   "out": 111.16
+   "out": 111.19
   },
   {
    "section": "06",
@@ -358,8 +373,8 @@
   {
    "section": "cta",
    "src": "v3",
-   "in": 179.38,
-   "out": 180.18
+   "out": 180.18,
+   "in_t": 179.3
   },
   {
    "section": "cta",
@@ -508,6 +523,68 @@
     ]
    ],
    "_why": "Schwartz's levels: ASR punctuated 'most aware product, aware solution…' — it's 'most aware, product aware, solution aware, problem aware, completely unaware'; one caption token per level"
+  },
+  {
+   "_why": "17 Oct re-transcribe: '99' spanned the 0.5 s pause before it (RMS onset 169.84); 'as long' = 'as well'",
+   "src": "v3",
+   "from": 169.2,
+   "to": 170.1,
+   "words": [
+    [
+     "99",
+     169.84,
+     170.16
+    ]
+   ]
+  },
+  {
+   "_why": "17 Oct re-transcribe heard 'as long'; the approved cut ends on 'well'",
+   "src": "v3",
+   "from": 172.3,
+   "to": 172.5,
+   "words": [
+    [
+     "well",
+     172.3,
+     172.54
+    ]
+   ]
+  },
+  {
+   "_why": "17 Oct re-transcribe: 'check' onset 179.32 on the RMS (ASR put it at 179.30, inside 'from')",
+   "src": "v3",
+   "from": 179.25,
+   "to": 179.45,
+   "words": [
+    [
+     "check",
+     179.32,
+     179.44
+    ]
+   ]
+  },
+  {
+   "_why": "17 Oct: the take after the cut is 'aware of the problem' (no 'they are'; verbatim pass heard 'aware aware'), so cut 1 now ends on 'extremely' -> 'someone who is extremely aware of the problem'. Edges from the 20 ms RMS",
+   "src": "v3",
+   "from": 93.2,
+   "to": 93.62,
+   "words": [
+    [
+     "aware",
+     93.24,
+     93.47
+    ],
+    [
+     "of",
+     93.49,
+     93.56
+    ],
+    [
+     "the",
+     93.58,
+     93.65
+    ]
+   ]
   }
  ],
  "beats": [
@@ -683,7 +760,7 @@
   {
    "type": "quote",
    "at": "someone@90.04",
-   "until": "aware@91.20",
+   "until": "aware@93.24",
    "l1": "Completely unaware",
    "l2": "vs extremely aware"
   },

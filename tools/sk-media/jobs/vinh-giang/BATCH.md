@@ -68,3 +68,24 @@ P1's "backstage / inner circle" also appears in P4: keep it short in P4.
 - Webcam from the Loom: `ffmpeg -i <loom> -an -vf "crop=316:338:584:84,hqdn3d=1.5:1.5:3:3,scale=948:1014:flags=lanczos,unsharp=5:5:0.6:5:5:0.0,eq=contrast=1.04:saturation=1.06" -c:v libx264 -crf 12 extra/v2_cam.mp4`
 - Avatar (for the DM graphics): the photo on the Miro board at 8 s, `crop=60:60:314:246,scale=256:256` → `extra/vinh_avatar.png`
 - Words: `transcribe.py <loom> words/v2good.json medium.en`; face track: `facetrack.py extra/v2_cam.mp4 ft_v2.json 0 180`
+
+## Delivery
+
+**Delivered 17 Oct 2026 (project B), full quality on Drive** in Eyad's `RSV Video/SK/Vinh Giang/Video <N>/Export/`:
+
+| Video | File | Drive id | Length |
+|---|---|---|---|
+| 1 | `Video 1/Export/Vinh Giang - Video 1.mp4` | `1xFGf_e--nY9tN9fp4uUsHG_2jby_9_Dt` | 1:49 |
+| 2 | `Video 2/Export/Vinh Giang - Video 2.mp4` | `1Sr0dq8c5xM8bagdJsgN2c08tI11lXQ3b` | 1:43 |
+| 3A | `Video 3A/Export/Vinh Giang - Video 3A.mp4` | `1BBAKcU5nlT4ymIhFB4Xd08cVi9W_vVJA` | 1:27 |
+| 3B | `Video 3B/Export/Vinh Giang - Video 3B.mp4` | `1T1Q7HKV8o2fE64rpldkC8DBfmT3nb45Q` | 1:24 |
+| 4 | `Video 4/Export/Vinh Giang - Video 4.mp4` | `1FfCbeUd7YWrLakZHvWHRvGwZJ4PNeF6Y` | 1:43 |
+
+A new version replaces these in place (Make 7680385 with the id above), so the links never change.
+
+**Re-rendering needs the committed transcripts.** A fresh `transcribe.py` run no longer matches the words the jobs were
+cut against (faster-whisper drift: merged restarts, dropped words, "long" "-form" splits), so beats and cuts went missing.
+`words/` holds the transcripts these job files now match (medium.en, `condition_on_previous_text=False`, which was much
+closer to the originals than the default). Copy them to the workspace's `words/` instead of re-transcribing; the
+17 Oct fixes are in each job's `word_patch` / `caption_pairs` with a `_why`. Part 2 also lost a doubled "aware"
+(cut 1 now ends on "extremely").

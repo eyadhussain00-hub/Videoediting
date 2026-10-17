@@ -86,7 +86,8 @@
   "bare": "bear",
   "tiktok": "TikTok",
   "eugene": "Eugene",
-  "schwartz": "Schwartz"
+  "schwartz": "Schwartz",
+  "vinayang": "Vinh Giang"
  },
  "caption_pairs": [
   [
@@ -98,6 +99,26 @@
    "£1",
    ".99",
    "£1.99"
+  ],
+  [
+   "bite",
+   "-sized",
+   "bite-sized"
+  ],
+  [
+   "10",
+   ",000",
+   "10,000"
+  ],
+  [
+   "K",
+   "-Fabe",
+   "kayfabe"
+  ],
+  [
+   "e",
+   "-mail",
+   "email"
   ],
   [
    "bite",
@@ -152,7 +173,7 @@
    "section": "02",
    "src": "v4",
    "in": 59.3,
-   "out": 61.84
+   "out": 61.87
   },
   {
    "section": "02",
@@ -206,7 +227,7 @@
    "section": "04",
    "src": "v4",
    "in": 111.16,
-   "out": 112.56
+   "out": 112.73
   },
   {
    "section": "04",
@@ -248,13 +269,13 @@
    "section": "05",
    "src": "v4",
    "in": 188.96,
-   "out": 194.4
+   "out": 194.43
   },
   {
    "section": "05",
    "src": "v4",
    "in": 194.58,
-   "out": 196.8
+   "out": 196.83
   },
   {
    "section": "05",
@@ -272,7 +293,7 @@
    "section": "05",
    "src": "v4",
    "in": 203.02,
-   "out": 204.76
+   "out": 204.79
   },
   {
    "section": "06",
@@ -284,13 +305,13 @@
    "section": "06",
    "src": "v4",
    "in_t": 244.44,
-   "out": 247.0
+   "out": 247.03
   },
   {
    "section": "06",
    "src": "v4",
    "in": 250.42,
-   "out": 251.26
+   "out": 251.43
   },
   {
    "section": "06",
@@ -302,7 +323,7 @@
    "section": "06",
    "src": "v4",
    "in": 260.32,
-   "out": 262.14
+   "out": 262.17
   },
   {
    "section": "06",
@@ -314,7 +335,7 @@
    "section": "07",
    "src": "v4",
    "in": 281.55,
-   "out": 284.9
+   "out": 284.93
   },
   {
    "section": "07",
@@ -350,7 +371,7 @@
    "section": "07",
    "src": "v4",
    "in": 335.46,
-   "out": 336.28
+   "out": 336.31
   },
   {
    "section": "cta",
@@ -503,11 +524,11 @@
   },
   {
    "type": "badge",
-   "at": "ten@201.50",
+   "at": "10,000@201.50",
    "until": "month@202.74",
    "big": "10,000",
    "count": 10000,
-   "count_word": "thousand@201.68",
+   "count_word": "10,000@201.50",
    "sub": "people paying monthly"
   },
   {
@@ -770,8 +791,8 @@
   },
   {
    "src": "v4",
-   "from": 354.9,
-   "to": 356.4,
+   "from": 354.7,
+   "to": 356.45,
    "words": [
     [
      "comment",
@@ -800,6 +821,32 @@
     ]
    ],
    "_why": "ASR 'comment and I'll' — RMS shows a second syllable 355.44-355.84 = 'VINH' (the CTA keyword, like P1's 'come and win')"
+  },
+  {
+   "_why": "17 Oct re-transcribe heard 'valley' / 'group tries'",
+   "src": "v4",
+   "from": 61.5,
+   "to": 61.6,
+   "words": [
+    [
+     "value",
+     61.54,
+     61.86
+    ]
+   ]
+  },
+  {
+   "_why": "17 Oct re-transcribe heard 'group tries'",
+   "src": "v4",
+   "from": 162.3,
+   "to": 162.4,
+   "words": [
+    [
+     "chat",
+     162.36,
+     162.62
+    ]
+   ]
   }
  ],
  "face_frame": "wide"
