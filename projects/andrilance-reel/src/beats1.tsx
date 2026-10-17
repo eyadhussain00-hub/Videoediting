@@ -24,7 +24,7 @@ export const HookTitle = () => {
     </Abs>
   );
 };
-export const Hook21 = () => <BehindType a={at("21") - 0.05} b={at("while") + 0.35} top={470} size={760} color="transparent" style={{ WebkitTextStroke: `4px ${EMBER}`, fontStyle: "normal" }}>21</BehindType>;
+export const Hook21 = () => <BehindType a={at("21") - 0.05} b={at("while") + 0.35} top={560} size={500} color="transparent" style={{ WebkitTextStroke: `4px ${EMBER}`, fontStyle: "normal", left: 640, right: -400, textAlign: "left" }}>21</BehindType>;
 
 export const College = () => (
   <Beat a={at("go") - 0.15} b={at("now") - 0.05}>
@@ -100,7 +100,7 @@ export const Freedom = () => (
 export const DreamCar = () => (
   <Beat a={at("dream") - 0.12} b={at("life") + 0.05} fin={0.2} fout={0.2}>
     {(p, q, t) => (
-      <Abs style={{ left: 250, top: 1110, width: 580, height: 330, ...enter(Math.min(1, p), q, 30) }}>
+      <Abs style={{ left: 220, top: 1100, width: 640, height: 600, ...enter(Math.min(1, p), q, 30) }}>
         <div style={{ ...glass, background: "linear-gradient(160deg, rgba(36,30,26,0.97), rgba(13,11,10,0.98))", width: "100%", height: "100%", boxSizing: "border-box", padding: "34px 40px", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
           <Kicker>Unlocked</Kicker>
           <div style={{ display: "flex", alignItems: "center", gap: 24 }}>
@@ -115,7 +115,7 @@ export const DreamCar = () => (
     )}
   </Beat>
 );
-export const FreedomWord = () => <BehindType a={at("complete") - 0.05} b={at("promise") + 0.1} top={600} size={290}>freedom.</BehindType>;
+export const FreedomWord = () => <BehindType a={at("complete") - 0.05} b={at("promise") + 0.1} top={120} size={250}>freedom.</BehindType>;
 
 export const Social = () => (
   <Beat a={at("i've") - 0.1} b={at("this", 4) - 0.1}>
@@ -234,7 +234,7 @@ export const Receipt = () => (
   </Beat>
 );
 export const SameThing = () => (
-  <BehindType a={at("exact") - 0.1} b={at("each") + 0.05} top={520} size={200}>
+  <BehindType a={at("exact") - 0.1} b={at("each") + 0.05} top={110} size={170}>
     the exact
     <br />
     <span style={{ color: EMBER_SOFT }}>same thing.</span>
@@ -298,12 +298,12 @@ export const Without = () => (
   </Beat>
 );
 export const Teach = () => (
-  <BehindType a={at("what", 3) - 0.05} b={at("changed") - 0.05} top={300} size={1000} color="transparent" italic style={{ WebkitTextStroke: `4px ${EMBER}` }}>
+  <BehindType a={at("what", 3) - 0.05} b={at("changed") - 0.05} top={380} size={760} color="transparent" italic style={{ WebkitTextStroke: `4px ${EMBER}`, left: 620, right: -400, textAlign: "left" }}>
     ?
   </BehindType>
 );
 export const Forever = () => (
-  <BehindType a={at("changed") - 0.08} b={end("forever") + 0.25} top={560} size={210}>
+  <BehindType a={at("changed") - 0.08} b={end("forever") + 0.25} top={110} size={170}>
     changed my
     <br />
     <span style={{ color: EMBER_SOFT }}>life forever.</span>

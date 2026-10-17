@@ -64,7 +64,7 @@ export const Combine = () => (
   </Beat>
 );
 export const Step1 = () => (
-  <BehindType a={at("step") - 0.08} b={at("copy") + 0.1} top={430} size={620} font={SERIF} color={EMBER} ls={-30}>
+  <BehindType a={at("step") - 0.08} b={at("copy") + 0.1} top={110} size={420} font={SERIF} color={EMBER} ls={-20}>
     <div style={{ fontFamily: MONO, fontStyle: "normal", fontSize: 54, letterSpacing: 18, color: IVORY, marginBottom: -40 }}>STEP</div>
     01
   </BehindType>
@@ -184,10 +184,10 @@ export const Package = () => (
   </Beat>
 );
 export const YourSkill = () => (
-  <BehindType a={at("every", 2) - 0.08} b={at("if", 2) + 0.05} top={540} size={230}>
+  <BehindType a={at("every", 2) - 0.08} b={at("if", 2) + 0.05} top={110} size={190}>
     your skill
     <br />
-    <span style={{ color: EMBER_SOFT, fontFamily: SANS, fontStyle: "normal", fontWeight: 800, fontSize: 200, letterSpacing: -10 }}>= $</span>
+    <span style={{ color: EMBER_SOFT, fontFamily: SANS, fontStyle: "normal", fontWeight: 800, fontSize: 170, letterSpacing: -8 }}>= $</span>
   </BehindType>
 );
 
@@ -233,7 +233,7 @@ export const DmCard = ({ a, b, save, prompt, top = 170 }: { a: number; b: number
 export const Cta1 = () => <DmCard a={at("if", 2) - 0.1} b={at("now", 3) - 0.05} save={at("save")} prompt={at("prompt", 2)} />;
 
 export const Step2 = () => (
-  <BehindType a={at("now", 3) - 0.08} b={at("needed") - 0.05} top={430} size={620} font={SERIF} color={EMBER} ls={-30}>
+  <BehindType a={at("now", 3) - 0.08} b={at("needed") - 0.05} top={110} size={420} font={SERIF} color={EMBER} ls={-20}>
     <div style={{ fontFamily: MONO, fontStyle: "normal", fontSize: 54, letterSpacing: 18, color: IVORY, marginBottom: -40 }}>STEP</div>
     02
   </BehindType>
@@ -336,7 +336,7 @@ export const ViewsVsMoney = () => (
   </Beat>
 );
 export const Quality = () => (
-  <BehindType a={at("it's") - 0.08} b={at("claude", 4) + 0.1} top={520} size={250}>
+  <BehindType a={at("it's") - 0.08} b={at("claude", 4) + 0.1} top={110} size={240}>
     quality
     <div style={{ fontFamily: SANS, fontStyle: "normal", fontWeight: 700, fontSize: 80, letterSpacing: -2, color: GRAPHITE, marginTop: 30, textDecoration: "line-through", textDecorationColor: EMBER, textDecorationThickness: 6 }}>quantity</div>
   </BehindType>

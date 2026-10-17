@@ -129,7 +129,7 @@ export const Dots = () => {
                 height: 10,
                 borderRadius: 5,
                 background: li >= 0 && L > 0 ? EMBER : IVORY,
-                opacity: on * (li >= 0 && L > 0 ? 1 : lerp(0.55, 0.16, dim)),
+                opacity: on * (li >= 0 && L > 0 ? 1 : lerp(0.6, 0.3, dim)),
                 transform: `scale(${li >= 0 && L > 0 ? lerp(1, 2.2, Math.min(1.1, L)) : 1})`,
                 boxShadow: li >= 0 && L > 0 ? `0 0 0 ${8 * (1 + 0.3 * Math.sin(t * 6))}px rgba(255,106,43,0.25), 0 0 20px ${EMBER}` : undefined,
               }}
@@ -276,7 +276,6 @@ export const EndCard = () => {
 
 export const Behind3 = () => (
   <AbsoluteFill>
-    <PromptWord />
   </AbsoluteFill>
 );
 export const Front3 = () => (

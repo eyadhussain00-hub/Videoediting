@@ -1,5 +1,5 @@
 """Person matte for the depth layer (type that sits behind the speaker).
-Usage: python3 scripts/matte.py cache/raw.mp4 cache/matte.mp4 [model] [--limit N]
+Usage: python3 scripts/matte.py cache/raw.mp4 cache/matte.mp4 [model] [--limit N  (only frames 0-721 are kept, see matte_ranges.py)]
 rembg per frame on a 540x960 copy, upscaled with a guided refine against the full-res frame,
 then temporally smoothed (3-frame median + EMA) so the edge doesn't boil. Output: grayscale H.264 (white = person)."""
 import sys, subprocess, numpy as np, cv2

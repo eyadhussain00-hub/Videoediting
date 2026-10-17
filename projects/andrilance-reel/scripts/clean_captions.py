@@ -23,6 +23,8 @@ def caption_mask(f):
     band = f[BY0:BY1, BX0:BX1].astype(np.int16)
     mn, mx = band.min(2), band.max(2)
     m = ((mn > 185) & (mx - mn < 60)).astype(np.uint8) * 255
+    # drop the zipper (a white vertical run far taller than a letter) so it can't merge with a word line
+    m = cv2.subtract(m, cv2.morphologyEx(m, cv2.MORPH_OPEN, np.ones((80, 1), np.uint8)))
     box = cv2.dilate(m, cv2.getStructuringElement(cv2.MORPH_RECT, (31, 11)))
     num, lab, stats, _ = cv2.connectedComponentsWithStats(box)
     keep = np.zeros_like(m)
