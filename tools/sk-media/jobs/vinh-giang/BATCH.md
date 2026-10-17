@@ -71,6 +71,9 @@ P1's "backstage / inner circle" also appears in P4: keep it short in P4.
 
 ## Delivery
 
+**17 Oct 2026, project B: in_progress** — re-rendering all five from the job files for the full-quality Drive upload
+(new environment reaches Drive, Make hosts and Telegram). Export folders created: `RSV Video/SK/Vinh Giang/Video {1,2,3A,3B,4}/Export/`.
+
 All five reels (1, 2, 3A, 3B, 4) are edited and previewed; **no full-quality export is on Drive yet** (checked 17 Oct 2026:
 `RSV Video/SK/Vinh Giang/` holds only the four source folders, no `Video <N>/Export/`). Project B's cloud environment
 can't do the upload: it blocks `drive.usercontent.google.com` (footage download for a re-render), Make webhooks and
