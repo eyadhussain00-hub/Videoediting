@@ -20,9 +20,9 @@ export const TitleBehind = () => {
   });
   return (
     <>
-      <Abs style={{ left: 50, top: 150, fontFamily: SERIF, fontSize: 330, lineHeight: "300px", letterSpacing: -6, transformOrigin: "20% 80%", ...metal("gold"), ...word(a) }}>ISA</Abs>
-      <Abs style={{ left: 520, top: 255, fontFamily: SERIF, fontStyle: "italic", fontSize: 120, color: CREAM, opacity: vs * (1 - out), transform: `translateY(${-out * 200}px)` }}>vs</Abs>
-      <Abs style={{ right: 40, top: 360, fontFamily: SERIF, fontSize: 330, lineHeight: "300px", letterSpacing: -6, transformOrigin: "80% 80%", ...metal("blue"), ...word(b) }}>SIPP</Abs>
+      <Abs style={{ right: 70, top: 190, fontFamily: SERIF, fontSize: 290, lineHeight: "270px", letterSpacing: -6, transformOrigin: "80% 80%", ...metal("gold"), ...word(a) }}>ISA</Abs>
+      <Abs style={{ right: 440, top: 420, fontFamily: SERIF, fontStyle: "italic", fontSize: 110, color: CREAM, opacity: vs * (1 - out), transform: `translateY(${-out * 200}px)`, textShadow: "0 4px 20px rgba(0,0,0,0.5)" }}>vs</Abs>
+      <Abs style={{ right: 40, top: 470, fontFamily: SERIF, fontSize: 250, lineHeight: "240px", letterSpacing: -5, transformOrigin: "80% 80%", ...metal("blue"), ...word(b) }}>SIPP</Abs>
     </>
   );
 };

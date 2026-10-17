@@ -12,9 +12,9 @@ export const Reel = () => (
     <Footage />
     <BgDim />
     <TitleBehind />
-    <BothBehind />
     <Person />
     <Shade />
+    <BothBehind />
     <GlassTags />
     <GlassLock />
     <IsaAllowance />

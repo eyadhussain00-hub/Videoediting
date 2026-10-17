@@ -12,7 +12,7 @@ export const zoomAt = (t: number) => {
   if (t < CH.catch) return lerp(1.1, 1.04, prog(t, CH.sipp, 0.5, outExpo)) + 0.03 * prog(t, CH.sipp + 0.5, CH.catch - CH.sipp);
   if (t < CH.verdict) return lerp(1.04, 1.16, prog(t, CH.catch, 1.2, outExpo)) + 0.03 * prog(t, CH.catch + 1.2, CH.verdict - CH.catch);
   if (t < T.ideally - 0.06) return lerp(1.0, 1.04, prog(t, CH.verdict, T.ideally - CH.verdict));
-  if (t < CH.outro) return lerp(1.14, 1.06, prog(t, T.ideally - 0.06, 0.5, outExpo));
+  if (t < CH.outro) return lerp(1.0, 1.04, prog(t, T.ideally - 0.06, CH.outro - T.ideally));
   return lerp(1.0, 1.05, prog(t, CH.outro, T.endCard - CH.outro));
 };
 const CUTS = [...SEG_OUT.slice(1).map((f) => f / FPS), CH.isa, CH.sipp, CH.catch, CH.verdict, T.ideally - 0.06, CH.outro];

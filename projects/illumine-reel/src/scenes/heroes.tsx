@@ -131,8 +131,8 @@ export const Acronym = () => {
         const p = spring(t, s - 0.25, 2, 7);
         const typed = Math.floor(rest.length * prog(t, s - 0.05, 0.35, (x) => x));
         return (
-          <div key={i} style={{ display: "flex", alignItems: "baseline", height: 128, opacity: 0.25 + 0.75 * Math.min(1, p * 1.5) }}>
-            <div style={{ width: 120, fontFamily: SERIF, fontSize: 150, lineHeight: "128px", ...metal("blue"), transform: `scale(${lerp(0.7, 1, Math.min(1.05, p))})` }}>{l}</div>
+          <div key={i} style={{ display: "flex", alignItems: "baseline", height: 128, opacity: 0.4 + 0.6 * Math.min(1, p * 1.5) }}>
+            <div style={{ width: 110, fontFamily: SANS, fontWeight: 900, fontSize: 120, lineHeight: "128px", ...metal("blue"), transform: `scale(${lerp(0.7, 1, Math.min(1.05, p))})` }}>{l}</div>
             <div style={{ fontFamily: SANS, fontWeight: 700, fontSize: 56, color: CREAM, textShadow: "0 3px 14px rgba(0,0,0,0.6)" }}>{rest.slice(0, typed)}</div>
           </div>
         );
@@ -284,9 +284,10 @@ export const BothBehind = () => {
   const p = spring(t, T.both2 - 0.12, 1.7, 6);
   const q = prog(t, T.use - 0.1, 0.5, inCubic);
   return (
-    <Abs style={{ left: 0, right: 0, top: 200, textAlign: "center", fontFamily: SERIF, fontSize: 380, lineHeight: "360px", letterSpacing: -10, opacity: Math.min(1, p * 2) * (1 - q), transform: `scale(${lerp(0.6, 1, Math.min(1.08, p)) * (1 + q * 0.15)})`, filter: `blur(${Math.max(0, 1 - p) * 20 + q * 16}px)` }}>
-      <span style={metal("gold")}>BO</span>
-      <span style={metal("blue")}>TH.</span>
+    <Abs style={{ right: 40, top: 330, textAlign: "right", fontFamily: SERIF, fontSize: 250, lineHeight: "240px", letterSpacing: -6, transformOrigin: "100% 50%", opacity: Math.min(1, p * 2) * (1 - q), transform: `scale(${lerp(0.6, 1, Math.min(1.08, p)) * (1 + q * 0.15)})`, filter: `blur(${Math.max(0, 1 - p) * 20 + q * 16}px)` }}>
+      <div style={{ fontFamily: MONO, fontSize: 28, letterSpacing: 6, color: CREAM, marginBottom: 8, textShadow: "0 2px 10px rgba(0,0,0,0.6)" }}>IDEALLY</div>
+      <span style={{ ...metal("gold"), filter: "drop-shadow(0 10px 30px rgba(0,0,0,0.5))" }}>BO</span>
+      <span style={{ ...metal("blue"), filter: "drop-shadow(0 10px 30px rgba(0,0,0,0.5))" }}>TH.</span>
     </Abs>
   );
 };
