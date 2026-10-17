@@ -84,7 +84,9 @@
   "synchronous": "synchronicity",
   "pinpoint": "pain point",
   "adjusted": "addressed",
-  "50k": "50K+"
+  "50k": "50K+",
+  "vinyank": "Vinh Giang",
+  "webinarjam": "WebinarJam"
  },
  "caption_pairs": [
   [
@@ -101,6 +103,16 @@
    "call",
    "to",
    "call-to"
+  ],
+  [
+   "3",
+   "part",
+   "3-part"
+  ],
+  [
+   "100",
+   "%",
+   "100%"
   ]
  ],
  "cuts": [
@@ -285,7 +297,7 @@
  "beats": [
   {
    "type": "stat3",
-   "at": "four@59.62",
+   "at": "4@59.62",
    "until": "newsletter@61.28",
    "items": [
     {
@@ -302,9 +314,9 @@
     }
    ],
    "item_words": [
-    "four@59.62",
-    "three@60.06",
-    "one@61.10"
+    "4@59.62",
+    "3@60.18",
+    "1@61.10"
    ]
   },
   {
@@ -336,8 +348,8 @@
     "Starts in 15 hours"
    ],
    "item_words": [
-    "six@77.70",
-    "three@78.48",
+    "6@77.70",
+    "3@78.48",
     "15@79.10"
    ]
   },
@@ -599,6 +611,67 @@
     ]
    ],
    "_why": "drop the mumbled 'then' (130.78-130.94); 'over' starts 130.96"
+  },
+  {
+   "_why": "17 Oct re-transcribe merged three restarts into one 'synchronicity' (103.5-110.6); clean take 108.42-110.65 read off a verbatim slice + 20 ms RMS",
+   "src": "p3",
+   "from": 103.5,
+   "to": 110.7,
+   "words": [
+    [
+     "and",
+     108.44,
+     108.56
+    ],
+    [
+     "it",
+     108.56,
+     108.66
+    ],
+    [
+     "builds",
+     108.66,
+     108.9
+    ],
+    [
+     "social",
+     108.9,
+     109.2
+    ],
+    [
+     "proof",
+     109.2,
+     109.44
+    ],
+    [
+     "through",
+     109.62,
+     109.8
+    ],
+    [
+     "synchronicity",
+     109.82,
+     110.62
+    ]
+   ]
+  },
+  {
+   "_why": "17 Oct re-transcribe: 'a joint fifty k plus' = 'join 50K+' (button copy, verbatim slice)",
+   "src": "p3",
+   "from": 152.79,
+   "to": 153.75,
+   "words": [
+    [
+     "join",
+     152.82,
+     152.98
+    ],
+    [
+     "50k",
+     153.0,
+     153.74
+    ]
+   ]
   }
  ],
  "face_frame": "wide"

@@ -100,7 +100,8 @@
   "war": "raw",
   "stage": "Stage",
   "academy": "Academy",
-  "fomo": "FOMO"
+  "fomo": "FOMO",
+  "vinyank": "Vinh Giang"
  },
  "caption_pairs": [
   [
@@ -132,6 +133,26 @@
    "call",
    "to",
    "call-to"
+  ],
+  [
+   "three",
+   "part",
+   "3-part"
+  ],
+  [
+   "$2",
+   ",999",
+   "$2,999"
+  ],
+  [
+   "3",
+   "part",
+   "3-part"
+  ],
+  [
+   "100",
+   "%",
+   "100%"
   ]
  ],
  "cuts": [
@@ -196,7 +217,7 @@
    "section": "04",
    "src": "p3",
    "in": 251.5,
-   "out": 253.84
+   "out": 253.91
   },
   {
    "section": "04",
@@ -499,7 +520,7 @@
    "old_label": "He says it's",
    "new_label": "Actually",
    "item_words": [
-    "2999@432.64",
+    "$2,999@432.66",
     "997@434.38"
    ]
   },
@@ -580,7 +601,7 @@
   {
    "src": "p3",
    "from": 197.3,
-   "to": 197.6,
+   "to": 197.67,
    "words": [
     [
      "dialed-in",
@@ -593,7 +614,7 @@
   {
    "src": "p3",
    "from": 201.7,
-   "to": 202.1,
+   "to": 202.15,
    "words": [
     [
      "to",
@@ -759,6 +780,19 @@
     ]
    ],
    "_why": "'plan, or, uh, apply for the plan, or s- s- submit' — cut 'or uh' and the 's- s-' restart (verbatim pass + RMS)"
+  },
+  {
+   "_why": "17 Oct re-transcribe wrote 'a hundred thousand' (the graphic and the old captions say 100,000)",
+   "src": "p3",
+   "from": 347.3,
+   "to": 347.8,
+   "words": [
+    [
+     "100,000",
+     347.38,
+     347.84
+    ]
+   ]
   }
  ]
 }
