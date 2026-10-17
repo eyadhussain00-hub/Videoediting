@@ -68,3 +68,10 @@ P1's "backstage / inner circle" also appears in P4: keep it short in P4.
 - Webcam from the Loom: `ffmpeg -i <loom> -an -vf "crop=316:338:584:84,hqdn3d=1.5:1.5:3:3,scale=948:1014:flags=lanczos,unsharp=5:5:0.6:5:5:0.0,eq=contrast=1.04:saturation=1.06" -c:v libx264 -crf 12 extra/v2_cam.mp4`
 - Avatar (for the DM graphics): the photo on the Miro board at 8 s, `crop=60:60:314:246,scale=256:256` → `extra/vinh_avatar.png`
 - Words: `transcribe.py <loom> words/v2good.json medium.en`; face track: `facetrack.py extra/v2_cam.mp4 ft_v2.json 0 180`
+
+## Delivery
+
+All five reels (1, 2, 3A, 3B, 4) are edited and previewed; **no full-quality export is on Drive yet** (checked 17 Oct 2026:
+`RSV Video/SK/Vinh Giang/` holds only the four source folders, no `Video <N>/Export/`). Project B's cloud environment
+can't do the upload: it blocks `drive.usercontent.google.com` (footage download for a re-render), Make webhooks and
+`api.telegram.org`, and has no `RCLONE_REMOTE`. Upload from the main project, or after those hosts are allowed.
