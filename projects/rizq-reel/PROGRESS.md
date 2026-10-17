@@ -1,7 +1,7 @@
 # PROGRESS – rizq-reel   (updated 2026-10-17)
 Phase: preview (v1)
-Current version: v1 → renders/final/rizq_v1.mp4 (1080×1920, 30 fps, ~63 s, -14 LUFS; not committed).
-  Telegram preview: renders/previews/rizq_v1_preview.mp4.
+Current version: v1 → renders/final/rizq_v1.mp4 (1080×1920, 30 fps, 63.4 s, -14.3 LUFS / -1.5 dBTP; not committed).
+  Telegram preview: renders/previews/rizq_v1_preview.mp4 (40 MB). Full v1 also in project files rizq-reel/.
 
 Done:
 - Source: tiktok.com/@shohaibahmedofficial/video/7696888698629016854 (Shohaib Ahmed, "7 actions that increase your
