@@ -37,7 +37,9 @@ for i, (w, t) in enumerate(W):
     lw = n(w)
     if lw in FILL: hits.append((t, f"filler '{w}'"))
     if lw in RESTART and 0 < i < len(W) - 1: hits.append((t, f"restart marker '{w}' — check for a repeated line around it"))
-    if w.endswith("-") or w == "-" or (w.startswith("-") and len(w) > 1): hits.append((t, f"cut-off word '{w}'"))
+    # Whisper also splits compounds into "long" "-form", "7" "-11" "-4": a '-xxx' glued to a whole word is not a cut-off
+    compound = w.startswith("-") and i and not W[i - 1][0].endswith(("-", ",", ".", "?", "!")) and t - W[i - 1][1] < 0.6
+    if w.endswith("-") or w == "-" or (w.startswith("-") and len(w) > 1 and not compound): hits.append((t, f"cut-off word '{w}'"))
     if i and lw and lw == n(W[i - 1][0]) and lw not in OK_REPEAT and t - W[i - 1][1] < 1.2: hits.append((t, f"repeat '{W[i - 1][0]} {w}'"))
     for k in (2, 3, 4):   # the same phrase said twice within 6 s = a restart
         if i >= 2 * k - 1:

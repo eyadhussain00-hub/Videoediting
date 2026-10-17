@@ -122,6 +122,21 @@
    "third",
    "party",
    "third-party"
+  ],
+  [
+   "long",
+   "-form",
+   "long-form"
+  ],
+  [
+   "social",
+   "-proof",
+   "social proof"
+  ],
+  [
+   "third",
+   "-party",
+   "third-party"
   ]
  ],
  "cuts": [
@@ -141,7 +156,7 @@
    "section": "01",
    "src": "v2",
    "in": 22.5,
-   "out": 23.78
+   "out": 23.81
   },
   {
    "section": "01",
@@ -314,8 +329,8 @@
   {
    "section": "06",
    "src": "v2",
-   "in": 116.52,
-   "out": 118.54
+   "out": 118.54,
+   "in_t": 116.66
   },
   {
    "section": "06",
@@ -333,7 +348,7 @@
    "section": "07",
    "src": "v2",
    "in": 129.62,
-   "out": 132.2
+   "out": 132.23
   },
   {
    "section": "07",
@@ -357,7 +372,7 @@
    "section": "07",
    "src": "v2",
    "in": 145.84,
-   "out": 147.38
+   "out": 147.41
   },
   {
    "section": "08",
@@ -381,13 +396,13 @@
    "section": "08",
    "src": "v2",
    "in": 170.2,
-   "out": 171.06
+   "out": 171.1
   },
   {
    "section": "08",
    "src": "v2",
    "in": 174.76,
-   "out": 175.26
+   "out": 175.29
   },
   {
    "section": "cta",
@@ -561,15 +576,15 @@
     "testimonials@78.20",
     "socials@80.04",
     "YouTube@84.70",
-    "podcast@85.22",
+    "podcasts@85.88",
     "online@86.82",
     "free@89.08"
    ]
   },
   {
    "type": "pill",
-   "at": "pinned@98.72",
-   "until": "post@99.14",
+   "at": "pin@98.70",
+   "until": "posts@99.14",
    "text": "3 pinned posts"
   },
   {
@@ -877,6 +892,67 @@
     ]
    ],
    "_why": "'uh' 44.80-45.26 sat inside the ASR span of 'you're' — real 'you're' starts 45.48"
+  },
+  {
+   "_why": "17 Oct re-transcribe: 116.5 'them' was the tail of the first 'articulate'; second take read off the 20 ms RMS",
+   "src": "v2",
+   "from": 116.4,
+   "to": 117.6,
+   "words": [
+    [
+     "and",
+     116.74,
+     116.86
+    ],
+    [
+     "it",
+     116.88,
+     116.98
+    ],
+    [
+     "makes",
+     117.0,
+     117.12
+    ],
+    [
+     "it",
+     117.14,
+     117.2
+    ],
+    [
+     "hard",
+     117.2,
+     117.32
+    ],
+    [
+     "to",
+     117.4,
+     117.52
+    ]
+   ]
+  },
+  {
+   "_why": "17 Oct re-transcribe dropped 'message' (verbatim slice)",
+   "src": "v2",
+   "from": 143.28,
+   "to": 143.68,
+   "words": [
+    [
+     "I",
+     143.28,
+     143.38
+    ],
+    [
+     "message",
+     143.38,
+     143.56
+    ],
+    [
+     "the",
+     143.56,
+     143.66
+    ]
+   ]
   }
  ],
  "face_frame": "wide"
