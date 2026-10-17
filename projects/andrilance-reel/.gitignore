@@ -1,0 +1,8 @@
+# generated media (rebuild with the steps in PROGRESS.md; footage is on TikTok)
+cache/
+renders/
+node_modules/
+public/*.mp4
+public/*.wav
+public/*.webm
+public/img/last*.png
