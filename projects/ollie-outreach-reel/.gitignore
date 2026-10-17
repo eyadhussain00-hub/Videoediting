@@ -1,0 +1,5 @@
+# generated media (rebuild with scripts/build_media.sh; footage is on TikTok)
+public/*.mp4
+public/*.wav
+public/*.webm
+public/img/last*.png
