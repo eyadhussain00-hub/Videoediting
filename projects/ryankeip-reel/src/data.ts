@@ -180,6 +180,7 @@ export const CAPTION_HIDE: [number, number][] = [
   [T.hasnt - 0.05, T.yet + 0.3],
   [T.fight - 0.05, T.anxiety1 + 0.35],
   [T.three - 0.05, T.redirect1 + 0.6],
+  [T.how2 - 0.1, T.on + 0.3],
   [T.elite - 0.1, T.end],
 ];
 

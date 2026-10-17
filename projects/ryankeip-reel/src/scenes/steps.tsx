@@ -74,7 +74,7 @@ export const Recognize = () => {
     </div>
   );
   return (
-    <Abs style={{ left: 50, right: 50, top: 250, opacity: v }}>
+    <Abs style={{ left: 50, right: 50, top: 1060, opacity: v }}>
       <div style={{ textAlign: "center", fontFamily: SERIF, fontStyle: "italic", fontSize: 60, color: BONE, opacity: prog(t, a, 0.35), marginBottom: 24, textShadow: "0 6px 30px rgba(0,0,0,0.6)" }}>Tell yourself:</div>
       <div style={{ display: "flex", gap: 24 }}>
         {card("Adrenaline", true, adr)}
@@ -84,34 +84,49 @@ export const Recognize = () => {
   );
 };
 
-/** "Slow down. Take one controlled breath with a longer exhale." — breath ring; heart rate settles; HUD turns cyan. */
-export const Regulate = () => {
-  const t = useT();
-  const a = T.slow - 0.15, b = T.third - 0.1;
-  const v = win(t, a, b, 0.25, 0.3);
-  if (v <= 0.001) return null;
+const regWin = (t: number) => win(t, T.slow - 0.15, T.third - 0.1, 0.25, 0.3);
+const breathScale = (t: number) => {
   const inhale = prog(t, T.breath - 0.3, T.longer - T.breath + 0.3, inOutCubic);
   const exhale = prog(t, T.longer, T.third - 0.3 - T.longer, inOutCubic);
-  const s = lerp(0.55, 1, inhale) - lerp(0, 0.45, exhale);
+  return lerp(0.55, 1, inhale) - lerp(0, 0.45, exhale);
+};
+
+/** "Slow down. Take one controlled breath with a longer exhale." — a breath ring behind his head (render before <Person/>). */
+export const RegulateRing = () => {
+  const t = useT();
+  const v = regWin(t);
+  if (v <= 0.001) return null;
+  const s = breathScale(t);
+  const col = mix(AMBER, CYAN, calmAt(t));
+  return (
+    <Abs style={{ left: 540 - 450, top: 560 - 450, width: 900, height: 900, opacity: v, display: "flex", alignItems: "center", justifyContent: "center" }}>
+      {[1, 0.8, 0.62].map((k, i) => (
+        <div key={i} style={{ position: "absolute", width: 860 * s * k, height: 860 * s * k, borderRadius: 999, border: `${i ? 3 : 6}px solid ${col}`, opacity: i ? 0.35 : 0.95, boxShadow: i ? undefined : `0 0 80px ${col}, inset 0 0 80px ${mix(AMBER, CYAN, calmAt(t), 0.35)}` }} />
+      ))}
+    </Abs>
+  );
+};
+/** Front readouts for the breath: the phase pill and the heart rate settling. */
+export const Regulate = () => {
+  const t = useT();
+  const v = regWin(t);
+  if (v <= 0.001) return null;
   const c = calmAt(t);
   const col = mix(AMBER, CYAN, c);
   const phase = t < T.take - 0.1 ? "SLOW DOWN" : t < T.longer ? "INHALE" : "EXHALE · LONGER";
   const bpm = bpmAt(t);
   return (
-    <Abs style={{ left: 0, right: 0, top: 120, opacity: v, display: "flex", flexDirection: "column", alignItems: "center" }}>
-      <div style={{ position: "relative", width: 560, height: 560, display: "flex", alignItems: "center", justifyContent: "center" }}>
-        {[1, 0.82, 0.64].map((k, i) => (
-          <div key={i} style={{ position: "absolute", width: 520 * s * k, height: 520 * s * k, borderRadius: 999, border: `${i ? 2 : 4}px solid ${col}`, opacity: i ? 0.35 : 0.9, boxShadow: i ? undefined : `0 0 60px ${col}, inset 0 0 60px ${mix(AMBER, CYAN, c, 0.35)}` }} />
-        ))}
-        <div style={{ ...glass, padding: "14px 30px", borderRadius: 40, fontFamily: MONO, fontWeight: 700, fontSize: 30, letterSpacing: 4, color: BONE }}>{phase}</div>
-      </div>
-      <div style={{ ...glass, marginTop: 10, display: "flex", alignItems: "center", gap: 18, padding: "14px 26px", borderRadius: 30, opacity: prog(t, T.take, 0.4) }}>
+    <>
+      <Abs style={{ left: 0, right: 0, top: 230, display: "flex", justifyContent: "center", opacity: v }}>
+        <div style={{ ...glass, padding: "14px 30px", borderRadius: 40, fontFamily: MONO, fontWeight: 700, fontSize: 30, letterSpacing: 4, color: BONE, borderColor: col }}>{phase}</div>
+      </Abs>
+      <Abs style={{ left: 44, top: 1120, ...glass, display: "flex", alignItems: "center", gap: 18, padding: "14px 26px", borderRadius: 30, opacity: v * prog(t, T.take, 0.4) }}>
         <IconHeart size={40} color={col} sw={2.4} />
         <div style={{ fontFamily: SANS, fontWeight: 900, fontSize: 56, color: BONE, fontVariantNumeric: "tabular-nums" }}>{bpm}</div>
         <div style={{ fontFamily: MONO, fontSize: 24, color: col }}>BPM {c > 0.5 ? "▼" : ""}</div>
         <Ecg t={t} w={260} h={60} rate={bpm / 60} color={col} amp={lerp(1, 0.6, c)} />
-      </div>
-    </Abs>
+      </Abs>
+    </>
   );
 };
 
@@ -125,7 +140,7 @@ export const Redirect = () => {
   const kill = prog(t, T.start2 - 0.1, 0.4, inOutCubic);
   const q2 = prog(t, T.what2 - 0.1, 0.45, outBack);
   return (
-    <Abs style={{ left: 54, right: 54, top: 250, display: "flex", flexDirection: "column", gap: 26, opacity: v }}>
+    <Abs style={{ left: 54, right: 54, top: 1080, display: "flex", flexDirection: "column", gap: 26, opacity: v }}>
       <div style={{ ...glass, padding: "26px 30px", borderRadius: "36px 36px 36px 8px", borderColor: "rgba(255,46,58,0.5)", opacity: lerp(q1, 0.45, kill), transform: `scale(${lerp(0.85, 1, q1) - kill * 0.06})`, transformOrigin: "left center" }}>
         <div style={{ fontFamily: MONO, fontSize: 22, letterSpacing: 3, color: RED, marginBottom: 8 }}>STOP THINKING</div>
         <div style={{ position: "relative", display: "inline-block", fontFamily: SERIF, fontStyle: "italic", fontSize: 62, color: BONE }}>
@@ -202,6 +217,7 @@ export const Finale = () => {
     <>
       <Abs style={{ left: 0, right: 0, top: 0, height: 150 * lb, background: "#000" }} />
       <Abs style={{ left: 0, right: 0, bottom: 0, height: 150 * lb, background: "#000" }} />
+      <Abs style={{ left: 0, right: 0, top: 1120, height: 650, opacity: qv * lb, background: "linear-gradient(180deg, rgba(0,0,0,0), rgba(0,0,0,0.7) 35%, rgba(0,0,0,0.75))" }} />
       <Abs style={{ left: 60, right: 60, top: 1250, opacity: qv }}>
         <LitLine t={t} words={l1} times={t1} size={78} color={(i) => (i === 3 ? CYAN : BONE)} dim={0.15} />
         <div style={{ height: 18 }} />

@@ -6,7 +6,7 @@ Two overlays:
   caption   one white word at a time with a black outline, centred at x 540, y ~1390-1485, from frame 113 on.
             Per-frame mask: white letter cores whose own box sits inside the caption band (the shirt's big
             "RYAN KEIP" letters reach past the band, so they are kept), dilated over the outline; LaMa fill.
-Writes video only. Usage:
+Writes video only. A --second-pass over the cleaned video only touches frames that still have a caption. Usage:
   python3 scripts/clean_captions.py cache/src.mp4 cache/clean_X.mp4 [--range A B] [--threads N]
 """
 import sys, subprocess, numpy as np, cv2
@@ -19,7 +19,7 @@ if "--threads" in sys.argv:
 W, H = 1080, 1920
 BOX_END = 113                                   # first frame without the hook box
 SY0, SY1, SX0, SX1 = 1340, 1540, 60, 1020       # where caption letters are searched
-LY0, LY1 = 1372, 1500                           # a caption letter's box lies inside these rows
+LY0, LY1 = 1365, 1506                           # a caption letter's box lies inside these rows
 
 box = np.zeros((H, W), np.uint8)
 cv2.rectangle(box, (232, 1192), (854, 1562), 255, -1)
@@ -37,7 +37,7 @@ def caption_mask(f):
         if area < 12:
             continue
         top, bot = SY0 + y - 2, SY0 + y + h + 2
-        if top >= LY0 and bot <= LY1 and h <= 76:
+        if top >= LY0 and bot <= LY1 and h <= 100:   # the source scales some words up (letters to ~84 px)
             keep[lab == i] = 255
     keep = cv2.dilate(keep, np.ones((7, 7), np.uint8)) & (m * 255)   # grow the seeds back to the letter
     # a word is a row of letters: drop lone specks far from any other letter
@@ -88,7 +88,7 @@ while i < B:
     ok, f = cap.read()
     if not ok:
         break
-    cm = box if i < BOX_END else caption_mask(f)
+    cm = box if i < BOX_END and "--second-pass" not in sys.argv else caption_mask(f)
     if i % 150 == 0:
         cv2.imwrite(dst.replace(".mp4", f"_mask_{i}.png"), cm[1180:1580])
     f = fill(f, cm)

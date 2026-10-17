@@ -5,7 +5,7 @@ import { BgDim, Captions, Footage, Grain, Person, Shade } from "./scenes/base";
 import { Flash, LightLeaks } from "./scenes/fx";
 import { CallBar, HeatType, Promise as PromiseCard, SaveShare, Symptoms, Threat, ThreatType } from "./scenes/hook";
 import { Boom, CallFlow, Definition, FightFlightTag, FightFlightType, ModeFlip, Prediction, Trouble, Vitals } from "./scenes/mid";
-import { Discovery, EndCard, Finale, Recognize, Redirect, Regulate, Remember, StepTags, ThreeSteps } from "./scenes/steps";
+import { Discovery, EndCard, Finale, Recognize, Redirect, Regulate, RegulateRing, Remember, StepTags, ThreeSteps } from "./scenes/steps";
 import { win } from "./ui";
 
 /** How dark the room gets behind type that sits behind him. */
@@ -14,6 +14,7 @@ const dimAt = (t: number) =>
     0.4 * win(t, T.heat - 0.15, T.palms + 0.1, 0.2, 0.3),
     0.42 * win(t, T.threat - 0.1, T.psychological - 0.05, 0.2, 0.3),
     0.45 * win(t, T.fight - 0.08, T.anticipatory - 0.1, 0.15, 0.3),
+    0.3 * win(t, T.slow - 0.15, T.third - 0.1, 0.3, 0.3),
     0.35 * win(t, T.elite - 0.12, T.end, 0.6, 0.1),
   );
 
@@ -25,6 +26,7 @@ export const Reel = () => (
     <HeatType />
     <ThreatType />
     <FightFlightType />
+    <RegulateRing />
     <Person />
     <Shade />
     <CallBar />
